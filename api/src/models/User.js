@@ -47,6 +47,7 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
+        defaultValue: null,
       },
       isSommelier: {
         type: DataTypes.BOOLEAN,
