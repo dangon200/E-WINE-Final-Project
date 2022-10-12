@@ -6,6 +6,20 @@ const { v4: uuidv4 } = require("uuid");
 
 const userController = require("../controllers/users");
 
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const userById = await userController.getUserById(id);
+
+    if (!userById)
+      return res.status(404).json(`User with ID: ${id} not found!`);
+    res.status(200).json(userById);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
 router.get("/", async (req, res) => {
   try {
     const usersFromDb = await userController.getAllUsers();
