@@ -1,3 +1,4 @@
+// import data from '../dataExample.json'
 const initialState = {}
 
 export default function reducer (state = initialState, action) {
