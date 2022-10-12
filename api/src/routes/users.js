@@ -6,6 +6,19 @@ const { v4: uuidv4 } = require("uuid");
 
 const userController = require("../controllers/users");
 
+router.get("/", async (req, res) => {
+  try {
+    const usersFromDb = await userController.getAllUsers();
+
+    if (!usersFromDb.length)
+      return res.status(404).json("No users saved in the Database!");
+
+    return res.status(200).json(usersFromDb);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
 router.post("/", async (req, res) => {
   const { username, email, password, region } = req.body;
 
