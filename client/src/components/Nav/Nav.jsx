@@ -1,7 +1,7 @@
-import style from './nav.module.css'
+// import style from './nav.module.css'
 
 export default function Nav () {
   return (
-    <div />
+    <div> Este es el Navbar</div>
   )
 }
