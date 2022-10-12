@@ -71,8 +71,54 @@ const createUser = async (username, email, password, region) => {
   }
 };
 
+const setBanned = async (id, banned) => {
+  try {
+    const userUpdated = await User.update(
+      {
+        isBanned: banned,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    if (userUpdated) {
+      const userById = await getUserById(id);
+      return userById;
+    }
+  } catch (error) {
+    throw new Error("Error updating user!");
+  }
+};
+
+const setSommelier = async (id, sommelier) => {
+  try {
+    const userUpdated = await User.update(
+      {
+        isSommelier: sommelier,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+
+    if (userUpdated) {
+      const userById = await getUserById(id);
+      return userById;
+    }
+  } catch (error) {
+    throw new Error("Error updating user!");
+  }
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  setBanned,
+  setSommelier,
 };

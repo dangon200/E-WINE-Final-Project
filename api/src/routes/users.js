@@ -42,6 +42,17 @@ router.post("/", async (req, res) => {
   if (!region) return res.status(404).json("Region is missing!");
 
   try {
+    const emailExist = await User.findOne({
+      where: {
+        email,
+      },
+    });
+
+    if (emailExist)
+      return res
+        .status(404)
+        .json("There is a user with this email address. Try a new one!");
+
     const userCreated = await userController.createUser(
       username,
       email,
@@ -50,6 +61,24 @@ router.post("/", async (req, res) => {
     );
 
     res.status(201).json(userCreated);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { banned, sommelier } = req.query;
+
+  try {
+    if (banned) {
+      const result = await userController.setBanned(id, banned);
+      return res.status(200).json(result);
+    }
+    if (sommelier) {
+      const result = await userController.setSommelier(id, sommelier);
+      return res.status(200).json(result);
+    }
   } catch (error) {
     res.status(400).json(error.message);
   }
