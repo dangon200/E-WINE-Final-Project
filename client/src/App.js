@@ -1,11 +1,14 @@
 import './App.css'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import LandingPage from './components/LandingPage/LandingPage.jsx'
 
 function App () {
   return (
-    <div className='App'>
-      <h1>Template App</h1>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <Route exact path='/' component={LandingPage} />
+      </div>
+    </BrowserRouter>
   )
 }
 
