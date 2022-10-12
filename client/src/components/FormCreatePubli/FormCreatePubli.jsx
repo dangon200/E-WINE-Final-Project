@@ -8,10 +8,29 @@ export default function FormCreatePubli () {
         initialValues={{ price: '', description: '', count: '', image: '' }}
         validate={values => {
           const errors = {}
+          // price validation
           if (!values.price) {
             errors.price = 'Required'
-          } else if (values.price.length < 3) {
-            errors.price = 'Must be 15 characters or less'
+          } else if (values.price < 0) {
+            errors.price = 'Min value is 1'
+          } else if (typeof parseInt(values.price) !== 'number') {
+            errors.price = 'Must be a number'
+          }
+          // count validation
+          if (!values.count) {
+            errors.count = 'Min 1 count '
+          } else if (typeof parseInt(values.count) !== 'number') {
+            errors.price = 'Must be a number'
+          }
+          // description validation
+          if (!values.description) {
+            errors.description = 'Required'
+          } else if (values.description.length < 10) {
+            errors.description = 'Min 10 characters'
+          }
+          // image validation
+          if (!values.image) {
+            errors.image = 'Min 1 image'
           }
           return errors
         }}
@@ -19,10 +38,10 @@ export default function FormCreatePubli () {
           // console.log(values)
         }}
       >
-        {({ values, errors, handleSubmit, handleChange, handleBlur }) => {
+        {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => {
           return (
             <form onSubmit={handleSubmit}>
-              {console.log(errors)}
+              {console.log(values.image)}
               <div>
                 <label htmlFor='price' />
                 <input
@@ -33,8 +52,9 @@ export default function FormCreatePubli () {
                   value={values.price}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  min='1'
                 />
-                {errors.price && <div>{errors.price}</div>}
+                {touched.price && errors.price && <div>{errors.price}</div>}
               </div>
               <div>
                 <label htmlFor='count' />
@@ -46,16 +66,16 @@ export default function FormCreatePubli () {
                   value={values.count}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  min='1'
                 />
-                {errors.count && <div>{errors.count}</div>}
+                {touched.count && errors.count && <div>{errors.count}</div>}
               </div>
               <div>
                 <label htmlFor='img'> Img </label>
                 <input
                   type='file'
-                  name='img'
+                  name='image'
                   id='img'
-                  value={values.image}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -71,15 +91,14 @@ export default function FormCreatePubli () {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {errors.description && <div>{errors.description}</div>}
+                {touched.description && errors.description && <div>{errors.description}</div>}
               </div>
 
-              <button type='submit'>Create</button>
+              <button type='submit' disabled={Object.keys(errors).length && true}>Create</button>
             </form>
           )
         }}
       </Formik>
-
     </>
   )
 }
