@@ -20,7 +20,6 @@ const getUserById = async (id) => {
       isSommelier: dbResult.isSommelier,
       balance: dbResult.balance
     }
-    console.log(result)
 
     return result
   } catch (error) {

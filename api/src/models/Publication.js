@@ -16,11 +16,11 @@ module.exports = (sequelize) => {
     },
     price: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: false
     },
     count: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      allowNull: false
     },
     image: {
       type: DataTypes.TEXT,

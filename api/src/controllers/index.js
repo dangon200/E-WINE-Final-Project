@@ -1,7 +1,4 @@
-const { Sequelize } = require('sequelize')
-const { Publication,Product } = require('../db.js')
-// const { dbApiKey } = require('../utils/config');
-const axios = require('axios')
+const { Publication, Product } = require('../db.js')
 
 const getPublicationsDb = async () => {
   const pub = await Publication.findAll({
@@ -12,10 +9,8 @@ const getPublicationsDb = async () => {
   })
   return pub
 }
-const createPublication = async (reqBody) => {
+const createPublication = async (name, price, count, image, description) => {
   try {
-    const { productId, name, price, count, image, description } = reqBody
-    if (!price || !count || !image || !description) return 'Falta información'
     const newPublication = await Publication.create({ name, price, count, image, description })
     // newPublication.addProduct(productId)
 
