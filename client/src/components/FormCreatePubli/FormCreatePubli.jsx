@@ -1,7 +1,9 @@
 // import style from './FormCreatePubli.module.css'
-import { Formik } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useState } from 'react'
 
 export default function FormCreatePubli () {
+  const [send, setSend] = useState(false)
   // FUNCTION VALIDATE URL IMAGE
   const validateUrl = (value) => {
     if (/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi.test(value)) {
@@ -11,8 +13,8 @@ export default function FormCreatePubli () {
   // CLOUDINARY FUNCTION UPLOAD AN IMG
   const uplodCloudinary = async (file) => {
     try {
-      const cloudName = 'dxkbtlnqc'
-      const preset = 'HenryFinal'
+      const cloudName = 'dfq27ytd2'
+      const preset = 'cpnushlf'
       const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
 
       const formData = new FormData()
@@ -37,9 +39,17 @@ export default function FormCreatePubli () {
   return (
     <>
       <Formik
-        initialValues={{ name: 'vino', price: 2, description: 'Buen Vinooo', count: 5, image: [] }}
+        initialValues={{ name: '', price: 0, description: '', count: 0, image: [] }}
         validate={values => {
           const errors = {}
+          // title validations
+          if (!values.name) {
+            errors.name = 'Required'
+          } else if (values.name.length < 10) {
+            errors.name = 'Must be 10 characters or more'
+          } else if (values.name.length > 150) {
+            errors.name = 'Must be 150 characters or less'
+          }
           // price validation
           if (!values.price) {
             errors.price = 'Required'
@@ -79,42 +89,48 @@ export default function FormCreatePubli () {
             const newPublication = await response.json()
             console.log(newPublication)
             resetForm()
+            setSend(true)
+            setTimeout(() => { setSend(false) }, 3000)
           } catch (error) {
             console.log(error)
           }
           // END API POST PUBLICATION
         }}
       >
-        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, setFieldValue }) => {
+        {({ setFieldValue }) => {
           return (
-            <form onSubmit={handleSubmit}>
+            <Form>
+              <div>
+                <label htmlFor='title' />
+                <Field
+                  type='text'
+                  placeholder='Title'
+                  name='name'
+                  id='title'
+                />
+                <ErrorMessage name='price' component='div' />
+              </div>
               <div>
                 <label htmlFor='price' />
-                <input
+                <Field
                   type='number'
                   placeholder='Price'
                   name='price'
                   id='price'
-                  value={values.price}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   min='1'
                 />
-                {touched.price && errors.price && <div>{errors.price}</div>}
+                <ErrorMessage name='price' component='div' />
               </div>
               <div>
                 <label htmlFor='count' />
-                <input
+                <Field
                   type='number'
                   placeholder='Count'
                   name='count'
                   id='count'
-                  value={values.count}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
                   min='1'
                 />
-                {touched.count && errors.count && <div>{errors.count}</div>}
+                <ErrorMessage name='count' component='div' />
               </div>
               <div>
                 <label htmlFor='img'> Img </label>
@@ -127,25 +143,24 @@ export default function FormCreatePubli () {
                     const myFiles = Array.from(files)
                     setFieldValue('image', myFiles)
                   }}
-                  onBlur={handleBlur}
                 />
               </div>
               <div>
                 <label htmlFor='description' />
-                <textarea
+                <Field
+                  as='textarea'
                   name='description'
                   id='description'
                   cols='30'
                   rows='4npm'
-                  value={values.description}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  placeholder='Description'
                 />
-                {touched.description && errors.description && <div>{errors.description}</div>}
+                <ErrorMessage name='description' component='div' />
               </div>
 
-              <button type='submit' disabled={Object.keys(errors).length && true}>Create</button>
-            </form>
+              <button type='submit'>Create</button>
+              {send && <div>Publication created</div>}
+            </Form>
           )
         }}
       </Formik>
