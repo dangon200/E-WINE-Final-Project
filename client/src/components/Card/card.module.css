@@ -1,0 +1,49 @@
+.card{
+    width: 250px;
+    height: 450px;
+    background-color: beige;
+    margin-top: 10%;
+    margin-left: 50%;
+}
+
+.divImage{
+    padding-top: 20px;
+    display: flex;
+    position: relative;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.dataCard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardTitle{
+    margin-left: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.buttonCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+.cartButton{
+    background-color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.detailButton{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.image{
+    height: 170px;
+}
