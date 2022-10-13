@@ -42,5 +42,9 @@
   },
   "devDependencies": {
     "standard": "^17.0.0"
+<<<<<<< HEAD
       }
+=======
+  }
+>>>>>>> 882e42964d0b162ea37bbec4bd52fe83797076f8
 }
