@@ -1,12 +1,12 @@
-import "./App.css";
-import { Route } from "react-router-dom";
+import './App.css'
 
-function App() {
+function App () {
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Template App</h1>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

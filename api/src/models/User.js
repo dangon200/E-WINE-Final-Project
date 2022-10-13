@@ -1,71 +1,70 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize')
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "user",
+    'user',
     {
       id: {
         type: DataTypes.UUID,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       username: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: false
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       buyLevel: {
         type: DataTypes.INTEGER,
-        defaultValue: 1,
+        defaultValue: 1
       },
       sellLevel: {
         type: DataTypes.INTEGER,
-        defaultValue: 1,
+        defaultValue: 1
       },
       region: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       phoneNumber: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       balance: {
         type: DataTypes.FLOAT,
-        defaultValue: 1000,
+        defaultValue: 1000
       },
       image: {
-        type: DataTypes.STRING,
-        defaultValue: null,
+        type: DataTypes.TEXT,
+        defaultValue: null
       },
       isSommelier: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: false
       },
       isAdmin: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: false
       },
       isBanned: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
+        defaultValue: false
+      }
     },
     {
       timestamps: true,
       createdAt: true,
-      updatedAt: false,
+      updatedAt: false
     }
-  );
-};
+  )
+}

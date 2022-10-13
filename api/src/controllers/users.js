@@ -1,13 +1,13 @@
-const { User } = require("../db");
-const { Op } = require("sequelize");
+const { User } = require('../db')
+// const { Op } = require('sequelize')
 
-const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require('uuid')
 
 const getUserById = async (id) => {
   try {
-    const dbResult = await User.findByPk(id);
+    const dbResult = await User.findByPk(id)
 
-    if (!dbResult) return null;
+    if (!dbResult) return null
 
     const result = {
       id: dbResult.id,
@@ -18,21 +18,21 @@ const getUserById = async (id) => {
       isBanned: dbResult.isBanned,
       isAdmin: dbResult.isAdmin,
       isSommelier: dbResult.isSommelier,
-      balance: dbResult.balance,
-    };
-    console.log(result);
+      balance: dbResult.balance
+    }
+    console.log(result)
 
-    return result;
+    return result
   } catch (error) {
-    throw new Error("Error finding a user by its ID!");
+    throw new Error('Error finding a user by its ID!')
   }
-};
+}
 
 const getAllUsers = async () => {
-  const results = [];
+  const results = []
 
   try {
-    const dbResults = await User.findAll();
+    const dbResults = await User.findAll()
 
     dbResults.forEach((r) => {
       results.push({
@@ -44,81 +44,162 @@ const getAllUsers = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance,
-      });
-    });
-    return results;
+        balance: r.balance
+      })
+    })
+    return results
   } catch (error) {
-    throw new Error("Error trying to get all users from DB!");
+    throw new Error('Error trying to get all users from DB!')
   }
-};
+}
+
+const getAllUsersBanned = async () => {
+  const results = []
+
+  try {
+    const dbResults = await User.findAll({
+      where: {
+        isBanned: true
+      }
+    })
+
+    dbResults.forEach((r) => {
+      results.push({
+        id: r.id,
+        username: r.username,
+        email: r.email,
+        region: r.region,
+        image: r.image,
+        isBanned: r.isBanned,
+        isAdmin: r.isAdmin,
+        isSommelier: r.isSommelier,
+        balance: r.balance
+      })
+    })
+    return results
+  } catch (error) {
+    throw new Error('Error trying to get all users from DB!')
+  }
+}
+
+const getAllUsersNotBanned = async () => {
+  const results = []
+
+  try {
+    const dbResults = await User.findAll({
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.forEach((r) => {
+      results.push({
+        id: r.id,
+        username: r.username,
+        email: r.email,
+        region: r.region,
+        image: r.image,
+        isBanned: r.isBanned,
+        isAdmin: r.isAdmin,
+        isSommelier: r.isSommelier,
+        balance: r.balance
+      })
+    })
+    return results
+  } catch (error) {
+    throw new Error('Error trying to get all users from DB!')
+  }
+}
 
 const createUser = async (username, email, password, region) => {
-  const result = [];
-
   try {
     const userCreated = await User.create({
       username,
       email,
       password,
       region,
-      id: uuidv4(),
-    });
+      id: uuidv4()
+    })
 
-    return userCreated;
+    return userCreated
   } catch (error) {
-    throw new Error("Error trying to create a new User!");
+    throw new Error('Error trying to create a new User!')
   }
-};
+}
 
 const setBanned = async (id, banned) => {
   try {
     const userUpdated = await User.update(
       {
-        isBanned: banned,
+        isBanned: banned
       },
       {
         where: {
-          id,
-        },
+          id
+        }
       }
-    );
+    )
 
     if (userUpdated) {
-      const userById = await getUserById(id);
-      return userById;
+      const userById = await getUserById(id)
+      return userById
     }
   } catch (error) {
-    throw new Error("Error updating user!");
+    throw new Error('Error updating user!')
   }
-};
+}
 
 const setSommelier = async (id, sommelier) => {
   try {
     const userUpdated = await User.update(
       {
-        isSommelier: sommelier,
+        isSommelier: sommelier
       },
       {
         where: {
-          id,
-        },
+          id
+        }
       }
-    );
+    )
 
     if (userUpdated) {
-      const userById = await getUserById(id);
-      return userById;
+      const userById = await getUserById(id)
+      return userById
     }
   } catch (error) {
-    throw new Error("Error updating user!");
+    throw new Error('Error updating user!')
   }
-};
+}
+
+const setImage = async (id, url) => {
+  try {
+    const userUpdated = await User.update(
+      {
+        image: url
+      },
+      {
+        where: {
+          id
+        }
+      }
+    )
+
+    if (userUpdated) {
+      const userById = await getUserById(id)
+      return userById
+    }
+  } catch (error) {
+    throw new Error('Error updating user!')
+  }
+}
 
 module.exports = {
   createUser,
   getAllUsers,
+  getAllUsersBanned,
+  getAllUsersNotBanned,
   getUserById,
   setBanned,
   setSommelier,
-};
+  setImage
+}

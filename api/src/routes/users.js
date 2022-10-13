@@ -1,87 +1,145 @@
-const { Router } = require("express");
-const router = Router();
+const { Router } = require('express')
+const router = Router()
 
-const { User } = require("../db");
-const { v4: uuidv4 } = require("uuid");
+const { User } = require('../db')
 
-const userController = require("../controllers/users");
+const userController = require('../controllers/users')
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get('/login', async (req, res) => {
+  const { email, password } = req.body
 
   try {
-    const userById = await userController.getUserById(id);
+    const userEmail = await User.findOne({ where: { email } })
 
-    if (!userById)
-      return res.status(404).json(`User with ID: ${id} not found!`);
-    res.status(200).json(userById);
+    if (!userEmail) return res.status(404).json('Email not found!')
+    if (userEmail.password !== password) return res.status(404).json('Password is incorrect')
+
+    const userById = await userController.getUserById(userEmail.id)
+    res.status(200).json(userById)
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(error.message)
   }
-});
+})
 
-router.get("/", async (req, res) => {
+router.get('/:id', async (req, res) => {
+  const { id } = req.params
+
   try {
-    const usersFromDb = await userController.getAllUsers();
+    const userById = await userController.getUserById(id)
 
-    if (!usersFromDb.length)
-      return res.status(404).json("No users saved in the Database!");
-
-    return res.status(200).json(usersFromDb);
+    if (!userById) {
+      return res.status(404).json(`User with ID: ${id} not found!`)
+    }
+    res.status(200).json(userById)
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(error.message)
   }
-});
+})
 
-router.post("/", async (req, res) => {
-  const { username, email, password, region } = req.body;
+router.get('/banned/true', async (req, res) => {
+  try {
+    const usersFromDb = await userController.getAllUsersBanned()
 
-  if (!username) return res.status(404).json("Username is missing!");
-  if (!email) return res.status(404).json("Email is missing!");
-  if (!password) return res.status(404).json("Password is missing!");
-  if (!region) return res.status(404).json("Region is missing!");
+    if (!usersFromDb.length) {
+      return res.status(404).json('No users saved in the Database!')
+    }
+
+    return res.status(200).json(usersFromDb)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/banned/false', async (req, res) => {
+  try {
+    const usersFromDb = await userController.getAllUsersNotBanned()
+
+    if (!usersFromDb.length) {
+      return res.status(404).json('No users saved in the Database!')
+    }
+
+    return res.status(200).json(usersFromDb)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/', async (req, res) => {
+  try {
+    const usersFromDb = await userController.getAllUsers()
+
+    if (!usersFromDb.length) {
+      return res.status(404).json('No users saved in the Database!')
+    }
+
+    return res.status(200).json(usersFromDb)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.post('/', async (req, res) => {
+  const { username, email, password, region } = req.body
+
+  if (!username) return res.status(400).json('Username is missing!')
+  if (!email) return res.status(400).json('Email is missing!')
+  if (!password) return res.status(40).json('Password is missing!')
+  if (!region) return res.status(400).json('Region is missing!')
 
   try {
     const emailExist = await User.findOne({
       where: {
-        email,
-      },
-    });
+        email
+      }
+    })
 
-    if (emailExist)
+    if (emailExist) {
       return res
         .status(404)
-        .json("There is a user with this email address. Try a new one!");
+        .json('There is a user with this email address. Try a new one!')
+    }
 
     const userCreated = await userController.createUser(
       username,
       email,
       password,
       region
-    );
+    )
 
-    res.status(201).json(userCreated);
+    res.status(201).json(userCreated)
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(error.message)
   }
-});
+})
 
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const { banned, sommelier } = req.query;
+router.put('/:id/image-upload', async (req, res) => {
+  const { id } = req.params
+  const { url } = req.body
+
+  try {
+    const result = await userController.setImage(id, url)
+    return res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json('Error uploading user image!')
+  }
+})
+
+router.put('/:id', async (req, res) => {
+  const { id } = req.params
+  const { banned, sommelier } = req.query
 
   try {
     if (banned) {
-      const result = await userController.setBanned(id, banned);
-      return res.status(200).json(result);
+      const result = await userController.setBanned(id, banned)
+      return res.status(200).json(result)
     }
     if (sommelier) {
-      const result = await userController.setSommelier(id, sommelier);
-      return res.status(200).json(result);
+      const result = await userController.setSommelier(id, sommelier)
+      return res.status(200).json(result)
     }
   } catch (error) {
-    res.status(400).json(error.message);
+    res.status(400).json(error.message)
   }
-});
+})
 
-module.exports = router;
+module.exports = router
