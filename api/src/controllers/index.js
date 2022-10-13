@@ -5,6 +5,7 @@ const getPublicationsDb = async () => {
 
   try {
     const dbResults = await Publication.findAll({
+      include: Product,
       where: {
         isBanned: false
       }
@@ -13,11 +14,17 @@ const getPublicationsDb = async () => {
     dbResults.forEach(r => {
       results.push({
         id: r.id,
-        name: r.name,
+        title: r.title,
         price: r.price,
         count: r.count,
         image: r.image,
-        description: r.description
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin
       })
     })
 
@@ -26,10 +33,9 @@ const getPublicationsDb = async () => {
     throw new Error('Error tratando de obtener todas las publicaciones!')
   }
 }
-const createPublication = async (name, price, count, image, description) => {
+const createPublication = async (productId, title, price, count, image, description) => {
   try {
-    const newPublication = await Publication.create({ name, price, count, image, description })
-    // newPublication.addProduct(productId)
+    const newPublication = await Publication.create({ title, price, count, image, description, productId })
 
     return newPublication
   } catch (error) {
@@ -38,20 +44,28 @@ const createPublication = async (name, price, count, image, description) => {
 }
 const getOnePublication = async (id) => {
   try {
-    const pb = await Publication.findByPk(id)
+    const pb = await Publication.findByPk(id, {
+      include: Product
+    })
 
     if (!pb) return null
     const result = {
       id: pb.id,
-      name: pb.name,
+      title: pb.title,
       price: pb.price,
       count: pb.count,
       image: pb.image,
-      description: pb.description
+      description: pb.description,
+      name: pb.product.name,
+      type: pb.product.type,
+      varietal: pb.product.varietal,
+      cellar: pb.product.cellar,
+      img: pb.product.img,
+      origin: pb.product.origin
     }
     return result
   } catch (error) {
-    return error
+    throw new Error('Error tratando de encontrar una Publicacion por su ID')
   }
 }
 const bannedPublication = async (id, banned) => {

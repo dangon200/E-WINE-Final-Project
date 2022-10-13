@@ -28,18 +28,18 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { name, price, count, image, description } = req.body
+  const { productId, title, price, count, image, description } = req.body
 
-  if (!name) return res.status(400).json('Falta la propiedad nombre!')
+  if (!title) return res.status(400).json('Falta la propiedad titulo!')
   if (!price) return res.status(400).json('Falta la propiedad precio!')
   if (!count) return res.status(400).json('Falta la propiedad stock!')
   if (!image) return res.status(400).json('Falta la imagen de la publicacion!')
   if (!description) return res.status(400).json('Falta la propiedad descripcion!')
 
   try {
-    const newPublication = await createPublication(name, price, count, image, description)
+    const newPublication = await createPublication(productId, title, price, count, image, description)
 
-    res.send(newPublication)
+    res.status(201).json(newPublication)
   } catch (error) {
     res.status(404).json(error.message)
   }
