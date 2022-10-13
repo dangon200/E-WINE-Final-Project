@@ -5,7 +5,7 @@ export default function FormCreatePubli () {
   return (
     <>
       <Formik
-        initialValues={{ price: '', description: '', count: '', image: '' }}
+        initialValues={{ price: '', description: '', count: '', image: [] }}
         validate={values => {
           const errors = {}
           // price validation
@@ -41,8 +41,8 @@ export default function FormCreatePubli () {
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => {
           return (
             <form onSubmit={handleSubmit}>
-              {console.log(values.image)}
               <div>
+                {console.log(values)}
                 <label htmlFor='price' />
                 <input
                   type='number'
@@ -76,7 +76,11 @@ export default function FormCreatePubli () {
                   type='file'
                   name='image'
                   id='img'
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const files = e.target.files
+                    const myFiles = Array.from(files)
+                    Formik.setFieldValue('image', myFiles)
+                  }}
                   onBlur={handleBlur}
                 />
               </div>
