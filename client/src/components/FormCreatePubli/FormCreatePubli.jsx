@@ -2,40 +2,45 @@
 import { Formik } from 'formik'
 
 export default function FormCreatePubli () {
+  const validateUrl = (value) => {
+    if (/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi.test(value)) {
+      return true
+    } else return false
+  }
   return (
     <>
       <Formik
-        initialValues={{ price: '', description: '', count: '', image: [] }}
+        initialValues={{ name: 'vino', price: 2, description: 'Buen Vinooo', count: 5, image: [] }}
         validate={values => {
           const errors = {}
           // price validation
-          // if (!values.price) {
-          //   errors.price = 'Required'
-          // } else if (values.price < 0) {
-          //   errors.price = 'Min value is 1'
-          // } else if (typeof parseInt(values.price) !== 'number') {
-          //   errors.price = 'Must be a number'
-          // }
-          // // count validation
-          // if (!values.count) {
-          //   errors.count = 'Min 1 count '
-          // } else if (typeof parseInt(values.count) !== 'number') {
-          //   errors.price = 'Must be a number'
-          // }
-          // // description validation
-          // if (!values.description) {
-          //   errors.description = 'Required'
-          // } else if (values.description.length < 10) {
-          //   errors.description = 'Min 10 characters'
-          // }
-          // // image validation
-          // if (!values.image) {
-          //   errors.image = 'Min 1 image'
-          // }
+          if (!values.price) {
+            errors.price = 'Required'
+          } else if (values.price < 0) {
+            errors.price = 'Min value is 1'
+          } else if (typeof parseInt(values.price) !== 'number') {
+            errors.price = 'Must be a number'
+          }
+          // count validation
+          if (!values.count) {
+            errors.count = 'Min 1 count '
+          } else if (typeof parseInt(values.count) !== 'number') {
+            errors.price = 'Must be a number'
+          }
+          // description validation
+          if (!values.description) {
+            errors.description = 'Required'
+          } else if (values.description.length < 10) {
+            errors.description = 'Min 10 characters'
+          }
+          // image validation
+          if (!values.image) {
+            errors.image = 'Min 1 image'
+          }
           return errors
         }}
-        onSubmit={(values) => {
-          // console.log(values)
+        onSubmit={async (values) => {
+          // CLOUDINARY
           const cloudName = 'dxkbtlnqc'
           const preset = 'HenryFinal'
           const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
@@ -44,22 +49,41 @@ export default function FormCreatePubli () {
           formData.append('upload_preset', preset)
           formData.append('file', values.image[0])
           try {
-            fetch(url, {
+            const send = await fetch(url, {
               method: 'POST',
               body: formData
             })
-              .then(res => res.json())
-              .then(res => console.log(res.secure_url))
+            const response = await send.json()
+            const urlImage = response.secure_url
+            if (validateUrl(urlImage)) {
+              console.log('url ok')
+              values.image = urlImage
+              console.log(values.image)
+            } else throw Error('url not valid')
+            // END CLOUDINARY
+            // API POST PUBLICATION
+            try {
+              const response = await fetch('http://localhost:3001/publications', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify(values)
+              })
+              const newPublication = await response.json()
+              console.log(newPublication)
+            } catch (error) {
+              console.log(error, 'Error Api')
+            }
+            // END API POST PUBLICATION
           } catch (error) {
-            console.log(error)
+            console.log(error, 'Error Cloudinary')
           }
         }}
       >
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, setFieldValue }) => {
           return (
             <form onSubmit={handleSubmit}>
+              {console.log(values)}
               <div>
-                {console.log(values)}
                 <label htmlFor='price' />
                 <input
                   type='number'
