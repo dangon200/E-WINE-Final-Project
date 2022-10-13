@@ -23,7 +23,7 @@ const getUserById = async (id) => {
 
     return result
   } catch (error) {
-    throw new Error('Error finding a user by its ID!')
+    throw new Error('Error tratando de encontrar un usuario por su ID!')
   }
 }
 
@@ -48,7 +48,7 @@ const getAllUsers = async () => {
     })
     return results
   } catch (error) {
-    throw new Error('Error trying to get all users from DB!')
+    throw new Error('Error tratando de obtener los usuarios de la DB!')
   }
 }
 
@@ -77,7 +77,7 @@ const getAllUsersBanned = async () => {
     })
     return results
   } catch (error) {
-    throw new Error('Error trying to get all users from DB!')
+    throw new Error('Error tratando de obtener los usuarios de la DB!')
   }
 }
 
@@ -106,7 +106,7 @@ const getAllUsersNotBanned = async () => {
     })
     return results
   } catch (error) {
-    throw new Error('Error trying to get all users from DB!')
+    throw new Error('Error tratando de obtener los usuarios de la DB!')
   }
 }
 
@@ -122,7 +122,7 @@ const createUser = async (username, email, password, region) => {
 
     return userCreated
   } catch (error) {
-    throw new Error('Error trying to create a new User!')
+    throw new Error('Error tratando de crear un nuevo usuario!')
   }
 }
 
@@ -144,7 +144,7 @@ const setBanned = async (id, banned) => {
       return userById
     }
   } catch (error) {
-    throw new Error('Error updating user!')
+    throw new Error('Error actualizando usuario!')
   }
 }
 
@@ -166,7 +166,7 @@ const setSommelier = async (id, sommelier) => {
       return userById
     }
   } catch (error) {
-    throw new Error('Error updating user!')
+    throw new Error('Error actualizando usuario!')
   }
 }
 
@@ -188,7 +188,7 @@ const setImage = async (id, url) => {
       return userById
     }
   } catch (error) {
-    throw new Error('Error updating user!')
+    throw new Error('Error actualizando usuario!')
   }
 }
 

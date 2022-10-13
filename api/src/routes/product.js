@@ -7,7 +7,7 @@ server.get('/', async (req, res) => {
   try {
     const productsFromDb = await productController.getAllProducts()
 
-    if (!productsFromDb.length) return res.status(404).json('No products saved in the Database!')
+    if (!productsFromDb.length) return res.status(404).json('No hay productos guardados en la Base de Datos!')
 
     return res.status(200).json(productsFromDb)
   } catch (error) {
@@ -21,30 +21,23 @@ server.get('/:id', async (req, res) => {
   try {
     const productById = await productController.getProductById(id)
 
-    if (!productById) return res.status(404).json(`Product with ID: ${id} not found!`)
+    if (!productById) return res.status(404).json(`Producto con el ID: ${id} no encontrado!`)
 
     return res.status(200).json(productById)
   } catch (error) {
     res.status(400).json(error.message)
   }
-
-  Product.findOne({ where: { id: req.params.id } })
-    .then((product) => {
-      if (!product) return res.status(404).send('Id no válido')
-      res.status(200).json(product)
-    })
-    .catch((err) => res.status(400).send(err))
 })
 // crear producto
 server.post('/', async (req, res) => {
   const { name, type, varietal, origin, img, cellar } = req.body
 
-  if (!name) return res.status(400).json('Name is missing!')
-  if (!type) return res.status(400).json('Type is missing!')
-  if (!varietal) return res.status(400).json('Varietal is missing!')
-  if (!origin) return res.status(400).json('Origin is missing!')
-  if (!img) return res.status(400).json('Image is missing!')
-  if (!cellar) return res.status(400).json('Cellar is missing!')
+  if (!name) return res.status(400).json('Falta parametro nombre!')
+  if (!type) return res.status(400).json('Falta parametro tipo!')
+  if (!varietal) return res.status(400).json('Falta parametro varietal!')
+  if (!origin) return res.status(400).json('Falta parametro origin!')
+  if (!img) return res.status(400).json('Falta parametro img!')
+  if (!cellar) return res.status(400).json('Falta parametro cellar!')
 
   try {
     const productExist = await Product.findOne({
@@ -53,7 +46,7 @@ server.post('/', async (req, res) => {
       }
     })
 
-    if (productExist) return res.status(404).json('There is a wine with this name. Try a new one!')
+    if (productExist) return res.status(404).json('Ya existe un vino con ese nombre. Prueba con uno nuevo!')
 
     const productCreated = await productController.createProduct(
       name, type, varietal, origin, img, cellar

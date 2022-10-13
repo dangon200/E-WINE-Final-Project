@@ -13,7 +13,7 @@ const createProduct = async (name, type, varietal, origin, img, cellar) => {
 
     return productCreated
   } catch (error) {
-    throw new Error('Error trying to create a new Product!')
+    throw new Error('Error tratando de crear un nuevo producto!')
   }
 }
 
@@ -39,7 +39,7 @@ const getAllProducts = async () => {
 
     return results
   } catch (error) {
-    throw new Error('Error trying to get all Products from DB!')
+    throw new Error('Error tratando de obtener todos los productos de la base de datos!')
   }
 }
 
@@ -63,7 +63,7 @@ const getProductById = async (id) => {
 
     return result
   } catch (error) {
-    throw new Error('Error finding a product by its ID!')
+    throw new Error('Error tratando de encontrar un producto por su ID!')
   }
 }
 
