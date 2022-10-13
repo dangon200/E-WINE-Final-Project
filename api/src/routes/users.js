@@ -11,8 +11,8 @@ router.get('/login', async (req, res) => {
   try {
     const userEmail = await User.findOne({ where: { email } })
 
-    if (!userEmail) return res.status(404).json('Email not found!')
-    if (userEmail.password !== password) return res.status(404).json('Password is incorrect')
+    if (!userEmail) return res.status(404).json('Email no encontrado!')
+    if (userEmail.password !== password) return res.status(404).json('Password es incorrecto')
 
     const userById = await userController.getUserById(userEmail.id)
     res.status(200).json(userById)
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
     const userById = await userController.getUserById(id)
 
     if (!userById) {
-      return res.status(404).json(`User with ID: ${id} not found!`)
+      return res.status(404).json(`Usuario con ID: ${id} no encontrado!`)
     }
     res.status(200).json(userById)
   } catch (error) {
@@ -41,7 +41,7 @@ router.get('/banned/true', async (req, res) => {
     const usersFromDb = await userController.getAllUsersBanned()
 
     if (!usersFromDb.length) {
-      return res.status(404).json('No users saved in the Database!')
+      return res.status(404).json('No hay usuarios guardados en la Base de Datos!')
     }
 
     return res.status(200).json(usersFromDb)
@@ -55,7 +55,7 @@ router.get('/banned/false', async (req, res) => {
     const usersFromDb = await userController.getAllUsersNotBanned()
 
     if (!usersFromDb.length) {
-      return res.status(404).json('No users saved in the Database!')
+      return res.status(404).json('No hay usuarios guardados en la Base de Datos!')
     }
 
     return res.status(200).json(usersFromDb)
@@ -81,10 +81,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const { username, email, password, region } = req.body
 
-  if (!username) return res.status(400).json('Username is missing!')
-  if (!email) return res.status(400).json('Email is missing!')
-  if (!password) return res.status(40).json('Password is missing!')
-  if (!region) return res.status(400).json('Region is missing!')
+  if (!username) return res.status(400).json('Falta nombre de usuario!')
+  if (!email) return res.status(400).json('Falta email de usuario!')
+  if (!password) return res.status(40).json('Falta password!')
+  if (!region) return res.status(400).json('Falta parametro region!')
 
   try {
     const emailExist = await User.findOne({
@@ -96,7 +96,7 @@ router.post('/', async (req, res) => {
     if (emailExist) {
       return res
         .status(404)
-        .json('There is a user with this email address. Try a new one!')
+        .json('Existe un usuario con esa direccion de email. Prueba con una nueva!')
     }
 
     const userCreated = await userController.createUser(
@@ -120,7 +120,7 @@ router.put('/:id/image-upload', async (req, res) => {
     const result = await userController.setImage(id, url)
     return res.status(200).json(result)
   } catch (error) {
-    res.status(400).json('Error uploading user image!')
+    res.status(400).json('Error tratando de subir la imagen de usuario!')
   }
 })
 
