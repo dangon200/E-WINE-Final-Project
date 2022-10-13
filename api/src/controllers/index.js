@@ -1,49 +1,88 @@
-const { Sequelize } = require('sequelize')
-const { Publication,Product } = require('../db.js')
-// const { dbApiKey } = require('../utils/config');
-const axios = require('axios')
+const { Publication, Product } = require('../db.js')
 
 const getPublicationsDb = async () => {
-  const pub = await Publication.findAll({
-    where: {
-      isBanned: false
-    }
-    // include: Product
-  })
-  return pub
-}
-const createPublication = async (reqBody) => {
+  const results = []
+
   try {
-    const { productId, name, price, count, image, description } = reqBody
-    if (!price || !count || !image || !description) return 'Falta información'
-    const newPublication = await Publication.create({ name, price, count, image, description })
-    // newPublication.addProduct(productId)
+    const dbResults = await Publication.findAll({
+      include: Product,
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.forEach(r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error('Error tratando de obtener todas las publicaciones!')
+  }
+}
+const createPublication = async (productId, title, price, count, image, description) => {
+  try {
+    const newPublication = await Publication.create({ title, price, count, image, description, productId })
 
     return newPublication
   } catch (error) {
-    return error
+    throw new Error('Error tratando de crear nueva publicacion!')
   }
 }
 const getOnePublication = async (id) => {
   try {
-    const pb = await Publication.findByPk(id)
-    return pb
+    const pb = await Publication.findByPk(id, {
+      include: Product
+    })
+
+    if (!pb) return null
+    const result = {
+      id: pb.id,
+      title: pb.title,
+      price: pb.price,
+      count: pb.count,
+      image: pb.image,
+      description: pb.description,
+      name: pb.product.name,
+      type: pb.product.type,
+      varietal: pb.product.varietal,
+      cellar: pb.product.cellar,
+      img: pb.product.img,
+      origin: pb.product.origin
+    }
+    return result
   } catch (error) {
-    return error
+    throw new Error('Error tratando de encontrar una Publicacion por su ID')
   }
 }
-const bannedPublication = async (id) => {
+const bannedPublication = async (id, banned) => {
   try {
     const pb = await Publication.update(
-      { isBanned: true },
+      { isBanned: banned },
       {
         where: {
           id
         }
       })
-    return pb
+    if (pb) {
+      const publicationById = await getOnePublication(id)
+      return publicationById
+    }
   } catch (error) {
-    return error
+    throw new Error('Error tratando de actualizar la publicacion!')
   }
 }
 module.exports = {

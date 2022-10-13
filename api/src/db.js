@@ -40,7 +40,6 @@ sequelize.models = Object.fromEntries(capsEntries)
 
 const { Product, User, Publication } = sequelize.models
 
-
 // Aca vendrian las relaciones
 User.hasMany(Publication)
 Publication.belongsTo(User)
