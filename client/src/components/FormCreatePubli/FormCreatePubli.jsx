@@ -1,15 +1,36 @@
 // import style from './FormCreatePubli.module.css'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { useFormik } from 'formik'
 import { useState } from 'react'
+import { schemaFormPubli, validateUrl, schemaUrl } from '../utilities/schemas'
 
 export default function FormCreatePubli () {
+  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
+    initialValues: { title: '', price: 0, description: '', count: 0, image: [] },
+    validationSchema: schemaFormPubli,
+
+    onSubmit: async (values) => {
+      try {
+        const url = await uplodCloudinary(values.image[0])
+        values.image = url
+        const response = await fetch('http://localhost:3001/publications', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(values)
+        })
+        const newPublication = await response.json()
+        console.log(newPublication)
+        resetForm()
+        setSend(true)
+        setTimeout(() => { setSend(false) }, 3000)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  })
   const [send, setSend] = useState(false)
-  // FUNCTION VALIDATE URL IMAGE
-  const validateUrl = (value) => {
-    if (/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi.test(value)) {
-      return true
-    } else return false
-  }
+  const url = 'https://cloudinary.com/console/c-bf289afa75102bfb9d851181ac3904/media_library/folders/c1e8f3b8bc0966db535bfb61e41f1d188a'
+  const response = schemaUrl.isValid(url).then(res => console.log(res))
+  console.log(response)
   // CLOUDINARY FUNCTION UPLOAD AN IMG
   const uplodCloudinary = async (file) => {
     try {
@@ -37,133 +58,78 @@ export default function FormCreatePubli () {
   }
 
   return (
-    <>
-      <Formik
-        initialValues={{ name: '', price: 0, description: '', count: 0, image: [] }}
-        validate={values => {
-          const errors = {}
-          // title validations
-          if (!values.name) {
-            errors.name = 'Required'
-          } else if (values.name.length < 10) {
-            errors.name = 'Must be 10 characters or more'
-          } else if (values.name.length > 150) {
-            errors.name = 'Must be 150 characters or less'
-          }
-          // price validation
-          if (!values.price) {
-            errors.price = 'Required'
-          } else if (values.price < 0) {
-            errors.price = 'Min value is 1'
-          } else if (typeof parseInt(values.price) !== 'number') {
-            errors.price = 'Must be a number'
-          }
-          // count validation
-          if (!values.count) {
-            errors.count = 'Min 1 count '
-          } else if (typeof parseInt(values.count) !== 'number') {
-            errors.price = 'Must be a number'
-          }
-          // description validation
-          if (!values.description) {
-            errors.description = 'Required'
-          } else if (values.description.length < 10) {
-            errors.description = 'Min 10 characters'
-          }
-          // image validation
-          if (!values.image) {
-            errors.image = 'Min 1 image'
-          }
-          return errors
-        }}
-        onSubmit={async (values, { resetForm }) => {
-          // API POST PUBLICATION
-          try {
-            const url = await uplodCloudinary(values.image[0])
-            values.image = url
-            const response = await fetch('http://localhost:3001/publications', {
-              method: 'POST',
-              headers: { 'content-type': 'application/json' },
-              body: JSON.stringify(values)
-            })
-            const newPublication = await response.json()
-            console.log(newPublication)
-            resetForm()
-            setSend(true)
-            setTimeout(() => { setSend(false) }, 3000)
-          } catch (error) {
-            console.log(error)
-          }
-          // END API POST PUBLICATION
-        }}
-      >
-        {({ setFieldValue }) => {
-          return (
-            <Form>
-              <div>
-                <label htmlFor='title' />
-                <Field
-                  type='text'
-                  placeholder='Title'
-                  name='name'
-                  id='title'
-                />
-                <ErrorMessage name='price' component='div' />
-              </div>
-              <div>
-                <label htmlFor='price' />
-                <Field
-                  type='number'
-                  placeholder='Price'
-                  name='price'
-                  id='price'
-                  min='1'
-                />
-                <ErrorMessage name='price' component='div' />
-              </div>
-              <div>
-                <label htmlFor='count' />
-                <Field
-                  type='number'
-                  placeholder='Count'
-                  name='count'
-                  id='count'
-                  min='1'
-                />
-                <ErrorMessage name='count' component='div' />
-              </div>
-              <div>
-                <label htmlFor='img'> Img </label>
-                <input
-                  type='file'
-                  name='image'
-                  id='img'
-                  onChange={(e) => {
-                    const files = e.target.files
-                    const myFiles = Array.from(files)
-                    setFieldValue('image', myFiles)
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor='description' />
-                <Field
-                  as='textarea'
-                  name='description'
-                  id='description'
-                  cols='30'
-                  rows='4npm'
-                  placeholder='Description'
-                />
-                <ErrorMessage name='description' component='div' />
-              </div>
+    <form onSubmit={handleSubmit} autoComplete='off'>
+      <div>
+        <label htmlFor='title' />
+        <input
+          type='text'
+          placeholder='Title'
+          name='title'
+          id='title'
+          value={values.title}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.name && touched.name && <p>{errors.name}</p>}
+      </div>
+      <div>
+        <label htmlFor='price' />
+        <input
+          type='number'
+          placeholder='Price'
+          name='price'
+          id='price'
+          min='1'
+          value={values.price}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.price && touched.price && <p>{errors.price}</p>}
+      </div>
+      <div>
+        <label htmlFor='count' />
+        <input
+          type='number'
+          placeholder='Count'
+          name='count'
+          id='count'
+          min='1'
+          value={values.count}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.count && touched.count && <p>{errors.count}</p>}
+      </div>
+      <div>
+        <label htmlFor='img'> Img </label>
+        <input
+          type='file'
+          name='image'
+          id='img'
+          onChange={(e) => {
+            const files = e.target.files
+            const myFiles = Array.from(files)
+            setFieldValue('image', myFiles)
+          }}
+        />
+      </div>
+      <div>
+        <label htmlFor='description' />
+        <textarea
+          name='description'
+          id='description'
+          cols='30'
+          rows='4npm'
+          placeholder='Description'
+          value={values.description}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.description && touched.description && <p>{errors.description}</p>}
+      </div>
 
-              <button type='submit'>Create</button>
-              {send && <div>Publication created</div>}
-            </Form>
-          )
-        }}
-      </Formik>
-    </>
+      <button type='submit'>Create</button>
+      {send && <div>Publication created</div>}
+    </form>
   )
 }
