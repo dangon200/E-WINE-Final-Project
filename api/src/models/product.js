@@ -7,35 +7,28 @@ module.exports = (sequelize) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     type: {
       type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'Sin tipo'
+      allowNull: false
     },
     varietal: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: 'varietal vacia'
+      type: DataTypes.STRING,
+      allowNull: false
     },
     origin: {
       type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue: 'sl vacia'
+      allowNull: false
     },
     img: {
       type: DataTypes.TEXT,
-      allowNull: false,
-      defaultValue: 0
-    },
-    pkreseña: {
-      type: DataTypes.TEXT,
-      defaultValue: 0
+      defaultValue: null
     },
     cellar: {
       type: DataTypes.STRING,

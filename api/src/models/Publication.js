@@ -10,17 +10,17 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false
     },
     price: {
       type: DataTypes.FLOAT,
-      allowNull: true
+      allowNull: false
     },
     count: {
       type: DataTypes.INTEGER,
-      defaultValue: 0
+      allowNull: false
     },
     image: {
       type: DataTypes.TEXT,
