@@ -1,4 +1,4 @@
-const { DataTypes, Sequelize } = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
   // defino el modelo
@@ -8,6 +8,10 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       unique: true,
       primaryKey: true,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     price: {
@@ -25,6 +29,10 @@ module.exports = (sequelize) => {
     description: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    isBanned: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   })
 }
