@@ -2,11 +2,38 @@
 import { Formik } from 'formik'
 
 export default function FormCreatePubli () {
+  // FUNCTION VALIDATE URL IMAGE
   const validateUrl = (value) => {
     if (/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi.test(value)) {
       return true
     } else return false
   }
+  // CLOUDINARY FUNCTION UPLOAD AN IMG
+  const uplodCloudinary = async (file) => {
+    try {
+      const cloudName = 'dxkbtlnqc'
+      const preset = 'HenryFinal'
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+
+      const formData = new FormData()
+      formData.append('upload_preset', preset)
+      formData.append('file', file)
+
+      const send = await fetch(url, {
+        method: 'POST',
+        body: formData
+      })
+      const response = await send.json()
+      const urlImage = response.secure_url
+      if (validateUrl(urlImage)) {
+        return urlImage
+      } else throw Error('url not valid')
+    // END CLOUDINARY
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <Formik
@@ -39,50 +66,28 @@ export default function FormCreatePubli () {
           }
           return errors
         }}
-        onSubmit={async (values) => {
-          // CLOUDINARY
-          const cloudName = 'dxkbtlnqc'
-          const preset = 'HenryFinal'
-          const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
-
-          const formData = new FormData()
-          formData.append('upload_preset', preset)
-          formData.append('file', values.image[0])
+        onSubmit={async (values, { resetForm }) => {
+          // API POST PUBLICATION
           try {
-            const send = await fetch(url, {
+            const url = await uplodCloudinary(values.image[0])
+            values.image = url
+            const response = await fetch('http://localhost:3001/publications', {
               method: 'POST',
-              body: formData
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify(values)
             })
-            const response = await send.json()
-            const urlImage = response.secure_url
-            if (validateUrl(urlImage)) {
-              console.log('url ok')
-              values.image = urlImage
-              console.log(values.image)
-            } else throw Error('url not valid')
-            // END CLOUDINARY
-            // API POST PUBLICATION
-            try {
-              const response = await fetch('http://localhost:3001/publications', {
-                method: 'POST',
-                headers: { 'content-type': 'application/json' },
-                body: JSON.stringify(values)
-              })
-              const newPublication = await response.json()
-              console.log(newPublication)
-            } catch (error) {
-              console.log(error, 'Error Api')
-            }
-            // END API POST PUBLICATION
+            const newPublication = await response.json()
+            console.log(newPublication)
+            resetForm()
           } catch (error) {
-            console.log(error, 'Error Cloudinary')
+            console.log(error)
           }
+          // END API POST PUBLICATION
         }}
       >
         {({ values, errors, touched, handleSubmit, handleChange, handleBlur, setFieldValue }) => {
           return (
             <form onSubmit={handleSubmit}>
-              {console.log(values)}
               <div>
                 <label htmlFor='price' />
                 <input
