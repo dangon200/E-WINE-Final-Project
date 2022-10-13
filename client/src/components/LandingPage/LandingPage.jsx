@@ -34,20 +34,7 @@ export default function LandingPage () {
       <div>
         <AboutDevs />
       </div>
-      <div>
-        <div>
-          <a href='pal face'>Facebook</a>
-        </div>
-        <div>
-          <a href='pal face'> Henry</a>
-        </div>
-        <div>
-          <a href='pal face'>Instagram</a>
-        </div>
-        <div>
-          <a href='pal face'>Youtube</a>
-        </div>
-      </div>
+      <span>------------------------------------------</span>
       <div>
         <Footer />
       </div>
