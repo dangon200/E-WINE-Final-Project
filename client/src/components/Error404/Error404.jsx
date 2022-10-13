@@ -1,8 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Error404 () {
   return (
-    <div>Error404: page not found</div>
+    <div>
+      <h1>Error 404: Esta página no existe</h1>
+      <Link to='/home'>volver a la tienda</Link>
+    </div>
   )
 }
 
