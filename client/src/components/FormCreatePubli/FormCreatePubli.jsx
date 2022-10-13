@@ -9,36 +9,53 @@ export default function FormCreatePubli () {
         validate={values => {
           const errors = {}
           // price validation
-          if (!values.price) {
-            errors.price = 'Required'
-          } else if (values.price < 0) {
-            errors.price = 'Min value is 1'
-          } else if (typeof parseInt(values.price) !== 'number') {
-            errors.price = 'Must be a number'
-          }
-          // count validation
-          if (!values.count) {
-            errors.count = 'Min 1 count '
-          } else if (typeof parseInt(values.count) !== 'number') {
-            errors.price = 'Must be a number'
-          }
-          // description validation
-          if (!values.description) {
-            errors.description = 'Required'
-          } else if (values.description.length < 10) {
-            errors.description = 'Min 10 characters'
-          }
-          // image validation
-          if (!values.image) {
-            errors.image = 'Min 1 image'
-          }
+          // if (!values.price) {
+          //   errors.price = 'Required'
+          // } else if (values.price < 0) {
+          //   errors.price = 'Min value is 1'
+          // } else if (typeof parseInt(values.price) !== 'number') {
+          //   errors.price = 'Must be a number'
+          // }
+          // // count validation
+          // if (!values.count) {
+          //   errors.count = 'Min 1 count '
+          // } else if (typeof parseInt(values.count) !== 'number') {
+          //   errors.price = 'Must be a number'
+          // }
+          // // description validation
+          // if (!values.description) {
+          //   errors.description = 'Required'
+          // } else if (values.description.length < 10) {
+          //   errors.description = 'Min 10 characters'
+          // }
+          // // image validation
+          // if (!values.image) {
+          //   errors.image = 'Min 1 image'
+          // }
           return errors
         }}
         onSubmit={(values) => {
           // console.log(values)
+          const cloudName = 'dxkbtlnqc'
+          const preset = 'HenryFinal'
+          const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+
+          const formData = new FormData()
+          formData.append('upload_preset', preset)
+          formData.append('file', values.image[0])
+          try {
+            fetch(url, {
+              method: 'POST',
+              body: formData
+            })
+              .then(res => res.json())
+              .then(res => console.log(res.secure_url))
+          } catch (error) {
+            console.log(error)
+          }
         }}
       >
-        {({ values, errors, touched, handleSubmit, handleChange, handleBlur }) => {
+        {({ values, errors, touched, handleSubmit, handleChange, handleBlur, setFieldValue }) => {
           return (
             <form onSubmit={handleSubmit}>
               <div>
@@ -79,7 +96,7 @@ export default function FormCreatePubli () {
                   onChange={(e) => {
                     const files = e.target.files
                     const myFiles = Array.from(files)
-                    Formik.setFieldValue('image', myFiles)
+                    setFieldValue('image', myFiles)
                   }}
                   onBlur={handleBlur}
                 />
