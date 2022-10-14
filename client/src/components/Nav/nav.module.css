@@ -1,0 +1,11 @@
+.nav{
+  display: flex;
+  flex-direction: row;
+}
+.links{
+  font-size: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 10px;
+  list-style: none;
+  text-decoration: none;
+}

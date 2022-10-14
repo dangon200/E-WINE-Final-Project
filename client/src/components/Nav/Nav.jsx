@@ -1,27 +1,27 @@
-// import style from './nav.module.css'
+import style from './nav.module.css'
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { NavLink } from 'react-router-dom'
 
 export default function Nav () {
   return (
-    <nav>
+    <nav className={style.nav}>
       <div>
         <SearchBar />
       </div>
-      <div>
-        <NavLink to='/'>
+      <div className={style.links}>
+        <NavLink className={style.links} to='/'>
           <span>Inicio</span>
         </NavLink>
-        <NavLink to='/about'>
+        <NavLink className={style.links} to='/about'>
           <span>Sobre E-Wine</span>
         </NavLink>
-        <NavLink to='/home'>
+        <NavLink className={style.links} to='/home'>
           <span>Tienda</span>
         </NavLink>
-        {/* <NavLink to='/Create'>
-          <span>Crear Cuenta</span>
+        <NavLink className={style.links} to='/createpubli'>
+          <span>Crear Publi</span>
         </NavLink>
-        <NavLink>
+        {/* <NavLink >
           <span>Iniciar Sesión</span>
         </NavLink> */}
       </div>
