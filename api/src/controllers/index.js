@@ -1,4 +1,5 @@
 const { Publication, Product } = require('../db.js')
+const { Op } = require('sequelize')
 
 const getPublicationsDb = async () => {
   const results = []
@@ -85,9 +86,112 @@ const bannedPublication = async (id, banned) => {
     throw new Error('Error tratando de actualizar la publicacion!')
   }
 }
+
+const orderPublicationsMorePrice = async () => {
+  try {
+    const publications = await getPublicationsDb()
+
+    return publications.sort((a, b) => {
+      if (a.price < b.price) return 1
+      if (a.price > b.price) return -1
+      return 0
+    })
+  } catch (error) {
+    throw new Error('Error tratando de ordenar las publicaciones por precio!')
+  }
+}
+
+const orderPublicationsLessPrice = async () => {
+  try {
+    const publications = await getPublicationsDb()
+
+    return publications.sort((a, b) => {
+      if (a.price > b.price) return 1
+      if (a.price < b.price) return -1
+      return 0
+    })
+  } catch (error) {
+    throw new Error('Error tratando de ordenar las publicaciones por precio!')
+  }
+}
+
+const orderPublicationsAtoZ = async () => {
+  try {
+    const publications = await getPublicationsDb()
+
+    return publications.sort((a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) return 1
+      if (a.title.toLowerCase() > b.title.toLowerCase()) return -1
+      return 0
+    })
+  } catch (error) {
+    throw new Error('Error tratando de ordenar las publicaciones por precio!')
+  }
+}
+
+const orderPublicationsZtoA = async () => {
+  try {
+    const publications = await getPublicationsDb()
+
+    return publications.sort((a, b) => {
+      if (a.title.toLowerCase() > b.title.toLowerCase()) return 1
+      if (a.title.toLowerCase() < b.title.toLowerCase()) return -1
+      return 0
+    })
+  } catch (error) {
+    throw new Error('Error tratando de ordenar las publicaciones por precio!')
+  }
+}
+
+const getPublicationsByName = async (name) => {
+  const results = []
+
+  try {
+    const dbResults = await Publication.findAll({
+      include: {
+        model: Product,
+        where: {
+          name: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+      },
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.forEach(r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error('Error tratando de obtener publicaciones por nombre de producto!')
+  }
+}
+
 module.exports = {
   getPublicationsDb,
   createPublication,
   getOnePublication,
-  bannedPublication
+  bannedPublication,
+  orderPublicationsMorePrice,
+  orderPublicationsLessPrice,
+  orderPublicationsAtoZ,
+  orderPublicationsZtoA,
+  getPublicationsByName
 }

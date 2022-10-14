@@ -1,9 +1,8 @@
 .card{
     width: 250px;
     height: 450px;
-    background-color: beige;
+    background-color: var(--background-color);
     margin-top: 10%;
-    margin-left: 50%;
 }
 
 .divImage{
@@ -17,13 +16,16 @@
 .dataCard{
     display: flex;
     flex-direction: column;
+    gap: 20px;
     align-items: center;
     justify-content: center;
 }
 
 .cardTitle{
-    margin-left: 15px;
-    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 20px;
+    font-family: var(--font-family-1);
 }
 
 .buttonCard{
@@ -33,15 +35,24 @@
     padding-bottom: 20px;
 }
 .cartButton{
-    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--btn-background-color);
     padding: 10px;
     cursor: pointer;
+    color: white;
+    font-family: var(--font-family-1);
+    font-weight: 700;
 }
 .detailButton{
-    background-color: black;
-    color: white;
-    padding: 10px;
+    background-color: var(--btn-background-color);
+    padding: 13px;
     cursor: pointer;
+    color: white;
+    font-family: var(--font-family-1);
+    font-weight: 700;
 }
 
 .image{

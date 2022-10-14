@@ -1,5 +1,6 @@
 import style from './nav.module.css'
 import SearchBar from '../SearchBar/SearchBar.jsx'
+
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 import logo from '../assets/imgs/e-wine-logo.png'
