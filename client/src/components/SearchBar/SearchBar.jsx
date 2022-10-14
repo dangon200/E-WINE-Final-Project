@@ -1,3 +1,4 @@
+
 // import style from './SeachBar.module.css'
 import { useState } from 'react'
 // import { useDispatch } from 'react-redux'
@@ -27,6 +28,7 @@ export default function SeachBar () {
       <form>
         <input onChange={handleChange} type='text' value={input} />
         {/* <button onSubmit={handleSubmit} type='submit'> </button> */}
+
       </form>
     </div>
   )

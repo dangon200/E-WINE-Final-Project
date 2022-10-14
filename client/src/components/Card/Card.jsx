@@ -1,7 +1,7 @@
 import style from './card.module.css'
 import { AiFillStar } from 'react-icons/ai'
 import { MdAddShoppingCart, MdAttachMoney } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 export default function Card ({ id, name, image, score, price }) {
   return (
@@ -11,14 +11,14 @@ export default function Card ({ id, name, image, score, price }) {
       </div>
       <div className={style.dataCard}>
         <h2 className={style.cardTitle}>{name}</h2>
-        <h4><span><AiFillStar /></span>{score}</h4>
-        <h4><span><MdAttachMoney /></span>{price}</h4>
+        <h4><span><AiFillStar size={15} /></span>{score}</h4>
+        <h4><span><MdAttachMoney size={15} /></span>{price}</h4>
       </div>
       <div className={style.buttonCard}>
-        <button className={style.cartButton}><span><MdAddShoppingCart /></span> Agregar</button>
-        <Link to='/product/:id'>
+        <button className={style.cartButton}><span><MdAddShoppingCart size={20} /></span> Agregar</button>
+        {/* <Link to='/product/:id'>
           <button className={style.detailButton}>Detalle</button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   )

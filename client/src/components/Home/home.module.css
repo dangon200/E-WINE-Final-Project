@@ -1,0 +1,27 @@
+
+
+.divPagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.containerProducts{
+    width: 100%;
+}
+
+.sectionCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonLeft, .buttonRight{
+    font-weight: bolder;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    cursor: pointer;
+}
