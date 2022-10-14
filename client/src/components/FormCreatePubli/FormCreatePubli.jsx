@@ -27,10 +27,10 @@ export default function FormCreatePubli () {
     }
   })
   const [send, setSend] = useState(false)
-
   return (
     <section className='container'>
       <div className='row'>
+        {console.log(touched)}
         <h2>Create a Publication</h2>
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
 
@@ -47,7 +47,7 @@ export default function FormCreatePubli () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.title && touched.title && <p className='val_error fs-4'>{errors.title}</p>}
+              {errors.title && touched.title && <p className='invalid-feedback fs-4'>{errors.title}</p>}
             </div>
             <div className='form-group col-md-12 '>
               <label htmlFor='price' className='fs-3'>Price<span>*</span></label>
@@ -62,7 +62,7 @@ export default function FormCreatePubli () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.price && touched.price && <p className='val_error fs-4'>{errors.price}</p>}
+              {errors.price && touched.price && <p className='invalid-feedback fs-4'>{errors.price}</p>}
             </div>
           </div>
 
@@ -80,23 +80,21 @@ export default function FormCreatePubli () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.count && touched.count && <p className='val_error fs-4'>{errors.count}</p>}
+              {errors.count && touched.count && <p className='invalid-feedback fs-4'>{errors.count}</p>}
             </div>
             <div className='form-group col-md-12 '>
               <label htmlFor='img' className='fs-3'>Image<span>*</span> </label>
               <input
-                className='form-control'
+                className={`form-control ${touched.image ? errors.image ? 'is-invalid' : 'is-valid' : null}`}
                 type='file'
                 name='image'
                 onBlur={handleBlur}
                 id='img'
                 onChange={(e) => {
-                  const files = e.target.files
-                  const myFiles = Array.from(files)
-                  setFieldValue('image', myFiles[0])
+                  setFieldValue('image', e.target.files[0])
                 }}
               />
-              {errors.image && touched.image && <p className='val_error fs-4'>{errors.image}</p>}
+              {errors.image && touched.image && <p className='invalid-feedback fs-4'>{errors.image}</p>}
             </div>
           </div>
           <div className='form-row'>
@@ -113,7 +111,7 @@ export default function FormCreatePubli () {
                 onBlur={handleBlur}
               />
               <label htmlFor='description' className='fs-3' />
-              {errors.description && touched.description && <p className='val_error fs-4'>{errors.description}</p>}
+              {errors.description && touched.description && <p className='invalid-feedback fs-4'>{errors.description}</p>}
 
             </div>
             <div>
@@ -126,13 +124,12 @@ export default function FormCreatePubli () {
                 <option value=''>Select a product</option>
                 {products && products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
               </select>
-              {errors.productId && touched.productId && <p className='val_error fs-4'>{errors.productId}</p>}
+              {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
             </div>
-
           </div>
 
           <button type='submit' className='btn btn-primary btn-block btn-lg mt-4'>Create</button>
-          {send && <div>Publication created</div>}
+          {send && <div className='valid-feedback'>Publication created</div>}
         </form>
 
       </div>
