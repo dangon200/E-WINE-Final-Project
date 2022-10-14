@@ -1,14 +1,13 @@
 import style from './formCreatePubli.module.css'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { schemaFormPubli, validateUrl, schemaUrl } from '../utilities/schemas'
+import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function FormCreatePubli () {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
-  console.log(products)
   if (!products.length) dispatch(getProducts())
 
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
@@ -20,8 +19,6 @@ export default function FormCreatePubli () {
         const url = await uplodCloudinary(values.image[0])
         values.image = url
         dispatch(postPublication(values))
-        // const newPublication = await response.json()
-        // console.log(newPublication)
         resetForm()
         setSend(true)
         setTimeout(() => { setSend(false) }, 3000)
@@ -31,43 +28,11 @@ export default function FormCreatePubli () {
     }
   })
   const [send, setSend] = useState(false)
-  const url = 'https://cloudinary.com/console/c-bf289afa75102bfb9d851181ac3904/media_library/folders/c1e8f3b8bc0966db535bfb61e41f1d188a'
-  const response = schemaUrl.isValid(url).then(res => console.log(res))
-  console.log(response)
-  // CLOUDINARY FUNCTION UPLOAD AN IMG
-  const uplodCloudinary = async (file) => {
-    try {
-      const cloudName = 'dfq27ytd2'
-      const preset = 'cpnushlf'
-      const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
-
-      const formData = new FormData()
-      formData.append('upload_preset', preset)
-      formData.append('file', file)
-
-      const send = await fetch(url, {
-        method: 'POST',
-        body: formData
-      })
-      const response = await send.json()
-      const urlImage = response.secure_url
-      if (validateUrl(urlImage)) {
-        return urlImage
-      } else throw Error('url not valid')
-    // END CLOUDINARY
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   return (
     <section className={style.section}>
 
       <form onSubmit={handleSubmit} autoComplete='off' className={style.form}>
-        {console.log(values)}
-        <select name='productId' onChange={handleChange}>
-          {products && products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
-        </select>
         <div className='mb-3'>
           <label htmlFor='title' className='form-label'>Title</label>
           <input
@@ -127,7 +92,7 @@ export default function FormCreatePubli () {
           />
         </div>
         <div className='mb-3'>
-          <label htmlFor='description' className='form-label'>Description</label>
+          <label htmlFor='description' className='form-label mb-3'>Description</label>
           <textarea
             className='form-control'
             name='description'
@@ -140,10 +105,17 @@ export default function FormCreatePubli () {
             onBlur={handleBlur}
           />
           {errors.description && touched.description && <p className={style.p}>{errors.description}</p>}
+
+        </div>
+        <div>
+          <select name='productId' onChange={handleChange} className={style.select}>
+            <option value=''>Select a product</option>
+            {products && products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+          </select>
         </div>
 
         <button type='submit' className='btn btn-primary'>Create</button>
-        {send && <div>Publication created</div>}
+        {send && <div className={style.succes}>Publication created</div>}
       </form>
     </section>
   )
