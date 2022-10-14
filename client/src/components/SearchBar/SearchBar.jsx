@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import style from './searchBar.module.css'
 import { BsSearch } from 'react-icons/bs'
 import { searchByNameProduct } from '../../store/actions/actions'
@@ -27,14 +27,11 @@ export default function SeachBar () {
       <form className={style.searchBar} onChange={handleChange}>
         <input className={style.inputSearch} type='text' placeholder='Buscar...' />
         <button type='submit' onClick={handleSubmit} className={style.submitSearch}><BsSearch color='black' /></button>
-        {/* =======
-=======
 
->>>>>>> 8fa75d8cf59e7a3357850c18cb63545ffc47c8c8
-// import style from './SeachBar.module.css'
+        {/* import style from './SeachBar.module.css'
 import { useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { searchByNameProduct } from '../../store/actions/actions'
+import { useDispatch } from 'react-redux'
+import { searchByNameProduct } from '../../store/actions/actions'
 
 export default function SeachBar () {
   // const dispatch = useDispatch()
@@ -60,10 +57,6 @@ export default function SeachBar () {
       <form>
         <input onChange={handleChange} type='text' value={input} />
         {/* <button onSubmit={handleSubmit} type='submit'> </button> */}
-<<<<<<< HEAD
-=======
-
->>>>>>> 8fa75d8cf59e7a3357850c18cb63545ffc47c8c8
       </form>
     </div>
   )
