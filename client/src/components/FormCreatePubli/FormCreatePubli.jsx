@@ -2,6 +2,7 @@
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { schemaFormPubli, validateUrl, schemaUrl } from '../utilities/schemas'
+import global from '../../globalStyle/globalStyle.module.css'
 
 export default function FormCreatePubli () {
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
@@ -128,7 +129,7 @@ export default function FormCreatePubli () {
         {errors.description && touched.description && <p>{errors.description}</p>}
       </div>
 
-      <button type='submit'>Create</button>
+      <button className={global.btn} type='submit'>Create</button>
       {send && <div>Publication created</div>}
     </form>
   )

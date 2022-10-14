@@ -1,10 +1,10 @@
-// import style from './nav.module.css'
+import style from './nav.module.css'
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { NavLink } from 'react-router-dom'
 
 export default function Nav () {
   return (
-    <nav>
+    <nav className={style.navbar}>
       <div>
         <SearchBar />
       </div>

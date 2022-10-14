@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ConoceEWine from './ConoceEWine'
 import AboutDevs from './AboutDevs'
 import Footer from '../Footer/Footer.jsx'
+import global from '../../globalStyle/globalStyle.module.css'
 // import NavBar from '../Nav/Nav.jsx'
 
 export default function LandingPage () {
@@ -17,14 +18,14 @@ export default function LandingPage () {
       </div>
       <div>
         <Link to='/about'>
-          <button>
+          <button className={global.btn}>
             CONOCÉ SOBRE E-WINE
           </button>
         </Link>
       </div>
       <div>
         <Link to='./home'>
-          <button>EXPLORÁ LA TIENDA</button>
+          <button className={global.btn}>EXPLORÁ LA TIENDA</button>
         </Link>
       </div>
       <div name='conoceEWine'>
