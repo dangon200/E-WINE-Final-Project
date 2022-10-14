@@ -12,7 +12,7 @@ export default function Home () {
   const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   const [page, setPage] = useState(1)
-  const productsPerPage = 1
+  const productsPerPage = 2
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
   const currentPageProducts = products.slice(firstProductPerPage, lastProductPerPage)
@@ -35,7 +35,7 @@ export default function Home () {
   }
 
   function paginationAft () {
-    if (page < 4) {
+    if (page < 2) {
       setPage(page + 1)
     }
   }
@@ -44,19 +44,19 @@ export default function Home () {
     <div>
       <h1>Home</h1>
       <div className={style.divPagination}>
-        <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft size={25} className='button-left' /></button>
+        <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></button>
         <Pagination
           products={products.length}
           productsPerPage={productsPerPage}
           pagination={pagination}
           page={page}
         />
-        <button onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight size={25} className='button-right' /></button>
+        <button onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></button>
       </div>
-      <div>
+      <div className={style.containerProducts}>
         {currentPageProducts && currentPageProducts.map((p) => {
           return (
-            <section key={p.id}>
+            <section className={style.sectionCards} key={p.id}>
               <Link to={`/product/${p.id}`}>
                 <Card
                   name={p.name}

@@ -12,7 +12,7 @@ export default function Nav () {
           {/* <span className={style.span}>e-wine</span> */}
           <img className={style.imgLogo} src={logo} alt={logo} />
         </a>
-        <div>
+        <div className={style.searchBar}>
           <SearchBar />
         </div>
         <div className={style.containerLink}>
@@ -20,7 +20,7 @@ export default function Nav () {
             <span>Inicio</span>
           </NavLink>
           <NavLink className={style.about} to='/about'>
-            <span>Sobre E-Wine</span>
+            <span>Nosotros</span>
           </NavLink>
           <NavLink className={style.tienda} to='/home'>
             <span>Tienda</span>

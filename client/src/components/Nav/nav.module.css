@@ -2,12 +2,13 @@
 .navContainer{
     width: 100%;
     height: 80px;
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
+    background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
     box-shadow: 0 10px 20px -15px rgba(0, 0, 0, 0.767);
 }
 
@@ -44,9 +45,16 @@
     padding: 20px;
 }
 
+.searchBar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 20px;
+}
+
 .containerLink{
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 
