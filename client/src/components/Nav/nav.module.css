@@ -43,26 +43,15 @@
     z-index: 999;
     width: 100%;
     padding: 20px;
-}
 
-.searchBar{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-left: 20px;
+    background-color: var(--background-color);
 }
-
-.containerLink{
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-.inicio, .about, .tienda{
-    font-family: "Roboto", sans-serif; 
-    font-size: large;
-    font-weight: 500;
-    color: black;
-    cursor: pointer;
+.span{
+    font-family: var(--font-family-1);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 0.3rem;
     text-decoration: none;
+    color: #1F1F1F
 }
+

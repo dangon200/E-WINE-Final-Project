@@ -35,6 +35,7 @@ export function postPublication (data) {
       const api = await axios.post(`${urlApi}/publications`, data)
       return dispatch({
         type: 'POST_PUBLICATION',
+        Headers: { 'content-type': 'application/json' },
         payload: api.data
       })
     } catch (error) {

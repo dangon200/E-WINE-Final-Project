@@ -1,38 +1,37 @@
 import style from './nav.module.css'
 import SearchBar from '../SearchBar/SearchBar.jsx'
-import { NavLink } from 'react-router-dom'
-/* import logo from '../../utils/images/logodefinitivosinfondopng.png' */
-import logo from '../../utils/images/logo-d-e-wine.png'
+
+import { Link } from 'react-router-dom'
+import Navegador from '../Navegador/Navegador.jsx'
+import logo from '../assets/imgs/e-wine-logo.png'
+import bolsita from '../assets/imgs/bolsita.png'
 
 export default function Nav () {
   return (
-    <div className={style.navContainer}>
-      <nav className={style.nav}>
-        <a className={style.logo} href='/home'>
-          {/* <span className={style.span}>e-wine</span> */}
-          <img className={style.imgLogo} src={logo} alt={logo} />
-        </a>
-        <div className={style.searchBar}>
-          <SearchBar />
-        </div>
-        <div className={style.containerLink}>
-          <NavLink className={style.inicio} to='/'>
-            <span>Inicio</span>
-          </NavLink>
-          <NavLink className={style.about} to='/about'>
-            <span>Nosotros</span>
-          </NavLink>
-          <NavLink className={style.tienda} to='/home'>
-            <span>Tienda</span>
-          </NavLink>
-          {/* <NavLink to='/Create'>
-          <span>Crear Cuenta</span>
-        </NavLink>
-        <NavLink>
-          <span>Iniciar Sesión</span>
-        </NavLink> */}
-        </div>
-      </nav>
-    </div>
+    <nav className={style.navbar}>
+      <div>
+        <Link to='/home' className={style.span}>
+          <img src={logo} alt='logo' />
+          <span className={style.span}>E-WINE</span>
+
+        </Link>
+      </div>
+      <div className={style.links}>
+
+        <SearchBar />
+
+        <Navegador link='/' span='Inicio' />
+
+        <Navegador link='/about' span='Sobre E-Wine' />
+
+        <Navegador link='/home' span='Tienda' />
+
+        <Navegador link='/home' span='Crear Cuenta' />
+
+        <Navegador link='/createpubli' span='Crear Publicación' />
+        <img src={bolsita} alt='bolsita' />
+      </div>
+
+    </nav>
   )
 }
