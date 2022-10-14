@@ -1,5 +1,5 @@
 import axios from 'axios'
-const urlApi = 'https://e-wines-back.onrender.com'
+const urlApi = 'https://e-winespf.herokuapp.com'
 
 export function getPublications () {
   return async function (dispatch) {
