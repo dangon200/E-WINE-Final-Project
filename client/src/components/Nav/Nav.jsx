@@ -18,6 +18,9 @@ export default function Nav () {
         <NavLink to='/home'>
           <span>Tienda</span>
         </NavLink>
+        <NavLink to='/createPubli'>
+          <span>Crear Publicación</span>
+        </NavLink>
         {/* <NavLink to='/Create'>
           <span>Crear Cuenta</span>
         </NavLink>

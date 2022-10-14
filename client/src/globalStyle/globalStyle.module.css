@@ -7,11 +7,11 @@
     color: var(--background-color);
     background-color: var(--btn-background-color);
     box-sizing: border-box;
-    padding: 6px;
+    padding: 7px;
     border: 1px solid var(--btn-border-color);
-    border-radius: 4px;  
+    border-radius: 6px;  
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
-    width: 192px;
+    /* width: 192px; */
     cursor: pointer;
 
 }
@@ -22,8 +22,8 @@
     background-color: var(--background-color);
     box-sizing: border-box;
     border: 1px solid var(--btn-border-color);
-    border-radius: 4px;  
+    border-radius: 7px;  
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
-    width: 192px;
+    /* width: 192px; */
     transform: scale(1.05)
 }
