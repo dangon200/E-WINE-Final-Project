@@ -5,7 +5,7 @@ export const schemaFormPubli = Yup.object().shape({
   price: Yup.number().required('Required').min(1, 'Min 1').positive('Positive number'),
   description: Yup.string().required('Required').min(10, 'Min 10 characters').max(150, 'Max 150 characters'),
   count: Yup.number().required('Required').min(1, 'Min 1').positive('Positive number'),
-  image: Yup.object()
+  productId: Yup.string().required('Please select a Product').uuid()
 })
 
 // FUNCTION VALIDATE URL IMAGE
