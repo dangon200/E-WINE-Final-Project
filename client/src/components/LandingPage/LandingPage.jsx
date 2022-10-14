@@ -1,9 +1,11 @@
 // import style from './LandingPage.module.css'
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 import ConoceEWine from './ConoceEWine'
 import AboutDevs from './AboutDevs'
 import Footer from '../Footer/Footer.jsx'
+
+import Button from '../Button/Button.jsx'
 // import NavBar from '../Nav/Nav.jsx'
 
 export default function LandingPage () {
@@ -16,16 +18,10 @@ export default function LandingPage () {
         <h1>Descrubrí E-wine</h1>
       </div>
       <div>
-        <Link to='/about'>
-          <button>
-            CONOCÉ SOBRE E-WINE
-          </button>
-        </Link>
+        <Button link='/about' content='CONOCÉ SOBRE E-WINE' />
       </div>
       <div>
-        <Link to='./home'>
-          <button>EXPLORÁ LA TIENDA</button>
-        </Link>
+        <Button link='/home' content='EXPLORÁ LA TIENDA' />
       </div>
       <div name='conoceEWine'>
         <ConoceEWine />
