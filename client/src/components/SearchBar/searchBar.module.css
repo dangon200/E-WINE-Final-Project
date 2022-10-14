@@ -5,10 +5,8 @@
 
 .searchBar {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 430px;
-    background-color: beige;
     cursor: pointer;
     border-radius: 20px;
 }
@@ -31,6 +29,7 @@
     height: 58px;
     width: 370px;
     margin-left: 15px;
+    padding-left: 20px;
     font-size: 15px;
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;

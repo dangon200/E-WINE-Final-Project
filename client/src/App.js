@@ -11,7 +11,11 @@ import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 function App () {
   return (
     <div className='App'>
-      <Route path='/' component={Nav} />
+      <Route exact path='/' component={Nav} />
+      <Route path='/home' component={Nav} />
+      <Route path='/about' component={Nav} />
+      <Route path='/createpubli' component={Nav} />
+      <Route path='/publication/:id' component={Nav} />
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
