@@ -18,7 +18,7 @@ body{
   
 }
 .App{
-  max-width: 1450px;
+  width: 100%;
   background-color: #F1F0F0;
   position: relative;
 }

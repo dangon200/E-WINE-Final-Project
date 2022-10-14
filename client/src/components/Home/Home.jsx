@@ -49,7 +49,7 @@ export default function Home () {
       <div className={style.divPagination}>
         {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
         <Pagination
-          products={publications.length}
+          publications={publications.length}
           productsPerPage={productsPerPage}
           pagination={pagination}
           page={page}
