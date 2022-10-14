@@ -1,60 +1,117 @@
 .card{
-    width: 250px;
-    height: 450px;
+    width: 300px;
+    
+    height: 500px;
     background-color: var(--background-color);
     margin-top: 10%;
+    padding: 16px;
+    transition: 0.3s;
 }
 
-.divImage{
-    padding-top: 20px;
+.card:hover{
+    scale: 105%;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.iconContainer{
     display: flex;
-    position: relative;
+    text-align: left;
     margin-bottom: 16px;
-    justify-content: center;
 }
 
-.dataCard{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+.icon{
+    width: 20px;
+    height: 20px;
+    color: gray;
+    cursor: pointer;
 }
 
-.cardTitle{
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 20px;
-    font-family: var(--font-family-1);
+.iconActive{
+
+    width: 20px;
+    height: 20px;
+    color: var(--btn-background-color);
+    cursor: pointer;
+
 }
 
-.buttonCard{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding-bottom: 20px;
+.imgContainer{
+    height: 300px;
+    width: 100%;
 }
-.cartButton{
+
+.img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.dataContainer{
+    margin-top: 8px;
+    width: 100%;
+    flex: display;
+    text-align: left;
+}
+
+.dataContainer h3{
+    font-size: 16px;
+    height: 30px;
+    color: black;
+}
+
+.infoContainer{
+    margin-top: 8px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
-    background-color: var(--btn-background-color);
-    padding: 10px;
-    cursor: pointer;
-    color: white;
-    font-family: var(--font-family-1);
-    font-weight: 700;
-}
-.detailButton{
-    background-color: var(--btn-background-color);
-    padding: 13px;
-    cursor: pointer;
-    color: white;
-    font-family: var(--font-family-1);
-    font-weight: 700;
 }
 
-.image{
-    height: 170px;
+.name{
+    color: gray;
+}
+
+.price{
+    color: var(--btn-background-color);
+    font-size: 16px;
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.addBtn{
+    background-color: var(--btn-background-color);
+    color: white;
+    padding: 8px 16px;
+    border: 2px solid var(--btn-background-color);
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.addBtn:hover{
+    background-color: white;
+    color: var(--btn-background-color);
+}
+
+.moreBtn{
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: var(--background-color);
+    text-decoration: none;
+    color: black;
+}
+
+.moreBtn:hover{
+    background-color: var(--background-color);
+    color: var(--btn-background-color)
 }
