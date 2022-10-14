@@ -4,21 +4,23 @@ import { Link } from 'react-router-dom'
 import ConoceEWine from './ConoceEWine'
 import AboutDevs from './AboutDevs'
 import Footer from '../Footer/Footer.jsx'
-import NavBar from '../Nav/Nav.jsx'
+// import NavBar from '../Nav/Nav.jsx'
 
 export default function LandingPage () {
   return (
     <div>
-      <div>
+      {/* <div>
         <NavBar />
-      </div>
+      </div> */}
       <div>
         <h1>Descrubrí E-wine</h1>
       </div>
       <div>
-        <button>
-          <a href='conoceEWine'>CONOCÉ SOBRE E-WINE</a>
-        </button>
+        <Link to='/about'>
+          <button>
+            CONOCÉ SOBRE E-WINE
+          </button>
+        </Link>
       </div>
       <div>
         <Link to='./home'>
