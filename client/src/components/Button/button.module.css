@@ -1,0 +1,29 @@
+.btn{
+    font-family: var(--font-family-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: var(--background-color);
+    background-color: var(--btn-background-color);
+    box-sizing: border-box;
+    padding: 7px;
+    border: 1px solid var(--btn-border-color);
+    border-radius: 6px;  
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    /* width: 192px; */
+    cursor: pointer;
+
+}
+.btn:hover{
+    color: var(--normal-font-color);
+    font-family: var(--font-family-1);
+    font-weight: 600;
+    background-color: var(--background-color);
+    box-sizing: border-box;
+    border: 1px solid var(--btn-border-color);
+    border-radius: 7px;  
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    /* width: 192px; */
+    transform: scale(1.05)
+}

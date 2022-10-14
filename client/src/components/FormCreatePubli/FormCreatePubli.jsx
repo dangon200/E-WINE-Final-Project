@@ -1,9 +1,7 @@
 import style from './formCreatePubli.module.css'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
-import { getProducts, postPublication } from '../../store/actions/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { schemaFormPubli, validateUrl, schemaUrl } from '../utilities/schemas'
 
 export default function FormCreatePubli () {
   const dispatch = useDispatch()
@@ -114,8 +112,8 @@ export default function FormCreatePubli () {
           </select>
         </div>
 
-        <button type='submit' className='btn btn-primary'>Create</button>
-        {send && <div className={style.succes}>Publication created</div>}
+        <button type='submit'>Create</button>
+        {send && <div>Publication created</div>}
       </form>
     </section>
   )

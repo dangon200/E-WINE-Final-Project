@@ -1,11 +1,8 @@
-.nav{
-  display: flex;
-  flex-direction: row;
-}
-.links{
-  font-size: 2rem;
-  font-family: 'Courier New', Courier, monospace;
-  margin: 10px;
-  list-style: none;
-  text-decoration: none;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: #fff;
 }
