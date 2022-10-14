@@ -13,7 +13,6 @@ export default function FormCreatePubli () {
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
     initialValues: { productId: '', title: '', price: 0, description: '', count: 0, image: [] },
     validationSchema: schemaFormPubli,
-
     onSubmit: async (values) => {
       try {
         const url = await uplodCloudinary(values.image[0])
@@ -30,7 +29,7 @@ export default function FormCreatePubli () {
   const [send, setSend] = useState(false)
 
   return (
-    <section className={style.section}>
+    <section className='container'>
 
       <form onSubmit={handleSubmit} autoComplete='off' className={style.form}>
         <div className='mb-3'>
@@ -45,7 +44,7 @@ export default function FormCreatePubli () {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          {errors.name && touched.name && <p className={style.p}>{errors.name}</p>}
+          {errors.title && touched.title && <p className={style.p}>{errors.title}</p>}
         </div>
         <div className='mb-3'>
           <label htmlFor='price' className='form-label'>Price</label>
@@ -90,6 +89,7 @@ export default function FormCreatePubli () {
               setFieldValue('image', myFiles)
             }}
           />
+          {errors.image && touched.image && <p className={style.p}>{errors.image}</p>}
         </div>
         <div className='mb-3'>
           <label htmlFor='description' className='form-label mb-3'>Description</label>
