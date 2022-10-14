@@ -55,7 +55,9 @@
 }
 
 .buttonBack:hover{
-    background-color: #56070c9e;
-    /* background-color: #7a27ffbf; */
+    color: var(--normal-font-color);
+    /* background-color: #56070c9e; */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    background-color: var(--background-color); 
     transition: .3s;
 }
