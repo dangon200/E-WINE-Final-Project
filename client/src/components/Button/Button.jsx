@@ -12,13 +12,13 @@ function Button (props) {
     )
   }
   return (
-    <div>
+    <>
       <Link to={link}>
         <button className={s.btn}>
           {content}
         </button>
       </Link>
-    </div>
+    </>
   )
 }
 
