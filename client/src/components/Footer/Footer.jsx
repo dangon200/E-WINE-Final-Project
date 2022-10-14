@@ -1,14 +1,14 @@
-// import style from './footer.module.css'
+import style from './footer.module.css'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Footer () {
   return (
-    <div>
+    <div className={style.section}>
       <div>
         <h1>E-Wine</h1>
       </div>
-      <div>
+      <div className={style.box}>
         <div>
           {/* <img src='facebook' alt='facebook' /> */}
           <a href='pal face'>Facebook</a>
@@ -26,7 +26,7 @@ export default function Footer () {
           <a href='Youtube'>Youtube</a>
         </div>
       </div>
-      <div>
+      <div className={style.comprasBox}>
         <span>COMPRAS</span>
         <ul>
           <li>Carrito</li>
@@ -34,7 +34,7 @@ export default function Footer () {
           <li>Vinos guardados</li>
         </ul>
       </div>
-      <div>
+      <div className={style.acercaDeBox}>
         <span>ACERCA DE</span>
         <ul>
           <li>
@@ -54,7 +54,7 @@ export default function Footer () {
           </li>
         </ul>
       </div>
-      <div>
+      <div className={style.ayudaBox}>
         {/* Esto no sé si ponerlo... lo agregué por una cuestión de rellenar */}
         <span>AYUDA</span>
         <ul>
