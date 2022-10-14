@@ -1,5 +1,5 @@
 import style from './nav.module.css'
-import SearchBar from '../SearchBar/SearchBar.jsx'
+// import SearchBar from '../SearchBar/SearchBar.jsx'
 
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
@@ -18,7 +18,7 @@ export default function Nav () {
       </div>
       <div className={style.links}>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
 
         <Navegador link='/' span='Inicio' />
 
