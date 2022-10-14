@@ -21,7 +21,7 @@ export default function Nav () {
           <Navegador link='/home' span='Tienda' />
         </div>
         <div>
-          <Navegador link='/createPubli' span='Crear Publicación' />
+          <Navegador link='/createpubli' span='Crear Publicación' />
         </div>
 
       </div>
