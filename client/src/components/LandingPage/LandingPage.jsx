@@ -1,8 +1,10 @@
 import style from './landingPage.module.css'
 import React from 'react'
 import Footer from '../Footer/Footer.jsx'
-import bodega from '../assets/imgs/bodega.png'
+// import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
+import teamwork from '../../utils/images/teamwork1.jpg'
+import barriles from '../../utils/images/bodegabarriles.jpg'
 import { BsCheck2 } from 'react-icons/bs'
 
 import Button from '../Button/Button.jsx'
@@ -43,7 +45,7 @@ export default function LandingPage () {
             <p><span><BsCheck2 /></span>Accede a descuentos y ofertas de manera rápida.</p>
 
           </div>
-          <img src={bodega} alt='Bodega' className={style.img} />
+          <img src={barriles} alt='Bodega' className={style.imgBodega} />
         </article>
 
       </section>
@@ -75,7 +77,23 @@ export default function LandingPage () {
           </div>
         </article>
       </section>
-      <span>------------------------------------------</span>
+      <section className={style.sectionAboutProject}>
+        <div className={style.divAboutProject}>
+          <h2>Sobre el proyecto</h2>
+          <p>
+            Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
+          </p>
+          <p>
+            Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
+          </p>
+          <p>
+            Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
+          </p>
+        </div>
+        <div className={style.divTeamWork}>
+          <img src={teamwork} alt={teamwork} className={style.imgTeamWork} />
+        </div>
+      </section>
       <div>
         <Footer />
       </div>

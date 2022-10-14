@@ -8,3 +8,11 @@
   padding: 0.5rem 0;
   cursor: pointer;
 }
+
+.spanActive{
+  padding-bottom: 20px;
+}
+
+.spanActive:active{
+  border-bottom: 3px solid blue;
+}

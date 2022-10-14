@@ -7,7 +7,7 @@ function Navegador (props) {
   return (
     <>
       <NavLink to={link} className={style.navlink}>
-        <span>{span}</span>
+        <span className={style.spanActive}>{span}</span>
       </NavLink>
     </>
   )
