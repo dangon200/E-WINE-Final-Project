@@ -1,4 +1,4 @@
-// import { style } from './home.module.css'
+import style from './home.module.css'
 import { useEffect, useState } from 'react'
 import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,7 +12,7 @@ export default function Home () {
   const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   const [page, setPage] = useState(1)
-  const productsPerPage = 9
+  const productsPerPage = 1
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
   const currentPageProducts = products.slice(firstProductPerPage, lastProductPerPage)
@@ -35,7 +35,7 @@ export default function Home () {
   }
 
   function paginationAft () {
-    if (page < 3) {
+    if (page < 4) {
       setPage(page + 1)
     }
   }
@@ -43,7 +43,7 @@ export default function Home () {
   return (
     <div>
       <h1>Home</h1>
-      <div>
+      <div className={style.divPagination}>
         <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft size={25} className='button-left' /></button>
         <Pagination
           products={products.length}
@@ -60,7 +60,7 @@ export default function Home () {
               <Link to={`/product/${p.id}`}>
                 <Card
                   name={p.name}
-                  image={p.image}
+                  image={p.img}
                   score={p.score}
                   price={p.price}
                   key={p.id}
