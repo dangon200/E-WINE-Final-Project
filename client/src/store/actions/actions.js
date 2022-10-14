@@ -82,3 +82,35 @@ export const searchByNameProduct = (name) => {
       })
   }
 }
+
+// Favorites
+
+export const addFavorites = (id) => {
+  return {
+    type: 'ADD_FAVORITES',
+    payload: id
+  }
+}
+
+export const removeFavorites = (id) => {
+  return {
+    type: 'REMOVE_FAVORITES',
+    payload: id
+  }
+}
+
+// CARRITO
+
+export const addCarrito = (id) => {
+  return {
+    type: 'ADD_CARRITO',
+    payload: id
+  }
+}
+
+export const removeCarrito = (id) => {
+  return {
+    type: 'REMOVE_CARRITO',
+    payload: id
+  }
+}

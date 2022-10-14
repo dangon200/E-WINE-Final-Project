@@ -23,6 +23,8 @@
     /* font-weight: 600; */
     background-color: var(--background-color);
     border: 1px solid var(--btn-border-color);
+    border-radius: 7px;  
+    transition: .3s;
     /* border-radius: 7px;   */
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     /* width: 192px; */
