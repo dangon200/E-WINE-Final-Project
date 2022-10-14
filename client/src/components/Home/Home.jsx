@@ -12,10 +12,10 @@ export default function Home () {
   const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   const [page, setPage] = useState(1)
-  const productsPerPage = 2
+  const productsPerPage = 4
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
-  const currentPageProducts = products.slice(firstProductPerPage, lastProductPerPage)
+  const currentPageProducts = publications.slice(firstProductPerPage, lastProductPerPage)
 
   useEffect(() => {
     dispatch(getProducts())
@@ -46,7 +46,7 @@ export default function Home () {
       <div className={style.divPagination}>
         <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></button>
         <Pagination
-          products={products.length}
+          products={publications.length}
           productsPerPage={productsPerPage}
           pagination={pagination}
           page={page}
@@ -59,9 +59,8 @@ export default function Home () {
             <section className={style.sectionCards} key={p.id}>
               <Link to={`/product/${p.id}`}>
                 <Card
-                  name={p.name}
-                  image={p.img}
-                  score={p.score}
+                  name={p.title}
+                  image={p.image}
                   price={p.price}
                   key={p.id}
                 />

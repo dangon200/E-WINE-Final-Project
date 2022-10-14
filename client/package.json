@@ -20,7 +20,11 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "react-scripts start --openssl-legacy-provider",
+=======
+    "start": "react-scripts start --openssl-legacy-provider ",
+>>>>>>> 8fa75d8cf59e7a3357850c18cb63545ffc47c8c8
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
