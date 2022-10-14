@@ -69,7 +69,7 @@ router.get('/', async (req, res) => {
     const usersFromDb = await userController.getAllUsers()
 
     if (!usersFromDb.length) {
-      return res.status(404).json('No users saved in the Database!')
+      return res.status(404).json('No hay usuarios guardados en la Base de Datos!')
     }
 
     return res.status(200).json(usersFromDb)

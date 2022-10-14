@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 import logo from '../assets/imgs/e-wine-logo.png'
 import bolsita from '../assets/imgs/bolsita.png'
-import SearchBar from '../SearchBar/SearchBar'
+// import SearchBar from '../SearchBar/SearchBar'
 
 export default function Nav () {
   return (
@@ -16,7 +16,7 @@ export default function Nav () {
       </div>
       <div className={style.links}>
 
-        <SearchBar />
+        {/* <SearchBar /> */}
 
         <Navegador link='/' span='Inicio' />
 

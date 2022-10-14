@@ -1,72 +1,7 @@
 
-.navContainer{
-    width: 100vw;
-    height: 80px;
-    /* background-color: antiquewhite; */
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin-bottom: 50px;
-    box-shadow: 0 10px 20px -15px rgba(0, 0, 0, 0.767);
-}
-
-.logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* .span{
-    text-decoration: none;
-    font-family: 'Yeseva One';
-    color: black;
-    font-size: 30px;
-    font-weight: 700;
-    margin-bottom: 20px;
-} */
-
-.imgLogo{
-    width: 80px;
-    height: 80px;
-}
-
-.nav{
-    display: flex;
-    justify-content: space-between;
-    float: none;
-    line-height: 26px;
-    z-index: 999;
-    width: 100%;
-    padding: 20px;
-}
-
-.searchBar{
+.navbar {
     display: flex;
     align-items: center;
-    width: 100%;
-    margin-left: 20px;
-}
-
-.containerLink{
-    display: flex;
-    gap: 30px;
-    align-items: center;
-}
-
-.inicio, .about, .tienda{
-    font-family: "Roboto", sans-serif; 
-    font-size: large;
-    font-weight: 500;
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-}
-/* =======
     justify-content: space-between;
     padding: 20px;
     background-color: var(--background-color);
@@ -79,4 +14,3 @@
     text-decoration: none;
     color: #1F1F1F
 }
->>>>>>> 5b3144bd4029d9a904c8dbe00a8e0f02f56f6235 */

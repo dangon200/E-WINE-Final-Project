@@ -1,6 +1,5 @@
 import style from './landingPage.module.css'
 import React from 'react'
-import AboutDevs from './AboutDevs'
 import Footer from '../Footer/Footer.jsx'
 import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
@@ -27,7 +26,7 @@ export default function LandingPage () {
           <div className={style.details}>
             <h2>Disfrutá navegando por miles de vinos y haciendo tu elección de manera más cómoda todo en un sólo sitio</h2>
 
-            <p><span>√</span> Te conectamos con las mejores bodegas.</p>
+            <p><span>√</span>Te conectamos con las mejores bodegas.</p>
             <p><span>√</span>Podés seleccionar el vino que quieras.</p>
             <p><span>√</span>Revisa las reseñas y las recomendaciones de expertos.</p>
           </div>
@@ -35,7 +34,7 @@ export default function LandingPage () {
         </article>
 
         <article>
-          <div>
+          <div className={style.details}>
             <h2> Nuestra plataforma conecta a los consumidores con los proveedores, facilitando la interacción.</h2>
 
             <p><span>√</span>Conecta a los amantes del vino con sus favoritos.</p>
@@ -48,12 +47,33 @@ export default function LandingPage () {
 
       </section>
 
-      <div>
-        <h1>Aca van las reseñas bien bonitas</h1>
-      </div>
-      <div>
-        <AboutDevs />
-      </div>
+      <section className={style.sectionCards}>
+        <h2>Recomendados por expertos</h2>
+        <article className={style.gridCards}>
+          <div className={style.card}>
+            <img src={copa} alt='fakeImg' className={style.cardImg} />
+            <section>
+              <h4>Dars ishlanma</h4>
+              <p>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+            </section>
+
+          </div>
+          <div className={style.card}>
+            <img src={copa} alt='fakeImg' className={style.cardImg} />
+            <section>
+              <h4>Dars ishlanma</h4>
+              <p>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+            </section>
+          </div>
+          <div className={style.card}>
+            <img src={copa} alt='fakeImg' className={style.cardImg} />
+            <section>
+              <h4>Dars ishlanma</h4>
+              <p>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+            </section>
+          </div>
+        </article>
+      </section>
       <span>------------------------------------------</span>
       <div>
         <Footer />
