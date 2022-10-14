@@ -1,15 +1,23 @@
+.globalContainer{
 
+    width: 1400px;
+
+}
 
 .divPagination{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 8px;
 }
 
 .containerProducts{
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
 }
 
 .sectionCards{
@@ -22,6 +30,14 @@
     font-weight: bolder;
     width: 30px;
     height: 30px;
+    border: 1px solid var(--btn-background-color);
     border-radius: 6px;
     cursor: pointer;
+    color:var(--btn-background-color) ;
+    transition: 0.2s;
+}
+
+.buttonLeft:hover, .buttonRight:hover{
+    background-color: var(--btn-background-color);
+    color: white;
 }
