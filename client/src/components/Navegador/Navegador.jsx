@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import style from './navegador.module.css'
+import style from './Navegador.module.css'
 
 function Navegador (props) {
   const { link, span } = props
   return (
     <>
-      <NavLink to={link} className={style.navlink}>
+      <NavLink to={link} className={style.navlink} activeClassName={style.current}>
         <span>{span}</span>
       </NavLink>
     </>

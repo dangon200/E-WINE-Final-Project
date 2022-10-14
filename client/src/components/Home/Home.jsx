@@ -1,11 +1,12 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts } from '../../store/actions/actions'
+import { getPublications, getProducts, orderPublications } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { Link } from 'react-router-dom'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import Filters from '../Filters/Filters'
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -40,6 +41,14 @@ export default function Home () {
     }
   }
 
+  function handleSort (e) {
+    if (e.target.value === '') {
+      dispatch(getPublications())
+    } else {
+      dispatch(orderPublications(e.target.value))
+    }
+  }
+
   return (
     <div>
       <h1>Home</h1>
@@ -52,6 +61,9 @@ export default function Home () {
           page={page}
         />
         <button onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></button>
+      </div>
+      <div>
+        <Filters handleSort={handleSort} />
       </div>
       <div className={style.containerProducts}>
         {currentPageProducts && currentPageProducts.map((p) => {

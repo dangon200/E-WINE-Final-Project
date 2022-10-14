@@ -24,6 +24,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, detailProduct: action.payload }
     case 'SEARCH_PRODUCT_BY_NAME':
       return { ...state, detailProduct: action.payload }
+    case 'ORDER_PUBLICATIONS':
+      return { ...state, allPublications: action.payload }
     default:
       return { ...state }
   }

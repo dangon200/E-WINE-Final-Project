@@ -82,3 +82,18 @@ export const searchByNameProduct = (name) => {
       })
   }
 }
+// /order/:opt
+
+export const orderPublications = (opt) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`${urlApi}/publications/order/${opt}`)
+      return dispatch({
+        type: 'ORDER_PUBLICATIONS',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
