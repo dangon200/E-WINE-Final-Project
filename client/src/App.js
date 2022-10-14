@@ -6,6 +6,7 @@ import Error404 from './components/Error404/Error404.jsx'
 import About from './components/About/About.jsx'
 import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home.jsx'
+import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 
 function App () {
   return (
@@ -15,8 +16,9 @@ function App () {
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
-        <Route path='/createPubli' exact component={FormCreatePubli} />
+        <Route path='/createpubli' exact component={FormCreatePubli} />
         <Route path='*' component={Error404} />
+        <Route path='/publication/:id' component={PublicationDetail} />
       </Switch>
     </div>
   )

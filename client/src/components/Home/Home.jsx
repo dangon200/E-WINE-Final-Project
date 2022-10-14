@@ -46,7 +46,7 @@ export default function Home () {
       <div className={style.divPagination}>
         <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></button>
         <Pagination
-          products={products.length}
+          publications={publications.length}
           productsPerPage={productsPerPage}
           pagination={pagination}
           page={page}

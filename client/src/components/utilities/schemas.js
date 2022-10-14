@@ -17,3 +17,29 @@ export const validateUrl = (value) => {
 export const schemaUrl = Yup.object().shape({
   url: Yup.string().required().matches(/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi, 'Invalid url')
 })
+
+// CLOUDINARY FUNCTION UPLOAD AN IMG
+export const uplodCloudinary = async (file) => {
+  try {
+    const cloudName = 'dfq27ytd2'
+    const preset = 'cpnushlf'
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+
+    const formData = new FormData()
+    formData.append('upload_preset', preset)
+    formData.append('file', file)
+
+    const send = await fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+    const response = await send.json()
+    const urlImage = response.secure_url
+    if (validateUrl(urlImage)) {
+      return urlImage
+    } else throw Error('url not valid')
+    // END CLOUDINARY
+  } catch (error) {
+    console.log(error)
+  }
+}

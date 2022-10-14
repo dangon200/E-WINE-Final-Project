@@ -1,6 +1,6 @@
 
 .navContainer{
-    width: 100%;
+    width: 100vw;
     height: 80px;
     /* background-color: antiquewhite; */
     background-color: #ffffff;
@@ -66,3 +66,17 @@
     cursor: pointer;
     text-decoration: none;
 }
+/* =======
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--background-color);
+}
+.span{
+    font-family: var(--font-family-1);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 0.3rem;
+    text-decoration: none;
+    color: #1F1F1F
+}
+>>>>>>> 5b3144bd4029d9a904c8dbe00a8e0f02f56f6235 */

@@ -23,6 +23,7 @@
     box-sizing: border-box;
     border: 1px solid var(--btn-border-color);
     border-radius: 7px;  
+    transition: .3s;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     /* width: 192px; */
     transform: scale(1.05)
