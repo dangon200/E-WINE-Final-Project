@@ -27,7 +27,13 @@ export default function reducer (state = initialState, action) {
     case 'SEARCH_PRODUCT_BY_NAME':
       return { ...state, detailProduct: action.payload }
     case 'ORDER_PUBLICATIONS':
-      return { ...state, allPublications: action.payload }
+      return { ...state, publications: action.payload }
+    case 'FILTER_VARIETAL':
+      return { ...state, publications: action.payload, allPublications: action.payload }
+    case 'FILTER_TYPE':
+      return { ...state, publications: action.payload }
+    case 'FILTER_ORIGIN':
+      return { ...state, publications: action.payload }
     case 'ADD_FAVORITES':
       return { ...state, favorites: [...state.favorites, action.payload] }
     case 'REMOVE_FAVORITES':
