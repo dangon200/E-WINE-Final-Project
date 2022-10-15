@@ -42,3 +42,11 @@ lo comenté porque rompe el ancho de la página
     background-color: var(--btn-background-color);
     color: white;
 }
+
+.filtersContainer{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
