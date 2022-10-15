@@ -11,7 +11,9 @@ export default function FormCreatePubli () {
   const history = useHistory()
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
-  if (!products.length) dispatch(getProducts())
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch, products])
 
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
     initialValues: { productId: '', title: '', price: 0, description: '', count: 0, image: {} },
