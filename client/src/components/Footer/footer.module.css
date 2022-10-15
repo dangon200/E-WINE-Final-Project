@@ -1,37 +1,80 @@
-.section{
-    /* position: absolute;
-    width: 1440px;
-    height: 360.31px; */
-    background: #56070C;
-    display: flex;
-    justify-content: space-between;
-    height: 100px
-  }
+ .container{
+    border: solid 2px black;
+    display: flex ;
+    flex-direction: column;
+    background-color: #56070C;
+    color: white;
+}
+.sep{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
 
-.box{
-    background-color: blue;
-    width: 80px;
-    height: 100px;
-    text-align: center;
-  }
+.titleBox{
+    
+    margin-top: 10px;
+}
+.titleBox h1{
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+.titleBox span{
+    font-size: 15px
+}
 
 .comprasBox{
-    background-color: blueviolet;
-    width: 80px;
-    height: 100px;
-    text-align: center;
+    margin-top: 10px;
+    text-justify: inter-word;
+    display: inline-block;
+    list-style: none;
+    list-style-type: none;
+    text-align: left;
+    
 }
 
-.acercaDeBox{
-    background-color: aqua;
-    width: 80px;
-    height: 100px;
-    text-align: center
+.acercaBox{
+    margin-top: 10px;
+    text-justify: inter-word;
+    display: inline-block;
+    list-style: none;
+    list-style-type: none;
+    text-align: left;
 }
+.t{
+    font-size: 20px;
+}
+.l{
+    font-size: 15px;
+}
+
+.acercaBox a{
+    text-decoration: none;
+    color: white;
+}
+
 
 .ayudaBox{
-    background-color: chartreuse;
-    width: 100px;
-    height: 100px;
+    margin-top: 10px;
+    text-justify: inter-word;
+    display: inline-block;
+    list-style: none;
+    list-style-type: none;
+    text-align: left;
+}
+
+.iconos{
+
+    display: inline-flex;
     text-align: center;
+    width: 50%;
+    margin: auto auto;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    justify-content: space-around;
+}
+
+.btn a{
+    text-decoration: none;
+    color: white;
+    
 }

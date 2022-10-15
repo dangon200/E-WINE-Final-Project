@@ -1,8 +1,9 @@
-.globalContainer{
+/* .globalContainer{
 
     width: 1400px;
-
-}
+    
+lo comenté porque rompe el ancho de la página
+} */
 
 .divPagination{
     display: flex;

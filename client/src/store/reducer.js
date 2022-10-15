@@ -8,13 +8,14 @@ const initialState = {
   detailPublication: {},
   detailProduct: {},
   favorites: [],
-  carrito: []
+  carrito: [],
+  error: ''
 }
 
 export default function reducer (state = initialState, action) {
   switch (action.type) {
     case 'GET_PUBLICATIONS':
-      return { ...state, allPublications: action.payload, publications: action.payload }
+      return { ...state, allPublications: action.payload, publications: action.payload, error: action.payload }
 
     case 'GET_BY_ID_PUBLICATION':
       return { ...state, detailPublication: action.payload }
