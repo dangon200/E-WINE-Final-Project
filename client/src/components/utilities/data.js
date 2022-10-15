@@ -29,6 +29,6 @@ export const cellers = [
   'Viñedos de la Patagonia S.A.',
   'Viñedos Huarpe'
 ]
-export const types = ['Red', 'White', 'Rose', 'Sparkling', 'Dessert', 'Fortified', 'Other']
+export const types = ['rojo', 'White', 'Rose', 'Sparkling', 'Dessert', 'Fortified', 'Other']
 export const varietals = ['Cabernet Sauvignon', 'Merlot', 'Pinot Noir', 'Sangiovese', 'Syrah', 'Zinfandel', 'Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio', 'Riesling', 'Gewürztraminer', 'Pinot Gris', 'Moscato', 'Other']
 export const provinces = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén']

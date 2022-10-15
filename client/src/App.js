@@ -10,7 +10,6 @@ import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
 import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
-import FormCreateProduct from './components/FormCreateProduct/FormCreateProduct'
 
 function App () {
   const dispatch = useDispatch()
@@ -29,7 +28,6 @@ function App () {
       <Route path='/createpubli' component={Nav} />
       <Route path='/publication/:id' component={Nav} />
       <Switch>
-        <Route exact path='/form' component={FormCreateProduct} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
