@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import SearchBar from '../SearchBar/SearchBar.jsx'
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ export default function Home () {
 
   return (
     <div className={style.globalContainer}>
+
       <div className={style.divPagination}>
         {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
         <Pagination

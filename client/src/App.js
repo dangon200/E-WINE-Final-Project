@@ -31,9 +31,9 @@ function App () {
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
+        <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createpubli' exact component={FormCreatePubli} />
         <Route path='*' component={Error404} />
-        <Route path='/publication/:id' component={PublicationDetail} />
       </Switch>
     </div>
   )
