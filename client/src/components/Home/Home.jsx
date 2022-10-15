@@ -1,6 +1,6 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts, addCarrito } from '../../store/actions/actions'
+import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
@@ -19,10 +19,6 @@ export default function Home () {
   useEffect(() => {
     dispatch(getProducts())
     dispatch(getPublications())
-
-    for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito(window.localStorage.key(x)))
-    }
   }, [dispatch])
   console.log(products)
   console.log(publications)
