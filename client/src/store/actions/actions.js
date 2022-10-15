@@ -82,6 +82,61 @@ export const searchByNameProduct = (name) => {
       })
   }
 }
+// /order/:opt
+
+export const orderPublications = (opt) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`${urlApi}/publications/order/${opt}`)
+      return dispatch({
+        type: 'ORDER_PUBLICATIONS',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+// /publications/filter
+export const filterVarietal = (varietal) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`${urlApi}/publications/filter?varietal=${varietal}`)
+      return dispatch({
+        type: 'FILTER_VARIETAL',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const filterType = (type) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`${urlApi}/publications/filter?type=${type}`)
+      return dispatch({
+        type: 'FILTER_TYPE',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const filterOrigin = (origin) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`${urlApi}/publications/filter?origin=${origin}`)
+      return dispatch({
+        type: 'FILTER_ORIGIN',
+        payload: data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 // Favorites
 
