@@ -98,10 +98,10 @@ export const searchByNameProduct = (name) => {
 }
 
 // /publications/filter
-export const filterPublications = ({ varietal, type, origin }) => {
+export const filterPublications = ({ varietal, type, origin, opt }) => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${urlApi}/publications/filter?varietal=${varietal}&type=${type}$origin=${origin}`)
+      const { data } = await axios.get(`${urlApi}/publications/filter?varietal=${varietal}&type=${type}&origin=${origin}&opt=${opt}`)
       return dispatch({
         type: 'FILTER_PUBLICATIONS',
         payload: data
