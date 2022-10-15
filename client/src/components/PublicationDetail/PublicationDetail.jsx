@@ -1,37 +1,40 @@
 // import style from './publicationDetail.module.css'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { getByPublication } from '../../store/actions/actions'
-import NavBar from '../Nav/Nav.jsx'
 import Footer from '../Footer/Footer.jsx'
+// import { useParams } from 'react-router-dom'
 
-export default function PublicationDetail () {
+export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const dispatch = useDispatch()
+  const { id } = useParams()// props.match.params.id
 
-  useEffect((id) => {
+  useEffect(() => {
     dispatch(getByPublication(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   return (
     <div>
-      <div>
-        <NavBar />
-      </div>
 
       <div>
         <h1>PUBLICATION DETAILS</h1>
       </div>
 
-      {publication.length > 0
+      {publication
         ? (
           <div>
             <div>
-              <p>Name: publication[0].name</p>
-              <img src='acá tenemos la imagen' alt='imagen' />
-              <p>Price: publication[0].price</p>
-              <p>Count: publication[0].count</p>
-              <p>Description: publication[0].description</p>
+              <p>Name: {publication.name}</p>
+              <p>Count: {publication.count}</p>
+              <img src={publication.img} alt='imagen' />
+              <p>Price: {publication.price}</p>
+              <p>Count: {publication.count}</p>
+              <p>Description: {publication.description}</p>
+              <p>Type: {publication.type}</p>
+              <p>Type: {publication.varietal}</p>
+              <p>Type: {publication.origin}</p>
             </div>
             <div>
               <button>Add to cart</button>

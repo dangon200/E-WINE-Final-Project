@@ -1,10 +1,11 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts, addCarrito } from '../../store/actions/actions'
+import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import SearchBar from '../SearchBar/SearchBar.jsx'
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -19,10 +20,6 @@ export default function Home () {
   useEffect(() => {
     dispatch(getProducts())
     dispatch(getPublications())
-
-    for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito(window.localStorage.key(x)))
-    }
   }, [dispatch])
   console.log(products)
   console.log(publications)
@@ -46,6 +43,7 @@ export default function Home () {
 
   return (
     <div className={style.globalContainer}>
+
       <div className={style.divPagination}>
         {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
         <Pagination
