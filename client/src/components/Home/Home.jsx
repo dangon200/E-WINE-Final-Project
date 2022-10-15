@@ -6,6 +6,7 @@ import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import Filters from '../Filters/Filters.jsx'
+import SearchBar from '../SearchBar/SearchBar.jsx'
 
 export default function Home () {
   const dispatch = useDispatch()

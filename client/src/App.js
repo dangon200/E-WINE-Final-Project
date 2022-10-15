@@ -28,6 +28,7 @@ function App () {
       <Route path='/createpubli' component={Nav} />
       <Route path='/publication/:id' component={Nav} />
       <Switch>
+        <Route exact path='/form' component={LandingPage} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />

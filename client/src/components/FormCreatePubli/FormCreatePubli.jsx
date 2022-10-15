@@ -37,7 +37,7 @@ export default function FormCreatePubli () {
   })
   const [send, setSend] = useState(false)
   return (
-    <section className='container'>
+    <section className='container user-select-none'>
       <div className='row'>
         <h2>Create a Publication</h2>
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
