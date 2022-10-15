@@ -1,4 +1,4 @@
-
+import style from './formCreatePubli.module.css'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
@@ -18,9 +18,9 @@ export default function FormCreatePubli () {
         const url = await uplodCloudinary(values.image)
         values.image = url
         dispatch(postPublication(values))
-        resetForm()
         setSend(true)
         setTimeout(() => { setSend(false) }, 3000)
+        resetForm()
       } catch (error) {
         console.log(error)
       }
@@ -30,7 +30,6 @@ export default function FormCreatePubli () {
   return (
     <section className='container'>
       <div className='row'>
-        {console.log(touched)}
         <h2>Create a Publication</h2>
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
 
@@ -127,9 +126,8 @@ export default function FormCreatePubli () {
               {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
             </div>
           </div>
-
           <button type='submit' className='btn btn-primary btn-block btn-lg mt-4'>Create</button>
-          {send && <div className='valid-feedback'>Publication created</div>}
+          {send && <div className={style.send}>Publication created</div>}
         </form>
 
       </div>

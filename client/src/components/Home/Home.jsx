@@ -65,7 +65,7 @@ export default function Home () {
                 title={p.title}
                 name={p.name}
                 image={p.image}
-                price={p.price}
+                price={p.price.toLocaleString('es-MX')}
                 key={p.id}
               />
             </section>
