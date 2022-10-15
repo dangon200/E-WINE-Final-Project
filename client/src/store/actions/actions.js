@@ -115,6 +115,18 @@ export const clearFilter = () => {
   return { type: 'CLEAR_FILTER', payload: null }
 }
 
+// Search Publication by Name
+
+export const searchPublicationByName = (name) => {
+  return async function (dispatch) {
+    return fetch(`${urlApi}/publications?name=${name}`).then((respuesta) =>
+      respuesta.json().then((dataP) => {
+        dispatch({ type: 'GET_PUBLICATIONS', payload: dataP })
+      })
+    )
+  }
+}
+
 // Favorites
 
 export const addFavorites = (id) => {
