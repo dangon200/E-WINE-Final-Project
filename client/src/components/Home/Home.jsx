@@ -1,6 +1,6 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts, orderPublications, filterVarietal, filterType, filterOrigin } from '../../store/actions/actions'
+import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
@@ -44,50 +44,10 @@ export default function Home () {
     setPage(page + 1)
   }
 
-  function handleSort (e) {
-    e.preventDefault()
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(orderPublications(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterVarietal (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterVarietal(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterType (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterType(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterOrigin (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterOrigin(e.target.value))
-      setPage(1)
-    }
-  }
   return (
     <div className={style.globalContainer}>
       <div className={style.filtersContainer}>
         <SearchBar />
-        <Filters handleSort={handleSort} handleFilterVarietal={handleFilterVarietal} handleFilterType={handleFilterType} handleFilterOrigin={handleFilterOrigin} />
       </div>
       {typeof publications !== 'string' &&
         <div className={style.divPagination}>
@@ -100,6 +60,9 @@ export default function Home () {
           />
           {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
+      <div>
+        <Filters />
+      </div>
 
       <div className={style.containerProducts}>
         {typeof publications !== 'string'
