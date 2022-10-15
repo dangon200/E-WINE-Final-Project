@@ -1,18 +1,19 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts, orderPublications, filterVarietal, filterType, filterOrigin } from '../../store/actions/actions'
+import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import Filters from '../Filters/Filters.jsx'
-import SearchBar from '../SearchBar/SearchBar.jsx'
+import SearchBar from '../SearchBar/SearchBar'
+import Message from '../Message/Message'
 
 export default function Home () {
   const dispatch = useDispatch()
   // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
-  const error = useSelector(state => state.error)
+  /* const error = useSelector(state => state.error) */
   const [page, setPage] = useState(1)
   const productsPerPage = 4
   const lastProductPerPage = page * productsPerPage
@@ -43,64 +44,28 @@ export default function Home () {
     setPage(page + 1)
   }
 
-  function handleSort (e) {
-    e.preventDefault()
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(orderPublications(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterVarietal (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterVarietal(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterType (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterType(e.target.value))
-      setPage(1)
-    }
-  }
-  function handleFilterOrigin (e) {
-    e.preventDefault()
-    console.log(e.target.value)
-    if (e.target.value === '') {
-      dispatch(getPublications())
-    } else {
-      dispatch(filterOrigin(e.target.value))
-      setPage(1)
-    }
-  }
   return (
     <div className={style.globalContainer}>
-      <SearchBar />
-      <div className={style.divPagination}>
-        {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
-        <Pagination
-          publications={publications.length}
-          productsPerPage={productsPerPage}
-          pagination={pagination}
-          page={page}
-        />
-        {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
+      <div className={style.filtersContainer}>
+        <SearchBar />
       </div>
+      {typeof publications !== 'string' &&
+        <div className={style.divPagination}>
+          {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
+          <Pagination
+            publications={publications.length}
+            productsPerPage={productsPerPage}
+            pagination={pagination}
+            page={page}
+          />
+          {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
+        </div>}
       <div>
-        <Filters handleSort={handleSort} handleFilterVarietal={handleFilterVarietal} handleFilterType={handleFilterType} handleFilterOrigin={handleFilterOrigin} />
+        <Filters />
       </div>
 
       <div className={style.containerProducts}>
-        {Array.isArray(currentPageProducts)
+        {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
             return (
               <section className={style.sectionCards} key={p.id}>
@@ -115,7 +80,7 @@ export default function Home () {
               </section>
             )
           })
-          : error}
+          : <Message message={publications} />}
       </div>
     </div>
   )
