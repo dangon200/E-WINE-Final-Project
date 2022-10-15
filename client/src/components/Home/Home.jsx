@@ -1,4 +1,4 @@
-// import { style } from './home.module.css'
+import style from './home.module.css'
 import { useEffect, useState } from 'react'
 import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,16 +6,17 @@ import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { Link } from 'react-router-dom'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
+import SearchBar from '../SearchBar/SearchBar.jsx'
 
 export default function Home () {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   const [page, setPage] = useState(1)
-  const productsPerPage = 9
+  const productsPerPage = 4
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
-  const currentPageProducts = products.slice(firstProductPerPage, lastProductPerPage)
+  const currentPageProducts = publications.slice(firstProductPerPage, lastProductPerPage)
 
   useEffect(() => {
     dispatch(getProducts())
@@ -35,7 +36,7 @@ export default function Home () {
   }
 
   function paginationAft () {
-    if (page < 3) {
+    if (page < 2) {
       setPage(page + 1)
     }
   }
@@ -43,25 +44,25 @@ export default function Home () {
   return (
     <div>
       <h1>Home</h1>
-      <div>
-        <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft size={25} className='button-left' /></button>
+      <SearchBar />
+      <div className={style.divPagination}>
+        <button onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></button>
         <Pagination
-          products={products.length}
+          products={publications.length}
           productsPerPage={productsPerPage}
           pagination={pagination}
           page={page}
         />
-        <button onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight size={25} className='button-right' /></button>
+        <button onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></button>
       </div>
-      <div>
+      <div className={style.containerProducts}>
         {currentPageProducts && currentPageProducts.map((p) => {
           return (
-            <section key={p.id}>
-              <Link to={`/product/${p.id}`}>
+            <section className={style.sectionCards} key={p.id}>
+              <Link to={`/publication/${p.id}`}>
                 <Card
-                  name={p.name}
+                  name={p.title}
                   image={p.image}
-                  score={p.score}
                   price={p.price}
                   key={p.id}
                 />

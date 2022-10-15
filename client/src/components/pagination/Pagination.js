@@ -1,9 +1,9 @@
 import style from './pagination.module.css'
 
-export default function Pagination ({ allProducts, productsPerPage, pagination, page }) {
+export default function Pagination ({ products, productsPerPage, pagination, page }) {
   const pageNumber = []
-  const numOfPages = Math.ceil(allProducts / productsPerPage)
-  for (let i = 1; i < numOfPages; i++) {
+  const numOfPages = Math.ceil(products / productsPerPage)
+  for (let i = 1; i <= numOfPages; i++) {
     pageNumber.push(i)
   }
 

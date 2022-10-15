@@ -1,8 +1,16 @@
+
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
     background-color: var(--background-color);
-    color: #fff;
+}
+.span{
+    font-family: var(--font-family-1);
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 0.3rem;
+    text-decoration: none;
+    color: #1F1F1F
 }
