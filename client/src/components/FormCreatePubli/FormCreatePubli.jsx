@@ -43,7 +43,7 @@ export default function FormCreatePubli () {
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
 
           <div className='form-row'>
-            <div className='form-group'>
+            <div className='form-group col-md-12'>
               <label htmlFor='title' className='fs-3'>Title <span>*</span></label>
               <input
                 className={`form-control ${touched.title ? errors.title ? 'is-invalid' : 'is-valid' : null}`}
@@ -125,6 +125,7 @@ export default function FormCreatePubli () {
             <div>
               <select
                 name='productId'
+                id='productId'
                 onChange={handleChange}
                 className={`form-select mb-3 ${touched.productId ? errors.productId ? 'is-invalid' : 'is-valid' : null}`}
                 onBlur={handleBlur}
