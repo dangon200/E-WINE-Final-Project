@@ -1,6 +1,6 @@
 import style from './home.module.css'
 import { useEffect, useState } from 'react'
-import { getPublications, getProducts, orderPublications, addCarrito, filterVarietal, filterType, filterOrigin } from '../../store/actions/actions'
+import { getPublications, getProducts, orderPublications, filterVarietal, filterType, filterOrigin } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'

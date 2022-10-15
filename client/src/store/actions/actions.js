@@ -72,6 +72,20 @@ export function getByIdProduct (id) {
   }
 }
 
+export function postProduct (data) {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/products`, data)
+      return dispatch({
+        type: 'POST_PRODUCT',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // pending
 export const searchByNameProduct = (name) => {
   return async function (dispatch) {
