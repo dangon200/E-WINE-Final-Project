@@ -6,12 +6,14 @@ import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import Filters from '../Filters/Filters.jsx'
+import SearchBar from '../SearchBar/SearchBar'
+import Message from '../Message/Message'
 
 export default function Home () {
   const dispatch = useDispatch()
   // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
-  const error = useSelector(state => state.error)
+  /* const error = useSelector(state => state.error) */
   const [page, setPage] = useState(1)
   const productsPerPage = 4
   const lastProductPerPage = page * productsPerPage
@@ -83,23 +85,24 @@ export default function Home () {
   }
   return (
     <div className={style.globalContainer}>
-      <SearchBar />
-      <div className={style.divPagination}>
-        {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
-        <Pagination
-          publications={publications.length}
-          productsPerPage={productsPerPage}
-          pagination={pagination}
-          page={page}
-        />
-        {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
-      </div>
-      <div>
+      <div className={style.filtersContainer}>
+        <SearchBar />
         <Filters handleSort={handleSort} handleFilterVarietal={handleFilterVarietal} handleFilterType={handleFilterType} handleFilterOrigin={handleFilterOrigin} />
       </div>
+      {typeof publications !== 'string' &&
+        <div className={style.divPagination}>
+          {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
+          <Pagination
+            publications={publications.length}
+            productsPerPage={productsPerPage}
+            pagination={pagination}
+            page={page}
+          />
+          {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
+        </div>}
 
       <div className={style.containerProducts}>
-        {Array.isArray(currentPageProducts)
+        {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
             return (
               <section className={style.sectionCards} key={p.id}>
@@ -114,7 +117,7 @@ export default function Home () {
               </section>
             )
           })
-          : error}
+          : <Message message={publications} />}
       </div>
     </div>
   )
