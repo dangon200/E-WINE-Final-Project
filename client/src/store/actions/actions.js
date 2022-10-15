@@ -114,3 +114,19 @@ export const removeCarrito = (id) => {
     payload: id
   }
 }
+
+export const getRecomendedPublications = (type, varietal, origin) => {
+  return async function (dispatch) {
+    try {
+      console.log(type, varietal, origin)
+      const recPub = await axios(`${urlApi}/publications/filter?type=${type || null}&varietal=${varietal || null}&origin=${origin || null}`)
+      console.log(recPub)
+      return dispatch({
+        type: 'RECOMENDED_PUBLICATIONS',
+        payload: recPub.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
