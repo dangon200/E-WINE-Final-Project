@@ -1,23 +1,39 @@
-// import style from './formCreateProduct.module.css'
-// import { useDispatch } from 'react-redux'
+import style from './formCreateProduct.module.css'
+import { useState } from 'react'
+import { schemaFormProduct, uplodCloudinary } from '../utilities/schemas'
+import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { varietales, provinces, types } from '../utilities/data'
-// import { uplodCloudinary } from '../utilities/schemas'
-// import { postProduct } from '../../store/actions/actions'
+import { postProduct } from '../../store/actions/actions'
 
 // name, type, varietal, origin, img, cellar
 
 export default function FormCreateProduct () {
-  // const dispatch = useDispatch() //
-  const { values, handleChange, handleBlur, setFieldValue } = useFormik({
-    initialValues: { name: '', type: '', varietal: '', origin: '', img: '', cellar: '' }
+  const dispatch = useDispatch() //
+  const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, resetForm } = useFormik({
+    initialValues: { name: '', type: '', varietal: '', origin: '', img: '', cellar: '' },
+    validationSchema: schemaFormProduct,
+    onSubmit: async (values) => {
+      try {
+        const url = await uplodCloudinary(values.img)
+        values.img = url
+        dispatch(postProduct(values))
+        setSend(!send)
+        resetForm()
+        setTimeout(() => {
+          setSend(!send)
+        }, 2000)
+      } catch (error) {
+        console.log(error)
+      }
+    }
   })
+  const [send, setSend] = useState(false)
   return (
     <>
-      {console.log(values)}
       <section className='container user-select-none '>
         <h2>Crea un Producto</h2>
-        <form className='card d-flex justify-content-center mx-auto my-3 p-5'>
+        <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
 
           <div className='form-group col-md-12'>
             <label htmlFor='name' className='fs-3'>Nombre<span>*</span></label>
@@ -26,39 +42,43 @@ export default function FormCreateProduct () {
               placeholder='Nombre'
               name='name'
               id='name'
-              className='form-control'
+              className={`form-control ${touched.name ? errors.name ? 'is-invalid' : 'is-valid' : null}`}
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
+              required
             />
+            {errors.name && touched.name && <p className='text-danger'>{errors.name}</p>}
           </div>
           <div className='form-group col-md-12 '>
             <label htmlFor='type' className='fs-3'>Tipo<span>*</span></label>
             <select
               name='type'
               id='type'
-              className='form-select mb-3'
+              className={`form-select mb-3 ${touched.type ? errors.type ? 'is-invalid' : 'is-valid' : null}`}
               value={values.type}
               onChange={handleChange}
               onBlur={handleBlur}
             >
-              <option value=''>Select a type</option>
+              <option value=''>Selecciona el tipo</option>
               {types.map(type => <option key={type} value={type}>{type}</option>)}
             </select>
+            {errors.type && touched.type && <p className='text-danger'>{errors.type}</p>}
           </div>
           <div className='form-group col-md-12 '>
             <label htmlFor='varietal' className='fs-3'>Varietal<span>*</span></label>
             <select
               name='varietal'
               id='varietal'
-              className='form-select mb-3'
+              className={`form-select mb-3 ${touched.varietal ? errors.varietal ? 'is-invalid' : 'is-valid' : null}`}
               value={values.varietal}
               onChange={handleChange}
               onBlur={handleBlur}
             >
-              <option value=''>Select Varietal</option>
+              <option value=''>Selecciona Varietal</option>
               {varietales.map(name => <option key={name} value={name}>{name}</option>)}
             </select>
+            {errors.varietal && touched.varietal && <p className='text-danger'>{errors.varietal}</p>}
           </div>
 
           <div className='form-group col-md-12 '>
@@ -66,7 +86,7 @@ export default function FormCreateProduct () {
             <select
               name='origin'
               id='origin'
-              className='form-select mb-3'
+              className={`form-select mb-3 ${touched.origin ? errors.origin ? 'is-invalid' : 'is-valid' : null}`}
               value={values.origin}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -74,10 +94,12 @@ export default function FormCreateProduct () {
               <option value=''>Selecciona la Provincia</option>
               {provinces.map(name => <option key={name} value={name}>{name}</option>)}
             </select>
+            {errors.origin && touched.origin && <p className='text-danger'>{errors.origin}</p>}
           </div>
           <div className='form-group col-md-12'>
             <label htmlFor='img' className='fs-3'>Imagen<span>*</span> </label>
             <input
+              className={`form-control ${touched.img ? errors.img ? 'is-invalid' : 'is-valid' : null}`}
               type='file'
               name='img'
               onBlur={handleBlur}
@@ -86,6 +108,7 @@ export default function FormCreateProduct () {
                 setFieldValue('img', e.target.files[0])
               }}
             />
+            {errors.img && touched.img && <p className='text-danger'>{errors.img}</p>}
           </div>
           <div className='form-group col-md-12'>
             <label htmlFor='cellar' className='fs-3'>Bodega<span>*</span></label>
@@ -94,13 +117,16 @@ export default function FormCreateProduct () {
               placeholder='Bodega'
               name='cellar'
               id='cellar'
-              className='form-control'
+              className={`form-control ${touched.cellar ? errors.cellar ? 'is-invalid' : 'is-valid' : null}`}
               value={values.cellar}
               onChange={handleChange}
               onBlur={handleBlur}
+              required
             />
+            {errors.cellar && touched.cellar && <p className='text-danger'>{errors.cellar}</p>}
           </div>
-
+          <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Create</button>
+          {send && <div className={style.send}>Publication created</div>}
         </form>
       </section>
     </>

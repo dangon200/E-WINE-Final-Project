@@ -1,10 +1,11 @@
 import style from './formCreatePubli.module.css'
 import { useFormik } from 'formik'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import { useHistory } from 'react-router-dom'
+import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 
 export default function FormCreatePubli () {
   const history = useHistory()
@@ -36,6 +37,7 @@ export default function FormCreatePubli () {
     }
   })
   const [send, setSend] = useState(false)
+  const [createProduct, setCreateProduct] = useState(false)
   return (
     <section className='container user-select-none'>
       <div className='row'>
@@ -46,6 +48,7 @@ export default function FormCreatePubli () {
             <div className='form-group col-md-12'>
               <label htmlFor='title' className='fs-3'>Title <span>*</span></label>
               <input
+                required
                 className={`form-control ${touched.title ? errors.title ? 'is-invalid' : 'is-valid' : null}`}
                 type='text'
                 placeholder='Title'
@@ -66,6 +69,7 @@ export default function FormCreatePubli () {
                 name='price'
                 id='price'
                 min='1'
+                max='500000'
                 value={values.price}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -84,6 +88,7 @@ export default function FormCreatePubli () {
                 name='count'
                 id='count'
                 min='1'
+                max='10000'
                 value={values.count}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -97,6 +102,7 @@ export default function FormCreatePubli () {
                 type='file'
                 name='image'
                 onBlur={handleBlur}
+                required
                 id='img'
                 onChange={(e) => {
                   setFieldValue('image', e.target.files[0])
@@ -136,12 +142,14 @@ export default function FormCreatePubli () {
               {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
             </div>
           </div>
-          <button type='submit' className='btn btn-primary btn-block btn-lg mt-4'>Create</button>
+          <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Create</button>
           {send && <div className={style.send}>Publication created</div>}
         </form>
 
-      </div>
+        <button onClick={() => setCreateProduct(!createProduct)} className='btn btn-primary btn-block btn-lg mt-4'>{!createProduct ? 'Create Product' : 'Close Form'}</button>
 
+      </div>
+      {createProduct && <FormCreateProduct />}
     </section>
   )
 }
