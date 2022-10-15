@@ -8,3 +8,10 @@
   padding: 0.5rem 0;
   cursor: pointer;
 }
+.navlink.active{
+  border-bottom-width: 4px;
+  color: var(--btn-sel-background-color)
+}
+.navlink:hover{
+  color: var(--btn-background-color)
+}
