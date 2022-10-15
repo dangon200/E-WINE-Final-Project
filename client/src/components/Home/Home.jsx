@@ -20,10 +20,6 @@ export default function Home () {
   useEffect(() => {
     dispatch(getProducts())
     dispatch(getPublications())
-
-    for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito(window.localStorage.key(x)))
-    }
   }, [dispatch])
   // console.log(products)
   // console.log(publications)
@@ -86,6 +82,7 @@ export default function Home () {
   }
   return (
     <div className={style.globalContainer}>
+
       <div className={style.divPagination}>
         {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
         <Pagination
@@ -109,7 +106,7 @@ export default function Home () {
                 title={p.title}
                 name={p.name}
                 image={p.image}
-                price={p.price}
+                price={p.price.toLocaleString('es-MX')}
                 key={p.id}
               />
             </section>
