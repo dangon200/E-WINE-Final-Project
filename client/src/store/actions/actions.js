@@ -152,6 +152,18 @@ export const filterOrigin = (origin) => {
   }
 }
 
+// Search Publication by Name
+
+export const searchPublicationByName = (name) => {
+  return async function (dispatch) {
+    return fetch(`${urlApi}/publications?name=${name}`).then((respuesta) =>
+      respuesta.json().then((dataP) => {
+        dispatch({ type: 'GET_PUBLICATIONS', payload: dataP })
+      })
+    )
+  }
+}
+
 // Favorites
 
 export const addFavorites = (id) => {

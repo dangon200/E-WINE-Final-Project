@@ -11,6 +11,7 @@ export default function Home () {
   const dispatch = useDispatch()
   // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
+  const error = useSelector(state => state.error)
   const [page, setPage] = useState(1)
   const productsPerPage = 4
   const lastProductPerPage = page * productsPerPage
@@ -82,7 +83,7 @@ export default function Home () {
   }
   return (
     <div className={style.globalContainer}>
-
+      <SearchBar />
       <div className={style.divPagination}>
         {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
         <Pagination
@@ -98,20 +99,22 @@ export default function Home () {
       </div>
 
       <div className={style.containerProducts}>
-        {currentPageProducts && currentPageProducts.map((p) => {
-          return (
-            <section className={style.sectionCards} key={p.id}>
-              <Card
-                id={p.id}
-                title={p.title}
-                name={p.name}
-                image={p.image}
-                price={p.price.toLocaleString('es-MX')}
-                key={p.id}
-              />
-            </section>
-          )
-        })}
+        {Array.isArray(currentPageProducts)
+          ? currentPageProducts.map((p) => {
+            return (
+              <section className={style.sectionCards} key={p.id}>
+                <Card
+                  id={p.id}
+                  title={p.title}
+                  name={p.name}
+                  image={p.image}
+                  price={p.price.toLocaleString('es-MX')}
+                  key={p.id}
+                />
+              </section>
+            )
+          })
+          : error}
       </div>
     </div>
   )
