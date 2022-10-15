@@ -29,6 +29,6 @@ export const cellers = [
   'Viñedos de la Patagonia S.A.',
   'Viñedos Huarpe'
 ]
-export const types = ['rojo', 'White', 'Rose', 'Sparkling', 'Dessert', 'Fortified', 'Other']
-export const varietals = ['Cabernet Sauvignon', 'Merlot', 'Pinot Noir', 'Sangiovese', 'Syrah', 'Zinfandel', 'Chardonnay', 'Sauvignon Blanc', 'Pinot Grigio', 'Riesling', 'Gewürztraminer', 'Pinot Gris', 'Moscato', 'Other']
-export const provinces = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén']
+export const types = ['Tinto', 'Rojo', 'Blanco', 'Rosado', 'Espumoso']
+export const varietales = ['Ancellotta', 'Blend', 'Cabernet Franc', 'Cabernet Sauvignon', 'Chardonnay', 'Chenin Blanc', 'Malbec', 'Malbec Rose', 'Sangiovese', 'Merlot', 'Pinot Noir', 'Petit Verdot', 'Sauvignon Blanc', 'Semillon', 'Syrah', 'Tannat', 'Tempranillo', 'Torrontés', 'Viognier']
+export const provinces = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Entre Ríos', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro', 'Salta', 'San Juan', 'San Luis', 'Santa Cruz', 'Santa Fe', 'Santiago del Estero', 'Tierra del Fuego', 'Tucumán']
