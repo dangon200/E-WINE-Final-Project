@@ -4,8 +4,10 @@ import { useState } from 'react'
 import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
+import { useHistory } from 'react-router-dom'
 
 export default function FormCreatePubli () {
+  const history = useHistory()
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   if (!products.length) dispatch(getProducts())
@@ -18,9 +20,16 @@ export default function FormCreatePubli () {
         const url = await uplodCloudinary(values.image)
         values.image = url
         dispatch(postPublication(values))
-        setSend(true)
-        setTimeout(() => { setSend(false) }, 3000)
-        resetForm()
+          .then(data => {
+            setSend(true)
+            setTimeout(() => {
+              setSend(false)
+              setTimeout(() => {
+                history.push(`/publication/${data.payload.id}`)
+              }, 1000)
+            }, 3000)
+            resetForm()
+          })
       } catch (error) {
         console.log(error)
       }
@@ -34,7 +43,7 @@ export default function FormCreatePubli () {
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
 
           <div className='form-row'>
-            <div className='form-group'>
+            <div className='form-group col-md-12'>
               <label htmlFor='title' className='fs-3'>Title <span>*</span></label>
               <input
                 className={`form-control ${touched.title ? errors.title ? 'is-invalid' : 'is-valid' : null}`}
@@ -104,7 +113,7 @@ export default function FormCreatePubli () {
                 id='description'
                 cols='30'
                 rows='4npm'
-                placeholder='Leave a comment here"'
+                placeholder='Descript your publication'
                 value={values.description}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -116,6 +125,7 @@ export default function FormCreatePubli () {
             <div>
               <select
                 name='productId'
+                id='productId'
                 onChange={handleChange}
                 className={`form-select mb-3 ${touched.productId ? errors.productId ? 'is-invalid' : 'is-valid' : null}`}
                 onBlur={handleBlur}

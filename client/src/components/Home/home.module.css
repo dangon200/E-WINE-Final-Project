@@ -1,8 +1,9 @@
-.globalContainer{
+/* .globalContainer{
 
     width: 1400px;
-
-}
+    
+lo comenté porque rompe el ancho de la página
+} */
 
 .divPagination{
     display: flex;
@@ -40,4 +41,12 @@
 .buttonLeft:hover, .buttonRight:hover{
     background-color: var(--btn-background-color);
     color: white;
+}
+
+.filtersContainer{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
