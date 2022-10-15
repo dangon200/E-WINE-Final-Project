@@ -1,5 +1,5 @@
 import style from './landingPage.module.css'
-import React from 'react'
+/* import React, { useEffect } from 'react' */
 import Footer from '../Footer/Footer.jsx'
 import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
