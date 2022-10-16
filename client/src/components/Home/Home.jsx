@@ -48,6 +48,7 @@ export default function Home () {
     <div className={style.globalContainer}>
       <div className={style.filtersContainer}>
         <SearchBar />
+        <Filters />
       </div>
       {typeof publications !== 'string' &&
         <div className={style.divPagination}>
@@ -60,9 +61,7 @@ export default function Home () {
           />
           {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-      <div>
-        <Filters />
-      </div>
+      <div />
 
       <div className={style.containerProducts}>
         {typeof publications !== 'string'

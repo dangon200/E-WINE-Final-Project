@@ -5,7 +5,15 @@
     margin-top: 10%;
     padding: 16px;
     transition: 0.3s;
-    cursor: pointer;
+    animation: show 2s
+}
+
+@keyframes show{
+    from{
+        opacity: 0
+    }to{
+        opacity: 100
+    }
 }
 
 .card:hover{
@@ -51,6 +59,7 @@
     width: 100%;
     flex: display;
     text-align: left;
+    font-family: var(--font-family-1);
 }
 
 .dataContainer h3{
@@ -74,6 +83,7 @@
 
 .name{
     color: gray;
+    font-size: 12px;
 }
 
 .price{

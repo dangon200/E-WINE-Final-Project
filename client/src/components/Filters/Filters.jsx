@@ -13,7 +13,6 @@ function Filters () {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(filterPublications(filter))
-    console.log(filter)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
   function handleSort (e) {
@@ -21,9 +20,9 @@ function Filters () {
       ...filter,
       [e.target.name]: e.target.value
     })
-    dispatch(
+    /*  dispatch(
       filterPublications(filter)
-    )
+    ) */
     // setPage(1)
   }
 
@@ -41,14 +40,14 @@ function Filters () {
       >Limpiar Filtros
       </button>
 
-      <select name='opt' onChange={e => handleSort(e)}>
+      <select name='opt' onChange={handleSort}>
         <option value=''> Ordernar </option>
         <option value='az'> A-Z </option>
         <option value='za'> Z-A </option>
         <option value='more'> Mayor Precio </option>
         <option value='less'> Menor Precio </option>
       </select>
-      <select name='varietal' onChange={e => handleSort(e)}>
+      <select name='varietal' onChange={handleSort}>
         <option value=''> Varietal</option>
         {varietales && varietales.map(e => {
           return (
@@ -56,7 +55,7 @@ function Filters () {
           )
         })}
       </select>
-      <select name='type' onChange={e => handleSort(e)}>
+      <select name='type' onChange={handleSort}>
         <option value=''> Tipo </option>
         {types && types.map(e => {
           return (
@@ -64,7 +63,7 @@ function Filters () {
           )
         })}
       </select>
-      <select name='origin' onChange={e => handleSort(e)}>
+      <select name='origin' onChange={handleSort}>
         <option value=''> Origen </option>
         {provinces && provinces.map(e => {
           return (
