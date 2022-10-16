@@ -22,6 +22,10 @@
     align-items: center;
 }
 
+.links:first-child{
+    background-color: aqua;
+}
+
 .carritoContainer{
     position: relative;
 }
@@ -35,4 +39,6 @@
     left: 60%;
     padding: 1px 4px;
     border-radius: 25px;
+    font-family: var(--font-family-1);
+    font-size: 10px;
 }

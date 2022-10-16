@@ -26,13 +26,15 @@ export default function Nav () {
 
         <Navegador link='/home' span='Tienda' />
 
-        <Navegador link='/home' span='Crear Cuenta' />
+        <Navegador link='/crearCuenta' span='Crear Cuenta' />
 
         <Navegador link='/createpubli' span='Crear Publicación' />
 
         <div className={style.carritoContainer}>
-          <div className={style.numberCarrito}>{carritoItems.length}</div>
-          <img src={bolsita} alt='bolsita' />
+          <Link to='/carritoCompras'>
+            <div className={style.numberCarrito}>{carritoItems.length}</div>
+            <img src={bolsita} alt='bolsita' />
+          </Link>
         </div>
       </div>
 
