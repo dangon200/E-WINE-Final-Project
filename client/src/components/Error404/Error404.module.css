@@ -1,0 +1,63 @@
+.containerError{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../utils/images/desktop.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* .containerTitle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} */
+
+.titleError{
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    height: 58px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 120%;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.link{
+    text-decoration: none;
+}
+
+.buttonBack{
+    padding: 0px 32px;
+    gap: 8px;
+    width: 209px;
+    height: 56px;
+    background-color: var(--btn-background-color);
+    /* background-color: #7A27FF; */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: Inter, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+    cursor: pointer;
+}
+
+.buttonBack:hover{
+    color: var(--normal-font-color);
+    /* background-color: #56070c9e; */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    background-color: var(--background-color); 
+    transition: .3s;
+}

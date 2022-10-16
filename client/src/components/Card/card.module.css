@@ -1,49 +1,133 @@
 .card{
-    width: 250px;
-    height: 450px;
-    background-color: beige;
+    width: 300px;
+    height: 500px;
+    background-color: var(--background-color);
     margin-top: 10%;
-    margin-left: 50%;
+    padding: 16px;
+    transition: 0.3s;
+    animation: show 2s
 }
 
-.divImage{
-    padding-top: 20px;
+@keyframes show{
+    from{
+        opacity: 0
+    }to{
+        opacity: 100
+    }
+}
+
+.card:hover{
+    scale: 105%;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.iconContainer{
     display: flex;
-    position: relative;
+    text-align: left;
     margin-bottom: 16px;
-    justify-content: center;
 }
 
-.dataCard{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.cardTitle{
-    margin-left: 15px;
-    font-family: 'Roboto', sans-serif;
-}
-
-.buttonCard{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding-bottom: 20px;
-}
-.cartButton{
-    background-color: white;
-    padding: 10px;
+.icon{
+    width: 20px;
+    height: 20px;
+    color: gray;
     cursor: pointer;
 }
-.detailButton{
-    background-color: black;
+
+.iconActive{
+
+    width: 20px;
+    height: 20px;
+    color: var(--btn-background-color);
+    cursor: pointer;
+
+}
+
+.imgContainer{
+    height: 300px;
+    width: 100%;
+}
+
+.img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.dataContainer{
+    margin-top: 8px;
+    width: 100%;
+    flex: display;
+    text-align: left;
+    font-family: var(--font-family-1);
+}
+
+.dataContainer h3{
+    font-size: 16px;
+    font-family: var(--font-family-2);
+    height: 30px;
+    color: black;
+}
+
+.infoContainer{
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.infoContainer h4{
+    font-family: var(--font-family-2);
+}
+
+.name{
+    color: gray;
+    font-size: 12px;
+}
+
+.price{
+    color: var(--btn-background-color);
+    font-size: 16px;
+}
+
+.btnContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.addBtn{
+    background-color: var(--btn-background-color);
     color: white;
-    padding: 10px;
+    padding: 8px 16px;
+    border: 2px solid var(--btn-background-color);
+    border-radius: 5px;
+    font-size: 14px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
-.image{
-    height: 170px;
+.addBtn:hover{
+    background-color: white;
+    color: var(--btn-background-color);
+}
+
+.moreBtn{
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: var(--font-family-2);
+    cursor: pointer;
+    background-color: var(--background-color);
+    text-decoration: none;
+    color: black;
+}
+
+.moreBtn:hover{
+    background-color: var(--background-color);
+    color: var(--btn-background-color)
 }

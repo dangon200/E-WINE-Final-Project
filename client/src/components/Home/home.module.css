@@ -1,0 +1,66 @@
+/* .globalContainer{
+
+    width: 1400px;
+    
+lo comenté porque rompe el ancho de la página
+} */
+
+.globalContainer{
+    margin-top: 50px;
+}
+
+.divPagination{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: show 3s;
+}
+
+@keyframes show{
+    from{
+        opacity: 0
+    }to{
+        opacity: 100
+    }
+}
+
+.containerProducts{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 24px;
+    padding-bottom: 50px;
+}
+
+.sectionCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonLeft, .buttonRight{
+    font-weight: bolder;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--btn-background-color);
+    border-radius: 6px;
+    cursor: pointer;
+    color:var(--btn-background-color) ;
+    transition: 0.2s;
+}
+
+.buttonLeft:hover, .buttonRight:hover{
+    background-color: var(--btn-background-color);
+    color: white;
+}
+
+.filtersContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    animation: show 2s;
+}

@@ -1,0 +1,85 @@
+/* .header{
+    margin-left: auto;
+    margin-right: auto;
+} */
+.header {
+    background-image: url('../../utils/images/MayorCalidadFotoAbout.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+    background-size: cover;
+    height: 80em;
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+.apartado {
+    width: 70em;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    -webkit-box-align: center;
+    align-items: center;
+    color: var(--contrast-font-color);
+    font-family: var(--font-family-1);
+}
+.h1{
+    font-size: 50px;
+    text-transform: uppercase;
+}
+.enfasis{
+    font-family: var(--font-family-2);
+    font-weight: bolder;
+    font-size: 50px;
+}
+.entrega{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--font-family-1);
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 2em;
+    padding-bottom: 3em;
+    background: rgb(255, 255, 255);
+}
+.h1exp{
+    text-transform: uppercase;
+}
+.contenedor{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    display: flex;
+}
+.box{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0px 10px 20px;
+    align-self: center;
+}
+.text{
+    width: 13em;
+}
+.img{
+    width: 85px;
+    margin:0 10px 0 0;
+}
+.bigtext{
+    margin: 0px;
+    font-size: 1.8em;
+    color: var(--font-sel-color);
+}
+.smalltext{
+    margin: 0px;
+    font-size: 1.4em;
+    color: rgb(142, 143, 148);
+}

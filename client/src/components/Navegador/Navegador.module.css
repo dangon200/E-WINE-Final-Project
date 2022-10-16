@@ -1,0 +1,22 @@
+.navlink{
+  font-family: var(--font-family-1);
+  font-size: 1.6rem;
+  color:#1F1F1F;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.navlinkActive{
+  font-family: var(--font-family-1);
+  font-size: 1.6rem;
+  color:#1F1F1F;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-bottom: 3px solid var(--btn-background-color);
+}
