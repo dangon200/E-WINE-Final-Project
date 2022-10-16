@@ -18,6 +18,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+<<<<<<< HEAD
     background-color: var(--btn-background-color);
     font-size: 16px;
     padding: 10px; 
@@ -25,6 +26,16 @@
     border-radius: 10px;
     border: 1px solid var(--btn-background-color);
     color: white;
+=======
+    background-color: white;
+    box-shadow: 0px 5px 10px gray;
+    font-size: 12px;
+    padding: 24px; 
+    color: aliceblue;
+    border: none; 
+    margin-left: 10px;
+    border-radius: 50px;
+>>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
 } 
 
 .submitSearch:hover{
@@ -36,15 +47,35 @@
     outline: none;
     width: 370px;
     margin-left: 15px;
+<<<<<<< HEAD
     padding: 8px 16px;
     font-size: 16px;
     border: 1px solid gray;
     background-color: white;
     border-radius: 10px;
+=======
+    padding-left: 20px;
+    font-size: 15px;
+    box-shadow: 0px 3px 5px gray;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    background-color: white;
+    border-radius: 50px;
+>>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
     cursor: pointer;
     font-family: var(--font-family-1);
 } 
 
+<<<<<<< HEAD
+=======
+.inputSearch::placeholder{
+    font-family: var(--font-family-1);
+    letter-spacing: 1px;
+}
+
+>>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
 .submit-search:hover {
     background-color: rgb(195, 195, 195);
 }

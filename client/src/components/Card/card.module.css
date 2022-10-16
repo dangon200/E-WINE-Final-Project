@@ -5,6 +5,7 @@
     margin-top: 10%;
     padding: 16px;
     transition: 0.3s;
+<<<<<<< HEAD
     animation: show 2s
 }
 
@@ -14,6 +15,9 @@
     }to{
         opacity: 100
     }
+=======
+    cursor: pointer;
+>>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
 }
 
 .card:hover{
@@ -64,6 +68,7 @@
 
 .dataContainer h3{
     font-size: 16px;
+    font-family: var(--font-family-2);
     height: 30px;
     color: black;
 }
@@ -74,6 +79,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.infoContainer h4{
+    font-family: var(--font-family-2);
 }
 
 .name{
@@ -115,6 +124,7 @@
     padding: 8px 16px;
     border-radius: 5px;
     font-size: 14px;
+    font-family: var(--font-family-2);
     cursor: pointer;
     background-color: var(--background-color);
     text-decoration: none;

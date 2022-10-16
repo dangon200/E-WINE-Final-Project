@@ -6,6 +6,7 @@
     background-image: url('../../utils/images/MayorCalidadFotoAbout.jpg');
     background-position: center center;
     background-repeat: no-repeat;
+    
     background-size: cover;
     height: 80em;
     width: 100%;
@@ -20,6 +21,7 @@
     width: 70em;
     display: flex;
     flex-direction: column;
+    gap: 30px;
     -webkit-box-align: center;
     align-items: center;
     color: var(--contrast-font-color);
@@ -39,6 +41,8 @@
     flex-direction: column;
     -webkit-box-align: center;
     align-items: center;
+    gap: 20px;
+    font-family: var(--font-family-1);
     -webkit-box-pack: center;
     justify-content: center;
     width: 100%;
@@ -71,11 +75,11 @@
 }
 .bigtext{
     margin: 0px;
-    font-size: 1.4em;
+    font-size: 1.8em;
     color: var(--font-sel-color);
 }
 .smalltext{
     margin: 0px;
-    font-size: 1em;
+    font-size: 1.4em;
     color: rgb(142, 143, 148);
 }

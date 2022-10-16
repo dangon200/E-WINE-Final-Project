@@ -1,10 +1,12 @@
 import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
-import logo from '../assets/imgs/e-wine-logo.png'
-import bolsita from '../assets/imgs/bolsita.png'
+// import logo from '../assets/imgs/e-wine-logo.png'
+import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
 // import SearchBar from '../SearchBar/SearchBar'
+// import { BsCart } from 'react-icons/bs'
+import bolsita from '../assets/imgs/bolsita.png'
 
 export default function Nav () {
   const carritoItems = useSelector(state => state.carrito)
@@ -12,7 +14,7 @@ export default function Nav () {
     <nav className={style.navbar}>
       <div>
         <Link to='/home' className={style.span}>
-          <img src={logo} alt='logo' />
+          <img src={logo} alt='logo' className={style.logo} />
           <span className={style.span}>E-WINE</span>
         </Link>
       </div>
