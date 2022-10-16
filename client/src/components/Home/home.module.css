@@ -5,6 +5,10 @@
 lo comenté porque rompe el ancho de la página
 } */
 
+.globalContainer{
+    margin-top: 50px;
+}
+
 .divPagination{
     display: flex;
     flex-direction: row;
@@ -28,6 +32,7 @@ lo comenté porque rompe el ancho de la página
     flex-direction: row;
     justify-content: center;
     gap: 24px;
+    padding-bottom: 50px;
 }
 
 .sectionCards{

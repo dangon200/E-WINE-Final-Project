@@ -64,6 +64,7 @@
 
 .dataContainer h3{
     font-size: 16px;
+    font-family: var(--font-family-2);
     height: 30px;
     color: black;
 }
@@ -74,6 +75,10 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.infoContainer h4{
+    font-family: var(--font-family-2);
 }
 
 .name{
@@ -115,6 +120,7 @@
     padding: 8px 16px;
     border-radius: 5px;
     font-size: 14px;
+    font-family: var(--font-family-2);
     cursor: pointer;
     background-color: var(--background-color);
     text-decoration: none;
