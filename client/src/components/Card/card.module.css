@@ -6,6 +6,9 @@
     padding: 16px;
     transition: 0.3s;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 422e899fa52cdab5b788b086d4ba7ace208aae3b
     animation: show 2s
 }
 
@@ -15,9 +18,12 @@
     }to{
         opacity: 100
     }
+<<<<<<< HEAD
 =======
     cursor: pointer;
 >>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
+=======
+>>>>>>> 422e899fa52cdab5b788b086d4ba7ace208aae3b
 }
 
 .card:hover{

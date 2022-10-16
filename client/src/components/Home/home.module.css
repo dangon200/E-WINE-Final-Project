@@ -15,7 +15,6 @@ lo comenté porque rompe el ancho de la página
     align-items: center;
     justify-content: center;
     gap: 8px;
-<<<<<<< HEAD
     animation: show 3s;
 }
 
@@ -25,9 +24,6 @@ lo comenté porque rompe el ancho de la página
     }to{
         opacity: 100
     }
-=======
-    margin-bottom: 20px;
->>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
 }
 
 .containerProducts{
@@ -65,10 +61,6 @@ lo comenté porque rompe el ancho de la página
     display: flex;
     justify-content: center;
     align-items: center;
-<<<<<<< HEAD
     gap: 16px;
     animation: show 2s;
-=======
-    margin-bottom: 20px;
->>>>>>> e2019e10aa3504579c2ee4b6954722fd25d2b780
 }
