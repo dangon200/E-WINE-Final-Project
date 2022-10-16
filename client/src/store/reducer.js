@@ -9,7 +9,8 @@ const initialState = {
   detailProduct: {},
   favorites: [],
   carrito: [],
-  error: ''
+  recomendedPublication: []
+
 }
 
 export default function reducer (state = initialState, action) {
@@ -25,6 +26,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, allProducts: action.payload, products: action.payload }
     case 'GET_BY_ID_PRODUCT':
       return { ...state, detailProduct: action.payload }
+    case 'POST_PRODUCT':
+      return { ...state, detailProduct: action.payload }
     case 'SEARCH_PRODUCT_BY_NAME':
       return { ...state, detailProduct: action.payload }
     case 'FILTER_PUBLICATIONS':
@@ -39,6 +42,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, carrito: [...state.carrito, action.payload] }
     case 'REMOVE_CARRITO':
       return { ...state, carrito: state.carrito.filter(item => item !== action.payload) }
+    case 'RECOMENDED_PUBLICATIONS':
+      return { ...state, recomendedPublication: action.payload }
     default:
       return { ...state }
   }

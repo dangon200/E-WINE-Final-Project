@@ -1,4 +1,5 @@
 import * as Yup from 'yup'
+import { types, provinces, varietales } from './data'
 
 export const schemaFormPubli = Yup.object().shape({
   title: Yup.string().required('Required').min(3, 'Min 3 characters'),
@@ -47,3 +48,17 @@ export const uplodCloudinary = async (file) => {
     console.log(error)
   }
 }
+
+// name, type, varietal, origin, img, cellar
+
+export const schemaFormProduct = Yup.object().shape({
+  name: Yup.string().required('Required').min(3, 'Min 3 characters').max(50, 'Max 50 characters'),
+  type: Yup.string().required('Required').oneOf(types),
+  varietal: Yup.string().required('Required').oneOf(varietales),
+  origin: Yup.string().required('Required').oneOf(provinces),
+  cellar: Yup.string().required('Required').min(3, 'Min 3 characters').max(50, 'Max 50 characters'),
+  img: Yup.mixed().required('Required')
+    .test('fileSize', 'a image is Required ', value => value && value.size >= 1000)
+    .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
+    .test('fileFormat', 'Unsupported Format', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
+})
