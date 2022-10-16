@@ -10,6 +10,7 @@ import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
 import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
+import Footer from './components/Footer/Footer'
 
 function App () {
   const dispatch = useDispatch()
@@ -22,19 +23,20 @@ function App () {
 
   return (
     <div className='App'>
-      <Route exact path='/' component={Nav} />
-      <Route path='/home' component={Nav} />
-      <Route path='/about' component={Nav} />
+      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id']} component={Nav} />
+      {/* <Route path='/home' component={Nav} /> */}
+      {/* <Route path='/about' component={Nav} />
       <Route path='/createpubli' component={Nav} />
-      <Route path='/publication/:id' component={Nav} />
+      <Route path='/publication/:id' component={Nav} /> */}
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
-        <Route path='/createpubli' exact component={FormCreatePubli} />
+        <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route path='*' component={Error404} />
       </Switch>
+      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id']} component={Footer} />
     </div>
   )
 }
