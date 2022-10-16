@@ -47,12 +47,8 @@ export default function Home () {
   return (
     <div className={style.globalContainer}>
       <div className={style.filtersContainer}>
-        <div>
-          <SearchBar />
-        </div>
-        <div>
-          <Filters />
-        </div>
+        <SearchBar />
+        <Filters />
       </div>
       {typeof publications !== 'string' &&
         <div className={style.divPagination}>

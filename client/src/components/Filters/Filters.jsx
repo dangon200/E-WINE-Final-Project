@@ -14,7 +14,6 @@ function Filters () {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(filterPublications(filter))
-    console.log(filter)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
   function handleSort (e) {
@@ -22,9 +21,9 @@ function Filters () {
       ...filter,
       [e.target.name]: e.target.value
     })
-    dispatch(
+    /*  dispatch(
       filterPublications(filter)
-    )
+    ) */
     // setPage(1)
   }
 

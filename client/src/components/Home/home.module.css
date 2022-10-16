@@ -5,12 +5,25 @@
 lo comenté porque rompe el ancho de la página
 } */
 
+.globalContainer{
+    margin-top: 50px;
+}
+
 .divPagination{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 8px;
+    animation: show 3s;
+}
+
+@keyframes show{
+    from{
+        opacity: 0
+    }to{
+        opacity: 100
+    }
 }
 
 .containerProducts{
@@ -19,6 +32,7 @@ lo comenté porque rompe el ancho de la página
     flex-direction: row;
     justify-content: center;
     gap: 24px;
+    padding-bottom: 50px;
 }
 
 .sectionCards{
@@ -44,9 +58,9 @@ lo comenté porque rompe el ancho de la página
 }
 
 .filtersContainer{
-
     display: flex;
     justify-content: center;
     align-items: center;
-
+    gap: 16px;
+    animation: show 2s;
 }

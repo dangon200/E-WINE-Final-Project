@@ -1,13 +1,9 @@
 .content{
     width: 350px;
-    height: 550px;
-    margin-top: 20%;
-   
 }
 
 .gif{
     max-width: 400px;
-    padding-top: 20px;
     display: flex;
     position: relative;
     margin-bottom: 16px;
