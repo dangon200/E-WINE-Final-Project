@@ -35,6 +35,7 @@
     font-size: 50px;
 }
 .entrega{
+    font-family: var(--font-family-1);
     display: flex;
     flex-direction: column;
     -webkit-box-align: center;
