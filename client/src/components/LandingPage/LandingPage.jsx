@@ -1,11 +1,14 @@
 import style from './landingPage.module.css'
-import React from 'react'
+/* import React, { useEffect } from 'react' */
 import Footer from '../Footer/Footer.jsx'
 // import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
 import teamwork from '../../utils/images/teamwork1.jpg'
 import barriles from '../../utils/images/bodegabarriles.jpg'
 import { BsCheck2 } from 'react-icons/bs'
+import { GiWineBottle } from 'react-icons/gi'
+import { BiBookBookmark } from 'react-icons/bi'
+import { RiCustomerService2Fill } from 'react-icons/ri'
 
 import Button from '../Button/Button.jsx'
 // import NavBar from '../Nav/Nav.jsx'
@@ -81,17 +84,41 @@ export default function LandingPage () {
         <div className={style.divAboutProject}>
           <h2>Sobre el proyecto</h2>
           <p>
+            Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.
             Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
           </p>
+          <br />
           <p>
             Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
           </p>
+          <br />
           <p>
             Talabgorlarning ilg‘or ish tajribalarini o‘rganish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
           </p>
+          <br />
         </div>
         <div className={style.divTeamWork}>
           <img src={teamwork} alt={teamwork} className={style.imgTeamWork} />
+        </div>
+      </section>
+      <section className={style.sectionPreFooter}>
+        <div className={style.divPreFooter}>
+          <h2>Millones de personas confían en nosotros para encontrar y comprar el vino perfecto una y otra vez
+          </h2>
+        </div>
+        <div className={style.divDataPreFooter}>
+          <div className={style.divData}>
+            <GiWineBottle size={50} />
+            Compra en el mercado de vinos más grande del mundo
+          </div>
+          <div className={style.divData}>
+            <RiCustomerService2Fill size={50} />
+            Nuestro equipo de Atención al Cliente está siempre a tu disposición
+          </div>
+          <div className={style.divData}>
+            <BiBookBookmark size={50} />
+            Consulta reseñas sinceras sobre cualquier vino antes de comprarlo
+          </div>
         </div>
       </section>
       <div>

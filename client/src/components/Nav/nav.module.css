@@ -1,11 +1,12 @@
-
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px 0 20px;
-    background-color: var(--background-color);
-    border-bottom: 1px solid #8c8c8c;
+    background-color: #F5EFE6;
+    /* background-color: var(--background-color); */
+    width:100%;
+    box-shadow: 0px 0.5px 5px gray;
 }
 
 .logo{
@@ -28,7 +29,23 @@
     color: #1F1F1F
 }
 
-.create{
-    padding-bottom: 20px;
+.links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
+.carritoContainer{
+    position: relative;
+}
+
+.numberCarrito{
+    position: absolute;
+    background-color: var(--btn-background-color);
+    color: white;
+    font-weight: 500;
+    bottom: 40%;
+    left: 60%;
+    padding: 1px 4px;
+    border-radius: 25px;
+}

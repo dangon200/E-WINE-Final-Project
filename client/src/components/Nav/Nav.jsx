@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 // import logo from '../assets/imgs/e-wine-logo.png'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
+import { useSelector } from 'react-redux'
 // import SearchBar from '../SearchBar/SearchBar'
-import { BsCart } from 'react-icons/bs'
+// import { BsCart } from 'react-icons/bs'
+import bolsita from '../assets/imgs/bolsita.png'
 
 export default function Nav () {
+  const carritoItems = useSelector(state => state.carrito)
   return (
     <nav className={style.navbar}>
       <div>
@@ -28,7 +31,11 @@ export default function Nav () {
         <Navegador link='/home' span='Crear Cuenta' />
 
         <Navegador link='/createpubli' span='Crear Publicación' />
-        <BsCart size={25} />
+
+        <div className={style.carritoContainer}>
+          <div className={style.numberCarrito}>{carritoItems.length}</div>
+          <img src={bolsita} alt='bolsita' />
+        </div>
       </div>
 
     </nav>

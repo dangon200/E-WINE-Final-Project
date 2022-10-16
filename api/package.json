@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L"
+    "start": "node -L"
   },
   "author": "Henry",
   "license": "ISC",
@@ -33,6 +33,6 @@
     "standard": "^17.0.0"
   },
   "eslintConfig": {
-    "extends":"./node_modules/standard/eslintrc.json"
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }

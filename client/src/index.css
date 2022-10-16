@@ -11,10 +11,10 @@ html{
   box-sizing: border-box;
 }
 body{
+  padding: 0;
+  margin: 0;
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  height: 100%;
   
 }
 .App{
@@ -22,11 +22,21 @@ body{
   background-color: #F1F0F0;
   position: relative;
 }
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 :root{
   --background-color: #f1f0f0;
   --btn-background-color: #56070C;
   --btn-sel-background-color: #170000;
   --normal-font-color: #1F1F1F;
+  --contrast-font-color: #f1f0f0; 
   --font-sel-color:#56070C;
   --error-background-color: #161622;
   --btn-border-color: #56070C;

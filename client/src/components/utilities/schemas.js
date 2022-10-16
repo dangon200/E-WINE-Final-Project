@@ -1,10 +1,15 @@
 import * as Yup from 'yup'
+import { types, provinces, varietales } from './data'
 
 export const schemaFormPubli = Yup.object().shape({
   title: Yup.string().required('Required').min(3, 'Min 3 characters'),
-  price: Yup.number().required('Required').min(1, 'Min 1').positive('Positive number'),
+  price: Yup.number('Only numbers').required('Required').min(1, 'Min 1').positive('Positive number').max(500000, 'Max $500.000'),
   description: Yup.string().required('Required').min(10, 'Min 10 characters').max(150, 'Max 150 characters'),
-  count: Yup.number().required('Required').min(1, 'Min 1').positive('Positive number')
+  count: Yup.number().required('Required').min(1, 'Min 1').positive('Positive number').max(10000, 'Max 10.000'),
+  productId: Yup.string().required('Please select a Product').uuid(),
+  image: Yup.mixed().required('Required')
+    .test('fileSize', 'a image is Required ', value => value && value.size <= 1000000)
+    .test('fileFormat', 'Unsupported Format', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
 })
 
 // FUNCTION VALIDATE URL IMAGE
@@ -43,3 +48,17 @@ export const uplodCloudinary = async (file) => {
     console.log(error)
   }
 }
+
+// name, type, varietal, origin, img, cellar
+
+export const schemaFormProduct = Yup.object().shape({
+  name: Yup.string().required('Required').min(3, 'Min 3 characters').max(50, 'Max 50 characters'),
+  type: Yup.string().required('Required').oneOf(types),
+  varietal: Yup.string().required('Required').oneOf(varietales),
+  origin: Yup.string().required('Required').oneOf(provinces),
+  cellar: Yup.string().required('Required').min(3, 'Min 3 characters').max(50, 'Max 50 characters'),
+  img: Yup.mixed().required('Required')
+    .test('fileSize', 'a image is Required ', value => value && value.size >= 1000)
+    .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
+    .test('fileFormat', 'Unsupported Format', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
+})

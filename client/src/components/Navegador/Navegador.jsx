@@ -6,8 +6,8 @@ function Navegador (props) {
   const { link, span } = props
   return (
     <>
-      <NavLink to={link} className={style.navlink}>
-        <span className={style.spanActive}>{span}</span>
+      <NavLink to={link} className={style.navlink} activeClassName={style.current}>
+        <span>{span}</span>
       </NavLink>
     </>
   )
