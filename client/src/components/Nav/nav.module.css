@@ -2,11 +2,24 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-    background-color: var(--background-color);
+    padding: 0 20px 0 20px;
+    background-color: #F5EFE6;
+    /* background-color: var(--background-color); */
     width:100%;
-
+    box-shadow: 0px 0.5px 5px gray;
 }
+
+.logo{
+    width: 80px;
+    height: 80px;
+}
+
+.links{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
 .span{
     font-family: var(--font-family-1);
     font-weight: bold;

@@ -1,9 +1,10 @@
- .container{
-    border: solid 2px black;
+.container{
+    /* border: solid 2px black; */
     display: flex ;
     flex-direction: column;
     background-color: #56070C;
     color: white;
+    padding-top: 20px;
 }
 .sep{
     display: grid;
@@ -16,10 +17,12 @@
 }
 .titleBox h1{
     font-size: 45px;
+    font-weight: 600;
     margin-bottom: 20px;
 }
 .titleBox span{
-    font-size: 15px
+    font-size: 15px;
+    font-family: var(--font-family-1);
 }
 
 .comprasBox{
@@ -42,9 +45,13 @@
 }
 .t{
     font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+    font-family: var(--font-family-1);
 }
 .l{
     font-size: 15px;
+    font-family: var(--font-family-1);
 }
 
 .acercaBox a{
@@ -76,5 +83,4 @@
 .btn a{
     text-decoration: none;
     color: white;
-    
 }

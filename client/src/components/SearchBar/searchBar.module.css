@@ -17,12 +17,14 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: rgb(205, 181, 152);
+    background-color: white;
+    box-shadow: 0px 5px 10px gray;
     font-size: 12px;
     padding: 24px; 
     color: aliceblue;
     border: none; 
-    border-radius: 20px;
+    margin-left: 10px;
+    border-radius: 50px;
 } 
 
 .inputSearch {
@@ -32,17 +34,18 @@
     margin-left: 15px;
     padding-left: 20px;
     font-size: 15px;
+    box-shadow: 0px 3px 5px gray;
     font-family: 'Playfair Display', serif;
     text-transform: uppercase;
     font-weight: bold;
     border: none;
-    background-color: beige;
-    border-radius: 20px;
+    background-color: white;
+    border-radius: 50px;
     cursor: pointer;
 } 
 
 .inputSearch::placeholder{
-    font-family: "Roboto", sans-serif; 
+    font-family: var(--font-family-1);
     letter-spacing: 1px;
 }
 
