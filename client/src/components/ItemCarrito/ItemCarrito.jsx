@@ -10,14 +10,16 @@ export default function ItemCarrito (props) {
         <div className={style.image}>
           <img className={style.imagePublication} src={image} alt='publication' />
         </div>
-        <div className={style.publication}>
-          {title}
-        </div>
-        <div className={style.count}>
-          <Counter countFromPub={count} />
-        </div>
-        <div className={style.price}>
-          {price * count}
+        <div className={style.containerCounter}>
+          <div className={style.publication}>
+            {title}
+          </div>
+          <div className={style.count}>
+            <Counter countFromPub={count} />
+          </div>
+          <div className={style.price}>
+            $ {price * count}
+          </div>
         </div>
       </div>
     </div>
