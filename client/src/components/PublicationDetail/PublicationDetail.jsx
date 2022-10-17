@@ -24,11 +24,17 @@ export default function PublicationDetail (props) {
     return favorites.some(f => f === id)
   }
   const addToCarrito = (id, countParam) => {
-    for (let i = 0; i < countParam; i++) {
-      const key = window.localStorage.length
-      window.localStorage.setItem(key, id)
-      dispatch(addCarrito(id))
+    if (window.localStorage.hasOwnProperty(id)) { // eslint-disable-line
+      window.localStorage[id] = countParam + parseInt(window.localStorage[id]); dispatch(addCarrito({ id, count: window.localStorage[id] }))
+    } else {
+      window.localStorage.setItem(id, countParam)
+      dispatch(addCarrito({ id, count: countParam }))
     }
+    // for (let i = 0; i < countParam; i++) {
+    //   const key = window.localStorage.length
+    //   window.localStorage.setItem(id, totalCount)
+    //   dispatch(addCarrito(id))
+    // }
   }
   const updateCount = (param) => {
     if (param === 'rest' && count > 1) setCount(count - 1)
@@ -63,7 +69,7 @@ export default function PublicationDetail (props) {
         </div>
         {/* COMPRAR AHORA */}
         <div className={style.buyNow}>
-          <Link to='/Carrito'>
+          <Link to='/carrito'>
             <button>Comprar ahora</button>
           </Link>
         </div>
