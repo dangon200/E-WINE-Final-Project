@@ -3,7 +3,7 @@
     height: 100vh; */
     /* border:  solid 2px red; */
     display: grid;
-
+    margin-bottom: 150px;
 }
 
 .cardContainer{
@@ -13,26 +13,33 @@
     border-radius: 20px;
     width: 90%;
     height: 100%;
-    grid-template-columns: auto auto;
-    margin:  auto auto;
+    grid-template-rows: auto auto;
+    margin: auto;
     margin-top: 20px;
-
+    padding-bottom: 100px;
     /* margin-left: 100px; */
+}
+
+.cards{
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .card1{
     /* border: solid 2px blue; */
+    display: grid;
+    justify-content: center;
+    align-items: center;
     width: 350px;
     height: 380px;
-    margin:  auto auto;
+    margin: auto;
     border:  solid 2px gainsboro;
     border-radius: 3px;
 }
 
 .imageContainer{
-width: 100%;
-display: block
-
+    width: 100%;
+    display: block
 }
 
 .card1 img{
@@ -49,10 +56,11 @@ display: block
 
 .card2{
     /* border: solid 2px violet; */
-    width: 600px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
     height: 400px;
-    margin:  auto;
-
 }
 
 .card2 .header{
@@ -69,12 +77,11 @@ h1{
 .card2 .body{
     display: flex;
     color: rgba(0, 0, 0, 0.87);
-
+    align-items: center;
 }
 .card2 .body .pedido{
     /* border: solid 2px yellow; */
     display: flex;
-    margin-top: 105px;
     position: relative;
     left: 0px;
     align-items: center;
@@ -91,13 +98,15 @@ h1{
     font-size: 30px;
     border: transparent;
     background-color: transparent;
-    /* pointer: cursor; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.card2 .body .pedido button:hover{
-  background-color: rgba(0, 0, 0, 0.27);
-  border-radius: 50px;
-}
+/* .card2 .body .pedido button:hover{
+    background-color: rgba(0, 0, 0, 0.27);
+    border-radius: 50px;
+} */
 
 .card2 .body .pedido span{
     font-size:  30px;
@@ -110,14 +119,12 @@ h1{
     object-fit: contain;
     width: 100%;
     left:  5px;
-    margin:  0px;
-    margin-top: 95px;
     font-family: var(--font-family-2);
 
 }
 
 .card2 .body .carrito button{
-     background-color: RGBA(0,0,0,0.07);
+    background-color: RGBA(0,0,0,0.07);
     color: black;
     font-size:  20px; width: 190px;
     height: 50px;

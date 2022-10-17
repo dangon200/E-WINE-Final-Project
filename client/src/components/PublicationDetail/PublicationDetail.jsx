@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { MdFavoriteBorder } from 'react-icons/md'
 import { addCarrito, addFavorites, getByPublication, removeFavorites } from '../../store/actions/actions'
-import Footer from '../Footer/Footer.jsx'
+// import Footer from '../Footer/Footer.jsx'
 import style from './publicationDetail.module.css'
 import RecomendedPublications from '../RecomendedPublications/RecomendedPublications'
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -47,63 +47,65 @@ export default function PublicationDetail (props) {
     <div className={style.container}>
       <div className={style.cardContainer}>
         {/* Esta es la primera tarjeta */}
-        <div className={style.card1}>
-          {/* Icono de favorito */}
-          <div className={style.iconContainer}>
-            <MdFavoriteBorder
-              className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-                isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-              }}
-            />
+        <div className={style.cards}>
+          <div className={style.card1}>
+            {/* Icono de favorito */}
+            <div className={style.iconContainer}>
+              <MdFavoriteBorder
+                className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
+                  isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
+                }}
+              />
+            </div>
+            {/* Div que contiene la imagen del Product */}
+            <div className={style.imageContainer}>
+              <img src={publication.image} alt={`${publication.name}`} />
+            </div>
           </div>
-          {/* Div que contiene la imagen del Product */}
-          <div className={style.imageContainer}>
-            <img src={publication.image} alt={`${publication.name}`} />
-          </div>
-        </div>
-        
-        {/* COMPRAR AHORA */}
-        <div className={style.buyNow}>
-          <Link to='/carrito'>
+
+          {/* COMPRAR AHORA */}
+          <div className={style.buyNow}>
+            {/* <Link to='/carrito'>
             <button>Comprar ahora</button>
-          </Link>
+          </Link> */}
 
-        {/* Esta es la segunda tarjeta */}
-        <div className={style.card2}>
-          <div className={style.header}>
-            <h1 className={style.h1}>{publication.name}</h1>
-            <span>${publication.price}</span>
-            <br />
-            <span>Stock: {publication.count}</span>
-          </div>
-          <div className={style.body}>
-            {/* PEDIDO */}
-            <div className={style.pedido}>
-              <button className={style.btnR} onClick={() => updateCount('rest')}> - </button>
-              <span>{count}</span>
-              <button className={style.btnS} onClick={() => updateCount('add')}> + </button>
-            </div>
-            {/* CARRITO */}
-            <div className={style.carrito}>
-              <button onClick={() => { addToCarrito(id, count) }}>AGREGAR AL CARRITO</button>
-              <Link to='/Carrito'>
-                <button>COMPRAR AHORA</button>
-              </Link>
-            </div>
-          </div>
+            {/* Esta es la segunda tarjeta */}
+            <div className={style.card2}>
+              <div className={style.header}>
+                <h1 className={style.h1}>{publication.name}</h1>
+                <span>${publication.price}</span>
+                <br />
+                <span>Stock: {publication.count}</span>
+              </div>
+              <div className={style.body}>
+                {/* PEDIDO */}
+                <div className={style.pedido}>
+                  <button className={style.btnR} onClick={() => updateCount('rest')}> - </button>
+                  <span>{count}</span>
+                  <button className={style.btnS} onClick={() => updateCount('add')}> + </button>
+                </div>
+                {/* CARRITO */}
+                <div className={style.carrito}>
+                  <button onClick={() => { addToCarrito(id, count) }}>AGREGAR AL CARRITO</button>
+                  <Link to='/Carrito'>
+                    <button>COMPRAR AHORA</button>
+                  </Link>
+                </div>
+              </div>
 
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        {publication ? <ProductDetail publication={publication} /> : null}
-        {publication ? <RecomendedPublications type={publication.type} varietal={publication.varietal} origin={publication.origin} /> : null}
-        <Footer />
+        <div>
+          {publication ? <ProductDetail publication={publication} /> : null}
+          {publication ? <RecomendedPublications type={publication.type} varietal={publication.varietal} origin={publication.origin} /> : null}
+        </div>
       </div>
     </div>
   )
 }
 
-// ________________CODIGO 1 con lo nuevo de Lauti________________________
+/* // ________________CODIGO 1 con lo nuevo de Lauti________________________
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { useParams, Link } from 'react-router-dom'
@@ -152,12 +154,12 @@ export default function PublicationDetail (props) {
 //           <span>{publication.price}</span>
 //           <span>{publication.count}</span>
 //         </div>
-//         {/* FAVORITES */}
+//         {/* FAVORITES */
 //         <div className={style.iconContainer}><MdFavoriteBorder
 //           className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
 //             isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-//           }}
-//                                              />
+//
+//
 //         </div>
 //         {/* PEDIDO */}
 //         <div className={style.pedido}>
@@ -215,4 +217,4 @@ export default function PublicationDetail (props) {
 //   : (
 //     <div>
 //       <h1>Loading...</h1>
-//     </div>)}
+//     </div>)} */
