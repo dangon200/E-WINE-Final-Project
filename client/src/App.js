@@ -35,7 +35,6 @@ function App () {
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
-        <Route exact path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />

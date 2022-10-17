@@ -50,9 +50,8 @@
     font-weight: 500;
     bottom: 40%;
     left: 60%;
-    padding: 1px 4px;
+    padding: 0px 4px;
     border-radius: 25px;
     font-family: var(--font-family-1);
     font-size: 10px;
 }
-
