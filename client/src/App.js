@@ -35,7 +35,7 @@ function App () {
         <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
     </div>
   )
 }
