@@ -31,14 +31,14 @@ function Filters () {
     <div className={s.general}>
 
       <select className={s.optSelect} name='opt' onChange={e => handleSort(e)}>
-        <option value=''> Ordernar </option>
+        <option value='' id='opt'> Ordernar </option>
         <option value='az'> A-Z </option>
         <option value='za'> Z-A </option>
         <option value='more'> Mayor Precio </option>
         <option value='less'> Menor Precio </option>
       </select>
       <select className={s.optSelect} name='varietal' onChange={e => handleSort(e)}>
-        <option value=''> Varietal</option>
+        <option value='' id='varietal'> Varietal</option>
         {varietales && varietales.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
@@ -46,7 +46,7 @@ function Filters () {
         })}
       </select>
       <select className={s.optSelect} name='type' onChange={e => handleSort(e)}>
-        <option value=''> Tipo </option>
+        <option value='' id='type'> Tipo </option>
         {types && types.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
@@ -54,7 +54,7 @@ function Filters () {
         })}
       </select>
       <select className={s.optSelect} name='origin' onChange={e => handleSort(e)}>
-        <option value=''> Origen </option>
+        <option value='' id='origin'> Origen </option>
         {provinces && provinces.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
@@ -71,6 +71,10 @@ function Filters () {
             origin: ''
           })
           dispatch(clearFilter())
+          document.getElementById('opt').selected = true
+          document.getElementById('type').selected = true
+          document.getElementById('varietal').selected = true
+          document.getElementById('origin').selected = true
         }}
       > Limpiar Filtros
       </button>
