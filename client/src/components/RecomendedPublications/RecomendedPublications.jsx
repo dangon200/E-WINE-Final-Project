@@ -14,21 +14,23 @@ export default function RecomendedPublications (props) {
   }, [dispatch, type, varietal, origin])
   return (
     <div className={style.container}>
-      <h1>Recomendado para vos</h1>
-      {Array.isArray(recomendedPublication) && recomendedPublication.length > 1
-        ? recomendedPublication.slice(1, 4).map(p => {
-          return (
-            <Card
-              id={p.id}
-              title={p.title}
-              name={p.name}
-              image={p.image}
-              price={p.price.toLocaleString('es-MX')}
-              key={p.id}
-            />
-          )
-        })
-        : null}
+      <div className={style.title}><h1>Recomendado para vos</h1></div>
+      <div className={style.cards}>
+        {Array.isArray(recomendedPublication) && recomendedPublication.length > 1
+          ? recomendedPublication.slice(1, 4).map(p => {
+            return (
+              <Card
+                id={p.id}
+                title={p.title}
+                name={p.name}
+                image={p.image}
+                price={p.price.toLocaleString('es-MX')}
+                key={p.id}
+              />
+            )
+          })
+          : null}
+      </div>
     </div>
   )
 }
