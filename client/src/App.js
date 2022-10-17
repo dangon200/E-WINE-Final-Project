@@ -25,16 +25,14 @@ function App () {
   return (
     <div className='App'>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
-      {/* <Route path='/home' component={Nav} /> */}
-      {/* <Route path='/about' component={Nav} />
-      <Route path='/createpubli' component={Nav} />
-      <Route path='/publication/:id' component={Nav} /> */}
+
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
+        <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
