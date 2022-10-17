@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import style from './counter.module.css'
+import { BsFillPlusCircleFill, BsDashCircleFill } from 'react-icons/bs'
 
 export default function Counter (props) {
   const [count, setCount] = useState(props.countFromPub)
@@ -10,7 +11,7 @@ export default function Counter (props) {
   }
   return (
     <div className={style.pedido}>
-      <button onClick={() => updateCount('rest')}> - </button>{count}<button onClick={() => updateCount('add')}> + </button>
+      <button className={style.buttonMasMenos} onClick={() => updateCount('rest')}><BsDashCircleFill size={20} /></button>{count}<button className={style.buttonMasMenos} onClick={() => updateCount('add')}><BsFillPlusCircleFill size={20} /></button>
     </div>
   )
 }

@@ -18,6 +18,9 @@
     font-weight: 500;
     border-radius: 5px;
 
+    outline: none;
+    color: #b9b3af;
+
     cursor: pointer;
     background-color: #fefefe;
     border-color: #b9b3af;
@@ -26,6 +29,7 @@
     background-color: var(--btn-background-color);
     color: var(--background-color);
     font-weight: 500;
+    transition: .3s;
 }
 .limpiarFiltros{
     align-content: space-around;
@@ -47,4 +51,5 @@
 .limpiarFiltros:hover{
     background-color: var(--btn-background-color);
     color: var(--background-color);
+    transition: .3s;
 }

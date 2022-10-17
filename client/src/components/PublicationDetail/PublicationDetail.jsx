@@ -97,7 +97,8 @@ export default function PublicationDetail (props) {
     </div>
   )
 }
-// ________________CODIGO 1 con lo nuevo de Lauti________________________
+
+/* // ________________CODIGO 1 con lo nuevo de Lauti________________________
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { useParams, Link } from 'react-router-dom'
@@ -146,12 +147,12 @@ export default function PublicationDetail (props) {
 //           <span>{publication.price}</span>
 //           <span>{publication.count}</span>
 //         </div>
-//         {/* FAVORITES */}
+//         {/* FAVORITES */
 //         <div className={style.iconContainer}><MdFavoriteBorder
 //           className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
 //             isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-//           }}
-//                                              />
+//
+//
 //         </div>
 //         {/* PEDIDO */}
 //         <div className={style.pedido}>
@@ -209,4 +210,4 @@ export default function PublicationDetail (props) {
 //   : (
 //     <div>
 //       <h1>Loading...</h1>
-//     </div>)}
+//     </div>)} */
