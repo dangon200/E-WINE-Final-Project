@@ -8,6 +8,8 @@ height: 70%;
 /* grid-template-columns: auto auto; */
 margin:  auto auto;
 margin-top: 50px;
+margin-bottom: 200px;
+padding-bottom: -20px;
 }
 
 .title{
