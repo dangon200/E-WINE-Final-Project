@@ -18,7 +18,7 @@ function App () {
 
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito(window.localStorage.key(x)))
+      dispatch(addCarrito({ id: window.localStorage.key(x), count: window.localStorage.getItem(window.localStorage.key(x)) }))
     }
   })
 
@@ -35,7 +35,7 @@ function App () {
         <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
     </div>
   )
 }
