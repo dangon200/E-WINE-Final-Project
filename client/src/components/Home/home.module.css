@@ -68,10 +68,28 @@ lo comenté porque rompe el ancho de la página
     align-items: center;
     grid-gap: 16px;
     gap: 16px;
+    
 }
 .searchFilter{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    animation: show 2s;
+}
+
+.footer{
+    animation: footerAnimation 2s;
+}
+
+@keyframes footerAnimation{
+    0%{
+        opacity: 0
+    }
+    25%{
+        opacity: 0
+    }
+    100%{
+        opacity: 100
+    }
 }

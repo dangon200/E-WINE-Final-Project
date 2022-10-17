@@ -36,7 +36,7 @@ function App () {
         <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id']} component={Footer} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id']} component={Footer} />
     </div>
   )
 }
