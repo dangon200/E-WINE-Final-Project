@@ -5,6 +5,9 @@
     background-color: #56070C;
     color: white;
     padding-top: 20px;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
 }
 .sep{
     display: grid;
