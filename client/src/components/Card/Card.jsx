@@ -1,5 +1,6 @@
 import style from './card.module.css'
-import { MdFavoriteBorder } from 'react-icons/md'
+/* import { MdFavoriteBorder } from 'react-icons/md' */
+import { FaHeart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, removeCarrito, removeFavorites } from '../../store/actions/actions'
@@ -17,15 +18,12 @@ export default function Card ({ id, title, name, image, price }) {
   }
 
   const isInCarrito = (id) => {
-    for (let x = 0; x < carrito.length; x++) {
-      if (carrito[x] === id) return true
-    }
-    return false
+    return carrito.some(p => p.id === id)
   }
 
   const addToCarrito = (id) => {
-    window.localStorage.setItem(id, id)
-    dispatch(addCarrito(id))
+    window.localStorage.setItem(id, 1)
+    dispatch(addCarrito({ id, count: 1 }))
   }
 
   const removeFromCarrito = (id) => {
@@ -36,11 +34,14 @@ export default function Card ({ id, title, name, image, price }) {
   return (
 
     <div className={style.card}>
-      <div className={style.iconContainer}><MdFavoriteBorder
-        className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-          isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-        }}
-                                           />
+      <div className={style.iconContainer}>
+
+        <FaHeart
+          className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
+            isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
+          }}
+        />
+
       </div>
       <div className={style.imgContainer}>
         <img className={style.img} src={image} alt='Wine-Img' />

@@ -30,7 +30,7 @@ export default function FormCreateProduct () {
   })
   const [send, setSend] = useState(false)
   return (
-    <>
+    <div className={style.globalContainer}>
       <section className='container user-select-none '>
         <h2>Crea un Producto</h2>
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
@@ -125,10 +125,10 @@ export default function FormCreateProduct () {
             />
             {errors.cellar && touched.cellar && <p className='text-danger'>{errors.cellar}</p>}
           </div>
-          <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Create</button>
-          {send && <div className={style.send}>Publication created</div>}
+          <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Crear Producto</button>
+          {send && <div className={style.send}>Producto creado con éxito!</div>}
         </form>
       </section>
-    </>
+    </div>
   )
 }

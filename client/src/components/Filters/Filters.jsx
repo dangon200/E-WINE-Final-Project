@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { types, varietales, provinces } from '../utilities/data.js'
 import { useDispatch } from 'react-redux'
 import { filterPublications, clearFilter } from '../../store/actions/actions'
+import s from './Filter.module.css'
 
 function Filters () {
   const [filter, setFilter] = useState({
@@ -27,50 +28,57 @@ function Filters () {
   }
 
   return (
-    <div>
-      <button onClick={() => {
-        setFilter({
-          order: '',
-          varietal: '',
-          type: '',
-          origin: ''
-        })
-        dispatch(clearFilter())
-      }}
-      >Limpiar Filtros
-      </button>
+    <div className={s.general}>
 
-      <select name='opt' onChange={handleSort}>
-        <option value=''> Ordernar </option>
+      <select className={s.optSelect} name='opt' onChange={e => handleSort(e)}>
+        <option value='' id='opt'> Ordernar </option>
         <option value='az'> A-Z </option>
         <option value='za'> Z-A </option>
         <option value='more'> Mayor Precio </option>
         <option value='less'> Menor Precio </option>
       </select>
-      <select name='varietal' onChange={handleSort}>
-        <option value=''> Varietal</option>
+      <select className={s.optSelect} name='varietal' onChange={e => handleSort(e)}>
+        <option value='' id='varietal'> Varietal</option>
         {varietales && varietales.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
           )
         })}
       </select>
-      <select name='type' onChange={handleSort}>
-        <option value=''> Tipo </option>
+      <select className={s.optSelect} name='type' onChange={e => handleSort(e)}>
+        <option value='' id='type'> Tipo </option>
         {types && types.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
           )
         })}
       </select>
-      <select name='origin' onChange={handleSort}>
-        <option value=''> Origen </option>
+      <select className={s.optSelect} name='origin' onChange={e => handleSort(e)}>
+        <option value='' id='origin'> Origen </option>
         {provinces && provinces.map(e => {
           return (
             <option key={e} value={e}> {e} </option>
           )
         })}
       </select>
+
+      <button
+        className={s.limpiarFiltros} onClick={() => {
+          setFilter({
+            order: '',
+            varietal: '',
+            type: '',
+            origin: ''
+          })
+          dispatch(clearFilter())
+          document.getElementById('opt').selected = true
+          document.getElementById('type').selected = true
+          document.getElementById('varietal').selected = true
+          document.getElementById('origin').selected = true
+        }}
+      > Limpiar Filtros
+      </button>
+
     </div>
   )
 }
