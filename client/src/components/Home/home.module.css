@@ -6,7 +6,7 @@ lo comenté porque rompe el ancho de la página
 } */
 
 .globalContainer{
-    margin-top: 50px;
+    margin-top: 8px;
 }
 
 .divPagination{
@@ -45,22 +45,51 @@ lo comenté porque rompe el ancho de la página
     font-weight: bolder;
     width: 30px;
     height: 30px;
-    border: 1px solid var(--btn-background-color);
+    /* border: 1px solid var(--btn-background-color); */
     border-radius: 6px;
     cursor: pointer;
-    color:var(--btn-background-color) ;
+    color: #999491 ;
     transition: 0.2s;
+    border:0ch;
+    font-size: 20px;
 }
 
 .buttonLeft:hover, .buttonRight:hover{
-    background-color: var(--btn-background-color);
-    color: white;
+    /* background-color: var(--btn-background-color);
+    color: white; */
+    color: #837e7c;
+    transform: scale(1.3);
 }
 
 .filtersContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
     animation: show 2s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    gap: 16px;
+    
+}
+.searchFilter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    animation: show 2s;
+}
+
+.footer{
+    animation: footerAnimation 2s;
+}
+
+@keyframes footerAnimation{
+    0%{
+        opacity: 0
+    }
+    25%{
+        opacity: 0
+    }
+    100%{
+        opacity: 100
+    }
 }

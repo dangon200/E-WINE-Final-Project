@@ -52,3 +52,12 @@
 .inputSearch:focus{
     border: 2px solid var(--btn-background-color);
 }
+
+.alert{
+    color: red;
+    border: 1px solid red;
+}
+
+.alert:focus{
+    border: 2px solid red;
+}

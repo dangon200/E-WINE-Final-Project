@@ -1,6 +1,5 @@
 import style from './landingPage.module.css'
 /* import React, { useEffect } from 'react' */
-import Footer from '../Footer/Footer.jsx'
 // import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
 import teamwork from '../../utils/images/teamwork1.jpg'
@@ -121,9 +120,7 @@ export default function LandingPage () {
           </div>
         </div>
       </section>
-      <div>
-        <Footer />
-      </div>
+
     </>
   )
 }
