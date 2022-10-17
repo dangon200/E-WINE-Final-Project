@@ -59,7 +59,7 @@ export default function Home () {
             pagination={pagination}
             page={page}
           />
-          {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
+          {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
       <div />
 

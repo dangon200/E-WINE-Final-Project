@@ -9,6 +9,10 @@
   cursor: pointer;
 }
 
+.navlink:hover{
+  color:var(--btn-background-color)
+}
+
 .navlinkActive{
   font-family: var(--font-family-1);
   font-size: 1.6rem;
@@ -19,4 +23,8 @@
   padding: 0.5rem 0;
   cursor: pointer;
   border-bottom: 3px solid var(--btn-background-color);
+}
+
+.navlinkActive:hover{
+  color:#1F1F1F
 }
