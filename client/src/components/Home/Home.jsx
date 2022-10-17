@@ -8,7 +8,7 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-i
 import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
-import Footer from '../Footer/Footer'
+// import Footer from '../Footer/Footer'
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -85,9 +85,9 @@ export default function Home () {
           })
           : <Message message={publications} />}
       </div>
-      <div className={style.footer}>
+      {/* <div className={style.footer}>
         <Footer />
-      </div>
+      </div> */}
     </div>
   )
 }
