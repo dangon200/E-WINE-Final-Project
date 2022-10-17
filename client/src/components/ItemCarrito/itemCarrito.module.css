@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.ItemCarrito{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 400px;
+    background-color: antiquewhite;
+}
+
+.imagePublication{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.publication{
+    font-family: var(--font-family-1);
+    font-size: large;
+}
+
+.count{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-1);
+    font-size: medium;
+}

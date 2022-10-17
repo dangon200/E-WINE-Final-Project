@@ -10,7 +10,7 @@ export default function Counter (props) {
   }
   return (
     <div className={style.pedido}>
-      <button onClick={() => updateCount('rest')}> - </button>{count}<button onClick={() => updateCount('add')}> + </button>
+      <button className={style.buttonMasMenos} onClick={() => updateCount('rest')}> - </button>{count}<button className={style.buttonMasMenos} onClick={() => updateCount('add')}> + </button>
     </div>
   )
 }

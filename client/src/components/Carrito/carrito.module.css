@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 50px 0;
+    height: 800px;
+    width: 100%;
+}
+
+.container h3{
+    font-family: var(--font-family-1);
+    font-size: 20px;
+    font-weight: 600;
+}

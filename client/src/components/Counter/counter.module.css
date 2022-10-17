@@ -1,0 +1,13 @@
+.pedido{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.buttonMasMenos{
+    padding: 0 10px 0 10px;
+    font-family: var(--font-family-1);
+    font-size: 20px;
+    border-radius: 5px;
+}
