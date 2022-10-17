@@ -18,15 +18,12 @@ export default function Card ({ id, title, name, image, price }) {
   }
 
   const isInCarrito = (id) => {
-    for (let x = 0; x < carrito.length; x++) {
-      if (carrito[x] === id) return true
-    }
-    return false
+    return carrito.some(p => p.id === id)
   }
 
   const addToCarrito = (id) => {
-    window.localStorage.setItem(id, id)
-    dispatch(addCarrito(id))
+    window.localStorage.setItem(id, 1)
+    dispatch(addCarrito({ id, count: 1 }))
   }
 
   const removeFromCarrito = (id) => {
