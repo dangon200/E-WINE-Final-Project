@@ -5,7 +5,7 @@ import catamos from '../../utils/images/icono_catamos.png'
 import elegis from '../../utils/images/elegis.png'
 import disfrutas from '../../utils/images/disfrutas.png'
 import recibis from '../../utils/images/recibis.png'
-import Footer from '../Footer/Footer.jsx'
+// import Footer from '../Footer/Footer.jsx'
 
 function About () {
   return (
@@ -51,7 +51,7 @@ function About () {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
