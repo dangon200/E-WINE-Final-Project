@@ -8,6 +8,7 @@ import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-i
 import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
+import Footer from '../Footer/Footer'
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -63,7 +64,7 @@ export default function Home () {
             pagination={pagination}
             page={page}
           />
-          {page !== pages.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
+          {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
 
       <div className={style.containerProducts}>
@@ -83,6 +84,9 @@ export default function Home () {
             )
           })
           : <Message message={publications} />}
+      </div>
+      <div className={style.footer}>
+        <Footer />
       </div>
     </div>
   )

@@ -23,6 +23,7 @@ export default function SeachBar () {
       /* setAlert(false) */
       dispatch(searchPublicationByName(name))
       setName('')
+      document.getElementById('input').placeholder = 'Buscar...'
     }
   }
 
