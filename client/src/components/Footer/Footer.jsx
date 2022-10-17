@@ -76,7 +76,7 @@ export default function Footer () {
           </a>
         </div>
         <div className={style.btn}>
-          <a href='pal twita'>
+          <a href='https://twitter.com/EWinemarket'>
             <IconContext.Provider value={{ size: '3em', className: 'twitter' }}>
               <GrTwitter />
             </IconContext.Provider>
