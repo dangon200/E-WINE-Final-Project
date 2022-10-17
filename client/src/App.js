@@ -18,7 +18,7 @@ function App () {
 
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito({ id: window.localStorage.key(x), count: window.localStorage.getItem(window.localStorage.key(x)) }))
+      dispatch(addCarrito({ id: window.localStorage.key(x), count: parseInt(window.localStorage.getItem(window.localStorage.key(x))) }))
     }
   })
 
