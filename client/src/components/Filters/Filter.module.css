@@ -3,7 +3,9 @@
     line-height: 1.2;
     display: flex;
     flex-direction: row;
-    /* color: #170000; */
+    color: #170000; 
+    font-size: 1.2rem;
+    font-weight: 500;
     margin-inline: 10px;
     align-content: space-around;
 
@@ -15,7 +17,7 @@
     margin-inline: 10px;
     font-weight: 500;
     border-radius: 5px;
-    color: #b9b3af;
+
     cursor: pointer;
     background-color: #fefefe;
     border-color: #b9b3af;
@@ -37,7 +39,7 @@
     font-weight: 600;
     color: var(--btn-sel-background-color);
     cursor: pointer;
-    color: #b9b3af;
+
     border-color: #b9b3af;
     background-color: #fefefe;
 
