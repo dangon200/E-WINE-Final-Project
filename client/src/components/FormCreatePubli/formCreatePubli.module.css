@@ -26,5 +26,9 @@
   font-size: 1.5rem;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+}
 
+.globalContainer{
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
