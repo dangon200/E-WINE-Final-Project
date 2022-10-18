@@ -24,33 +24,47 @@ export default function LandingPage () {
         </div>
       </header>
 
-      <section className={style.section}>
+      <section className='container-fluid mt-5'>
+        <article className={`row align-items-center text-start ${style.cont}`}>
+          <img src={copa} alt='copa de vino' className={`col img-fluid d-none d-sm-block ${style.img}`} />
+          <div className={`col ${style.details} heigth100 text-center text-sm-start`}>
+            <div className='container heigth100 d-flex flex-column justify-content-sm-evenly'>
+              <h2 className='row'>Disfrutá navegando por miles de vinos y haciendo tu elección de manera más cómoda todo en un sólo sitio</h2>
 
-        <article>
-          <img src={copa} alt='copa de vino' className={style.img} />
-          <div className={style.details}>
-            <h2>Disfrutá navegando por miles de vinos y haciendo tu elección de manera más cómoda todo en un sólo sitio</h2>
-
-            <p><span><BsCheck2 /></span>Te conectamos con las mejores bodegas.</p>
-            <p><span><BsCheck2 /></span>Podés seleccionar el vino que quieras.</p>
-            <p><span><BsCheck2 /></span>Revisa las reseñas y las recomendaciones de expertos.</p>
-          </div>
-
-        </article>
-
-        <article>
-          <div className={style.details}>
-            <h2> Nuestra plataforma conecta a los consumidores con los proveedores, facilitando la interacción.</h2>
-
-            <p><span><BsCheck2 /></span>Conecta a los amantes del vino con sus favoritos.</p>
-            <p><span><BsCheck2 /></span>Recomendaciones por especialistas en el tema.</p>
-            <p><span><BsCheck2 /></span>Accede a descuentos y ofertas de manera rápida.</p>
+              <div className='row text-start'>
+                <p><span><BsCheck2 /></span>Te conectamos con las mejores bodegas.</p>
+                <p><span><BsCheck2 /></span>Podés seleccionar el vino que quieras.</p>
+                <p><span><BsCheck2 /></span>Revisa las reseñas y las recomendaciones de expertos.</p>
+              </div>
+            </div>
 
           </div>
-          <img src={barriles} alt='Bodega' className={style.imgBodega} />
         </article>
 
+        <article className={`row align-items-center text-start mt-4 ${style.cont}`}>
+          <div className={`col ${style.details} heigth100 text-center text-sm-end`}>
+            <div className='container heigth100 d-flex flex-column justify-content-sm-evenly'>
+              <h2 className='row'> Nuestra plataforma conecta a los consumidores con los proveedores, facilitando la interacción.</h2>
+              <div className='row text-start text-sm-end '>
+                <p>Conecta a los amantes del vino con sus favoritos.<span><BsCheck2 /></span></p>
+                <p>Recomendaciones por especialistas en el tema.<span><BsCheck2 /></span></p>
+                <p>Accede a descuentos y ofertas de manera rápida.<span><BsCheck2 /></span></p>
+              </div>
+            </div>
+          </div>
+          <img src={barriles} alt='Bodega' className={`col img-fluid d-none d-sm-block ${style.img}`} />
+        </article>
       </section>
+
+      {/* <section className={`container my-5 ${style.carrusel}`}>
+        <div className='row'>
+          <div className='col d-flex justify-content-center'>
+            <Carousel />
+          </div>
+
+        </div>
+
+      </section> */}
 
       <section className={style.sectionCards}>
         <h2>Recomendados por expertos</h2>
@@ -79,6 +93,7 @@ export default function LandingPage () {
           </div>
         </article>
       </section>
+
       <section className={style.sectionAboutProject}>
         <div className={style.divAboutProject}>
           <h2>Sobre el proyecto</h2>
