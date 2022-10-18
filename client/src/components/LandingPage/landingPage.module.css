@@ -42,7 +42,7 @@
   display: flex;
 }
 .section article .img{
-  width: 400px;
+  max-width: 400px;
 }
 
 .section :nth-child(1){
@@ -197,10 +197,10 @@
 
 .divTeamWork{
   display: flex;
-  width: 50%;
 }
 
 .imgTeamWork{
+  width: 100%;
   background-size: cover;
 }
 

@@ -24,7 +24,7 @@ function App () {
   })
 
   return (
-    <div className='App'>
+    <div className='App '>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
