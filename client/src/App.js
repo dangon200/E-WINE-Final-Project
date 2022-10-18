@@ -12,6 +12,7 @@ import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
+import FormLogin from './components/FormLogin/FormLogin'
 
 function App () {
   const dispatch = useDispatch()
@@ -23,10 +24,11 @@ function App () {
   })
 
   return (
-    <div className='App'>
+    <div className='App container-xxl'>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
+        <Route exact path='/form' component={FormLogin} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
