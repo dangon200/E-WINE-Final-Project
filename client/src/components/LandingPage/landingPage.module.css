@@ -174,6 +174,8 @@
   align-items: flex-start;
   padding: 10px;
 }
+
+
 .card section h4{
   font-size: 1.8rem;
   font-family: var(--font-family-1);
@@ -195,95 +197,54 @@
   line-height: 15px;
   text-align: start;
 }
-
 .sectionAboutProject{
-  display: flex;
+
   width: 100%;
-  height: 600px;
-  margin-top: 100px;
+  height: auto;
+
   background-color: var(--btn-background-color);
 }
+/* Fin Cards */
+
+/* About project */
+
+
 
 .divAboutProject{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 50px;
-  color: #F1F0F0;
-  width: 50%;
+  color: white;
 }
-
 .divAboutProject h2{
   font-family: var(--font-family-1);
   font-size: 3.2rem;
   font-weight: 600;
-  line-height: 80px; 
 }
 
 .divAboutProject p{
   font-family: var(--font-family-1);
   font-size: 1.8rem;
   font-weight: 300;
-  line-height: 25px;
-  text-align: start;
 }
+/* Fin about project */
 
-.divTeamWork{
-  display: flex;
-}
-
-.imgTeamWork{
-  width: 100%;
-  background-size: cover;
-}
+/* PreeFooter */
 
 .sectionPreFooter{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 400px;
+  height: auto;
   width: 100%;
   background-color: rgb(237, 234, 225);
 }
 
-.divPreFooter{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
-.divPreFooter h2{
+.sectionPreFooter h2{
   font-family: var(--font-family-1);
-  font-size: 3.2rem;
   font-weight: 600;
-  line-height: 50px; 
-  width: 80%;
-  text-align: start;
 }
 
-.divDataPreFooter{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-}
-
-.divData{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 25%;
-  gap: 10px;
+.sectionPreFooter p{
   font-family: var(--font-family-1);
-  font-size: 1.8rem;
   font-weight: 300;
-  line-height: 25px;
-  text-align: start;
+  line-height: 30px; 
 }
+
 
 /* --background-color: #f1f0f0;
   --btn-background-color: #56070C;
