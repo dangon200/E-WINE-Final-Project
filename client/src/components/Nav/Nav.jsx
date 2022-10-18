@@ -35,13 +35,12 @@ export default function Nav () {
             <Navegador link='/createAccount' span='Crear Cuenta' className='nav-link' />
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
-            <div className={`nav-link ${style.carritoContainer}`}>
-              <Link to='/carrito'>
-                <div className={style.numberCarrito}>{carritoItems.length}</div>
-                <img src={bolsita} alt='bolsita' />
-              </Link>
-            </div>
+
           </div>
+          <Link to='/carrito' className={`${style.carritoContainer}`}>
+            <div className={style.numberCarrito}>{carritoItems.length}</div>
+            <img src={bolsita} alt='bolsita' />
+          </Link>
 
         </div>
       </div>

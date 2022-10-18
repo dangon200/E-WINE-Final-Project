@@ -95,7 +95,7 @@ export default function FormLogin () {
             {touched.origin && errors.origin ? <div className='invalid-feedback'>{errors.origin}</div> : null}
           </div>
 
-          <button type='submit' className=' col-6 btn btn-success mt-2 '>Enviar</button>
+          <button type='submit' className='col-6 btn btn-success mt-2'>Enviar</button>
         </div>
 
       </form>

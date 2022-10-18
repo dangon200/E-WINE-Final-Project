@@ -43,6 +43,10 @@
 .carritoContainer{
     position: relative;
 }
+.carritoContainer img{
+    width: 80px;
+    height: 80px;
+}
 
 .numberCarrito{
     position: absolute;
@@ -56,3 +60,11 @@
     font-family: var(--font-family-1);
     font-size: 10px;
 }
+
+
+@media (max-width: 992px) {
+   .numberCarrito{
+    left: 50%;
+   }
+  }
+  
