@@ -66,7 +66,7 @@ export default function LandingPage () {
 
       </section> */}
 
-      <section className={style.sectionCards}>
+      {/* <section className={style.sectionCards}>
         <h2>Recomendados por expertos</h2>
         <article className={style.gridCards}>
           <div className={style.card}>
@@ -78,7 +78,7 @@ export default function LandingPage () {
 
           </div>
           <div className={style.card}>
-            <img src={copa} alt='fakeImg' className={style.cardImg} />
+            <img src={copa} alt='fakeImg' className='img-fluid' />
             <section>
               <h4 className='fs-2'>Dars ishlanma</h4>
               <p className='fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
@@ -92,7 +92,7 @@ export default function LandingPage () {
             </section>
           </div>
         </article>
-      </section>
+      </section> */}
 
       <section className={`container-fluid px-0 text-center text-lg-start  ${style.sectionAboutProject}`}>
         <div className={` row ${style.divAboutProject}`}>
