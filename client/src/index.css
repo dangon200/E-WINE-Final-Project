@@ -22,7 +22,9 @@ body{
   background-color: #F1F0F0;
   position: relative;
 }
-
+.heigth100{
+  height: 100%;
+}
 input[type='number'] {
   -moz-appearance:textfield;
 }
