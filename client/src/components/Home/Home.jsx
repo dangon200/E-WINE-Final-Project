@@ -9,7 +9,7 @@ import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
-import InfiniteScroll from 'react-infinite-scroll-component'
+//  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ export default function Home () {
   useEffect(() => {
     dispatch(getProducts())
     dispatch(getPublications())
-  }, [dispatch, page])
+  }, [dispatch])
   // console.log(products)
   // console.log(publications)
 
@@ -67,27 +67,25 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      <InfiniteScroll dataLength={publications.length} hasMore next={() => setPage((prevPage) => prevPage + 1)}>
-        <div className={style.containerProducts}>
-          {typeof publications !== 'string'
-            ? currentPageProducts.map((p) => {
-              return (
-                <section className={style.sectionCards} key={p.id}>
-                  <Card
-                    id={p.id}
-                    title={p.title}
-                    name={p.name}
-                    image={p.image}
-                    price={p.price.toLocaleString('es-MX')}
-                    key={p.id}
-                  />
-                </section>
-              )
-            })
-            : <Message message={publications} />}
-        </div>
-      </InfiniteScroll>
+
+      <div className={style.containerProducts}>
+        {typeof publications !== 'string'
+          ? currentPageProducts.map((p) => {
+            return (
+              <section className={style.sectionCards} key={p.id}>
+                <Card
+                  id={p.id}
+                  title={p.title}
+                  name={p.name}
+                  image={p.image}
+                  price={p.price.toLocaleString('es-MX')}
+                  key={p.id}
+                />
+              </section>
+            )
+          })
+          : <Message message={publications} />}
+      </div>
       <div className={style.footer}>
         <Footer />
       </div>
