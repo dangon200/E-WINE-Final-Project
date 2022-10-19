@@ -53,7 +53,7 @@ export default function Home () {
           <SearchBar />
         </div>
         <div>
-          <Filters />
+          <Filters setPage={setPage} />
         </div>
       </div>
       {typeof publications !== 'string' &&
