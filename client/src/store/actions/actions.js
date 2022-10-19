@@ -145,10 +145,10 @@ export const removeFavorites = (id) => {
 
 // CARRITO
 
-export const addCarrito = (idPlusCount) => {
+export const addCarrito = (publication) => {
   return {
     type: 'ADD_CARRITO',
-    payload: idPlusCount
+    payload: publication
   }
 }
 
@@ -158,6 +158,8 @@ export const removeCarrito = (id) => {
     payload: id
   }
 }
+
+// RECOMENDED PUBLICATIONS
 
 export const getRecomendedPublications = (type, varietal, origin) => {
   return async function (dispatch) {

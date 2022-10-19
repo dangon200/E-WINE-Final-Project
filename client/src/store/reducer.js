@@ -38,7 +38,7 @@ export default function reducer (state = initialState, action) {
     case 'REMOVE_FAVORITES':
       return { ...state, favorites: state.favorites.filter(fav => fav !== action.payload) }
     case 'ADD_CARRITO':
-      return { ...state, carrito: [...state.carrito.filter(p => p.id !== action.payload.id), action.payload] }
+      return { ...state, carrito: [...state.carrito.filter(p => p.id !== action.payload.id), action.payload].sort((a, b) => parseInt(a.price) - parseInt(b.price)) }
     case 'REMOVE_CARRITO':
       return { ...state, carrito: state.carrito.filter(item => item.id !== action.payload) }
     case 'RECOMENDED_PUBLICATIONS':
