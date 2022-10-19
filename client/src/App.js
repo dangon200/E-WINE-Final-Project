@@ -19,7 +19,8 @@ function App () {
 
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito({ id: window.localStorage.key(x), count: parseInt(window.localStorage.getItem(window.localStorage.key(x))) }))
+      const id = window.localStorage.key(x)
+      dispatch(addCarrito({ id, price: JSON.parse(window.localStorage.getItem(id)).price, title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
     }
   })
 

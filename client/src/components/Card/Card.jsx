@@ -21,9 +21,9 @@ export default function Card ({ id, title, name, image, price }) {
     return carrito.some(p => p.id === id)
   }
 
-  const addToCarrito = (id) => {
-    window.localStorage.setItem(id, 1)
-    dispatch(addCarrito({ id, count: 1 }))
+  const addToCarrito = (id, price, title, image, name) => {
+    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1 }))
+    dispatch(addCarrito({ id, price, title, image, name, count: 1 }))
   }
 
   const removeFromCarrito = (id) => {
@@ -61,7 +61,7 @@ export default function Card ({ id, title, name, image, price }) {
           </Link>
           <button
             className={style.addBtn} onClick={() => {
-              window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id)
+              window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name)
             }}
           >{isInCarrito(id) ? 'Remover' : 'Añadir'}
           </button>
