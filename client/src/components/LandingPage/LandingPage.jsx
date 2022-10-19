@@ -66,29 +66,29 @@ export default function LandingPage () {
 
       </section> */}
 
-      <section className={style.sectionCards}>
-        <h2>Recomendados por expertos</h2>
-        <article className={style.gridCards}>
-          <div className={style.card}>
-            <img src={copa} alt='fakeImg' className={style.cardImg} />
-            <section>
-              <h4 className='fs-2'>Dars ishlanma</h4>
-              <p className='fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+      <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
+        <h2 className='row'>Recomendados por expertos</h2>
+        <article className={`row ${style.gridCards}`}>
+          <div className={`card  ${style.card}`}>
+            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
+            <section className='card-body'>
+              <h4 className=' card-title fs-2'>Dars ishlanma</h4>
+              <p className='card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
             </section>
 
           </div>
-          <div className={style.card}>
-            <img src={copa} alt='fakeImg' className={style.cardImg} />
-            <section>
-              <h4 className='fs-2'>Dars ishlanma</h4>
-              <p className='fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+          <div className={`card ${style.card}`}>
+            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
+            <section className='card-body'>
+              <h4 className='card-title fs-2'>Dars ishlanma</h4>
+              <p className=' card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
             </section>
           </div>
-          <div className={style.card}>
-            <img src={copa} alt='fakeImg' className={style.cardImg} />
-            <section>
-              <h4 className='fs-2'>Dars ishlanma</h4>
-              <p className='fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+          <div className={`card  ${style.card}`}>
+            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
+            <section className='card-body'>
+              <h4 className='card-title fs-2'>Dars ishlanma</h4>
+              <p className=' card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
             </section>
           </div>
         </article>
