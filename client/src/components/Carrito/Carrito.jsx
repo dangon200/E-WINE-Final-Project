@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
+// import { removeCarrito } from '../../store/actions/actions'
 
 const getCarritoPublications = (carrito, publications) => {
   const pubInCarrito = []
@@ -10,11 +11,18 @@ const getCarritoPublications = (carrito, publications) => {
   })
   return pubInCarrito
 }
+
 export default function Carrito () {
+  // const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
   const publications = useSelector(state => state.allPublications)
   const publicationsCarrito = getCarritoPublications(carrito, publications)
   console.log('carrito', carrito, 'publications', publications, 'publicationsCarrito', publicationsCarrito)
+
+  /* const removeFromCarrito = (id) => {
+    dispatch(removeCarrito(id))
+  } */
+
   return (
     <div className={style.container}>
       {publicationsCarrito.length > 0

@@ -35,6 +35,20 @@ lo comenté porque rompe el ancho de la página
     padding-bottom: 50px;
 }
 
+.Filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    font-family: var(--font-family-1);
+    background-color: white;
+    height: 100%;
+    margin-left: 10px;
+    padding: 10px 10px 10px 0px;
+}
+
 .sectionCards{
     display: flex;
     justify-content: center;
@@ -65,7 +79,9 @@ lo comenté porque rompe el ancho de la página
     animation: show 2s;
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin: 20px 0 10px 20px;
     grid-gap: 16px;
     gap: 16px;
     

@@ -3,8 +3,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px 0 20px;
-    background-color: #F5EFE6;
-    /* background-color: var(--background-color); */
+    background-color: #630606;
     width:100%;
     box-shadow: 0px 0.5px 5px gray;
 }
@@ -26,7 +25,7 @@
     text-transform: uppercase;
     padding-left: 0.3rem;
     text-decoration: none;
-    color: #1F1F1F
+    color: whitesmoke;
 }
 
 .links{
