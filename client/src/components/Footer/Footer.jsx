@@ -1,6 +1,4 @@
-import style from './footer.module.css'
 import React from 'react'
-import { Link } from 'react-router-dom'
 import {
   GrInstagram,
   GrTwitter,
@@ -8,88 +6,95 @@ import {
   GrFacebookOption
 } from 'react-icons/gr'
 import { IconContext } from 'react-icons'
-
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import { Link } from 'react-router-dom'
+import './style.css'
 export default function Footer () {
   return (
-    <div className={style.container}>
-      <div className={style.sep}>
-        <div className={style.titleBox}>
-          <h1>E-Wine</h1>
-          <span>Una forma diferente de comprar vino</span>
-        </div>
-        <div className={style.comprasBox}>
-          <ul>
-            <li className={style.t}>COMPRAS</li>
-            <br />
-            <li className={style.l}>Carrito</li>
-            <li className={style.l}>Tus compras</li>
-            <li className={style.l}>Vinos guardados</li>
-          </ul>
-        </div>
-        <div className={style.acercaBox}>
-          <ul>
-            <li className={style.t}>
-              ACERCA DE
-            </li>
-            <br />
-            <li className={style.l}>
-              <Link to='/'>
-                E-Wine
+    <Container id='cont' fluid>
+      <Row className='text-center'>
+        <Col>
+          <h1 className='text-capitalize fw-bold pb-4 pt-5'>E-Wine</h1>
+          <span className='fw-bold fs-4'>Una forma diferente de comprar vino</span>
+        </Col>
+        <Col className='text-center text-md-start mt-4'>
+          <div className='mx-auto mb-4'>
+            <ul className='fs-4'>
+              <li className='fs-1'>COMPRAS</li>
+              <br />
+              <li>Carrito</li>
+              <li>Tus compras</li>
+              <li>Vinos Guardados</li>
+            </ul>
+          </div>
+        </Col>
+        <Col className='text-center text-md-start mt-4'>
+          <div className='mx-auto mb-4'>
+            <ul className='fs-4'>
+              <li className='fs-1'>ACERCA DE</li>
+              <br />
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>E-Wine</li>
               </Link>
-            </li>
-            <li className={style.l}>
-              <Link to='/'>
-                Developers
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>Developers</li>
               </Link>
-            </li>
-            <li className={style.l}>
-              <Link to='/'>
-                Proyecto
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>Proyecto</li>
               </Link>
-            </li>
-          </ul>
-        </div>
-        <div className={style.ayudaBox}>
-          <ul>
-            <li className={style.t}>AYUDA</li>
-            <br />
-            <li className={style.l}>Preguntas Frecuentes</li>
-            <li className={style.l}>Términos y condiciones</li>
-            <li className={style.l}>Contacto</li>
-          </ul>
-
-        </div>
-      </div>
-      <div className={style.iconos}>
-        <div className={style.btn}>
+            </ul>
+          </div>
+        </Col>
+        <Col className='text-center text-md-start mt-4'>
+          <div className='mx-auto mb-4 '>
+            <ul className='fs-4'>
+              <li className='fs-1'>AYUDA</li>
+              <br />
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>Preguntas Frecuentes</li>
+              </Link>
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>Terminos y condiciones</li>
+              </Link>
+              <Link className='text-decoration-none text-light' to='/'>
+                <li>Contacto</li>
+              </Link>
+            </ul>
+          </div>
+        </Col>
+      </Row>
+      <Row className='pt-5 pb-5 row justify-content-center'>
+        <Col xs lg='2'>
           <a href='https://www.instagram.com/ewine.marketplace/'>
-            <IconContext.Provider value={{ size: '3em', className: 'instagram' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'instagram', color: 'white' }}>
               <GrInstagram />
             </IconContext.Provider>
           </a>
-        </div>
-        <div className={style.btn}>
+        </Col>
+        <Col xs lg='2'>
           <a href='https://www.facebook.com/profile.php?id=100086790943958'>
-            <IconContext.Provider value={{ size: '3em', className: 'facebook' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'facebook', color: 'white' }}>
               <GrFacebookOption />
             </IconContext.Provider>
           </a>
-        </div>
-        <div className={style.btn}>
+        </Col>
+        <Col xs lg='2'>
           <a href='https://twitter.com/EWinemarket'>
-            <IconContext.Provider value={{ size: '3em', className: 'twitter' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'twitter', color: 'white' }}>
               <GrTwitter />
             </IconContext.Provider>
           </a>
-        </div>
-        <div className={style.btn}>
+        </Col>
+        <Col xs lg='2'>
           <a href='https://github.com/dangon200/E-WINE-Final-Project'>
-            <IconContext.Provider value={{ size: '3em', className: 'youtube' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'github', color: 'white' }}>
               <GrGithub />
             </IconContext.Provider>
           </a>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
