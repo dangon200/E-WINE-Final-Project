@@ -16,7 +16,7 @@ export default function LandingPage () {
   return (
     <>
       <header className={style.header}>
-        <h1 className={style.h1}>Descrubrí <span>E-wine</span></h1>
+        <h1 className={style.h1}>Descubrí <span>E-wine</span></h1>
         <p className={style.p}>Acceder a todos sus vinos favoritos nunca ha sido tan fácil</p>
         <div className={style.buttons}>
           <Button link='/about' content='CONOCÉ SOBRE E-WINE' />
