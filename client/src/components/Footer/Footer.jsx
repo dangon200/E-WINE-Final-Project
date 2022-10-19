@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   GrInstagram,
   GrTwitter,
-  GrYoutube,
+  GrGithub,
   GrFacebookOption
 } from 'react-icons/gr'
 import { IconContext } from 'react-icons'
@@ -62,30 +62,30 @@ export default function Footer () {
       </div>
       <div className={style.iconos}>
         <div className={style.btn}>
-          <a href='pal instagram'>
+          <a href='https://www.instagram.com/ewine.marketplace/'>
             <IconContext.Provider value={{ size: '3em', className: 'instagram' }}>
               <GrInstagram />
             </IconContext.Provider>
           </a>
         </div>
         <div className={style.btn}>
-          <a href='pal feis'>
+          <a href='https://www.facebook.com/profile.php?id=100086790943958'>
             <IconContext.Provider value={{ size: '3em', className: 'facebook' }}>
               <GrFacebookOption />
             </IconContext.Provider>
           </a>
         </div>
         <div className={style.btn}>
-          <a href='pal twita'>
+          <a href='https://twitter.com/EWinemarket'>
             <IconContext.Provider value={{ size: '3em', className: 'twitter' }}>
               <GrTwitter />
             </IconContext.Provider>
           </a>
         </div>
         <div className={style.btn}>
-          <a href='Youtube'>
+          <a href='https://github.com/dangon200/E-WINE-Final-Project'>
             <IconContext.Provider value={{ size: '3em', className: 'youtube' }}>
-              <GrYoutube />
+              <GrGithub />
             </IconContext.Provider>
           </a>
         </div>

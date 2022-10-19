@@ -51,10 +51,10 @@ export default function Home () {
         <div className={style.filtersContainer}>
           <SearchBar />
         </div>
-        {/* <div className={style.Filters}>
+        <div className={style.Filters}>
           FILTRAR
           <Filters />
-        </div> */}
+        </div>
       </div>
       {typeof publications !== 'string' &&
         <div className={style.divPagination}>
@@ -69,10 +69,10 @@ export default function Home () {
         </div>}
 
       <div className={style.containerProducts}>
-        <div className={style.Filters}>
+        {/* <div className={style.Filters}>
           FILTRAR
           <Filters />
-        </div>
+        </div> */}
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
             return (

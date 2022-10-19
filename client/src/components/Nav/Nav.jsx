@@ -2,7 +2,8 @@ import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 // import logo from '../assets/imgs/e-wine-logo.png'
-import logo from '../../utils/images/logoe-wineWhite2.png'
+import logo from '../../utils/images/logodefinitivosinfondopng.png'
+// import logo from '../../utils/images/logoe-wineWhite2.png'
 import { useSelector } from 'react-redux'
 // import SearchBar from '../SearchBar/SearchBar'
 // import { BsCart } from 'react-icons/bs'
@@ -11,32 +12,37 @@ import bolsita from '../assets/imgs/bolsita.png'
 export default function Nav () {
   const carritoItems = useSelector(state => state.carrito)
   return (
-    <nav className={style.navbar}>
-      <div>
-        <Link to='/home' className={style.span}>
-          <img src={logo} alt='logo' className={style.logo} />
+    <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
+      <div className='container-fluid'>
+
+        <Link to='/home' className={`me-auto ${style.span}`}>
+          <img src={logo} alt='logo' className={`navbar-brand ${style.logo}`} />
           <span className={style.span}>E-WINE</span>
         </Link>
-      </div>
-      <div className={style.links}>
 
-        {/* <SearchBar /> */}
+        <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
+          <span className='navbar-toggler-icon' />
+        </button>
 
-        <Navegador link='/' span='Inicio' />
+        <div className={`collapse navbar-collapse  ${style.links}`} id='navbarNavAltMarkup'>
 
-        <Navegador link='/about' span='Sobre E-Wine' />
+          <div className='navbar-nav ms-auto me-2 mb-2 mb-lg-0'>
+            <Navegador link='/' span='Inicio' className='nav-link' />
 
-        <Navegador link='/home' span='Tienda' />
+            <Navegador link='/about' span='Sobre E-Wine' className='nav-link' />
 
-        <Navegador link='/createAccount' span='Crear Cuenta' />
+            <Navegador link='/home' span='Tienda' className='nav-link' />
 
-        <Navegador link='/createPublication' span='Crear Publicación' />
+            <Navegador link='/createAccount' span='Crear Cuenta' className='nav-link' />
 
-        <div className={style.carritoContainer}>
-          <Link to='/carrito'>
+            <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
+
+          </div>
+          <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
             <img src={bolsita} alt='bolsita' />
           </Link>
+
         </div>
       </div>
 
