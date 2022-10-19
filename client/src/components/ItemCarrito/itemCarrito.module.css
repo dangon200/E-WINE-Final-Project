@@ -1,0 +1,55 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.ItemCarrito{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    height: 200px;
+    width: 50%;
+    /* border-radius: 20px; */
+    background-color: white;
+    backdrop-filter: blur(10px);
+}
+
+.image{
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+    width: 30%;
+}
+
+.imagePublication{
+    /* border-radius: 10%; */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.containerCounter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    justify-content: flex-end;
+}
+
+
+.publication{
+    font-family: var(--font-family-1);
+    font-size: large;
+}
+
+.count, .price{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-1);
+    font-size: medium;
+}

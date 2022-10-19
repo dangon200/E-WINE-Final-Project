@@ -10,7 +10,6 @@ const initialState = {
   favorites: [],
   carrito: [],
   recomendedPublication: []
-
 }
 
 export default function reducer (state = initialState, action) {
