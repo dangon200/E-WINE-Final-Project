@@ -82,6 +82,7 @@ export default function LandingPage () {
             <section className='card-body'>
               <h4 className='card-title fs-2'>Dars ishlanma</h4>
               <p className=' card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
+
             </section>
           </div>
           <div className={`card  ${style.card}`}>

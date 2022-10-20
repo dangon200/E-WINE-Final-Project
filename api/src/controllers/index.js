@@ -1,4 +1,4 @@
-const { Publication, Product } = require('../db.js')
+const { Publication, Product, User } = require('../db.js')
 const { Op } = require('sequelize')
 
 const getPublicationsDb = async () => {
@@ -34,6 +34,51 @@ const getPublicationsDb = async () => {
     throw new Error('Error tratando de obtener todas las publicaciones!')
   }
 }
+
+const getPublicationsOfUser = async (id) => {
+  const results = []
+
+  try {
+    const dbResults = await Publication.findAll({
+      include: [{
+        model: Product
+      }, {
+        model: User,
+        where: {
+          id
+        }
+      }],
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.forEach(async r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin,
+        userId: r.userId,
+        email: r.user.email,
+        username: r.user.username
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error(`Error tratando de obtener todas las publicaciones del usuario con el id: ${id}!`)
+  }
+}
+
 const createPublication = async (productId, title, price, count, image, description) => {
   try {
     const newPublication = await Publication.create({ title, price, count, image, description, productId })
@@ -161,7 +206,35 @@ const getPublicationsByName = async (name) => {
       }
     })
 
-    dbResults.forEach(r => {
+    const dbResultsType = await Publication.findAll({
+      include: {
+        model: Product,
+        where: {
+          type: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+      },
+      where: {
+        isBanned: false
+      }
+    })
+
+    const dbResultsOrigin = await Publication.findAll({
+      include: {
+        model: Product,
+        where: {
+          origin: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+      },
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.concat(dbResultsType).concat(dbResultsOrigin).forEach(r => {
       results.push({
         id: r.id,
         title: r.title,
@@ -193,5 +266,6 @@ module.exports = {
   orderPublicationsLessPrice,
   orderPublicationsAtoZ,
   orderPublicationsZtoA,
-  getPublicationsByName
+  getPublicationsByName,
+  getPublicationsOfUser
 }

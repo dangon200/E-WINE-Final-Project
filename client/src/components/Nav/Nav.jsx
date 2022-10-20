@@ -1,14 +1,17 @@
 import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
-// import logo from '../assets/imgs/e-wine-logo.png'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
-// import SearchBar from '../SearchBar/SearchBar'
-// import { BsCart } from 'react-icons/bs'
+import Cookies from 'universal-cookie'
 import bolsita from '../assets/imgs/bolsita.png'
+import FormLogin from '../FormLogin/FormLogin'
 
 export default function Nav () {
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
+  console.log(token)
+
   const carritoItems = useSelector(state => state.carrito)
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
@@ -32,9 +35,19 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
-            <Navegador link='/createAccount' span='Crear Cuenta' className='nav-link' />
+            <FormLogin />
+            {/* <Navegador
+              link={token ? '/profile' : '/login'}
+              span={token ? 'Mi Cuenta' : 'Iniciar Sesión'}
+              className='nav-link'
+            /> */}
+
+            {/* <Navegador className='nav-link' link='' span={token ? 'Mi Cuenta' : 'Iniciar Sesión'} /> */}
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
+            {/* {
+              token && <Navegador link='/home' span='Cerrar' className='nav-link' />
+            } */}
 
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>

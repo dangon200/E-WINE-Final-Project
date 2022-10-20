@@ -4,37 +4,49 @@ import { useState, useEffect } from 'react'
 import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
-import { useHistory } from 'react-router-dom'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 
+import Cookies from 'universal-cookie'
+
 export default function FormCreatePubli () {
-  const history = useHistory()
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch, products])
 
-  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm } = useFormik({
-    initialValues: { productId: '', title: '', price: 0, description: '', count: 0, image: {} },
+  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
+    initialValues: {
+      productId: '',
+      title: '',
+      price: 0,
+      description: '',
+      count: 0,
+      image: {}
+    },
     validationSchema: schemaFormPubli,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const url = await uplodCloudinary(values.image)
         values.image = url
-        dispatch(postPublication(values))
+
+        dispatch(postPublication({ ...values, userId: token.user.id }, token.token))
+        resetForm()
           .then(data => {
+            resetForm()
             setSend(true)
             setTimeout(() => {
               setSend(false)
-              setTimeout(() => {
-                history.push(`/publication/${data.payload.id}`)
-              }, 1000)
             }, 3000)
-            resetForm()
+          })
+          .catch(errors => {
+            console.log('🤬 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ errors', errors)
           })
       } catch (error) {
-        console.log(error)
+        console.log('🚀 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ error', error)
       }
     }
   })
@@ -42,6 +54,7 @@ export default function FormCreatePubli () {
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
+
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>
@@ -145,7 +158,12 @@ export default function FormCreatePubli () {
                 {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
               </div>
             </div>
-            <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Crear Publicación</button>
+            <button
+              type='submit'
+              className={`btn btn-success btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
+              disabled={isSubmitting && true}
+            >Crear Publicación
+            </button>
             {send && <div className={style.send}>Publicación creada con éxito!</div>}
           </form>
 

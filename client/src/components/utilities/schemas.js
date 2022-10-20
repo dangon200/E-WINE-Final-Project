@@ -1,7 +1,7 @@
 import * as Yup from 'yup'
 import { types, provinces, varietales } from './data'
 
-const startWichLetter = /^[^0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?][a-zA-Z0-9_]+\s*/gi
+const startWichLetter = /^[^0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?][a-zA-Z0-9$-?¿¡!%.,\s]*$/gi // eslint-disable-line
 const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/gm
 // at least 8 characters
 // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
@@ -11,8 +11,8 @@ export const schemaFormPubli = Yup.object().shape({
   title: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres'),
   price: Yup.number('Solo números').required('Es Requerido').min(1, 'Min 1').positive('Positive number').max(500000, 'Max $500.000'),
   description: Yup.string().required('Es Requerido').min(10, 'Min 10 caracteres').max(150, 'Max 150 caracteres'),
-  count: Yup.number().required('Es Requerido').min(1, 'Min 1').positive('Min 1').max(10000, 'Max 10.000'),
-  productId: Yup.string().required('Por favor seleccione un producto').uuid(),
+  count: Yup.number().integer('No números decimales').required('Es Requerido').min(1, 'Min 1').positive('Min 1').max(10000, 'Max 10.000'),
+  // productId: Yup.string().required('Por favor seleccione un producto').uuid(),
   image: Yup.mixed().required('Es Requerido')
     .test('fileSize', 'La imagen es requerida', value => value && value.size >= 1000)
     .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
@@ -42,6 +42,11 @@ export const schemaValidateUser = Yup.object().shape({
     .oneOf([Yup.ref('copyPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
   copyPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
   region: Yup.string().required('Por favor seleccione una Provincia').oneOf(provinces)
+})
+
+export const schemaLogin = Yup.object().shape({
+  email: Yup.string().email('Formato inválido').required('Es requerido'),
+  password: Yup.string().required('Es requerido')
 })
 
 // FUNCTION VALIDATE URL IMAGE

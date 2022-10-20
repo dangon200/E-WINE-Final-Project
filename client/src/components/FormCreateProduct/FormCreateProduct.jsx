@@ -10,10 +10,10 @@ import { postProduct } from '../../store/actions/actions'
 
 export default function FormCreateProduct () {
   const dispatch = useDispatch() //
-  const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, resetForm } = useFormik({
+  const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, isSubmitting } = useFormik({
     initialValues: { name: '', type: '', varietal: '', origin: '', img: '', cellar: '' },
     validationSchema: schemaFormProduct,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const url = await uplodCloudinary(values.img)
         values.img = url
@@ -125,7 +125,12 @@ export default function FormCreateProduct () {
             />
             {errors.cellar && touched.cellar && <p className='text-danger'>{errors.cellar}</p>}
           </div>
-          <button type='submit' className='btn btn-success btn-block btn-lg mt-4'>Crear Producto</button>
+          <button
+            type='submit'
+            className={`btn btn-success btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
+            disabled={isSubmitting && true}
+          >Crear Producto
+          </button>
           {send && <div className={style.send}>Producto creado con éxito!</div>}
         </form>
       </section>

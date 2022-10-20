@@ -21,7 +21,7 @@ export default function ItemCarrito (props) {
       <button className={style.close} onClick={() => { removeFromCarrito(id) }}>
         X
       </button>
-      <Link>
+      <Link to={`/publication/${id}`}>
         Volver a la publicación
       </Link>
       <div className={style.ItemCarrito}>

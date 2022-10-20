@@ -29,7 +29,7 @@ export function getByPublication (id) {
   }
 }
 
-export function postPublication (data) {
+export function postPublication (data, token) {
   return async function (dispatch) {
     try {
       const api = await axios.post(`${urlApi}/publications`, data)
@@ -39,7 +39,8 @@ export function postPublication (data) {
         payload: api.data
       })
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      throw new Error(error.response.data)
     }
   }
 }
