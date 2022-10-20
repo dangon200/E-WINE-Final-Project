@@ -1,18 +1,33 @@
 import { useFormik } from 'formik'
-import axios from 'axios'
+/* import axios from 'axios' */
 
 export default function FormLogin () {
-  const urlApi = 'https://e-winespf.herokuapp.com'
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
+
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
+
     initialValues: {
       email: '',
       password: ''
     },
 
     onSubmit: async (values) => {
-      const response = await axios.post(urlApi + '/users/login', values)
-      console.log(response)
+
+      fetch('https://e-winespf.herokuapp.com/users/login', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password
+        }),
+        headers: {
+          'Content-type': 'application/json'
+        },
+        credentials: 'include'
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data))
+
     }
+
   })
   return (
     <div className='container user-select-none'>
