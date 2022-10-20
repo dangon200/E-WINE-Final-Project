@@ -44,11 +44,6 @@ export const schemaValidateUser = Yup.object().shape({
   region: Yup.string().required('Por favor seleccione una Provincia').oneOf(provinces)
 })
 
-export const schemaLogin = Yup.object().shape({
-  email: Yup.string().email('Formato inválido').required('Es requerido'),
-  password: Yup.string().required('Es requerido')
-})
-
 // FUNCTION VALIDATE URL IMAGE
 export const validateUrl = (value) => {
   if (/[-a-zA-Z0-9@:%_+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&//=]*)?/gi.test(value)) {
