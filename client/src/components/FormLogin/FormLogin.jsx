@@ -3,7 +3,9 @@ import { useFormik } from 'formik'
 import Cookies from 'universal-cookie'
 
 export default function FormLogin () {
+
   const cookies = new Cookies()
+
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
 
     initialValues: {
@@ -11,7 +13,8 @@ export default function FormLogin () {
       password: ''
     },
 
-    onSubmit: async (values) => {
+
+    onSubmit: async (values, { resetForm }) => {
       fetch('https://e-winespf.herokuapp.com/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -23,6 +26,7 @@ export default function FormLogin () {
         },
         credentials: 'include'
       })
+        .then(resetForm())
         .then((res) => res.json())
         .then((data) => {
           console.log(data)
@@ -31,6 +35,7 @@ export default function FormLogin () {
           })
           window.location.href = '/home'
         })
+
     }
 
   })
