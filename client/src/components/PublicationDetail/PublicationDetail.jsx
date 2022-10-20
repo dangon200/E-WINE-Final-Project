@@ -17,7 +17,8 @@ export default function PublicationDetail (props) {
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams()// props.match.params.id
-  const [count, setCount] = useState(1)
+  const { name, price, title, image } = publication
+  const [counter, setCounter] = useState(1)
 
   useEffect(() => {
     dispatch(getByPublication(id))
@@ -26,22 +27,20 @@ export default function PublicationDetail (props) {
   const isInFavorites = (id) => {
     return favorites.some(f => f === id)
   }
-  const addToCarrito = (id, countParam) => {
+  const addToCarrito = (id, price, title, image, name, countParam) => {
     if (window.localStorage.hasOwnProperty(id)) { // eslint-disable-line
-      window.localStorage[id] = countParam + parseInt(window.localStorage[id]); dispatch(addCarrito({ id, count: window.localStorage[id] }))
+      console.log('entre al if')
+      window.localStorage[id] = JSON.stringify({ ...JSON.parse(window.localStorage[id]), count: (countParam + JSON.parse(window.localStorage[id]).count) })
+      dispatch(addCarrito({ id, price, title, image, name, count: JSON.parse(window.localStorage[id]).count }))
     } else {
-      window.localStorage.setItem(id, countParam)
-      dispatch(addCarrito({ id, count: countParam }))
+      console.log('entre al else')
+      window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: countParam }))
+      dispatch(addCarrito({ id, price, title, image, name, count: countParam }))
     }
-    // for (let i = 0; i < countParam; i++) {
-    //   const key = window.localStorage.length
-    //   window.localStorage.setItem(id, totalCount)
-    //   dispatch(addCarrito(id))
-    // }
   }
   const updateCount = (param) => {
-    if (param === 'rest' && count > 1) setCount(count - 1)
-    if (param === 'add') setCount(count + 1)
+    if (param === 'rest' && counter > 1) setCounter(counter - 1)
+    if (param === 'add') setCounter(counter + 1)
   }
 
   return (
@@ -59,15 +58,15 @@ export default function PublicationDetail (props) {
           </div>
           {/* Div que contiene la imagen del Product */}
           <div className={style.imageContainer}>
-            <img src={publication.image} alt={`${publication.name}`} />
+            <img src={image} alt={`${publication.name}`} />
           </div>
         </div>
 
         {/* Esta es la segunda tarjeta */}
         <div className={style.card2}>
           <div className={style.header}>
-            <h1 className={style.h1}>{publication.name}</h1>
-            <span>${publication.price}</span>
+            <h1 className={style.h1}>{name}</h1>
+            <span>${price}</span>
             <br />
             <span>Stock: {publication.count}</span>
           </div>
@@ -75,12 +74,12 @@ export default function PublicationDetail (props) {
             {/* PEDIDO */}
             <div className={style.pedido}>
               <button className={style.btnR} onClick={() => updateCount('rest')}> - </button>
-              <span>{count}</span>
+              <span>{counter}</span>
               <button className={style.btnS} onClick={() => updateCount('add')}> + </button>
             </div>
             {/* CARRITO */}
             <div className={style.carrito}>
-              <button onClick={() => { addToCarrito(id, count) }}>AGREGAR AL CARRITO</button>
+              <button onClick={() => { addToCarrito(id, price, title, image, name, counter) }}>AGREGAR AL CARRITO</button>
               <Link to='/Carrito'>
                 <button>COMPRAR AHORA</button>
               </Link>
@@ -97,7 +96,8 @@ export default function PublicationDetail (props) {
     </div>
   )
 }
-// ________________CODIGO 1 con lo nuevo de Lauti________________________
+
+/* // ________________CODIGO 1 con lo nuevo de Lauti________________________
 // import { useEffect, useState } from 'react'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { useParams, Link } from 'react-router-dom'
@@ -146,12 +146,12 @@ export default function PublicationDetail (props) {
 //           <span>{publication.price}</span>
 //           <span>{publication.count}</span>
 //         </div>
-//         {/* FAVORITES */}
+//         {/* FAVORITES */
 //         <div className={style.iconContainer}><MdFavoriteBorder
 //           className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
 //             isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-//           }}
-//                                              />
+//
+//
 //         </div>
 //         {/* PEDIDO */}
 //         <div className={style.pedido}>
@@ -209,4 +209,4 @@ export default function PublicationDetail (props) {
 //   : (
 //     <div>
 //       <h1>Loading...</h1>
-//     </div>)}
+//     </div>)} */

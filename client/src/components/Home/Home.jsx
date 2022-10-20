@@ -9,6 +9,7 @@ import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
+//  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
   const dispatch = useDispatch()
@@ -52,7 +53,7 @@ export default function Home () {
           <SearchBar />
         </div>
         <div>
-          <Filters />
+          <Filters setPage={setPage} />
         </div>
       </div>
       {typeof publications !== 'string' &&

@@ -12,21 +12,26 @@ import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
+import FormSignUp from './components/FormSignUp/FormSignUp'
+import FormLogin from './components/FormLogin/FormLogin'
 
 function App () {
   const dispatch = useDispatch()
 
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
-      dispatch(addCarrito({ id: window.localStorage.key(x), count: parseInt(window.localStorage.getItem(window.localStorage.key(x))) }))
+      const id = window.localStorage.key(x)
+      dispatch(addCarrito({ id, price: JSON.parse(window.localStorage.getItem(id)).price, title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
     }
   })
 
   return (
-    <div className='App'>
+    <div className='App container-xxl px-0'>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
+        <Route exact path='/formLogin' component={FormLogin} />
+        <Route exact path='/form' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
