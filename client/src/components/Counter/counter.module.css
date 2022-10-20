@@ -1,0 +1,11 @@
+.pedido{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+
+.buttonMasMenos{
+    background-color: white;
+    border: none;
+}

@@ -16,8 +16,8 @@ export default function RecomendedPublications (props) {
     <div className={style.container}>
       <div className={style.title}><h1>Recomendado para vos</h1></div>
       <div className={style.cards}>
-        {Array.isArray(recomendedPublication) && recomendedPublication.length > 1
-          ? recomendedPublication.slice(1, 4).map(p => {
+        {Array.isArray(recomendedPublication) && recomendedPublication.length > 0
+          ? recomendedPublication.slice(0, 3).map(p => {
             return (
               <Card
                 id={p.id}
