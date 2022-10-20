@@ -10,7 +10,7 @@ export default function FormLogin () {
     },
 
     onSubmit: async (values) => {
-      const response = await axios.post(urlApi + '/users/user', values)
+      const response = await axios.post(urlApi + '/users/login', values)
       console.log(response)
     }
   })
