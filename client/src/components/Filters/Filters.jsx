@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { filterPublications, clearFilter } from '../../store/actions/actions'
 import s from './Filter.module.css'
 
-function Filters () {
+function Filters ({ setPage }) {
   const [filter, setFilter] = useState({
     opt: '',
     varietal: '',
@@ -24,7 +24,7 @@ function Filters () {
     /*  dispatch(
       filterPublications(filter)
     ) */
-    // setPage(1)
+    setPage(1)
   }
 
   return (

@@ -18,10 +18,11 @@
 
 }
 .btn:hover{
-    color: var(--normal-font-color);
+    /* color: var(--normal-font-color); */
     font-family: var(--font-family-1);
     /* font-weight: 600; */
-    background-color: var(--background-color);
+    /* background-color: var(--background-color); */
+    background-color: #170000;
     border: 1px solid var(--btn-border-color);
     border-radius: 7px;  
     transition: .3s;
