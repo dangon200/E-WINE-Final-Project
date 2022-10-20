@@ -5,53 +5,29 @@ const { User } = require('../db')
 
 const userController = require('../controllers/users')
 
-const passport = require('passport')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) throw err
-    if (!user) return res.status(200).json('Usuario no existe!')
-    req.logIn(user, (err) => {
-      if (err) throw err
-      return res.status(200).json(user)
-    })
-  })(req, res, next)
-})
-
-router.get('/logout', async (req, res, next) => {
-  /*  await req.session.destroy(function (err) {
-    if (err) return next(err);
-  }); */
-  await req.logOut(function (err) {
-    if (err) return next(err)
-  })
-  res.clearCookie('e-wine')
-  res.send(false)
-
-  /* req.logout(function (err) {
-    if (err) return next(err);
-    res.send(false);
-  }); */
-})
-
-router.get('/user', (req, res) => {
-  console.log(req.user)
-  if (req.user) return res.send(req.user)
-  // store the entire user that has been authenticated
-  else res.send(false)
-})
-
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { email, password } = req.body
 
   try {
     const userEmail = await User.findOne({ where: { email } })
 
-    if (!userEmail) return res.status(404).json('Email no encontrado!')
-    if (userEmail.password !== password) return res.status(404).json('Password es incorrecto')
+    if (!userEmail) return res.status(200).json('Email no encontrado!')
+    console.log(userEmail.password)
+    const passwordMatch = await bcrypt.compare(password, userEmail.password)
+    console.log(passwordMatch)
+    if (!passwordMatch) return res.status(200).json('Password es incorrecto')
 
     const userById = await userController.getUserById(userEmail.id)
-    res.status(200).json(userById)
+    const token = jwt.sign({
+      userId: userById.id,
+      email: userById.email,
+      username: userById.username
+    }, 'RANDOM_TOKEN', { expiresIn: '24h' })
+
+    res.status(200).json({ user: userById, token })
   } catch (error) {
     res.status(400).json(error.message)
   }
@@ -131,8 +107,20 @@ router.post('/', async (req, res) => {
 
     if (emailExist) {
       return res
-        .status(404)
+        .status(200)
         .json('Existe un usuario con esa direccion de email. Prueba con una nueva!')
+    }
+
+    const usernameExist = await User.findOne({
+      where: {
+        username
+      }
+    })
+
+    if (usernameExist) {
+      return res
+        .status(200)
+        .json('Existe un usuario con ese username. Pruebe con una nuevo!')
     }
 
     const userCreated = await userController.createUser(
