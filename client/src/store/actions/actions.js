@@ -39,7 +39,8 @@ export function postPublication (data, token) {
         payload: api.data
       })
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      throw new Error(error.response.data)
     }
   }
 }
