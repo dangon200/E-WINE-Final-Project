@@ -5,31 +5,9 @@ import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 // import { removeCarrito } from '../../store/actions/actions'
 
-<<<<<<< HEAD
-const getCarritoPublications = (carrito, publications) => {
-  const pubInCarrito = []
-  carrito.forEach(c => {
-    pubInCarrito.push([publications.find(p => p.id === c.id), c.count])
-  })
-  return pubInCarrito
-}
-
-=======
->>>>>>> 6f687c6612c99809c14a787f4054279a50d66ad6
 export default function Carrito () {
   // const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
-<<<<<<< HEAD
-  const publications = useSelector(state => state.allPublications)
-  const publicationsCarrito = getCarritoPublications(carrito, publications)
-  console.log('carrito', carrito, 'publications', publications, 'publicationsCarrito', publicationsCarrito)
-
-  /* const removeFromCarrito = (id) => {
-    dispatch(removeCarrito(id))
-  } */
-
-=======
->>>>>>> 6f687c6612c99809c14a787f4054279a50d66ad6
   return (
 
     <div className={style.container}>

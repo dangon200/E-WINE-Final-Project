@@ -28,17 +28,23 @@ lo comenté porque rompe el ancho de la página
 
 .containerProducts{
     width: 100%;
-    display: flex;
+    /* display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 24px;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: 400px auto;
+    /* justify-content: center;
+    align-items: center; */
+    /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
+    gap: 1rem;
     padding-bottom: 50px;
 }
 
 .Filters{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center; */
+    width: fit-content;
     gap: 20px;
     font-size: 2rem;
     font-weight: 600;
@@ -50,9 +56,9 @@ lo comenté porque rompe el ancho de la página
 }
 
 .sectionCards{
-    display: flex;
+    display: grid;
     justify-content: center;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .buttonLeft, .buttonRight{

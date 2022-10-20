@@ -25,7 +25,7 @@ function App () {
   })
 
   return (
-    <div className='App container-xxl'>
+    <div className='App'>
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
