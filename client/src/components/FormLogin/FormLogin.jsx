@@ -4,7 +4,8 @@ import Cookies from 'universal-cookie'
 
 export default function FormLogin () {
   const cookies = new Cookies()
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
+
     initialValues: {
       email: '',
       password: ''
@@ -66,7 +67,8 @@ export default function FormLogin () {
           </div>
           <button
             type='submit'
-            className='btn btn-primary mt-3'
+            className={`btn btn-primary mt-3 ${isSubmitting && 'disabled'}`}
+            disabled={isSubmitting && true}
           >
             Iniciar sesión
           </button>
