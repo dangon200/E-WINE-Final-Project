@@ -3,9 +3,12 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const routes = require('./routes/index.js')
+const dotenv = require ('dotenv')
+const { ACCESS_TOKEN_MP } = process.env
+
 
 require('./db.js')
-
+dotenv.config()
 const server = express()
 
 server.name = 'API'
@@ -35,5 +38,12 @@ server.use((err, req, res, next) => {
   console.error(err)
   res.status(status).send(message)
 })
+
+//CONFIGURACION MERCADOPAGO
+
+//var mercadopago = require('mercadopago');
+//mercadopago.configure({
+//    access_token: {ACCESS_TOKEN_MP}
+//});
 
 module.exports = server
