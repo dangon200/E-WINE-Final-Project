@@ -13,7 +13,7 @@ export default function FormCreatePubli () {
     dispatch(getProducts())
   }, [dispatch, products])
 
-  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm, isSubmitting } = useFormik({
+  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
     initialValues: {
       productId: '',
       title: '',
@@ -24,13 +24,13 @@ export default function FormCreatePubli () {
       userId: 'e6e7a743-0dc0-4dd6-a48a-18ec9c3bcdcf'
     },
     validationSchema: schemaFormPubli,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const url = await uplodCloudinary(values.image)
         values.image = url
         dispatch(postPublication(values))
-        resetForm()
           .then(data => {
+            resetForm()
             setSend(true)
             setTimeout(() => {
               setSend(false)
