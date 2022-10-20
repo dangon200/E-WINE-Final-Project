@@ -36,8 +36,11 @@ export default function FormCreatePubli () {
               setSend(false)
             }, 3000)
           })
+          .catch(errors => {
+            console.log('🤬 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ errors', errors)
+          })
       } catch (error) {
-        console.log(error)
+        console.log('🚀 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ error', error)
       }
     }
   })
@@ -45,6 +48,7 @@ export default function FormCreatePubli () {
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
+
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>
