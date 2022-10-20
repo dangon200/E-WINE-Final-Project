@@ -13,7 +13,6 @@ import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import FormSignUp from './components/FormSignUp/FormSignUp'
-import FormLogin from './components/FormLogin/FormLogin'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 
 function App () {
@@ -31,7 +30,6 @@ function App () {
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
-        <Route exact path='/login' component={FormLogin} />
         <Route exact path='/register' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
