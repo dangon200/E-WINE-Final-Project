@@ -12,7 +12,9 @@ import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
+// import PaymentStripe from './components/PaymentStripe/PaymentStripe'
 import FormLogin from './components/FormLogin/FormLogin'
+import CardStripe from './components/CardStripe/CardStripe'
 
 function App () {
   const dispatch = useDispatch()
@@ -36,6 +38,7 @@ function App () {
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
+        <Route path='/payment' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />

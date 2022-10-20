@@ -29,8 +29,8 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <Link to='/Buy'>
-        <button>Continuar compra</button>
+      <Link to='/payment'>
+        <button>Pagar con Tarjeta</button>
       </Link>
     </div>
   )
