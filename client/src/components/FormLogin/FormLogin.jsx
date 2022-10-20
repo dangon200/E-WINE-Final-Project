@@ -34,6 +34,7 @@ export default function FormLogin () {
 
           .then((res) => res.json())
           .then((data) => {
+            resetForm()
             if (typeof data !== 'string') {
               cookies.set('TOKEN', data, {
                 path: '/'
@@ -43,13 +44,10 @@ export default function FormLogin () {
             } else {
               setError(!err)
               setTimeout(() => {
-                resetForm()
                 setError(false)
               }, 3000)
             }
           })
-      } else {
-        cookies.remove('TOKEN')
       }
     }
   })
@@ -100,13 +98,9 @@ export default function FormLogin () {
                     />
                     {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
                   </div>
-                  <button
-                    type='submit'
-                    className={`btn ${!user ? 'btn-primary' : 'btn-danger'} mt-3 ${isSubmitting && 'disabled'}`}
-                    disabled={isSubmitting && true}
-                  >
-                    {!user ? 'Iniciar sesión' : 'Cerrar sesión'}
-                  </button>
+                  {!user && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
+                  {user && <button className='btn btn-danger mt-3 ' onClick={() => cookies.remove('TOKEN')}>Cerrar sesión</button>}
+
                   {err &&
                     <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
                   {
