@@ -5,6 +5,7 @@ import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
 import bolsita from '../assets/imgs/bolsita.png'
+import FormLogin from '../FormLogin/FormLogin'
 
 export default function Nav () {
   const cookies = new Cookies()
@@ -34,11 +35,14 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
-            <Navegador
+            <FormLogin />
+            {/* <Navegador
               link={token ? '/profile' : '/login'}
               span={token ? 'Mi Cuenta' : 'Iniciar Sesión'}
               className='nav-link'
-            />
+            /> */}
+
+            {/* <Navegador className='nav-link' link='' span={token ? 'Mi Cuenta' : 'Iniciar Sesión'} /> */}
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
             {
