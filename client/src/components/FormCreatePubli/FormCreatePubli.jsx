@@ -7,10 +7,15 @@ import { getProducts, postPublication } from '../../store/actions/actions'
 import { useHistory } from 'react-router-dom'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 
+import Cookies from 'universal-cookie'
+
 export default function FormCreatePubli () {
   const history = useHistory()
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch, products])
@@ -22,7 +27,7 @@ export default function FormCreatePubli () {
       try {
         const url = await uplodCloudinary(values.image)
         values.image = url
-        dispatch(postPublication(values))
+        dispatch(postPublication({ ...values, userId: token.user.id }, token.token))
           .then(data => {
             setSend(true)
             setTimeout(() => {
