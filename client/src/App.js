@@ -12,6 +12,7 @@ import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
+import FormSignUp from './components/FormSignUp/FormSignUp'
 import FormLogin from './components/FormLogin/FormLogin'
 
 function App () {
@@ -29,7 +30,8 @@ function App () {
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
-        <Route exact path='/form' component={FormLogin} />
+        <Route exact path='/formLogin' component={FormLogin} />
+        <Route exact path='/form' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
