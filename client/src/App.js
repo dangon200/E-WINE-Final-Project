@@ -31,8 +31,8 @@ function App () {
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
-        <Route exact path='/formLogin' component={FormLogin} />
-        <Route exact path='/form' component={FormSignUp} />
+        <Route exact path='/login' component={FormLogin} />
+        <Route exact path='/register' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />

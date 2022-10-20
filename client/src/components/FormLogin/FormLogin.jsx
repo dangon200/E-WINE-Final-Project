@@ -3,7 +3,6 @@ import { useFormik } from 'formik'
 import Cookies from 'universal-cookie'
 
 export default function FormLogin () {
-
   const cookies = new Cookies()
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
@@ -12,7 +11,6 @@ export default function FormLogin () {
       email: '',
       password: ''
     },
-
 
     onSubmit: async (values, { resetForm }) => {
       fetch('https://e-winespf.herokuapp.com/users/login', {
@@ -26,16 +24,16 @@ export default function FormLogin () {
         },
         credentials: 'include'
       })
-        .then(resetForm())
+
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
-          cookies.set('TOKEN', data, {
-            path: '/'
-          })
-          window.location.href = '/home'
+          if (typeof data !== 'string') {
+            cookies.set('TOKEN', data, {
+              path: '/'
+            })
+            window.location.href = '/home'
+          } console.log(data)
         })
-
     }
 
   })
@@ -76,6 +74,13 @@ export default function FormLogin () {
             disabled={isSubmitting && true}
           >
             Iniciar sesión
+          </button>
+          <button
+            type='submit'
+            className={`btn btn-success mt-5 ${isSubmitting && 'disabled'}`}
+            disabled={isSubmitting && true}
+          >
+            Iniciar sesión con GitHub
           </button>
         </div>
       </form>
