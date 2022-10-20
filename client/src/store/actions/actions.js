@@ -29,7 +29,7 @@ export function getByPublication (id) {
   }
 }
 
-export function postPublication (data) {
+export function postPublication (data, token) {
   return async function (dispatch) {
     try {
       const api = await axios.post(`${urlApi}/publications`, data)
