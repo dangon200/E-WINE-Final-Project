@@ -9,7 +9,8 @@ import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
-import Container from 'react-bootstrap/esm/Container'
+import Container from 'react-bootstrap/Container'
+//  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
   const dispatch = useDispatch()
