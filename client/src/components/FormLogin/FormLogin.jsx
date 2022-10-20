@@ -1,9 +1,10 @@
 import { useFormik } from 'formik'
 /* import axios from 'axios' */
+import Cookies from 'universal-cookie'
 
 export default function FormLogin () {
-
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
+  const cookies = new Cookies()
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
 
     initialValues: {
       email: '',
@@ -11,7 +12,6 @@ export default function FormLogin () {
     },
 
     onSubmit: async (values) => {
-
       fetch('https://e-winespf.herokuapp.com/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -24,8 +24,13 @@ export default function FormLogin () {
         credentials: 'include'
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
-
+        .then((data) => {
+          console.log(data)
+          cookies.set('TOKEN', data, {
+            path: '/'
+          })
+          window.location.href = '/home'
+        })
     }
 
   })

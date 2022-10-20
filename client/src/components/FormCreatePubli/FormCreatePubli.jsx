@@ -6,9 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 
+import Cookies from 'universal-cookie'
+
 export default function FormCreatePubli () {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch, products])
@@ -20,15 +25,14 @@ export default function FormCreatePubli () {
       price: 0,
       description: '',
       count: 0,
-      image: {},
-      userId: 'e6e7a743-0dc0-4dd6-a48a-18ec9c3bcdcf'
+      image: {}
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values) => {
       try {
         const url = await uplodCloudinary(values.image)
         values.image = url
-        dispatch(postPublication(values))
+        dispatch(postPublication({ ...values, userId: token.user.id }, token.token))
         resetForm()
           .then(data => {
             setSend(true)
