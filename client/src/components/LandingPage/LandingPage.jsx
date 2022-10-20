@@ -66,7 +66,6 @@ export default function LandingPage () {
 
       </section> */}
 
-
       <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
         <h2 className='row'>Recomendados por expertos</h2>
         <article className={`row ${style.gridCards}`}>
@@ -94,7 +93,7 @@ export default function LandingPage () {
             </section>
           </div>
         </article>
-      </section> */}
+      </section>
 
       <section className={`container-fluid px-0 text-center text-lg-start  ${style.sectionAboutProject}`}>
         <div className={` row ${style.divAboutProject}`}>

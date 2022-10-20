@@ -6,7 +6,7 @@ import axios from 'axios'
 
 export default function FormLogin () {
   const dispatch = useDispatch() //eslint-disable-line
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
       username: '',
       email: '',
@@ -84,7 +84,7 @@ export default function FormLogin () {
             <select
               name='region'
               id='region'
-              className={`form-select ${touched.origin ? errors.origin ? 'is-invalid' : 'is-valid' : null}`}
+              className={`form-select ${touched.region ? errors.region ? 'is-invalid' : 'is-valid' : null}`}
               onChange={handleChange}
               onBlur={handleBlur}
               value={values.origin}
@@ -92,10 +92,15 @@ export default function FormLogin () {
               <option value=''>Seleccione una provincia</option>
               {provinces.map((province, index) => (<option key={index} value={province}>{province}</option>))}
             </select>
-            {touched.origin && errors.origin ? <div className='invalid-feedback'>{errors.origin}</div> : null}
+            {touched.region && errors.region ? <div className='invalid-feedback'>{errors.region}</div> : null}
           </div>
 
-          <button type='submit' className='col-6 btn btn-success mt-2'>Enviar</button>
+          <button
+            type='submit'
+            className={`col-6 btn btn-success mt-3 ${isSubmitting && 'disabled'}`}
+            disabled={isSubmitting && true}
+          >Enviar
+          </button>
         </div>
 
       </form>
