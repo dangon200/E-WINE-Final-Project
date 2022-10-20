@@ -1,5 +1,5 @@
 import { useFormik } from 'formik'
-/* import axios from 'axios' */
+import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 export default function FormLogin () {
@@ -12,7 +12,7 @@ export default function FormLogin () {
       password: ''
     },
 
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       fetch('https://e-winespf.herokuapp.com/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -75,8 +75,16 @@ export default function FormLogin () {
           >
             Iniciar sesión
           </button>
+          <Link to='/register'>
+            <button
+              className={`btn btn-info mt-3 ${isSubmitting && 'disabled'}`}
+              disabled={isSubmitting && true}
+            >
+              Crea Cuenta
+            </button>
+          </Link>
+
           <button
-            type='submit'
             className={`btn btn-success mt-5 ${isSubmitting && 'disabled'}`}
             disabled={isSubmitting && true}
           >
