@@ -9,7 +9,7 @@ import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/esm/Container'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
@@ -70,33 +70,36 @@ export default function Home () {
             />
             {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
           </div>}
-        {/* <div className={style.Filters}>
-          FILTRAR
-          <Filters />
-        </div> */}
-        <div className={style.containerProducts}>
-          <div className={style.Filters}>
+        <div className={style.filter_products}>
+          <nav className={style.navFilters}>
+            <div className={style.Filters}>
+              <Filters />
+            </div>
+          </nav>
+          <div className={style.containerProducts}>
+            {/* <div className={style.Filters}>
             FILTRAR
             <Filters />
+          </div> */}
+            {typeof publications !== 'string'
+              ? currentPageProducts.map((p) => {
+                return (
+                  <section className={style.sectionCards} key={p.id}>
+                    <div>
+                      <Card
+                        id={p.id}
+                        title={p.title}
+                        name={p.name}
+                        image={p.image}
+                        price={p.price.toLocaleString('es-MX')}
+                        key={p.id}
+                      />
+                    </div>
+                  </section>
+                )
+              })
+              : <Message message={publications} />}
           </div>
-          {typeof publications !== 'string'
-            ? currentPageProducts.map((p) => {
-              return (
-                <section className={style.sectionCards} key={p.id}>
-                  <div>
-                    <Card
-                      id={p.id}
-                      title={p.title}
-                      name={p.name}
-                      image={p.image}
-                      price={p.price.toLocaleString('es-MX')}
-                      key={p.id}
-                    />
-                  </div>
-                </section>
-              )
-            })
-            : <Message message={publications} />}
         </div>
         <div className={style.footer}>
           <Footer />

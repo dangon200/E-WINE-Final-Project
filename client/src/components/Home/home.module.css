@@ -5,8 +5,11 @@
 lo comenté porque rompe el ancho de la página
 } */
 
+
 .globalContainer{
+    width: 100%;
     margin-top: 8px;
+    min-height: 100vh;
 }
 
 .divPagination{
@@ -26,39 +29,50 @@ lo comenté porque rompe el ancho de la página
     }
 }
 
-.containerProducts{
-    width: 100%;
-    /* display: flex;
-    flex-direction: row;
-    justify-content: center; */
+.filter_products{
     display: grid;
-    grid-template-columns: 400px auto;
-    /* justify-content: center;
-    align-items: center; */
-    /* grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); */
+    justify-content: center;
+    grid-template-columns: repeat(6, 1fr);
+    /* grid-template-rows: repeat(2, auto); */
+    gap: 50px;
+}
+
+.navFilters{
+    grid-column: span 1;
+    /* grid-row: span 1; */
+}
+
+.containerProducts{
+    display: grid;
+    grid-column: span 5;
+    /* grid-row: auto; */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 1rem;
     padding-bottom: 50px;
 }
 
+/* .sectionCards{
+    display: grid;
+    grid-column: span 1;
+} */
+
 .Filters{
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: center; */
+    /* justify-content: center; */
     width: fit-content;
     gap: 20px;
     font-size: 2rem;
     font-weight: 600;
     font-family: var(--font-family-1);
     background-color: white;
-    height: 100%;
+    height: fit-content;
+    max-height: 100vh;
     margin-left: 10px;
     padding: 10px 10px 10px 0px;
-}
-
-.sectionCards{
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 }
 
 .buttonLeft, .buttonRight{
@@ -113,5 +127,18 @@ lo comenté porque rompe el ancho de la página
     }
     100%{
         opacity: 100
+    }
+}
+
+@media (max-width: 992px) {
+    .navFilters{
+        display: grid;
+        justify-content: center;
+        grid-column: span 6;
+        /* grid-template-columns: auto; */
+    }
+    .sectionCards{
+        display: flex;
+        justify-content: center;
     }
 }

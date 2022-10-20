@@ -59,3 +59,9 @@
     color: var(--background-color);
     transition: .3s;
 }
+
+@media (max-width: 992px) {
+    .general{
+        flex-direction: row;
+    }
+}
