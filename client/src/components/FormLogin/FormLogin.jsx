@@ -7,6 +7,8 @@ import { schemaLogin } from '../utilities/schemas'
 
 export default function FormLogin () {
   const cookies = new Cookies()
+  const user = cookies.get('TOKEN')
+  console.log(user)
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
 
@@ -16,47 +18,56 @@ export default function FormLogin () {
     },
     validationSchema: schemaLogin,
 
-    onSubmit: async (values) => {
-      fetch('https://e-winespf.herokuapp.com/users/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password
-        }),
-        headers: {
-          'Content-type': 'application/json'
-        },
-        credentials: 'include'
-      })
-
-        .then((res) => res.json())
-        .then((data) => {
-          if (typeof data !== 'string') {
-            cookies.set('TOKEN', data, {
-              path: '/'
-            })
-          } else {
-            setError(!err)
-            setTimeout(() => { setError(!err) }, 3000)
-          }
+    onSubmit: async (values, { resetForm }) => {
+      if (!user) {
+        fetch('https://e-winespf.herokuapp.com/users/login', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password
+          }),
+          headers: {
+            'Content-type': 'application/json'
+          },
+          credentials: 'include'
         })
-    }
 
+          .then((res) => res.json())
+          .then((data) => {
+            if (typeof data !== 'string') {
+              cookies.set('TOKEN', data, {
+                path: '/'
+              })
+              setSuccess(true)
+              setTimeout(() => { setSuccess(false) }, 3000)
+            } else {
+              setError(!err)
+              setTimeout(() => {
+                resetForm()
+                setError(false)
+              }, 3000)
+            }
+          })
+      } else {
+        cookies.remove('TOKEN')
+      }
+    }
   })
   const [err, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   return (
     <div className='user-select-none'>
 
       <button type='button' className={style.navlink} data-bs-toggle='modal' data-bs-target='#exampleModal'>
-        Iniciar sesión
+        {!user ? 'Iniciar sesión' : 'Cerrar sesión'}
       </button>
 
       <div className='modal fade' id='exampleModal' tabIndex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h1 className='modal-title fs-5' id='exampleModalLabel'>Iniciar sesion</h1>
+              <h1 className='modal-title fs-5' id='exampleModalLabel'>{!user ? 'Iniciar sesión' : 'Cerrar sesión'}</h1>
               <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close' />
             </div>
             <div className='modal-body'>
@@ -68,7 +79,7 @@ export default function FormLogin () {
                       type='email'
                       name='email'
                       id='email'
-                      className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null}`}
+                      className={`form-control ${!err ? touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -81,7 +92,8 @@ export default function FormLogin () {
                       type='password'
                       name='password'
                       id='password'
-                      className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : null}`}
+                      className={`form-control 
+                      ${!err ? touched.password ? errors.password ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -89,12 +101,11 @@ export default function FormLogin () {
                     {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
                   </div>
                   <button
-                    data-bs-dismiss='modal'
                     type='submit'
-                    className={`btn btn-primary mt-3 ${isSubmitting && 'disabled'}`}
+                    className={`btn ${!user ? 'btn-primary' : 'btn-danger'} mt-3 ${isSubmitting && 'disabled'}`}
                     disabled={isSubmitting && true}
                   >
-                    Iniciar sesión
+                    {!user ? 'Iniciar sesión' : 'Cerrar sesión'}
                   </button>
                   {err &&
                     <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
@@ -105,6 +116,8 @@ export default function FormLogin () {
                   >
                     Iniciar sesión con GitHub
                   </button> */}
+                  {success &&
+                    <div className='alert alert-success mt-3' role='alert'><p>Ha iniciado sesion</p> </div>}
                 </div>
               </form>
             </div>

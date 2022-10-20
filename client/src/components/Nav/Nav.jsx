@@ -45,9 +45,9 @@ export default function Nav () {
             {/* <Navegador className='nav-link' link='' span={token ? 'Mi Cuenta' : 'Iniciar Sesión'} /> */}
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
-            {
+            {/* {
               token && <Navegador link='/home' span='Cerrar' className='nav-link' />
-            }
+            } */}
 
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
