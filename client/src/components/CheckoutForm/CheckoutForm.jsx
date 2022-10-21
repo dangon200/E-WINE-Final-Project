@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react' // eslint-disable-line
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import 'bootswatch/dist/lux/bootstrap.min.css'
+import Cookies from 'universal-cookie'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { postStripe } from '../../store/actions/actions'
@@ -10,6 +11,10 @@ export default function CheckoutForm (props) {
   const elemets = useElements()
   const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
+  const cookies = new Cookies()
+  const user = cookies.get('TOKEN')
+  console.log(user)
+  console.log(user.user.id)
 
   const { totalAmount } = props
 
@@ -23,7 +28,7 @@ export default function CheckoutForm (props) {
     if (!error) {
       const { id } = paymentMethod
 
-      dispatch(postStripe(id, totalAmount * 100, carrito))
+      dispatch(postStripe(id, totalAmount * 100, carrito, user.user.id))
     }
   }
   return (

@@ -1,6 +1,8 @@
-const { Buy } = require('../db')
+const { Buy, Publication, BuyItem, User } = require('../db')
 const Stripe = require('stripe')
-const BuyItem = require('../models/BuyItem')
+// const BuyItem = require('../models/BuyItem')
+// const Publication = require('../models/Publication')
+// const User = require('../models/User')
 
 const { STRIPE_KEY } = process.env
 const stripe = new Stripe(STRIPE_KEY)
@@ -26,7 +28,11 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
       const newBuyItem = await createBuyItem(p.count, p.id)
       newBuy.addBuyItem(newBuyItem)
     })
-    // newBuy.addUser(userId)
+    console.log(userId)
+    // const userId2 = 'ba116f56-90eb-4f3e-ab5a-ac556dcf7e44'
+    const user = User.findByPk(userId)
+    newBuy.addUser(user)
+
     return newBuy
   } catch (error) {
     console.log(error)
@@ -38,7 +44,8 @@ const createBuyItem = async (countProduct, publicationId) => {
     const newBuyItem = await BuyItem.create({
       countProduct
     })
-    newBuyItem.addPublication(publicationId)
+    const publication = Publication.findByPk(publicationId)
+    newBuyItem.addPublication(publication)
     return newBuyItem
   } catch (error) {
     return new Error('Error en la creación del BuyItem')

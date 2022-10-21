@@ -180,13 +180,14 @@ export const getRecomendedPublications = (type, varietal, origin) => {
 
 // STRIPE
 
-export const postStripe = (idStripe, totalAmount, carrito) => {
+export const postStripe = (idStripe, totalAmount, carrito, userId) => {
   return async function (dispatch) {
     try {
       const res = await axios.post('http://localhost:3001/stripe', {
         idStripe,
         totalAmount,
-        carrito
+        carrito,
+        userId
       })
       console.log(res)
       return dispatch({
