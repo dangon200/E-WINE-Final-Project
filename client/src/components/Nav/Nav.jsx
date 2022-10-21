@@ -2,10 +2,9 @@ import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
-import carrito from '../../utils/images/cart-design.png'
 import { useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
-// import bolsita from '../assets/imgs/bolsita.png'
+import bolsita from '../assets/imgs/bolsita.png'
 
 export default function Nav () {
   const cookies = new Cookies()
@@ -49,8 +48,9 @@ export default function Nav () {
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
-            <img src={carrito} alt='bolsita' />
+            <img src={bolsita} alt='bolsita' />
           </Link>
+
         </div>
       </div>
 
