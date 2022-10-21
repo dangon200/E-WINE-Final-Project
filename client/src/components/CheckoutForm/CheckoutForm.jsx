@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react' // eslint-disable-line
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import 'bootswatch/dist/lux/bootstrap.min.css'
 import Cookies from 'universal-cookie'
 
 import { useDispatch, useSelector } from 'react-redux'
