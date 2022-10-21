@@ -4,6 +4,7 @@ const { Router } = require('express')
 const productRouter = require('./product.js')
 const userRouter = require('./users')
 const publicationRoutes = require('./publicationRoutes.js')
+const favoritesRouter = require('./favorites')
 const router = Router()
 
 // LOAD EACH ROUTES IN A ROUTE
@@ -13,5 +14,6 @@ router.get('/serverOk', (req, res) => {
 router.use('/products', productRouter)
 router.use('/users', userRouter)
 router.use('/publications', publicationRoutes)
+router.use('/favorites', favoritesRouter)
 
 module.exports = router

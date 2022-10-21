@@ -5,16 +5,17 @@ import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
 
 export default function FormLogin () {
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
-  console.log(user)
+  const dispatch = useDispatch()
+  const userLogged = useSelector(state => state.user)
 
   function handleCallbackResponse (response) {
-    console.log('Encoded JWT ID token: ' + response.credential)
     const userObject = jwtdecode(response.credential)
-    console.log(userObject)
     fetch('https://e-winespf.herokuapp.com/users/email/' + userObject.email)
       .then(res => res.json())
       .then(data => {
@@ -57,7 +58,8 @@ export default function FormLogin () {
               cookies.set('TOKEN', data, {
                 path: '/'
               })
-              setButton(true)
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
@@ -114,7 +116,8 @@ export default function FormLogin () {
               cookies.set('TOKEN', data, {
                 path: '/'
               })
-              setButton(true)
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
@@ -129,11 +132,10 @@ export default function FormLogin () {
   })
   const [err, setError] = useState(false)
   const [success, setSuccess] = useState(false)
-  const [button, setButton] = useState(false)
 
   function removeCookies () {
+    dispatch(logoutUser())
     cookies.remove('TOKEN')
-    setButton(false)
   }
 
   return (
@@ -180,16 +182,17 @@ export default function FormLogin () {
                     />
                     {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
                   </div>
-                  {!button && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
-                  {button && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
+                  {!userLogged && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
+                  {userLogged && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
                   {err &&
                     <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
-                  {
+                  <>
                     <div
                       className={style.googleBtn}
                       id='signInDiv'
                     />
-                  }
+                  </>
+
                   {success &&
                     <div className='alert alert-success mt-3' role='alert'><p>Ha iniciado sesion</p> </div>}
                 </div>

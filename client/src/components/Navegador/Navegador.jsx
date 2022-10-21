@@ -6,7 +6,7 @@ import FormLogin from '../FormLogin/FormLogin'
 
 function Navegador (props) {
   const cookies = new Cookies()
-  console.log(cookies)
+
   const { link, span, modal } = props
   const location = useLocation()
   if (modal) {
