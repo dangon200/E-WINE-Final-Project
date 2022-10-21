@@ -5,6 +5,7 @@ import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
+import { AiOutlineReload } from 'react-icons/ai'
 
 import Cookies from 'universal-cookie'
 
@@ -16,7 +17,7 @@ export default function FormCreatePubli () {
 
   useEffect(() => {
     dispatch(getProducts())
-  }, [dispatch, products])
+  }, [])
 
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
     initialValues: {
@@ -41,12 +42,10 @@ export default function FormCreatePubli () {
       )
     }
   })
-  const select = document.getElementById('productId')
   const [send, setSend] = useState(false)
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
-      {console.log(select)}
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>
@@ -136,18 +135,23 @@ export default function FormCreatePubli () {
                 {errors.description && touched.description && <p className='invalid-feedback fs-4'>{errors.description}</p>}
 
               </div>
-              <div>
-                <select
-                  name='productId'
-                  id='productId'
-                  onChange={handleChange}
-                  className={`form-select mb-3 ${touched.productId ? errors.productId ? 'is-invalid' : 'is-valid' : null}`}
-                  onBlur={handleBlur}
-                >
-                  <option value=''>Seleccione un producto...</option>
-                  {Array.isArray(products) && products.map(product => <option key={product.name} value={product.id}>{product.name}</option>)}
-                </select>
-                {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
+              <div className='form-group row mx-0'>
+                <button type='button' onClick={() => dispatch(getProducts())} className='col-1 btn btn-primary '><AiOutlineReload /></button>
+                <div className='col-11 pe-0'>
+                  <select
+                    name='productId'
+                    id='productId'
+                    onChange={handleChange}
+                    className={`form-select ${touched.productId ? errors.productId ? 'is-invalid' : 'is-valid' : null}`}
+                    onBlur={handleBlur}
+                    value={values.productId}
+                  >
+                    <option defaultValue value=''>Seleccione un producto...</option>
+                    {Array.isArray(products) && products.map(product => <option key={product.name} value={product.id}>{product.name}</option>)}
+                  </select>
+
+                </div>
+                {errors.productId && touched.productId && <p className='fs-4'>{errors.productId}</p>}
               </div>
             </div>
             <button
