@@ -177,3 +177,25 @@ export const getRecomendedPublications = (type, varietal, origin) => {
     }
   }
 }
+
+// STRIPE
+
+export const postStripe = (idStripe, totalAmount, carrito, userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${urlApi}/stripe`, {
+        idStripe,
+        totalAmount,
+        carrito,
+        userId
+      })
+      console.log(res)
+      return dispatch({
+        type: 'POST_STRIPE',
+        payload: res.data
+      })
+    } catch (error) {
+
+    }
+  }
+}
