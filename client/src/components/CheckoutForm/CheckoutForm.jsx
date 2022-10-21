@@ -1,92 +1,41 @@
-// import React, { useEffect, useState } from 'react'
-// import {
-//   PaymentElement,
-//   useStripe,
-//   useElements
-// } from '@stripe/react-stripe-js'
-// import style from './checkoutForm.module.css'
+import React, { useState, useEffect } from 'react' // eslint-disable-line
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import 'bootswatch/dist/lux/bootstrap.min.css'
 
-// export default function CheckoutForm () {
-//   const stripe = useStripe()
-//   const elements = useElements()
+import { useDispatch, useSelector } from 'react-redux'
+import { postStripe } from '../../store/actions/actions'
 
-//   const [message, setMessage] = useState(null)
-//   const [isLoading, setIsLoading] = useState(false)
+export default function CheckoutForm (props) {
+  const stripe = useStripe()
+  const elemets = useElements()
+  const dispatch = useDispatch()
+  const carrito = useSelector(state => state.carrito)
 
-//   useEffect(() => {
-//     if (!stripe) {
-//       return
-//     }
+  const { totalAmount } = props
 
-//     const clientSecret = new URLSearchParams(window.location.search).get(
-//       'payment_intent_client_secret'
-//     )
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+      const { error, paymentMethod } = await stripe.createPaymentMethod({ // eslint-disable-line
+      type: 'card',
+      card: elemets.getElement(CardElement)
+    })
+    console.log(paymentMethod)
+    if (!error) {
+      const { id } = paymentMethod
 
-//     if (!clientSecret) {
-//       return
-//     }
-
-//     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-//       switch (paymentIntent.status) {
-//         case 'succeeded':
-//           setMessage('Payment succeeded!')
-//           break
-//         case 'processing':
-//           setMessage('Your payment is processing.')
-//           break
-//         case 'requires_payment_method':
-//           setMessage('Your payment was not successful, please try again.')
-//           break
-//         default:
-//           setMessage('Something went wrong.')
-//           break
-//       }
-//     })
-//   }, [stripe])
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault()
-
-//     if (!stripe || !elements) {
-//       // Stripe.js has not yet loaded.
-//       // Make sure to disable form submission until Stripe.js has loaded.
-//       return
-//     }
-
-//     setIsLoading(true)
-
-//     const { error } = await stripe.confirmPayment({
-//       elements,
-//       confirmParams: {
-//         // Make sure to change this to your payment completion page
-//         return_url: 'http://localhost:3000'
-//       }
-//     })
-
-//     // This point will only be reached if there is an immediate error when
-//     // confirming the payment. Otherwise, your customer will be redirected to
-//     // your `return_url`. For some payment methods like iDEAL, your customer will
-//     // be redirected to an intermediate site first to authorize the payment, then
-//     // redirected to the `return_url`.
-//     if (error.type === 'card_error' || error.type === 'validation_error') {
-//       setMessage(error.message)
-//     } else {
-//       setMessage('An unexpected error occurred.')
-//     }
-
-//     setIsLoading(false)
-//   }
-
-//   return (
-//     <form id={style.paymentForm} className={style.form} onSubmit={handleSubmit}>
-//       <PaymentElement id={style.paymentElement} />
-//       <button clasName={style.button} disabled={isLoading || !stripe || !elements} id='submit'>
-//         <span id='button-text'>
-//           {isLoading ? <div className={style.spinner} id={style.spinner} /> : 'Pay now'}
-//         </span>
-//       </button>
-//       {/* Show any error or success messages */}
-//       {message && <div id={style.paymentMessage}>{message}</div>}
-//     </form>
-//   )
-// }
+      dispatch(postStripe(id, totalAmount * 100, carrito))
+    }
+  }
+  return (
+    <form onSubmit={handleSubmit} className='card card-body'>
+      <img src='https://imgs.search.brave.com/Y5KS64aNvBNg8mwK5G1ks_1XK8_Fnorl1iMGPkBmSu4/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC53/MTlpVHR6Qzk0ZHBM/elZZdXFqMzZnSGFF/NyZwaWQ9QXBp' alt='vino' className='img-fluid' />
+      <h4 className='text-center my-2'>$ {totalAmount}</h4>
+      <div className='form-group'>
+        <CardElement className='form-control' />
+      </div>
+      <button className='btn btn-success'>
+        Comprar
+      </button>
+    </form>
+  )
+}

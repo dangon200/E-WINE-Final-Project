@@ -39,7 +39,7 @@ function App () {
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
-        <Route path='/payment' component={CardStripe} />
+        <Route path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />

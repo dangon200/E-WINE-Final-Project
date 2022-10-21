@@ -2,7 +2,6 @@ import { useFormik } from 'formik'
 /* import axios from 'axios' */
 
 export default function FormLogin () {
-
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
     initialValues: {
@@ -11,7 +10,6 @@ export default function FormLogin () {
     },
 
     onSubmit: async (values) => {
-
       fetch('https://e-winespf.herokuapp.com/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -25,7 +23,6 @@ export default function FormLogin () {
       })
         .then((res) => res.json())
         .then((data) => console.log(data))
-
     }
 
   })
@@ -62,8 +59,8 @@ export default function FormLogin () {
           </div>
           <button
             type='submit'
-            className={`btn btn-primary mt-3 ${isSubmitting && 'disabled'}`}
-            disabled={isSubmitting && true}
+            // className={`btn btn-primary mt-3 ${isSubmitting && 'disabled'}`}
+            // disabled={isSubmitting && true}
           >
             Iniciar sesión
           </button>
