@@ -147,8 +147,8 @@ export default function FormLogin () {
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='modal-header'>
-              <h1 className='modal-title fs-5' id='exampleModalLabel'>{!user ? 'Iniciar sesión' : 'Cerrar sesión'}</h1>
-              <button type='button' className='btn-close' data-bs-dismiss='modal' aria-label='Close' />
+              <h1 className='modal-title fs-3' id='exampleModalLabel'>{!user ? 'Iniciar sesión' : 'Cerrar sesión'}</h1>
+              <button type='button' className='btn-close fs-3' data-bs-dismiss='modal' aria-label='Close' />
             </div>
             <div className='modal-body'>
               <form onSubmit={handleSubmit} className='card d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
@@ -197,16 +197,11 @@ export default function FormLogin () {
 
             </div>
             <div className='modal-footer'>
-              <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-              <Link to='/register'>
-                <button
-                  data-bs-dismiss='modal'
-                  className={`btn btn-info ${isSubmitting && 'disabled'}`}
-                  disabled={isSubmitting && true}
-                >
-                  Sino tienes cuenta !Crea tu Cuenta
-                </button>
-              </Link>
+              <button type='button' className='d-none btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+              <p className='fs-4'>
+                Sino tienes cuenta <Link className='text-decoration-none' to='/register'>!Crea tu Cuenta</Link>
+              </p>
+
             </div>
           </div>
         </div>
