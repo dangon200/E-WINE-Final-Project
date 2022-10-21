@@ -106,8 +106,8 @@ export default function FormLogin () {
         </div>
 
       </form>
-      <h2>O inicie con:</h2>
-      <div className='d-flex justify-content-center'>
+      <h2 className='d-none'>O inicie con:</h2>
+      <div className='d-none justify-content-center'>
         <button className='btn btn-primary mx-2'>Google</button>
         <button className='btn btn-primary mx-2'>Facebook</button>
       </div>

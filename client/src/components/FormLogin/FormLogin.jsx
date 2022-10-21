@@ -5,16 +5,19 @@ import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
 
 export default function FormLogin () {
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
-  console.log(user)
+
+  const dispatch = useDispatch()
+  const userLogged = useSelector(state => state.user)
   const urlApi = 'http://localhost:3001'
   // const urlApi = https://e-winespf.herokuapp.com
 
   function handleCallbackResponse (response) {
-    console.log('Encoded JWT ID token: ' + response.credential)
     const userObject = jwtdecode(response.credential)
     console.log(userObject)
     fetch(`${urlApi}/users/email/` + userObject.email)
@@ -59,7 +62,8 @@ export default function FormLogin () {
               cookies.set('TOKEN', data, {
                 path: '/'
               })
-              setButton(true)
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
@@ -87,7 +91,7 @@ export default function FormLogin () {
     )
   }, [])
 
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
     initialValues: {
       email: '',
@@ -111,12 +115,12 @@ export default function FormLogin () {
 
           .then((res) => res.json())
           .then((data) => {
-            resetForm()
             if (typeof data !== 'string') {
               cookies.set('TOKEN', data, {
                 path: '/'
               })
-              setButton(true)
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
@@ -131,11 +135,10 @@ export default function FormLogin () {
   })
   const [err, setError] = useState(false)
   const [success, setSuccess] = useState(false)
-  const [button, setButton] = useState(false)
 
   function removeCookies () {
+    dispatch(logoutUser())
     cookies.remove('TOKEN')
-    setButton(false)
   }
 
   return (
@@ -182,16 +185,17 @@ export default function FormLogin () {
                     />
                     {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
                   </div>
-                  {!button && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
-                  {button && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
+                  {!userLogged && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
+                  {userLogged && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
                   {err &&
                     <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
-                  {
+                  <>
                     <div
                       className={style.googleBtn}
                       id='signInDiv'
                     />
-                  }
+                  </>
+
                   {success &&
                     <div className='alert alert-success mt-3' role='alert'><p>Ha iniciado sesion</p> </div>}
                 </div>
@@ -200,7 +204,7 @@ export default function FormLogin () {
             </div>
             <div className='modal-footer'>
               <button type='button' className='d-none btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-              <p className='fs-4'>
+              <p className='fs-4' data-bs-dismiss='modal'>
                 Sino tienes cuenta <Link className='text-decoration-none' to='/register'>!Crea tu Cuenta</Link>
               </p>
 
