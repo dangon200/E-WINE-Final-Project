@@ -14,7 +14,6 @@ export default function FormLogin () {
 
   const dispatch = useDispatch()
   const userLogged = useSelector(state => state.user)
-p
 
   function handleCallbackResponse (response) {
     const userObject = jwtdecode(response.credential)

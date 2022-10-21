@@ -10,7 +10,7 @@ const initialState = {
   favorites: [],
   carrito: [],
   recomendedPublication: [],
-  user: ''
+  user: '',
   buy: {}
 }
 
