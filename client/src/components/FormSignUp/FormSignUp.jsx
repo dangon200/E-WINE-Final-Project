@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { schemaValidateUser } from '../utilities/schemas'
 import { provinces } from '../utilities/data'
 import axios from 'axios'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 
 export default function FormLogin () {
   const dispatch = useDispatch() //eslint-disable-line
@@ -16,7 +18,7 @@ export default function FormLogin () {
     },
     validationSchema: schemaValidateUser,
     onSubmit: async (values, { resetForm }) => {
-      const response = await axios.post('https://e-winespf.herokuapp.com/users', values)
+      const response = await axios.post(`${urlApi}/users`, values)
       console.log(response)
       resetForm()
     }

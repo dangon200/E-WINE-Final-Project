@@ -10,16 +10,18 @@ export default function FormLogin () {
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
   console.log(user)
+  const urlApi = 'http://localhost:3001'
+  // const urlApi = https://e-winespf.herokuapp.com
 
   function handleCallbackResponse (response) {
     console.log('Encoded JWT ID token: ' + response.credential)
     const userObject = jwtdecode(response.credential)
     console.log(userObject)
-    fetch('https://e-winespf.herokuapp.com/users/email/' + userObject.email)
+    fetch(`${urlApi}/users/email/` + userObject.email)
       .then(res => res.json())
       .then(data => {
         if (!data) {
-          fetch('https://e-winespf.herokuapp.com/users/', {
+          fetch(`${urlApi}/users/`, {
             method: 'POST',
             body: JSON.stringify({
               email: userObject.email,
@@ -39,7 +41,7 @@ export default function FormLogin () {
               console.log(data)
             })
         }
-        fetch('https://e-winespf.herokuapp.com/users/login', {
+        fetch(`${urlApi}/users/login`, {
           method: 'POST',
           body: JSON.stringify({
             email: userObject.email,
@@ -95,7 +97,7 @@ export default function FormLogin () {
 
     onSubmit: async (values, { resetForm }) => {
       if (!user) {
-        fetch('https://e-winespf.herokuapp.com/users/login', {
+        fetch(`${urlApi}/users/login`, {
           method: 'POST',
           body: JSON.stringify({
             email: values.email,

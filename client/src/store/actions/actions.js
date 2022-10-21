@@ -1,5 +1,6 @@
 import axios from 'axios'
-const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'https://e-winespf.herokuapp.com
+const urlApi = 'http://localhost:3001'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -183,7 +184,7 @@ export const getRecomendedPublications = (type, varietal, origin) => {
 export const postStripe = (idStripe, totalAmount, carrito, userId) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post('http://localhost:3001/stripe', {
+      const res = await axios.post(`${urlApi}/stripe`, {
         idStripe,
         totalAmount,
         carrito,
