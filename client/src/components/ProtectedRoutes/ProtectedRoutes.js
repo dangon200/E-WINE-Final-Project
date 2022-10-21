@@ -22,7 +22,7 @@ export default function ProtectedRoutes ({ component: Component, ...rest }) {
           return (
             <Redirect
               to={{
-                pathname: '/login',
+                pathname: '/home',
                 state: {
                   // sets the location a user was about to access before being redirected to login
                   from: props.location
