@@ -3,6 +3,10 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const routes = require('./routes/index.js')
+// const cors = require('cors')
+
+// const session = require('express-session')
+// const passport = require('passport')
 
 require('./db.js')
 
@@ -25,6 +29,25 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE')
   next()
 })
+
+// Express Session
+// server.use(
+//   session({
+//     secret: 'secretcode',
+//     resave: true,
+//     saveUninitialized: true,
+//     cookie: {
+//       sameSite: 'none',
+//       maxAge: 24 * 60 * 60 * 1000
+//     }
+//   })
+// )
+
+// server.use(cookieParser('secretcode'))
+
+// server.use(passport.initialize())
+// server.use(passport.session())
+// require('./config/passport.js')(passport)
 
 server.use('/', routes)
 

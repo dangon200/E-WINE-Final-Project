@@ -6,6 +6,10 @@ import style from './carrito.module.css'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
+  const totalAmount = carrito.reduce((acumulador, pactual) => {
+    const total = (parseInt(pactual.price) * parseInt(pactual.count))
+    return acumulador + total
+  }, 0)
   return (
 
     <div className={style.container}>
@@ -22,15 +26,12 @@ export default function Carrito () {
         </div>
         <div className={style.sumaTotal}>
           Total con envio:{carrito.length > 0
-          ? carrito.reduce((acumulador, pactual) => {
-            const total = (parseInt(pactual.price) * parseInt(pactual.count))
-            return acumulador + total
-          }, 0)
+          ? totalAmount
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <Link to='/Buy'>
-        <button>Continuar compra</button>
+      <Link to={`/payment/${totalAmount}`}>
+        <button>Pagar con Tarjeta</button>
       </Link>
     </div>
   )
