@@ -1,9 +1,78 @@
 import { useFormik } from 'formik'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
+import jwtdecode from 'jwt-decode'
 
 export default function FormLogin () {
   const cookies = new Cookies()
+
+  function handleCallbackResponse (response) {
+    console.log('Encoded JWT ID token: ' + response.credential)
+    const userObject = jwtdecode(response.credential)
+    console.log(userObject)
+    fetch('https://e-winespf.herokuapp.com/users/email/' + userObject.email)
+      .then(res => res.json())
+      .then(data => {
+        if (!data) {
+          fetch('https://e-winespf.herokuapp.com/users/', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: userObject.email,
+              password: 'password',
+              region: 'null',
+              username: userObject.name,
+              image: userObject.picture
+            }),
+            headers: {
+              'Content-type': 'application/json'
+            },
+            credentials: 'include'
+          })
+
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data)
+            })
+        }
+        fetch('https://e-winespf.herokuapp.com/users/login', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: userObject.email,
+            password: 'password'
+          }),
+          headers: {
+            'Content-type': 'application/json'
+          },
+          credentials: 'include'
+        })
+
+          .then((res) => res.json())
+          .then((data) => {
+            if (typeof data !== 'string') {
+              cookies.set('TOKEN', data, {
+                path: '/'
+              })
+              window.location.href = '/home'
+            }
+          })
+      }
+
+      )
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: '299866186395-evt7gful4jbfl5bctqnbp74c9a8i6h88.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large' }
+    )
+  }, [])
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
 
@@ -12,11 +81,7 @@ export default function FormLogin () {
       password: ''
     },
 
-<<<<<<< HEAD
-    onSubmit: async (values, { resetForm }) => {
-=======
     onSubmit: async (values) => {
->>>>>>> 34308fd09d38f84c8f703ce185afefb1fe68eb7d
       fetch('https://e-winespf.herokuapp.com/users/login', {
         method: 'POST',
         body: JSON.stringify({
@@ -36,11 +101,12 @@ export default function FormLogin () {
               path: '/'
             })
             window.location.href = '/home'
-          } console.log(data)
+          }
         })
     }
 
   })
+
   return (
     <div className='container user-select-none'>
       <form onSubmit={handleSubmit} className='card d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
@@ -88,15 +154,11 @@ export default function FormLogin () {
             </button>
           </Link>
 
-          <button
-            className={`btn btn-success mt-5 ${isSubmitting && 'disabled'}`}
-            disabled={isSubmitting && true}
-          >
-            Iniciar sesión con GitHub
-          </button>
         </div>
       </form>
-
+      <div
+        id='signInDiv'
+      />
     </div>
   )
 }
