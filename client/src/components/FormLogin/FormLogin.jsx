@@ -11,8 +11,10 @@ import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions
 export default function FormLogin () {
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
+
   const dispatch = useDispatch()
   const userLogged = useSelector(state => state.user)
+p
 
   function handleCallbackResponse (response) {
     const userObject = jwtdecode(response.credential)
@@ -87,7 +89,7 @@ export default function FormLogin () {
     )
   }, [])
 
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
     initialValues: {
       email: '',
@@ -111,7 +113,6 @@ export default function FormLogin () {
 
           .then((res) => res.json())
           .then((data) => {
-            resetForm()
             if (typeof data !== 'string') {
               cookies.set('TOKEN', data, {
                 path: '/'
@@ -201,7 +202,7 @@ export default function FormLogin () {
             </div>
             <div className='modal-footer'>
               <button type='button' className='d-none btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-              <p className='fs-4'>
+              <p className='fs-4' data-bs-dismiss='modal'>
                 Sino tienes cuenta <Link className='text-decoration-none' to='/register'>!Crea tu Cuenta</Link>
               </p>
 

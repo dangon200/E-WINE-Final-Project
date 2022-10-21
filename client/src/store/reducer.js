@@ -11,6 +11,7 @@ const initialState = {
   carrito: [],
   recomendedPublication: [],
   user: ''
+  buy: {}
 }
 
 export default function reducer (state = initialState, action) {
@@ -50,6 +51,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, user: action.payload }
     case 'LOGOUT_USER':
       return { ...state, user: '' }
+    case 'POST_STRIPE':
+      return { ...state, compra: action.payload }
     default:
       return { ...state }
   }
