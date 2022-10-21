@@ -1,14 +1,89 @@
 import style from './formLogin.module.css'
 import { useFormik } from 'formik'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
-import { useState } from 'react'
+import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
 
 export default function FormLogin () {
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
   console.log(user)
+
+  function handleCallbackResponse (response) {
+    console.log('Encoded JWT ID token: ' + response.credential)
+    const userObject = jwtdecode(response.credential)
+    console.log(userObject)
+    fetch('https://e-winespf.herokuapp.com/users/email/' + userObject.email)
+      .then(res => res.json())
+      .then(data => {
+        if (!data) {
+          fetch('https://e-winespf.herokuapp.com/users/', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: userObject.email,
+              password: 'password',
+              region: 'null',
+              username: userObject.name,
+              image: userObject.picture
+            }),
+            headers: {
+              'Content-type': 'application/json'
+            },
+            credentials: 'include'
+          })
+
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data)
+            })
+        }
+        fetch('https://e-winespf.herokuapp.com/users/login', {
+          method: 'POST',
+          body: JSON.stringify({
+            email: userObject.email,
+            password: 'password'
+          }),
+          headers: {
+            'Content-type': 'application/json'
+          },
+          credentials: 'include'
+        })
+
+          .then((res) => res.json())
+          .then((data) => {
+            if (typeof data !== 'string') {
+              cookies.set('TOKEN', data, {
+                path: '/'
+              })
+              setButton(true)
+              setSuccess(true)
+              setTimeout(() => { setSuccess(false) }, 3000)
+            } else {
+              setError(!err)
+              setTimeout(() => {
+                setError(false)
+              }, 3000)
+            }
+          })
+      }
+
+      )
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: '299866186395-evt7gful4jbfl5bctqnbp74c9a8i6h88.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large' }
+    )
+  }, [])
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
 
@@ -39,6 +114,7 @@ export default function FormLogin () {
               cookies.set('TOKEN', data, {
                 path: '/'
               })
+              setButton(true)
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
@@ -53,6 +129,12 @@ export default function FormLogin () {
   })
   const [err, setError] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [button, setButton] = useState(false)
+
+  function removeCookies () {
+    cookies.remove('TOKEN')
+    setButton(false)
+  }
 
   return (
     <div className='user-select-none'>
@@ -98,22 +180,21 @@ export default function FormLogin () {
                     />
                     {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
                   </div>
-                  {!user && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
-                  {user && <button className='btn btn-danger mt-3 ' onClick={() => cookies.remove('TOKEN')}>Cerrar sesión</button>}
-
+                  {!button && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
+                  {button && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
                   {err &&
                     <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
                   {
-                  /* <button
-                    className={`btn btn-success mt-5 ${isSubmitting && 'disabled'}`}
-                    disabled={isSubmitting && true}
-                  >
-                    Iniciar sesión con GitHub
-                  </button> */}
+                    <div
+                      className={style.googleBtn}
+                      id='signInDiv'
+                    />
+                  }
                   {success &&
                     <div className='alert alert-success mt-3' role='alert'><p>Ha iniciado sesion</p> </div>}
                 </div>
               </form>
+
             </div>
             <div className='modal-footer'>
               <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
