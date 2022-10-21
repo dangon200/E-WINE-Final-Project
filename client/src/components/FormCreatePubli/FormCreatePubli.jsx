@@ -6,14 +6,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 
+import Cookies from 'universal-cookie'
+
 export default function FormCreatePubli () {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
+
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch, products])
 
-  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, resetForm, isSubmitting } = useFormik({
+  const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
     initialValues: {
       productId: '',
       title: '',
@@ -21,23 +26,28 @@ export default function FormCreatePubli () {
       description: '',
       count: 0,
       image: {},
-      userId: 'e6e7a743-0dc0-4dd6-a48a-18ec9c3bcdcf'
+      userId: token ? token.user.id : 0
     },
     validationSchema: schemaFormPubli,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const url = await uplodCloudinary(values.image)
         values.image = url
-        dispatch(postPublication(values))
+
+        dispatch(postPublication({ ...values }, token.token))
         resetForm()
           .then(data => {
+            resetForm()
             setSend(true)
             setTimeout(() => {
               setSend(false)
             }, 3000)
           })
+          .catch(errors => {
+            console.log('🤬 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ errors', errors)
+          })
       } catch (error) {
-        console.log(error)
+        console.log('🚀 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ error', error)
       }
     }
   })
@@ -45,6 +55,7 @@ export default function FormCreatePubli () {
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
+      {console.log(values)}
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>

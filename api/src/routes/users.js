@@ -5,53 +5,80 @@ const { User } = require('../db')
 
 const userController = require('../controllers/users')
 
-const passport = require('passport')
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs')
+/* const auth = require('../config/auth') */
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) throw err
-    if (!user) return res.status(200).json('Usuario no existe!')
-    req.logIn(user, (err) => {
-      if (err) throw err
-      return res.status(200).json(user)
-    })
-  })(req, res, next)
-})
+/* const nodemailer = require('nodemailer') */
+/* const fs = require('fs')
+const { promisify } = require('util')
+const readFile = promisify(fs.readFile) */
 
-router.get('/logout', async (req, res, next) => {
-  /*  await req.session.destroy(function (err) {
-    if (err) return next(err);
-  }); */
-  await req.logOut(function (err) {
-    if (err) return next(err)
-  })
-  res.clearCookie('e-wine')
-  res.send(false)
+/* const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587, // port for secure SMTP
+  auth: {
+    user: 'e.winemarketplace@gmail.com',
+    pass: 'yrzjdsfbehvmxtvt'
+  }
+}) */
 
-  /* req.logout(function (err) {
-    if (err) return next(err);
-    res.send(false);
-  }); */
-})
-
-router.get('/user', (req, res) => {
-  console.log(req.user)
-  if (req.user) return res.send(req.user)
-  // store the entire user that has been authenticated
-  else res.send(false)
-})
-
-router.get('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { email, password } = req.body
 
   try {
     const userEmail = await User.findOne({ where: { email } })
+    if (!userEmail) throw new Error('Email no encontrado!')
 
-    if (!userEmail) return res.status(404).json('Email no encontrado!')
-    if (userEmail.password !== password) return res.status(404).json('Password es incorrecto')
+    const passwordMatch = await bcrypt.compare(password, userEmail.password)
+    if (!passwordMatch) throw new Error('Password es incorrecto')
 
     const userById = await userController.getUserById(userEmail.id)
-    res.status(200).json(userById)
+    const token = jwt.sign({
+      userId: userById.id,
+      email: userById.email,
+      username: userById.username
+    }, 'RANDOM_TOKEN', { expiresIn: '24h' })
+
+    res.status(200).json({ user: userById, token })
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/email/:email', async (req, res) => {
+  const { email } = req.params
+
+  try {
+    const findEmail = await User.findOne({
+      where: {
+        email
+      }
+    })
+
+    if (findEmail) {
+      return res.status(404).json(true)
+    }
+
+    res.status(200).json(false)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/username/:username', async (req, res) => {
+  const { username } = req.params
+
+  try {
+    const findUsername = await User.findOne(
+      { where: { username } }
+    )
+
+    if (findUsername) {
+      return res.status(404).json('El username ya existe. Pruebe con otro!')
+    }
+
+    res.status(200).json('El username esta disponible!')
   } catch (error) {
     res.status(400).json(error.message)
   }
@@ -64,7 +91,7 @@ router.get('/:id', async (req, res) => {
     const userById = await userController.getUserById(id)
 
     if (!userById) {
-      return res.status(404).json(`Usuario con ID: ${id} no encontrado!`)
+      return res.status(200).json(`Usuario con ID: ${id} no encontrado!`)
     }
     res.status(200).json(userById)
   } catch (error) {
@@ -105,7 +132,7 @@ router.get('/', async (req, res) => {
     const usersFromDb = await userController.getAllUsers()
 
     if (!usersFromDb.length) {
-      return res.status(404).json('No hay usuarios guardados en la Base de Datos!')
+      return res.status(200).json('No hay usuarios guardados en la Base de Datos!')
     }
 
     return res.status(200).json(usersFromDb)
@@ -117,10 +144,10 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   const { username, email, password, region } = req.body
 
-  if (!username) return res.status(400).json('Falta nombre de usuario!')
-  if (!email) return res.status(400).json('Falta email de usuario!')
-  if (!password) return res.status(40).json('Falta password!')
-  if (!region) return res.status(400).json('Falta parametro region!')
+  if (!username) return res.status(404).json('Falta nombre de usuario!')
+  if (!email) return res.status(404).json('Falta email de usuario!')
+  if (!password) return res.status(404).json('Falta password!')
+  if (!region) return res.status(404).json('Falta parametro region!')
 
   try {
     const emailExist = await User.findOne({
@@ -131,8 +158,20 @@ router.post('/', async (req, res) => {
 
     if (emailExist) {
       return res
-        .status(404)
+        .status(400)
         .json('Existe un usuario con esa direccion de email. Prueba con una nueva!')
+    }
+
+    const usernameExist = await User.findOne({
+      where: {
+        username
+      }
+    })
+
+    if (usernameExist) {
+      return res
+        .status(400)
+        .json('Existe un usuario con ese username. Pruebe con una nuevo!')
     }
 
     const userCreated = await userController.createUser(
@@ -142,6 +181,28 @@ router.post('/', async (req, res) => {
       region
     )
 
+    /*
+    const mailOptions = {
+      from: 'e.winemarketplace@hotmail.com',
+      to: email,
+      subject: 'Creaste tu cuenta en E-Wines',
+      html: await readFile('./message.html', 'utf-8'),
+      attachments: [
+        {
+          filename: 'logo.jpeg',
+          path: './logo.jpeg'
+        }
+      ]
+    }
+
+    await transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error)
+      } else {
+        console.log('Email sent: ' + info.response)
+      }
+    })
+ */
     res.status(201).json(userCreated)
   } catch (error) {
     res.status(400).json(error.message)
@@ -177,6 +238,17 @@ router.put('/:id', async (req, res) => {
       const result = await userController.setSommelier(id, sommelier)
       return res.status(200).json(result)
     }
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params
+
+  try {
+    const result = await userController.deleteUserById(id)
+    res.status(200).json(result)
   } catch (error) {
     res.status(400).json(error.message)
   }

@@ -10,10 +10,10 @@ import { postProduct } from '../../store/actions/actions'
 
 export default function FormCreateProduct () {
   const dispatch = useDispatch() //
-  const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, resetForm, isSubmitting } = useFormik({
+  const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, isSubmitting } = useFormik({
     initialValues: { name: '', type: '', varietal: '', origin: '', img: '', cellar: '' },
     validationSchema: schemaFormProduct,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const url = await uplodCloudinary(values.img)
         values.img = url

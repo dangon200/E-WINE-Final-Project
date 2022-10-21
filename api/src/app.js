@@ -5,9 +5,12 @@ const morgan = require('morgan')
 const routes = require('./routes/index.js')
 // const cors = require('cors')
 
+<<<<<<< HEAD
 // const session = require('express-session')
 // const passport = require('passport')
 
+=======
+>>>>>>> 01f9540e13e4eb9edf3f7a848acf317829728ca1
 require('./db.js')
 
 const server = express()
@@ -18,8 +21,9 @@ server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 server.use(bodyParser.json({ limit: '50mb' }))
 server.use(cookieParser())
 server.use(morgan('dev'))
+server.use(cookieParser())
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*') // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000') // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true')
   res.header(
     'Access-Control-Allow-Headers',
@@ -29,24 +33,26 @@ server.use((req, res, next) => {
   next()
 })
 
-// Express Session
-// server.use(
-//   session({
-//     secret: 'secretcode',
-//     resave: true,
-//     saveUninitialized: true,
-//     cookie: {
-//       sameSite: 'none',
-//       maxAge: 24 * 60 * 60 * 1000
-//     }
-//   })
-// )
 
-// server.use(cookieParser('secretcode'))
+//Express Session
+server.use(
+  session({
+    secret: 'secretcode',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000
+    }
+  })
+)
 
-// server.use(passport.initialize())
-// server.use(passport.session())
-// require('./config/passport.js')(passport)
+server.use(cookieParser('secretcode'))
+
+server.use(passport.initialize())
+server.use(passport.session())
+require('./config/passport.js')(passport)
+
 
 server.use('/', routes)
 
