@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node -L"
+    "start": "nodemon -L"
   },
   "author": "Henry",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
+    "stripe": "^10.14.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
