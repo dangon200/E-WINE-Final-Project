@@ -58,7 +58,7 @@ input::-webkit-inner-spin-button {
   color: #56070C;
 }
 
-.card img{
+/* .card img{
   height: 200px;
   width: 100%;
   object-fit: cover;
@@ -83,10 +83,10 @@ input::-webkit-inner-spin-button {
   }to{
       opacity: 100
   }
-} 
+}  */
 
 
-.icon{
+/* .icon{
   width: 20px;
   height: 20px;
   color: gray;
@@ -101,7 +101,7 @@ input::-webkit-inner-spin-button {
   color: var(--btn-background-color);
   cursor: pointer;
 
-}
+} */
 
 
 .btn-carrito{
