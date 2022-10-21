@@ -198,7 +198,7 @@ export default function FormLogin () {
             </div>
             <div className='modal-footer'>
               <button type='button' className='d-none btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-              <p className='fs-4'>
+              <p className='fs-4' data-bs-dismiss='modal'>
                 Sino tienes cuenta <Link className='text-decoration-none' to='/register'>!Crea tu Cuenta</Link>
               </p>
 
