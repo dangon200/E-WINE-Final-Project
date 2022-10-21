@@ -183,7 +183,7 @@ export const getRecomendedPublications = (type, varietal, origin) => {
 export const postStripe = (idStripe, totalAmount, carrito, userId) => {
   return async function (dispatch) {
     try {
-      const res = await axios.post('http://localhost:3001/stripe', {
+      const res = await axios.post(`${urlApi}/stripe`, {
         idStripe,
         totalAmount,
         carrito,
