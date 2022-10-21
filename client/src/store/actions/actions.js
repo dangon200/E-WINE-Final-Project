@@ -208,7 +208,6 @@ export const getRecomendedPublications = (type, varietal, origin) => {
   }
 }
 
-
 // USER
 
 export const loginUser = (user) => {
@@ -221,7 +220,8 @@ export const loginUser = (user) => {
 export const logoutUser = () => {
   return {
     type: 'LOGOUT_USER'
-
+  }
+}
 // STRIPE
 
 export const postStripe = (idStripe, totalAmount, carrito, userId) => {
