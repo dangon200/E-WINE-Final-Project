@@ -5,12 +5,9 @@ const morgan = require('morgan')
 const routes = require('./routes/index.js')
 // const cors = require('cors')
 
-<<<<<<< HEAD
-// const session = require('express-session')
-// const passport = require('passport')
+const session = require('express-session')
+const passport = require('passport')
 
-=======
->>>>>>> 01f9540e13e4eb9edf3f7a848acf317829728ca1
 require('./db.js')
 
 const server = express()
@@ -33,8 +30,7 @@ server.use((req, res, next) => {
   next()
 })
 
-
-//Express Session
+// Express Session
 server.use(
   session({
     secret: 'secretcode',
@@ -52,7 +48,6 @@ server.use(cookieParser('secretcode'))
 server.use(passport.initialize())
 server.use(passport.session())
 require('./config/passport.js')(passport)
-
 
 server.use('/', routes)
 

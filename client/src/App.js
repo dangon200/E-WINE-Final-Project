@@ -16,8 +16,6 @@ import FormSignUp from './components/FormSignUp/FormSignUp'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import CardStripe from './components/CardStripe/CardStripe'
 
-
-
 function App () {
   const dispatch = useDispatch()
 
