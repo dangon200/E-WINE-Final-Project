@@ -1,11 +1,31 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
+  const pagarMP = async () => {
+    const buying = carrito.map(item => {
+      return {
+        title: item.title,
+        unit_price: parseInt(item.price),
+        quantity: parseInt(item.count)
+      }
+    })
+    fetch('http://localhost:3001/checkout', {
+      method: 'POST',
+      body: JSON.stringify(buying),
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        document.location = data.data
+      })
+  }
   return (
 
     <div className={style.container}>
@@ -29,9 +49,7 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <Link to='/Buy'>
-        <button>Continuar compra</button>
-      </Link>
+      <button onClick={pagarMP}>Continuar compra</button>
     </div>
   )
 }

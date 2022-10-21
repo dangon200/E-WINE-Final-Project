@@ -1,10 +1,9 @@
 import axios from 'axios'
-const urlApi = 'https://e-winespf.herokuapp.com'
 
 export function getPublications () {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/publications`)
+      const api = await axios.get('http://localhost:3001/publications')
       return dispatch({
         type: 'GET_PUBLICATIONS',
         payload: api.data
@@ -18,7 +17,7 @@ export function getPublications () {
 export function getByPublication (id) {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/publications/${id}`)
+      const api = await axios.get(`http://localhost:3001/publications/${id}`)
       return dispatch({
         type: 'GET_BY_ID_PUBLICATION',
         payload: api.data
@@ -32,7 +31,7 @@ export function getByPublication (id) {
 export function postPublication (data) {
   return async function (dispatch) {
     try {
-      const api = await axios.post(`${urlApi}/publications`, data)
+      const api = await axios.post('http://localhost:3001/publications/', data)
       return dispatch({
         type: 'POST_PUBLICATION',
         Headers: { 'content-type': 'application/json' },
@@ -47,7 +46,7 @@ export function postPublication (data) {
 export function getProducts () {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/products`)
+      const api = await axios.get('http://localhost:3001/products')
       return dispatch({
         type: 'GET_PRODUCTS',
         payload: api.data
@@ -61,7 +60,7 @@ export function getProducts () {
 export function getByIdProduct (id) {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/products/${id}`)
+      const api = await axios.get(`http://localhost:3001/products/${id}`)
       return dispatch({
         type: 'GET_BY_ID_PRODUCT',
         payload: api.data
@@ -75,7 +74,7 @@ export function getByIdProduct (id) {
 export function postProduct (data) {
   return async function (dispatch) {
     try {
-      const api = await axios.post(`${urlApi}/products`, data)
+      const api = await axios.post('http://localhost:3001/products', data)
       return dispatch({
         type: 'POST_PRODUCT',
         payload: api.data
@@ -89,7 +88,7 @@ export function postProduct (data) {
 // pending
 export const searchByNameProduct = (name) => {
   return async function (dispatch) {
-    return fetch(`${urlApi}/products?name=${name}`)
+    return fetch(`http://localhost:3001/products?name=${name}`)
       .then((respuesta) => respuesta.json())
       .then((infoProductName) => {
         dispatch({ type: 'SEARCH_PRODUCT_BY_NAME', payload: infoProductName })
@@ -101,7 +100,7 @@ export const searchByNameProduct = (name) => {
 export const filterPublications = ({ varietal, type, origin, opt }) => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${urlApi}/publications/filter?varietal=${varietal}&type=${type}&origin=${origin}&opt=${opt}`)
+      const { data } = await axios.get(`http://localhost:3001/publications/filter?varietal=${varietal}&type=${type}&origin=${origin}&opt=${opt}`)
       return dispatch({
         type: 'FILTER_PUBLICATIONS',
         payload: data
@@ -119,7 +118,7 @@ export const clearFilter = () => {
 
 export const searchPublicationByName = (name) => {
   return async function (dispatch) {
-    return fetch(`${urlApi}/publications?name=${name}`).then((respuesta) =>
+    return fetch(`http://localhost:3001/publications?name=${name}`).then((respuesta) =>
       respuesta.json().then((dataP) => {
         dispatch({ type: 'GET_PUBLICATIONS', payload: dataP })
       })
@@ -165,7 +164,7 @@ export const getRecomendedPublications = (type, varietal, origin) => {
   return async function (dispatch) {
     try {
       console.log(type, varietal, origin)
-      const recPub = await axios(`${urlApi}/publications/filter?type=${type || null}&varietal=${varietal || null}&origin=${origin || null}`)
+      const recPub = await axios(`http://localhost:3001/publications/filter?type=${type || null}&varietal=${varietal || null}&origin=${origin || null}`)
       console.log(recPub)
       return dispatch({
         type: 'RECOMENDED_PUBLICATIONS',

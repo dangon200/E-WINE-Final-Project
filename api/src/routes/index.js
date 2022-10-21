@@ -4,7 +4,7 @@ const router = Router()
 const productRouter = require('./product.js')
 const userRouter = require('./users')
 const publicationRoutes = require('./publicationRoutes.js')
-const payment = require('./MercadoPago')
+const checkout = require('./MercadoPago')
 const feedback = require('./MercadoPago')
 // LOAD EACH ROUTES IN A ROUTE
 router.get('/serverOk', (req, res) => {
@@ -13,7 +13,7 @@ router.get('/serverOk', (req, res) => {
 router.use('/products', productRouter)
 router.use('/users', userRouter)
 router.use('/publications', publicationRoutes)
-router.use('/payment', payment)
+router.use('/checkout', checkout)
 router.use('/feedback', feedback)
 
 module.exports = router
