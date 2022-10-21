@@ -130,17 +130,47 @@ export const searchPublicationByName = (name) => {
 
 // Favorites
 
-export const addFavorites = (id) => {
-  return {
-    type: 'ADD_FAVORITES',
-    payload: id
+export const getFavorites = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/favorites/${id}`)
+      return dispatch({
+        type: 'GET_FAVORITES_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
-export const removeFavorites = (id) => {
-  return {
-    type: 'REMOVE_FAVORITES',
-    payload: id
+export const addFavorites = (data) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/favorites`, data)
+      return dispatch({
+        type: 'ADD_FAVORITE',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+
+export const removeFavorites = (userId, publicationId) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/favorites/delete/${userId}?publicationId=${publicationId}`)
+      return dispatch({
+        type: 'REMOVE_FAVORITE',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
   }
 }
 
@@ -174,6 +204,42 @@ export const getRecomendedPublications = (type, varietal, origin) => {
       })
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+// USER
+
+export const loginUser = (user) => {
+  return {
+    type: 'LOGIN_USER',
+    payload: user
+  }
+}
+
+export const logoutUser = () => {
+  return {
+    type: 'LOGOUT_USER'
+  }
+}
+// STRIPE
+
+export const postStripe = (idStripe, totalAmount, carrito, userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post(`${urlApi}/stripe`, {
+        idStripe,
+        totalAmount,
+        carrito,
+        userId
+      })
+      console.log(res)
+      return dispatch({
+        type: 'POST_STRIPE',
+        payload: res.data
+      })
+    } catch (error) {
+
     }
   }
 }

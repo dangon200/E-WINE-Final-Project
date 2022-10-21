@@ -11,7 +11,14 @@ import { postProduct } from '../../store/actions/actions'
 export default function FormCreateProduct () {
   const dispatch = useDispatch() //
   const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, isSubmitting } = useFormik({
-    initialValues: { name: '', type: '', varietal: '', origin: '', img: '', cellar: '' },
+    initialValues: {
+      name: '',
+      type: '',
+      varietal: '',
+      origin: '',
+      img: '',
+      cellar: ''
+    },
     validationSchema: schemaFormProduct,
     onSubmit: async (values, { resetForm }) => {
       try {

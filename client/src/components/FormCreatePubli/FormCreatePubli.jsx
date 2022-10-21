@@ -30,32 +30,23 @@ export default function FormCreatePubli () {
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values, { resetForm }) => {
-      try {
-        const url = await uplodCloudinary(values.image)
-        values.image = url
-
-        dispatch(postPublication({ ...values }, token.token))
-        resetForm()
-          .then(data => {
-            resetForm()
-            setSend(true)
-            setTimeout(() => {
-              setSend(false)
-            }, 3000)
-          })
-          .catch(errors => {
-            console.log('🤬 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ errors', errors)
-          })
-      } catch (error) {
-        console.log('🚀 ~ file: FormCreatePubli.jsx ~ line 40 ~ onSubmit: ~ error', error)
-      }
+      const url = await uplodCloudinary(values.image)
+      values.image = url
+      dispatch(postPublication({ ...values }, token.token))
+      resetForm()
+      setSend(true)
+      setTimeout(() => {
+        setSend(false)
+      }, 3000
+      )
     }
   })
+  const select = document.getElementById('productId')
   const [send, setSend] = useState(false)
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
-      {console.log(values)}
+      {console.log(select)}
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>
@@ -154,7 +145,7 @@ export default function FormCreatePubli () {
                   onBlur={handleBlur}
                 >
                   <option value=''>Seleccione un producto...</option>
-                  {products && products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+                  {Array.isArray(products) && products.map(product => <option key={product.name} value={product.id}>{product.name}</option>)}
                 </select>
                 {errors.productId && touched.productId && <p className='invalid-feedback fs-4'>{errors.productId}</p>}
               </div>
