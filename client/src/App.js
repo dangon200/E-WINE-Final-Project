@@ -16,7 +16,6 @@ import FormSignUp from './components/FormSignUp/FormSignUp'
 import FormLogin from './components/FormLogin/FormLogin'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
-import List from './components/List/List'
 
 function App () {
   const dispatch = useDispatch()
@@ -40,7 +39,6 @@ function App () {
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route exact path='/admin' component={AdminDashboard} />
-        <Route exact path='/admin/users' component={List} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />

@@ -1,15 +1,13 @@
 import React from 'react'
 
-import s from './List.module.css'
 import { Datatable } from '../Datatable/Datatable'
 
-function List () {
+function ListPublications () {
   return (
-    <div className={`container-fluid ${s.div}`}>
-
+    <div>
       <Datatable />
     </div>
   )
 }
 
-export default List
+export default ListPublications
