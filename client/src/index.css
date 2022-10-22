@@ -140,10 +140,11 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-botoncito{
-  background-color: #56070C;
+  background-color:#56070C;
   color: beige;
 }
 
 .btn-botoncito:hover{
   border-color: #56070C;
+  color:black;
 }

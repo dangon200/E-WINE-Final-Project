@@ -76,8 +76,8 @@ export default function PublicationDetail (props) {
     <Container>
       <Row>
         <Row className='mt-5 rounded mx-auto shadow-lg'>
-          <Col className='position-relative'>
-            <div className='ps-5 ms-5 position-absolute start-50 end-0'>
+          <Col className=''>
+            <div className='pt-3 d-flex justify-content-end'>
               <FaHeart
                 className={isInFavorites(id) ? style.iconActive : style.icon}
                 onClick={() => {
@@ -87,7 +87,7 @@ export default function PublicationDetail (props) {
                 }}
               />
             </div>
-            <Carousel className='mb-5 mt-5'>
+            <Carousel className='mb-5 mt-4'>
               <Carousel.Item>
                 <Image
                   fluid
@@ -153,8 +153,8 @@ export default function PublicationDetail (props) {
                 <div>
                   <Button
                     className='ms-5 fs-4 p-2'
-                    variant='carrito'
                     size='lg'
+                    variant='botoncito'
                     onClick={() => {
                       addToCarrito(
                         id,
@@ -167,7 +167,7 @@ export default function PublicationDetail (props) {
                     }}
                   >
                     <BsFillCartPlusFill className='me-3 fs-2' />
-                    AGREGAR AL CARRITO
+                    AGREGAR
                   </Button>
                 </div>
 
@@ -175,11 +175,11 @@ export default function PublicationDetail (props) {
                   <Link to='/Carrito'>
                     <Button
                       className='fs-4 p-2'
-                      variant='carrito'
                       size='lg'
+                      variant='botoncito'
                     >
                       <BsFillCartCheckFill className='me-3 fs-2' />
-                      COMPRAR AHORA
+                      COMPRAR
                     </Button>
                   </Link>
                 </div>
