@@ -1,3 +1,4 @@
+import axios from 'axios'
 import * as Yup from 'yup'
 import { types, provinces, varietales } from './data'
 
@@ -6,6 +7,9 @@ const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/gm
 // at least 8 characters
 // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
 // - Can contain special characters
+const urlApi = 'https://e-winespf.herokuapp.com'
+// http:///users/email/:email
+// users/username/:username
 
 export const schemaFormPubli = Yup.object().shape({
   title: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres'),
@@ -34,8 +38,36 @@ export const schemaFormProduct = Yup.object().shape({
 export const schemaValidateUser = Yup.object().shape({
   username: Yup.string().required('Es Requerido')
     .matches(startWichLetter, 'Debe comenzar con una letra')
-    .min(3, 'Min 3 caracteres').max(50, 'Max 50 caracteres'),
-  email: Yup.string().email('Email no válido').required('Es Requerido'),
+    .min(3, 'Min 3 caracteres').max(50, 'Max 50 caracteres')
+    .test('testEmail', 'Este usuario ya existe',
+      value => {
+        return new Promise((resolve, reject) => {
+          axios.get(`${urlApi}/users/username/${value}`)
+            .then(res => {
+              resolve(true)
+            })
+            .catch(error => {
+              if (error.response.data === true) {
+                resolve(false) // eslint-disable-line
+              }
+            })
+        })
+      }),
+  email: Yup.string().email('Email no válido').required('Es Requerido')
+    .test('testEmail', 'Este correo ya existe',
+      value => {
+        return new Promise((resolve, reject) => {
+          axios.get(`${urlApi}/users/email/${value}`)
+            .then(res => {
+              resolve(true)
+            })
+            .catch(error => {
+              if (error.response.data === true) {
+                resolve(false) // eslint-disable-line
+              }
+            })
+        })
+      }),
   password: Yup.string().required('Es Requerido')
     .min(8, 'Min 8 caracteres')
     .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número')
