@@ -14,6 +14,7 @@ import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import FormSignUp from './components/FormSignUp/FormSignUp'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
 
 import Cookies from 'universal-cookie'
@@ -44,6 +45,7 @@ function App () {
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
+        <Route exact path='/admin' component={AdminDashboard} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='/payment/:totalAmount' component={CardStripe} />
