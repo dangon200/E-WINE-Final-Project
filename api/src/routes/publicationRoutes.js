@@ -9,8 +9,9 @@ const {
   orderPublicationsAtoZ,
   orderPublicationsZtoA,
   getPublicationsByName,
-  getPublicationsOfUser
-} = require('../controllers')
+  getPublicationsOfUser,
+  updatePublicationStock
+} = require('../controllers/publications')
 
 const router = Router()
 
@@ -183,6 +184,16 @@ router.put('/:id', async (req, res) => {
   try {
     const pbBanned = await bannedPublication(id, banned)
     return res.status(200).json(pbBanned)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+router.put('/stock/:id', async (req, res) => {
+  const { id } = req.params
+  const { newStock } = req.query
+  try {
+    const publicationUpdated = await updatePublicationStock(newStock, id)
+    return res.status(200).json(publicationUpdated)
   } catch (error) {
     res.status(400).json(error.message)
   }

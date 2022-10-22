@@ -25,5 +25,4 @@ router.use('/favorites', favoritesRouter)
 router.use('/stripe', stripeRoutes)
 router.use('/buys', buyRoutes)
 
-
 module.exports = router

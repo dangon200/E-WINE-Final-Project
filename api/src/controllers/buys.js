@@ -1,44 +1,94 @@
-const { Buy } = require('../db')
+const { Buy, BuyItem, Publication } = require('../db')
 
 const getAllBuy = async () => {
+  const resultParsed = []
   try {
-    const allBuys = await Buy.findAll()
-    return allBuys
+    const dbResult = await Buy.findAll()
+    console.log(dbResult)
+    dbResult?.forEach(b => {
+      resultParsed.push({
+        id: b.dataValues.id,
+        currency: b.dataValues.currency,
+        paymentMethod: b.dataValues.paymentMethod,
+        totalAmount: b.dataValues.totalAmount,
+        userId: b.dataValues.userId
+      })
+    })
+    console.log('resultados parseados', resultParsed)
+
+    return resultParsed
   } catch (error) {
     return new Error(error.message)
   }
 }
 const getBuyById = async (id) => {
   try {
-    const BuyById = Buy.findByPk(id)
-    return BuyById
+    const dbResult = Buy.findByPk(id)
+    const resultParsed = {
+      id: dbResult.id,
+      currency: dbResult.currency,
+      paymentMethod: dbResult.paymentMethod,
+      totalAmount: dbResult.totalAmount,
+      userId: dbResult.userId
+    }
+    return resultParsed
   } catch (error) {
-    return new Error(error.message)
+    return new Error('Error al buscar una compra por Id')
   }
 }
-const getBuyByUser = async (userId) => {
+const getBuysByUser = async (userId) => {
   try {
-    const BuyByUser = Buy.findAll({
-
+    const BuyByUser = await Buy.findAll({
+      where: {
+        userId
+      }
     })
     return BuyByUser
   } catch (error) {
     return new Error(error.message)
   }
 }
-const getBuyByPublication = async (publicationId) => {
+const getBuysByPublication = async (publicationId) => {
   try {
-    const BuyByPublication = Buy.findAll({
-
+    const BuyByPublication = await Buy.findAll({
+      include: [
+        {
+          model: BuyItem,
+          where: {
+            publicationId
+          }
+        }
+      ]
     })
     return BuyByPublication
   } catch (error) {
     return new Error(error.message)
   }
 }
+const getBuysByProducts = async (productId) => {
+  try {
+    const BuyByProduct = await Buy.findAll({
+      include: [
+        {
+          model: BuyItem,
+          include: [{
+            model: Publication,
+            where: {
+              productId
+            }
+          }]
+        }
+      ]
+    })
+    return BuyByProduct
+  } catch (error) {
+
+  }
+}
 module.exports = {
   getAllBuy,
   getBuyById,
-  getBuyByUser,
-  getBuyByPublication
+  getBuysByUser,
+  getBuysByPublication,
+  getBuysByProducts
 }
