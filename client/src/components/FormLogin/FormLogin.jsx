@@ -7,6 +7,7 @@ import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
+import $ from 'jquery'
 
 export default function FormLogin () {
   const cookies = new Cookies()
@@ -137,7 +138,8 @@ export default function FormLogin () {
     dispatch(logoutUser())
     cookies.remove('TOKEN')
   }
-
+  const modal = $('#exampleModal').on()
+  console.log('🚀 ~ file: FormLogin.jsx ~ line 142 ~ FormLogin ~ modal', modal)
   return (
     <div className='user-select-none'>
 
