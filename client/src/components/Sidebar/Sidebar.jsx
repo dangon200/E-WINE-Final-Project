@@ -9,11 +9,12 @@ import {
 } from 'react-icons/fa'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 /* import { MdDashboard } from 'react-icons/md' */
-/* import s from './Sidebar.module.css' */
-import { NavLink } from 'react-router-dom'
+import s from './Sidebar.module.css'
+import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../../utils/images/logo.png'
 
 const Sidebar = () => {
+  const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   /* const untoggle = () => setIsOpen(isOpen) */
@@ -60,9 +61,12 @@ const Sidebar = () => {
         </div>
         {
                 menuItem.map((item, index) => (
-                  <NavLink to={item.path} key={index} className='text-decoration-none'>
+                  <NavLink
+                    to={item.path} key={index}
+                    className='text-decoration-none'
+                  >
                     <div className={`${(isOpen ? 'd-flex justify-content-start align-items-center mt-5' : 'mt-5')}`}>
-                      <div>{item.icon}</div>
+                      <div className={location.pathname === item.path ? s.navlinkActive : s.navlink}>{item.icon}</div>
                       <div style={{ display: isOpen ? 'block' : 'none' }} className='fs-4 fw-semibold text-dark ms-5'><span>{item.name}</span></div>
                     </div>
                   </NavLink>
