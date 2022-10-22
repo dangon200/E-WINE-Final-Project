@@ -12,7 +12,7 @@ import Navbar from 'react-bootstrap/Navbar' */
 /* import NavDropdown from 'react-bootstrap/NavDropdown' */
 import Sidebar from '../Sidebar/Sidebar'
 
-export default function DashboardUser () {
+export default function UserFavorites () {
   const favorites = useSelector(state => state.favorites)
 
   return (

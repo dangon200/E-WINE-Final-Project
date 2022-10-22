@@ -2,6 +2,7 @@ const { User } = require('../db')
 // const { Op } = require('sequelize')
 
 const { v4: uuidv4 } = require('uuid')
+const bcrypt = require('bcryptjs')
 
 const getUserById = async (id) => {
   try {
@@ -46,6 +47,7 @@ const getAllUsers = async () => {
         balance: r.balance
       })
     })
+    console.log(results)
     return results
   } catch (error) {
     throw new Error('Error tratando de obtener los usuarios de la DB!')
@@ -115,7 +117,7 @@ const createUser = async (username, email, password, region) => {
     const userCreated = await User.create({
       username,
       email,
-      password,
+      password: await bcrypt.hash(password, 10),
       region,
       id: uuidv4()
     })
@@ -192,6 +194,41 @@ const setImage = async (id, url) => {
   }
 }
 
+const setVerified = async (id, verified) => {
+  try {
+    const userUpdated = await User.update(
+      {
+        isVerified: verified
+      },
+      {
+        where: {
+          id
+        }
+      }
+    )
+
+    if (userUpdated) {
+      const userById = await getUserById(id)
+      return userById
+    }
+  } catch (error) {
+    throw new Error('Error actualizando usuario!')
+  }
+}
+
+const deleteUserById = async (id) => {
+  try {
+    const userDeleted = await User.destroy({
+      where: {
+        id
+      }
+    })
+    return userDeleted
+  } catch (error) {
+    throw new Error('Error al eliminar el usuario!')
+  }
+}
+
 module.exports = {
   createUser,
   getAllUsers,
@@ -200,5 +237,7 @@ module.exports = {
   getUserById,
   setBanned,
   setSommelier,
-  setImage
+  setImage,
+  setVerified,
+  deleteUserById
 }

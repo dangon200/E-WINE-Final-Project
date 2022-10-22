@@ -24,7 +24,7 @@ const Sidebar = () => {
       icon: <FaStore color='#630606' size={25} />
     },
     {
-      path: '/favorites',
+      path: '/user/favorites',
       name: 'Favoritos',
       icon: <FaHeart color='#630606' size={25} />
     },

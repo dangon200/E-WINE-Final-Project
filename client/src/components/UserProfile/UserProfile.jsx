@@ -44,21 +44,21 @@ export default function UserProfile () {
                   </tr>
                 </tbody>
               </table> */}
-              <Row className='d-flex text-start w-100 mb-5'>
+              <Row className='d-flex text-start w-75 mb-5'>
                 <h1>Mis datos</h1>
               </Row>
-              <Row className='w-100 fs-4 d-flex justify-content-center align-items-center'>
+              <Row className='w-75 fs-4 d-flex justify-content-center align-items-center'>
                 <Col className='d-flex justify-content-start'>
                   <h2>Datos de la cuenta</h2>
                 </Col>
-                <Col className='d-flex justify-content-end'>
+                {/* <Col className='d-flex justify-content-end'>
                   <Link className='text-decoration-none' to='/formEditUser'>
                     Modificar datos de cuenta
                   </Link>
-                </Col>
+                </Col> */}
               </Row>
-              <Container fluid>
-                <Table className='text-dark mt-4 fs-4 rounded-4' size='lg'>
+              <Container>
+                <Table responsive className='w-75 text-dark bg-secondary bg-opacity-25 mt-4 fs-4 rounded-4' size='lg'>
                   {/* <thead>
                   <tr>
                     <th colSpan={3} className='pb-3'>
@@ -71,24 +71,51 @@ export default function UserProfile () {
                 </thead> */}
                   <tbody className={s.firstTd}>
                     <tr>
-                      <td>Usuario</td>
-                      <td>mark.65</td>
+                      <td style={{ 'padding-left': '10px' }}>Usuario</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65</td>
                     </tr>
                     <tr>
-                      <td>E-mail</td>
-                      <td>Jacob</td>
+                      <td style={{ 'padding-left': '10px' }}>E-mail</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65@gmail.com</td>
                     </tr>
                     <tr>
-                      <td>Domicilio</td>
-                      <td>Larry the Bird</td>
+                      <td style={{ 'padding-left': '10px' }}>Domicilio</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>Corrientes 123</td>
                     </tr>
                     <tr>
-                      <td>Telefono</td>
-                      <td>Larry the Bird</td>
+                      <td style={{ 'padding-left': '10px' }}>Telefono</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>47326875</td>
                     </tr>
                   </tbody>
                 </Table>
               </Container>
+              <Row className='fs-4 d-flex justify-content-center align-items-center pt-3'>
+                <Col className='d-flex justify-content-start'>
+                  <Link className='text-decoration-none' to='/formEditUser'>
+                    Modificar datos de cuenta
+                  </Link>
+                </Col>
+              </Row>
+              <Table responsive className='w-75 text-dark bg-secondary bg-opacity-25 mt-4 fs-4 rounded-4' size='lg'>
+                <tbody className={s.Td}>
+                  <tr>
+                    <td style={{ 'padding-left': '10px' }}>Usuario</td>
+                    <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65</td>
+                  </tr>
+                  <tr>
+                    <td style={{ 'padding-left': '10px' }}>E-mail</td>
+                    <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65@gmail.com</td>
+                  </tr>
+                  <tr>
+                    <td style={{ 'padding-left': '10px' }}>Domicilio</td>
+                    <td style={{ 'padding-right': '10px' }} className={s.secTd}>Corrientes 123</td>
+                  </tr>
+                  <tr>
+                    <td style={{ 'padding-left': '10px' }}>Telefono</td>
+                    <td style={{ 'padding-right': '10px' }} className={s.secTd}>47326875</td>
+                  </tr>
+                </tbody>
+              </Table>
             </Row>
           </Col>
         </Row>

@@ -14,3 +14,10 @@
 .navlink:hover{
   color:var(--btn-background-color)
 }
+
+.googleBtn{
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}
