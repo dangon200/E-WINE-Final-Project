@@ -11,6 +11,7 @@ import {
   removeFavorites
 } from '../../store/actions/actions'
 import ProductDetail from '../ProductDetail/ProductDetail'
+import Preguntas from '../Preguntas/Preguntas.jsx'
 import RecomendedPublications from '../RecomendedPublications/RecomendedPublications'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
@@ -186,8 +187,10 @@ export default function PublicationDetail (props) {
             </Col>
           </Col>
         </Row>
+
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
+        <Preguntas />
         {publication
           ? (
             <RecomendedPublications

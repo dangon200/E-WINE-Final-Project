@@ -138,3 +138,12 @@ input::-webkit-inner-spin-button {
 .btn-prueba:hover{
   background-color: rgba(135, 128, 128, 0.749);
 }
+
+.btn-botoncito{
+  background-color: #56070C;
+  color: beige;
+}
+
+.btn-botoncito:hover{
+  border-color: #56070C;
+}
