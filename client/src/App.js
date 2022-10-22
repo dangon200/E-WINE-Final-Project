@@ -49,7 +49,7 @@ function App () {
         <Route path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Footer} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
     </div>
   )
 }
