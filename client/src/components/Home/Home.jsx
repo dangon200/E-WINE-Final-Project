@@ -10,7 +10,6 @@ import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import Container from 'react-bootstrap/esm/Container'
-import { Link } from 'react-router-dom'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
@@ -62,9 +61,6 @@ export default function Home () {
         </div>
         {typeof publications !== 'string' &&
           <div className={style.divPagination}>
-            <Link to='/dashboard/user'>
-              Volver a la publicación
-            </Link>
             {page !== 1 ? <div onClick={() => paginationBef()}><MdOutlineKeyboardArrowLeft className={style.buttonLeft} /></div> : null}
             <Pagination
               publications={publications.length}

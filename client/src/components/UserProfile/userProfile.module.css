@@ -14,3 +14,16 @@
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 1rem;
 }
+
+.container{
+    padding-top: 50px;
+    background-color: #EEEEEE;
+}
+
+.table, .table2{
+    width: 75%;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}

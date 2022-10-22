@@ -10,11 +10,11 @@ export default function UserProfile () {
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
-        <Row className='grid h-100 bg-grey bg-opacity-25'>
+        <Row className='grid h-100'>
           <Col className='col-auto pt-5 rounded'>
             <Sidebar />
           </Col>
-          <Col style={{ color: '#EEEEEE' }} className='bg-light text-dark pt-5 d-flex-column justify-content-center'>
+          <Col className={s.container}>
             <Row className='m-auto w-75 pt-5' id={s.grid}>
               {/* <table>
                 <thead>
@@ -58,7 +58,7 @@ export default function UserProfile () {
                 </Col> */}
               </Row>
               <Container>
-                <Table responsive className='w-75 text-dark bg-secondary bg-opacity-25 mt-4 fs-4 rounded-4' size='lg'>
+                <Table responsive className={s.table} size='lg'>
                   {/* <thead>
                   <tr>
                     <th colSpan={3} className='pb-3'>
@@ -96,7 +96,7 @@ export default function UserProfile () {
                   </Link>
                 </Col>
               </Row>
-              <Table responsive className='w-75 text-dark bg-secondary bg-opacity-25 mt-4 fs-4 rounded-4' size='lg'>
+              <Table responsive className={s.table2} size='lg'>
                 <tbody className={s.Td}>
                   <tr>
                     <td style={{ 'padding-left': '10px' }}>Usuario</td>

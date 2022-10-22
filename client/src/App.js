@@ -18,7 +18,9 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import UserFavorites from './components/UserFavorites/UserFavorites.jsx'
 import FormEditUser from './components/FormEditUser/FormEditUser'
 import UserProfile from './components/UserProfile/UserProfile'
+import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
+import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
 
 import Cookies from 'universal-cookie'
 
@@ -49,11 +51,13 @@ function App () {
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
+        <Route exact path='/admin' component={AdminDashboard} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='/user/favorites' component={UserFavorites} />
         <Route path='/formEditUser' component={FormEditUser} />
         <Route path='/userProfile' component={UserProfile} />
+        <Route path='/userPurchased' component={PurchasedProducts} />
         <Route path='*' component={Error404} />
         <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route path='/payment/:totalAmount' component={CardStripe} />

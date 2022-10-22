@@ -3,7 +3,6 @@ import {
   FaStore,
   FaBars,
   FaHeart,
-  FaRegChartBar,
   FaCommentAlt,
   FaUser
 } from 'react-icons/fa'
@@ -30,17 +29,12 @@ const Sidebar = () => {
       icon: <FaHeart color='#630606' size={25} />
     },
     {
-      path: '/analytics',
-      name: 'Estadisticas',
-      icon: <FaRegChartBar color='#630606' size={25} />
-    },
-    {
       path: '/comment',
       name: 'Reseñas',
       icon: <FaCommentAlt color='#630606' size={25} />
     },
     {
-      path: '/purchased',
+      path: '/userPurchased',
       name: 'Mis compras',
       icon: <HiOutlineShoppingBag color='#630606' size={25} />
     },

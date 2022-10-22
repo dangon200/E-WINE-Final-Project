@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 /* import CardFavorites from '../CardFavorites/CardFavorites' */
 /* import { AiFillHome } from 'react-icons/ai' */
-/* import s from './userDashboard.module.css' */
+import s from './userFavorites.module.css'
 /* import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar' */
 /* import NavDropdown from 'react-bootstrap/NavDropdown' */
@@ -22,7 +22,7 @@ export default function UserFavorites () {
           <Col className='col-auto min-vh-100 pt-5 rounded'>
             <Sidebar />
           </Col>
-          <Col className='bg-light text-dark pt-5 w-100'>
+          <Col className={s.container}>
             <h1>Favoritos</h1>
             <div>
               {favorites.length > 0
