@@ -12,8 +12,8 @@ import { addCarrito } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
-// import FormSignUp from './components/FormSignUp/FormSignUp '//
-// import FormLogin from './components/FormLogin/FormLogin' //
+import FormSignUp from './components/FormSignUp/FormSignUp'
+import FormLogin from './components/FormLogin/FormLogin'
 
 function App () {
   const dispatch = useDispatch()
@@ -27,22 +27,23 @@ function App () {
 
   return (
     <div className='App container-xxl px-0'>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
+      <Route path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Nav} />
 
       <Switch>
+        <Route exact path='/register' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
-        <Route path='/createPublication' exact component={FormCreatePubli} />
+        <route path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
+        <Route exact path='/formLogin' component={FormLogin} />
+        <Route exact path='/form' component={FormSignUp} />
       </Switch>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
+      <Route path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Footer} />
     </div>
   )
 }
-// Route exact path='/formLogin' component={FormLogin} //
-// Route exact path='/form' component={FormSignUp} //
 
 export default App

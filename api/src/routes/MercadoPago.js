@@ -1,26 +1,19 @@
 //const express = require('express')
 //const router = express.Router()
+const { Buy, Publication, BuyItem, User } = require('../db')
 const server = require('express').Router()
-const PaymentController = require('../controllers/paymentControllers')
-const PaymentServices = require('../services/paymentServices')
-const PaymentInstance = new PaymentController(new PaymentServices())
-
-
-server.post ('/carrito', function(req, res, next){
-    let carrito = [];
-  });
-
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch')
+
 
 // SDK de Mercado Pago
 const mercadopago = require ('mercadopago');
-const { setRandomFallback } = require('bcryptjs');
+const { getBuyById } = require('../controllers/buys');
 
 //middleware
-
-app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.urlencoded({ extended: false }))
 
 // Agrega credenciales
 mercadopago.configure({
@@ -51,34 +44,13 @@ let preference = {
     console.log(error);
   });
 })
-server.post('/subscription', function(req, res, next){
-  PaymentInstance.getSubscriptionLink(req, res);
-});
 
-//notification servicio -> getPaymentInfo getPaymentInfo -> tiene la respuesta de la API de Payments PaymentID = 
-server.get('/merchantOrder', function (req, res) {
-  const newOrder = req.body.data.id
-  fetch(`https://api.mercadopago.com/v1/payments/${newOrder}`, {
-      method: 'GET',
-      headers:{
-       "Authorization": `Bearer ${process.env.ACCESS_TOKEN_MP}`,
-      },
-      credentials: 'include'
-    }
-      .then((res) => res.status(200).json(data))
-      .then((data) => {
-        const payerID = data.payer.id
-        const payerEmail = data.payer.email
-        const compraID = data.id
-        const status = data.status
-      })
-  )
-  }) 
 
-server.post('/feedback', function (req, res) {
+
+server.get('/feedback', function (req, res) {
 
 var mercadopago = require('mercadopago');
-mercadopago.configurations.setAccessToken("YOUR_ACCESS_TOKEN");
+mercadopago.configurations.setAccessToken(process.env.ACCESS_TOKEN_MP);
 
 var payment_data = {
   transaction_amount: Number(req.body.transactionAmount),
@@ -87,7 +59,7 @@ var payment_data = {
   installments: Number(req.body.installments),
   payment_method_id: req.body.paymentMethodId,
   issuer_id: req.body.issuer,
-  notification_url: "http://requestbin.fullcontact.com/1ogudgk1",
+  notification_url: "http://locahost:3001/webhooks",
   payer: {
     email: req.body.email,
     identification: {
@@ -99,14 +71,17 @@ var payment_data = {
 mercadopago.payment.save(payment_data)
   .then(function(response) {
     res.status(response.status).json({
+      payer: response.body.payer,
       status: response.body.status,
       status_detail: response.body.status_detail,
-      id: response.body.id
-        });
+      id: response.body.id,
+      amount: response.body.transactionAmount,
+      description: response.body.description
+      });
   })
   .catch(function(error) {
     res.status(response.status).send(error);
   })
 })
 
-module.exports = server;
+module.exports = server

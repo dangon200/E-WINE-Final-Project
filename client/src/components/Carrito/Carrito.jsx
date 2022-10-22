@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
+import { Link } from 'react-router-dom'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
@@ -9,8 +10,10 @@ export default function Carrito () {
     const buying = carrito.map(item => {
       return {
         title: item.title,
+        description: item.description,
         unit_price: parseInt(item.price),
-        quantity: parseInt(item.count)
+        quantity: parseInt(item.count),
+        category_id: parseInt(item.id)
       }
     })
     fetch('http://localhost:3001/checkout', {
@@ -26,8 +29,13 @@ export default function Carrito () {
         document.location = data.data
       })
   }
-  return (
 
+  const totalAmount = carrito.reduce((acumulador, pactual) => {
+    const total = (parseInt(pactual.price) * parseInt(pactual.count))
+    return acumulador + total
+  }, 0)
+
+  return (
     <div className={style.container}>
       {carrito.length > 0
         ? carrito.map(p => {
@@ -42,14 +50,14 @@ export default function Carrito () {
         </div>
         <div className={style.sumaTotal}>
           Total con envio:{carrito.length > 0
-          ? carrito.reduce((acumulador, pactual) => {
-            const total = (parseInt(pactual.price) * parseInt(pactual.count))
-            return acumulador + total
-          }, 0)
+          ? totalAmount
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <button onClick={pagarMP}>Continuar compra</button>
+      <button onClick={pagarMP}>Pagar con MercadoPago</button>
+      <Link to={`/payment/${totalAmount}`}>
+        <button>Pagar con Tarjeta</button>
+      </Link>
     </div>
   )
 }

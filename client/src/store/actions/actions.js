@@ -28,7 +28,7 @@ export function getByPublication (id) {
   }
 }
 
-export function postPublication (data) {
+export function postPublication (data, token) {
   return async function (dispatch) {
     try {
       const api = await axios.post('http://localhost:3001/publications/', data)
@@ -38,7 +38,8 @@ export function postPublication (data) {
         payload: api.data
       })
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      throw new Error(error.response.data)
     }
   }
 }
@@ -172,6 +173,28 @@ export const getRecomendedPublications = (type, varietal, origin) => {
       })
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+// STRIPE
+
+export const postStripe = (idStripe, totalAmount, carrito, userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post('http://localhost:3001/stripe', {
+        idStripe,
+        totalAmount,
+        carrito,
+        userId
+      })
+      console.log(res)
+      return dispatch({
+        type: 'POST_STRIPE',
+        payload: res.data
+      })
+    } catch (error) {
+
     }
   }
 }
