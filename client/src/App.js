@@ -13,8 +13,11 @@ import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import FormSignUp from './components/FormSignUp/FormSignUp'
-import FormLogin from './components/FormLogin/FormLogin'
+/* import FormLogin from './components/FormLogin/FormLogin' */
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import DashboardUser from './components/UserDashboard/UserDashboard.jsx'
+import FormEditUser from './components/FormEditUser/FormEditUser'
+import UserProfile from './components/UserProfile/UserProfile'
 
 function App () {
   const dispatch = useDispatch()
@@ -31,17 +34,20 @@ function App () {
       <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Nav} />
 
       <Switch>
-        <Route exact path='/login' component={FormLogin} />
-        <Route exact path='/register' component={FormSignUp} />
+        {/* <Route exact path='/formLogin' component={FormLogin} /> */}
+        <Route exact path='/form' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
+        <Route path='/dashboard/user' component={DashboardUser} />
+        <Route path='/formEditUser' component={FormEditUser} />
+        <Route path='/userProfile' component={UserProfile} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/dashboard/user']} component={Footer} />
     </div>
   )
 }

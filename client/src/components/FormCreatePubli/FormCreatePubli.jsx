@@ -25,7 +25,8 @@ export default function FormCreatePubli () {
       price: 0,
       description: '',
       count: 0,
-      image: {}
+      image: {},
+      userId: token ? token.user.id : 0
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values, { resetForm }) => {
@@ -33,7 +34,7 @@ export default function FormCreatePubli () {
         const url = await uplodCloudinary(values.image)
         values.image = url
 
-        dispatch(postPublication({ ...values, userId: token.user.id }, token.token))
+        dispatch(postPublication({ ...values }, token.token))
         resetForm()
           .then(data => {
             resetForm()
@@ -54,7 +55,7 @@ export default function FormCreatePubli () {
   const [createProduct, setCreateProduct] = useState(false)
   return (
     <div className={style.globalContainer}>
-
+      {console.log(values)}
       <section className='container user-select-none'>
         <div className='row'>
           <h2>Crear Nueva Publicación</h2>
