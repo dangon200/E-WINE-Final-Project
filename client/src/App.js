@@ -19,6 +19,7 @@ import FormEditUser from './components/FormEditUser/FormEditUser'
 import UserProfile from './components/UserProfile/UserProfile'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
+import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
 
 import Cookies from 'universal-cookie'
 
