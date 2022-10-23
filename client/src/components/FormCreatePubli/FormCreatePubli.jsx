@@ -74,7 +74,7 @@ export default function FormCreatePubli () {
                 placeholder='Precio'
                 name='price'
                 id='price'
-                min='1'
+                min='500'
                 max='500000'
                 value={values.price}
                 onChange={handleChange}
@@ -93,7 +93,7 @@ export default function FormCreatePubli () {
                 placeholder='Count'
                 name='count'
                 id='count'
-                min='500'
+                min='1'
                 max='10000'
                 value={values.count}
                 onChange={handleChange}
