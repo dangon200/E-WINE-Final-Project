@@ -8,7 +8,7 @@ import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home.jsx'
 import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
-import { addCarrito, getFavorites, loginUser } from '../src/store/actions/actions'
+import { addCarrito, loginUser } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
@@ -35,7 +35,7 @@ function App () {
     }
     if (token) {
       dispatch(loginUser(token.user))
-      dispatch(getFavorites(token.user.id))
+      // dispatch(getFavorites(token.user.id))
     }
   })
 
@@ -49,6 +49,7 @@ function App () {
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
+        <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route exact path='/admin' component={AdminDashboard} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
