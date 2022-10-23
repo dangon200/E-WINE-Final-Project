@@ -4,10 +4,8 @@ import { schemaValidateUser } from '../utilities/schemas'
 import { provinces } from '../utilities/data'
 import axios from 'axios'
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 
 export default function FormLogin () {
-  const patch = useHistory()
   const dispatch = useDispatch() //eslint-disable-line
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -24,7 +22,6 @@ export default function FormLogin () {
         console.log(response)
         resetForm()
         setSend(true)
-        setTimeout(() => { patch.push('/home') }, 3000)
       } catch (error) {
         setErr(true)
         setTimeout(() => { setErr(false) }, 2000)

@@ -12,10 +12,10 @@ import { addCarrito, getFavorites, loginUser } from '../src/store/actions/action
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
-import FormSignUp from './components/FormSignUp/FormSignUp'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
+import LoginInit from './components/LoginInit/LoginInit'
 
 import Cookies from 'universal-cookie'
 
@@ -40,7 +40,7 @@ function App () {
       <Route path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Nav} />
 
       <Switch>
-        <Route exact path='/register' component={FormSignUp} />
+        <Route exact path='/register' component={LoginInit} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />

@@ -5,9 +5,14 @@ import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
 import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
+import Modale from '../Modale/Modale'
+// import { useEffect } from 'react'
 
 export default function Nav () {
   const carritoItems = useSelector(state => state.carrito)
+  const user = useSelector(state => state.user)
+
+  // useEffect(() => { console.log(login) }, [login])
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
       <div className='container-fluid'>
@@ -30,16 +35,21 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
-            <FormLogin />
+            {/* <FormLogin /> */}
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
-
+            <Modale
+              buttonText={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              render={FormLogin}
+              link='/register'
+              createAcc
+            />
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
             <img src={bolsita} alt='bolsita' />
           </Link>
-
         </div>
       </div>
 

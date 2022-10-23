@@ -239,7 +239,14 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
         payload: res.data
       })
     } catch (error) {
-
+      throw Error(error.response.data)
     }
+  }
+}
+
+// Render Modal Login
+export const modalRender = () => {
+  return {
+    type: 'RENDER_MODAL_LOGIN'
   }
 }
