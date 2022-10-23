@@ -6,13 +6,10 @@ import Card from 'react-bootstrap/Card'
 // import { addFavorites, removeFavorites } from '../../store/actions/actions'
 import Col from 'react-bootstrap/esm/Col'
 // import style from './cardFavorite.module.css'
-// import Counter from '../Counter/Counter'
 
 export default function CardFavorites ({ id, title, price, image, name }) {
-  /* const dispatch = useDispatch()
-  const favorites = useSelector(state => state.favorites)
+  /* const favorites = useSelector(state => state.favorites)
   const user = useSelector(state => state.user) */
-  // const countItemCarrito=useSelector
   /* const isInFavorites = (id) => {
     for (let x = 0; x < favorites.length; x++) {
       if (favorites[x].publicationId === id) return true

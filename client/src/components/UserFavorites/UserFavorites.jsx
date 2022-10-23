@@ -32,14 +32,14 @@ export default function UserFavorites () {
                 {favorites.length > 0
                   ? favorites.map(p => {
                     return (
-                      <section key={p.id}>
+                      <section key={p.publicationId}>
                         <Col className='mb-5'>
                           <CardFavorites
-                            id={p.id}
+                            id={p.publicationId}
                             title={p.title}
                             name={p.name}
                             price={p.price}
-                            key={p.id}
+                            key={p.publicationId}
                           />
                         </Col>
                       </section>
