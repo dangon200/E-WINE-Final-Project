@@ -9,6 +9,7 @@ const favoritesRouter = require('./favorites')
 
 const stripeRoutes = require('./stripeRoutes')
 const buyRoutes = require('./buyRoutes')
+const buyItemRoutes = require('./buyItemRoutes')
 
 const router = Router()
 
@@ -24,5 +25,6 @@ router.use('/favorites', favoritesRouter)
 
 router.use('/stripe', stripeRoutes)
 router.use('/buys', buyRoutes)
+router.use('/buyItems', buyItemRoutes)
 
 module.exports = router
