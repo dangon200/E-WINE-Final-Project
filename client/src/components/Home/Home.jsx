@@ -9,8 +9,6 @@ import Filters from '../Filters/Filters.jsx'
 import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
-import Col from 'react-bootstrap/esm/Col'
-import Row from 'react-bootstrap/esm/Row'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
@@ -67,25 +65,12 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-      <Row className={style.filter_products}>
-        {/* <Col>
-          <nav className={style.navFilters}>
-            <div className={style.Filters}>
-              <Filters setPage={setPage} />
-            </div>
-          </nav>
-        </Col> */}
-        <Col className={style.containerProducts}>
-          {/* <div className={style.containerProducts}> */}
-          {/* <div className={style.Filters}>
-            FILTRAR
-            <Filters />
-          </div> */}
-          {typeof publications !== 'string'
-            ? currentPageProducts.map((p) => {
-              return (
-                <section className={style.sectionCards} key={p.id}>
-
+      <div className={style.containerProducts}>
+        {typeof publications !== 'string'
+          ? currentPageProducts.map((p) => {
+            return (
+              <section className={style.sectionCards} key={p.id}>
+                <div>
                   <Card
                     id={p.id}
                     title={p.title}
@@ -94,13 +79,12 @@ export default function Home () {
                     price={p.price.toLocaleString('es-MX')}
                     key={p.id}
                   />
-
-                </section>
-              )
-            })
-            : <Message message={publications} />}
-        </Col>
-      </Row>
+                </div>
+              </section>
+            )
+          })
+          : <Message message={publications} />}
+      </div>
       <div className={style.footer}>
         <Footer />
       </div>
