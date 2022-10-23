@@ -2,13 +2,19 @@
     font-family: var(--font-family-2) !important;
     line-height: 1.2;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 15px;
     color: #170000; 
     font-size: 1.2rem;
     font-weight: 500;
     margin-inline: 10px;
     align-content: space-around;
 
+}
+.selects{
+    display: flex;
+    text-align: left;
+    border-bottom: 1px solid rgba(173, 167, 167, 0.744);
 }
 .filtros{
     margin-inline: 10px;
@@ -17,13 +23,13 @@
     margin-inline: 10px;
     font-weight: 500;
     border-radius: 5px;
-
+    padding: 10px;
     outline: none;
-    color: #b9b3af;
-
+    color: #aba7a4;
+    border: none;
     cursor: pointer;
     background-color: #fefefe;
-    border-color: #b9b3af;
+    /* border-bottom-color: 1px solid #b9b3af; */
 }
 .optSelect:hover{
     background-color: var(--btn-background-color);
@@ -52,4 +58,10 @@
     background-color: var(--btn-background-color);
     color: var(--background-color);
     transition: .3s;
+}
+
+@media (max-width: 992px) {
+    .general{
+        flex-direction: row;
+    }
 }
