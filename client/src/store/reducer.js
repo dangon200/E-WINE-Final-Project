@@ -52,7 +52,7 @@ export default function reducer (state = initialState, action) {
     case 'LOGOUT_USER':
       return { ...state, user: '' }
     case 'POST_STRIPE':
-      return { ...state, compra: action.payload }
+      return { ...state, buy: action.payload }
     default:
       return { ...state }
   }
