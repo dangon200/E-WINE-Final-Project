@@ -5,24 +5,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 // import { MdFavoriteBorder } from 'react-icons/md'
 import { FaHeart } from 'react-icons/fa'
-import { addCarrito, addFavorites, addQuestion, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
+import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
 // import Footer from '../Footer/Footer.jsx'
 import style from './publicationDetail.module.css'
 import RecomendedPublications from '../RecomendedPublications/RecomendedPublications'
 import ProductDetail from '../ProductDetail/ProductDetail'
-import Question from '../Question/Question'
+/* import Question from '../Question/Question' */
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
-  const questions = useSelector(state => state.questions)
-  const user = useSelector(state => state.user)
+  /*  const questions = useSelector(state => state.questions)
+  const user = useSelector(state => state.user) */
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams()// props.match.params.id
   const { name, price, title, image } = publication
   const [counter, setCounter] = useState(1)
-  const [question, setQuestion] = useState('')
+  /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
     dispatch(getByPublication(id))
@@ -95,7 +95,14 @@ export default function PublicationDetail (props) {
       </div>
       <div>
         <ProductDetail publication={publication} />
-        <div className={style.questionsContainer}>
+
+        <RecomendedPublications type={publication.type} varietal={publication.varietal} origin={publication.origin} />
+      </div>
+    </div>
+  )
+}
+
+/* <div className={style.questionsContainer}>
           {user && user.id !== publication.userId &&
             <div className={style.questionsHeader}>
               <h2>Preguntale al vendedor</h2>
@@ -124,13 +131,7 @@ export default function PublicationDetail (props) {
               <Question key={r.id} question={r} publication={publication} user={user} />
             ))}
 
-        </div>
-
-        <RecomendedPublications type={publication.type} varietal={publication.varietal} origin={publication.origin} />
-      </div>
-    </div>
-  )
-}
+        </div> */
 
 /* // ________________CODIGO 1 con lo nuevo de Lauti________________________
 // import { useEffect, useState } from 'react'
