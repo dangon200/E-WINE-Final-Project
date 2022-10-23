@@ -9,7 +9,7 @@ const stripe = new Stripe(STRIPE_KEY)
 
 const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
   try {
-    console.log('Este es el idStripe', idStripe)
+    // console.log('Este es el idStripe', idStripe)
     const payment = await stripe.paymentIntents.create({
       amount: totalAmount,
       currency: 'ARS',
@@ -27,13 +27,13 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
       totalAmount,
       userId
     })
-    console.log('Esta es la nueva compra', newBuy)
+    // console.log('Esta es la nueva compra', newBuy)
     carrito?.map(async (p) => await createBuyItem(p.count, p.id, newBuy.id))
 
     return newBuy
   } catch (error) {
-    console.log(error)
-    return new Error(`${error.raw.message} Error en la generación del pago con tarjeta`)
+    console.log(error, 'Error createBuy stripe')
+    throw new Error(error.raw.message)
   }
 }
 const createBuyItem = async (countProduct, publicationId, buyId) => {

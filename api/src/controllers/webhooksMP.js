@@ -6,7 +6,7 @@ const createBuy = async (id) => {
   const response = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP2}`
+      Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP}`
     }
   })
   const result = await response.json()
@@ -16,7 +16,7 @@ const createBuy = async (id) => {
     paymentMethod: result.payment_type_id,
     idFront: 'pago MercadoPago',
     totalAmount: result.transaction_amount,
-    userId: 'b729d530-2bd8-4273-8fae-df0e64e89faf'
+    userId: result.additional_info.items[0].id
   })
   result.additional_info.items.map(async (p) => await createBuyItem(p.quantity, p.category_id, newBuy.id))
   return newBuy

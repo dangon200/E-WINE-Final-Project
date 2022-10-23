@@ -10,7 +10,7 @@ const mercadopago = require('mercadopago')
 
 // Agrega credenciales
 mercadopago.configure({
-  access_token: process.env.ACCESS_TOKEN_MP2
+  access_token: process.env.ACCESS_TOKEN_MP
 })
 
 // routes

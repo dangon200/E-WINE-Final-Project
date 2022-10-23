@@ -240,7 +240,11 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
         payload: res.data
       })
     } catch (error) {
-
+      console.log('Error action post Stripe')
+      return dispatch({
+        type: 'POST_STRIPE',
+        payload: error.response.data
+      })
     }
   }
 }

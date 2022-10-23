@@ -14,7 +14,8 @@ import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import FormSignUp from './components/FormSignUp/FormSignUp'
 import FormLogin from './components/FormLogin/FormLogin'
-
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import Cookies from 'universal-cookie'
 
 function App () {
@@ -25,7 +26,7 @@ function App () {
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
       const id = window.localStorage.key(x)
-      dispatch(addCarrito({ id, price: JSON.parse(window.localStorage.getItem(id)).price, title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
+      dispatch(addCarrito({ id, price: parseFloat(JSON.parse(window.localStorage.getItem(id)).price), title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
     }
     if (token) {
       dispatch(loginUser(token.user))
@@ -44,6 +45,8 @@ function App () {
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
+        <Route exact path='/admin' component={AdminDashboard} />
+        <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='*' component={Error404} />
         <Route exact path='/formLogin' component={FormLogin} />

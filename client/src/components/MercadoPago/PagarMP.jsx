@@ -12,7 +12,7 @@ export default function PagarMP () {
         description: item.description,
         unit_price: parseInt(item.price),
         quantity: parseInt(item.count),
-        category_id: parseInt(item.id),
+        category_id: item.id,
         id: user.user.id
       }
     })

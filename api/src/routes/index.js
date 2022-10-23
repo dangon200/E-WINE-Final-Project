@@ -8,6 +8,7 @@ const webhooks = require('./webhooksMPRoutes')
 const stripeRoutes = require('./stripeRoutes')
 const buyRoutes = require('./buyRoutes')
 const favoritesRouter = require('./favorites')
+const buyItemRoutes = require('./buyItemRoutes')
 const router = Router()
 
 // LOAD EACH ROUTES IN A ROUTE
@@ -22,5 +23,6 @@ router.use('/webhooks', webhooks)
 router.use('/favorites', favoritesRouter)
 router.use('/stripe', stripeRoutes)
 router.use('/buys', buyRoutes)
+router.use('/buyItems', buyItemRoutes)
 
 module.exports = router

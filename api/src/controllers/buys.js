@@ -7,7 +7,7 @@ const getAllBuy = async () => {
     console.log(dbResult)
     dbResult?.forEach(b => {
       resultParsed.push({
-        id: b.dataValues.id,
+        buyId: b.dataValues.id,
         currency: b.dataValues.currency,
         paymentMethod: b.dataValues.paymentMethod,
         totalAmount: b.dataValues.totalAmount,
@@ -23,34 +23,46 @@ const getAllBuy = async () => {
 }
 const getBuyById = async (id) => {
   try {
-    const dbResult = Buy.findByPk(id)
+    const dbResult = await Buy.findByPk(id)
     const resultParsed = {
-      id: dbResult.id,
-      currency: dbResult.currency,
-      paymentMethod: dbResult.paymentMethod,
-      totalAmount: dbResult.totalAmount,
-      userId: dbResult.userId
+      buyId: dbResult.dataValues.id,
+      currency: dbResult.dataValues.currency,
+      paymentMethod: dbResult.dataValues.paymentMethod,
+      totalAmount: dbResult.dataValues.totalAmount,
+      userId: dbResult.dataValues.userId
     }
+
     return resultParsed
   } catch (error) {
     return new Error('Error al buscar una compra por Id')
   }
 }
 const getBuysByUser = async (userId) => {
+  const resultParsed = []
   try {
-    const BuyByUser = await Buy.findAll({
+    const dbResult = await Buy.findAll({
       where: {
         userId
       }
     })
-    return BuyByUser
+    dbResult?.forEach(b => {
+      resultParsed.push({
+        buyId: b.dataValues.id,
+        currency: b.dataValues.currency,
+        paymentMethod: b.dataValues.paymentMethod,
+        totalAmount: b.dataValues.totalAmount,
+        userId: b.dataValues.userId
+      })
+    })
+    return resultParsed
   } catch (error) {
-    return new Error(error.message)
+    return new Error('Error al buscar todas las compras de un usuario')
   }
 }
 const getBuysByPublication = async (publicationId) => {
+  const resultParsed = []
   try {
-    const BuyByPublication = await Buy.findAll({
+    const dbResult = await Buy.findAll({
       include: [
         {
           model: BuyItem,
@@ -60,7 +72,19 @@ const getBuysByPublication = async (publicationId) => {
         }
       ]
     })
-    return BuyByPublication
+    console.log('🚀 ~ file: buys.js ~ line 27 ~ getBuyById ~ dbResult', dbResult)
+    dbResult?.forEach(b => {
+      resultParsed.push({
+        buyId: b.dataValues.id,
+        currency: b.dataValues.currency,
+        paymentMethod: b.dataValues.paymentMethod,
+        totalAmount: b.dataValues.totalAmount,
+        userId: b.dataValues.userId
+      })
+    })
+    console.log('🚀 ~ file: buys.js ~ line 35 ~ getBuyById ~ P', resultParsed)
+
+    return resultParsed
   } catch (error) {
     return new Error(error.message)
   }
