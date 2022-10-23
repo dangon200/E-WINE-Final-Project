@@ -14,14 +14,17 @@ export default function FormLogin () {
 
   const dispatch = useDispatch()
   const userLogged = useSelector(state => state.user)
+  const urlApi = 'http://localhost:3001'
+  // const urlApi = https://e-winespf.herokuapp.com
 
   function handleCallbackResponse (response) {
     const userObject = jwtdecode(response.credential)
-    fetch('https://e-winespf.herokuapp.com/users/email/' + userObject.email)
+    console.log(userObject)
+    fetch(`${urlApi}/users/email/` + userObject.email)
       .then(res => res.json())
       .then(data => {
         if (!data) {
-          fetch('https://e-winespf.herokuapp.com/users/', {
+          fetch(`${urlApi}/users/`, {
             method: 'POST',
             body: JSON.stringify({
               email: userObject.email,
@@ -41,7 +44,7 @@ export default function FormLogin () {
               console.log(data)
             })
         }
-        fetch('https://e-winespf.herokuapp.com/users/login', {
+        fetch(`${urlApi}/users/login`, {
           method: 'POST',
           body: JSON.stringify({
             email: userObject.email,
@@ -86,7 +89,7 @@ export default function FormLogin () {
       document.getElementById('signInDiv'),
       { theme: 'outline', size: 'large' }
     )
-  }, [])
+  }, [])//eslint-disable-line
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
@@ -98,7 +101,7 @@ export default function FormLogin () {
 
     onSubmit: async (values, { resetForm }) => {
       if (!user) {
-        fetch('https://e-winespf.herokuapp.com/users/login', {
+        fetch(`${urlApi}/users/login`, {
           method: 'POST',
           body: JSON.stringify({
             email: values.email,

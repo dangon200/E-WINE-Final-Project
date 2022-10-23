@@ -1,5 +1,6 @@
 import axios from 'axios'
 const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -239,7 +240,11 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
         payload: res.data
       })
     } catch (error) {
-      throw Error(error.response.data)
+      console.log('Error action post Stripe')
+      return dispatch({
+        type: 'POST_STRIPE',
+        payload: error.response.data
+      })
     }
   }
 }
