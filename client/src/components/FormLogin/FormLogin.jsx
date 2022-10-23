@@ -116,6 +116,7 @@ export default function FormLogin () {
 
           .then((res) => res.json())
           .then((data) => {
+            console.log(data)
             if (typeof data !== 'string') {
               cookies.set('TOKEN', data, {
                 path: '/'

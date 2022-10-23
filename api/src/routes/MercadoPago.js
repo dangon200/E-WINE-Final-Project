@@ -22,10 +22,10 @@ server.post('/', (req, res) => {
     items: req.body.map(item => { return { ...item, currency_id: 'ARS' } }),
     back_urls: {
       success: 'https://e-wine-ashen.vercel.app',
-      failure: 'http://www.failure.com',
-      pending: 'http://www.pending.com'
+      failure: 'https://e-wine-ashen.vercel.app',
+      pending: 'https://e-wine-ashen.vercel.app'
     },
-    notification_url: 'https://webhook.site/5cfc9a1e-13d5-4673-b7a3-d837514d0d46'
+    notification_url: 'https://e-winespf.herokuapp.com/webhooks'
   }
 
   mercadopago.preferences.create(preference)

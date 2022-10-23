@@ -58,7 +58,7 @@ function App () {
         <Route path='/userProfile' component={UserProfile} />
         <Route path='/userPurchased' component={PurchasedProducts} />
         <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
-        <Route path='/payment/:totalAmount' component={CardStripe} />
+        <Route exact path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
