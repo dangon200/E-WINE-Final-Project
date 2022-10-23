@@ -115,7 +115,7 @@ export default function PublicationDetail (props) {
           </Col>
           <Col className='text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{name}</h1>
-            <span className='fs-2 pb-5'>Precio: ${price}</span>
+            <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
             <span className='fs-2'>
               Disponibilidad: {publication.count}
