@@ -49,7 +49,6 @@ export default function Home () {
   }
 
   return (
-
     <div className={style.globalContainer}>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
@@ -109,6 +108,5 @@ export default function Home () {
         <Footer />
       </div>
     </div>
-
   )
 }
