@@ -8,12 +8,12 @@ import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home.jsx'
 import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
-import { addCarrito, getFavorites, loginUser } from '../src/store/actions/actions'
+import { addCarrito, loginUser } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import FormSignUp from './components/FormSignUp/FormSignUp'
-/* import FormLogin from './components/FormLogin/FormLogin' */
+import FormLogin from './components/FormLogin/FormLogin'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import UserFavorites from './components/UserFavorites/UserFavorites.jsx'
 import FormEditUser from './components/FormEditUser/FormEditUser'
@@ -21,7 +21,6 @@ import UserProfile from './components/UserProfile/UserProfile'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
 import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
-
 import Cookies from 'universal-cookie'
 
 function App () {
@@ -36,7 +35,7 @@ function App () {
     }
     if (token) {
       dispatch(loginUser(token.user))
-      dispatch(getFavorites(token.user.id))
+      // dispatch(getFavorites(token.user.id))
     }
   })
 
@@ -51,6 +50,7 @@ function App () {
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
+        <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route exact path='/admin' component={AdminDashboard} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
@@ -62,6 +62,8 @@ function App () {
         <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
+        <Route exact path='/formLogin' component={FormLogin} />
+        <Route exact path='/form' component={FormSignUp} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Footer} />
     </div>
