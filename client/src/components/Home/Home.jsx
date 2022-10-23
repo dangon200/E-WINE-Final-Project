@@ -53,11 +53,8 @@ export default function Home () {
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
           <SearchBar />
+          <Filters setPage={setPage} />
         </div>
-        {/* <div className={style.Filters}>
-            FILTRAR
-            <Filters />
-          </div> */}
       </div>
       {typeof publications !== 'string' &&
         <div className={style.divPagination}>
@@ -71,13 +68,13 @@ export default function Home () {
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
       <Row className={style.filter_products}>
-        <Col>
+        {/* <Col>
           <nav className={style.navFilters}>
             <div className={style.Filters}>
               <Filters setPage={setPage} />
             </div>
           </nav>
-        </Col>
+        </Col> */}
         <Col className={style.containerProducts}>
           {/* <div className={style.containerProducts}> */}
           {/* <div className={style.Filters}>
@@ -88,16 +85,16 @@ export default function Home () {
             ? currentPageProducts.map((p) => {
               return (
                 <section className={style.sectionCards} key={p.id}>
-                  <div>
-                    <Card
-                      id={p.id}
-                      title={p.title}
-                      name={p.name}
-                      image={p.image}
-                      price={p.price.toLocaleString('es-MX')}
-                      key={p.id}
-                    />
-                  </div>
+
+                  <Card
+                    id={p.id}
+                    title={p.title}
+                    name={p.name}
+                    image={p.image}
+                    price={p.price.toLocaleString('es-MX')}
+                    key={p.id}
+                  />
+
                 </section>
               )
             })
