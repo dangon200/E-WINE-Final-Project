@@ -76,7 +76,7 @@ export default function Home () {
           <Col>
             <nav className={style.navFilters}>
               <div className={style.Filters}>
-                <Filters />
+                <Filters setPage={setPage} />
               </div>
             </nav>
           </Col>
