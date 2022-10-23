@@ -16,7 +16,7 @@ export default function FormCreatePubli () {
 
   useEffect(() => {
     dispatch(getProducts())
-  }, [dispatch, products])
+  }, [])//eslint-disable-line
 
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
     initialValues: {
