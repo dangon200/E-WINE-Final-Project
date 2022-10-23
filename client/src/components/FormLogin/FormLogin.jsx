@@ -86,7 +86,7 @@ export default function FormLogin () {
       document.getElementById('signInDiv'),
       { theme: 'outline', size: 'large' }
     )
-  }, [handleCallbackResponse])
+  }, [])
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
