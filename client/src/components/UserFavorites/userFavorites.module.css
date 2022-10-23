@@ -1,4 +1,6 @@
 .container{
+    display: grid;
+    justify-content: center;
     padding-top: 50px;
     background-color: #EEEEEE;
 }

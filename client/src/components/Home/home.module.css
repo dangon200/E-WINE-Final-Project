@@ -4,7 +4,12 @@
     
 lo comenté porque rompe el ancho de la página
 } */
-
+/* @media (max-width: 1250px)  {
+    .containerProducts{
+        display: grid;
+    grid-column: span 6;
+    }
+} */
 
 .globalContainer{
     width: 100%;
@@ -33,19 +38,16 @@ lo comenté porque rompe el ancho de la página
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(6, 1fr);
-    /* grid-template-rows: repeat(2, auto); */
     gap: 50px;
 }
 
 .navFilters{
     grid-column: span 1;
-    /* grid-row: span 1; */
 }
 
 .containerProducts{
     display: grid;
     grid-column: span 5;
-    /* grid-row: auto; */
     width: 100%;
     justify-content: center;
     align-items: center;

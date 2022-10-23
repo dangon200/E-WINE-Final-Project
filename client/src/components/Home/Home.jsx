@@ -10,6 +10,8 @@ import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import Container from 'react-bootstrap/esm/Container'
+import Col from 'react-bootstrap/esm/Col'
+import Row from 'react-bootstrap/esm/Row'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
@@ -70,13 +72,16 @@ export default function Home () {
             />
             {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
           </div>}
-        <div className={style.filter_products}>
-          <nav className={style.navFilters}>
-            <div className={style.Filters}>
-              <Filters />
-            </div>
-          </nav>
-          <div className={style.containerProducts}>
+        <Row className={style.filter_products}>
+          <Col>
+            <nav className={style.navFilters}>
+              <div className={style.Filters}>
+                <Filters />
+              </div>
+            </nav>
+          </Col>
+          <Col className={style.containerProducts}>
+            {/* <div className={style.containerProducts}> */}
             {/* <div className={style.Filters}>
             FILTRAR
             <Filters />
@@ -99,8 +104,8 @@ export default function Home () {
                 )
               })
               : <Message message={publications} />}
-          </div>
-        </div>
+          </Col>
+        </Row>
         <div className={style.footer}>
           <Footer />
         </div>
