@@ -3,7 +3,7 @@ import style from './card.module.css'
 import { FaHeart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { addCarrito, addFavorites, getByPublication, removeCarrito, removeFavorites } from '../../store/actions/actions'
+import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
 export default function Card ({ id, title, name, image, price }) {
   const dispatch = useDispatch()
@@ -64,6 +64,7 @@ export default function Card ({ id, title, name, image, price }) {
           <Link
             to={`/publication/${id}`} className={`btn btn-primary ${style.moreBtn}`} onClick={() => {
               dispatch(getByPublication(id))
+              dispatch(getQuestions(id))
             }}
           >Más Info
           </Link>

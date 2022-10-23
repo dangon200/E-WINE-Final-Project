@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import s from './AdminDashboard.module.css'
-import Nav from '../Nav/Nav.jsx'
 import Widgets from '../Widgets/Widgets.jsx'
 import Featured from '../Featured/Featured.jsx'
 import Chart from '../Chart/Chart.jsx'
@@ -22,9 +21,7 @@ function AdminDashboard () {
   })
   return (
     <div className={`container-fluid ${s.div}`}>
-      <div>
-        <Nav />
-      </div>
+
       <div className={`row ${s.div2}`}>
         <div className='text-white col-2 d-flex flex-column align-items-center align-items-sm-start min-vh-100 h-100 d-inline-block height: 100px'>
           <div className='sidebar bg-dark m-0 min-vh-100 d-flex justify-content-center'>
