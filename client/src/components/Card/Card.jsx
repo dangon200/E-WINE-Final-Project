@@ -64,7 +64,7 @@ export default function Card ({ id, title, name, image, price, userId }) {
         <h3 className={`card-title ${style.title}`}>{title}</h3>
         <div className={`card-text ${style.infoContainer}`}>
           <h4 className={style.name}>{name}</h4>
-          <h4 className={style.price}>${price}</h4>
+          <h4 className={style.price}>${price.toLocaleString('MX')}</h4>
         </div>
         <div className={`d-inline ${style.btnContainer}`}>
           <Link
