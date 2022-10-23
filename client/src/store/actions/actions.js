@@ -191,6 +191,13 @@ export const removeCarrito = (id) => {
   }
 }
 
+export const clearCarrito = (id) => {
+  return {
+    type: 'CLEAR_CARRITO',
+    payload: id
+  }
+}
+
 // RECOMENDED PUBLICATIONS
 
 export const getRecomendedPublications = (type, varietal, origin) => {

@@ -17,6 +17,14 @@ export default function CheckoutForm (props) {
 
   const { totalAmount } = props
 
+  /*   function clearCarrito () {
+    dispatch(clearCarrito())
+    for (let x = 0; x < window.localStorage.length; x++) {
+      const id = window.localStorage.key(x)
+      window.localStorage.removeItem(id)
+    }
+  } */
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSend(true)
