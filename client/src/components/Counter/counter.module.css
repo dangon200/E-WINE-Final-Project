@@ -1,11 +1,18 @@
-.pedido{
+.counter{
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 15px;
     align-items: center;
+}
+
+.counter{
+    padding: 3px 15px 3px 15px;
+    border: 1px solid #EAEAEA;
 }
 
 .buttonMasMenos{
     background-color: white;
     border: none;
+    font-size: 25px;
+    color: #00ABB3;
 }

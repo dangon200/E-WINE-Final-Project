@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux'
 import { schemaValidateUser } from '../utilities/schemas'
 import { provinces } from '../utilities/data'
 import axios from 'axios'
+// const urlApi = 'http://localhost:3001'
+
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+
+const urlApi = 'https://e-winespf.herokuapp.com'
 
 export default function FormLogin () {
-  const patch = useHistory()
   const dispatch = useDispatch() //eslint-disable-line
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -20,11 +22,10 @@ export default function FormLogin () {
     validationSchema: schemaValidateUser,
     onSubmit: async (values, { resetForm }) => {
       try {
-        const response = await axios.post('https://e-winespf.herokuapp.com/users', values)
+        const response = await axios.post(`${urlApi}/users`, values)
         console.log(response)
         resetForm()
         setSend(true)
-        setTimeout(() => { patch.push('/home') }, 3000)
       } catch (error) {
         setErr(true)
         setTimeout(() => { setErr(false) }, 2000)
