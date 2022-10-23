@@ -1,1 +1,0 @@
-INSERT INTO products (id, name, type, varietal, origin, img, cellar) VALUES ('670b9562-b30d-52d5-b827-655787665500','vino1','red','Malbec','Cordoba','http://qnimate.com/wp-content/uploads/2014/03/images2.jpg','nosetomofernet')
