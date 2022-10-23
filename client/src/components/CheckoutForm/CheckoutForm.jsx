@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react' // eslint-disable-line
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Cookies from 'universal-cookie'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { postStripe } from '../../store/actions/actions'
 
 export default function CheckoutForm (props) {
-  const history = useHistory()
+  // const history = useHistory()
   const stripe = useStripe()
   const elemets = useElements()
   const dispatch = useDispatch()
@@ -30,18 +30,15 @@ export default function CheckoutForm (props) {
     if (!error) {
       const { id } = paymentMethod
       dispatch(postStripe(id, totalAmount * 100, carrito, user.user.id))
-        .then(res => {
-          console.log(res)
-          setSuccess(true)
-          setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')
-          setTimeout(() => {
-            history.push('/home')
-          }, 3000)
-        })
-        .catch(err => {
-          setErr(true)
-          setMessage(err)
-        })
+
+      setSuccess(true)
+      setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')
+      setTimeout(() => {
+        // history.push('/home')
+      }, 3000)
+
+      setErr(true)
+      setMessage(err)
     } else {
       console.log(error)
       setErr(true)
