@@ -93,7 +93,7 @@ export default function FormCreatePubli () {
                 placeholder='Count'
                 name='count'
                 id='count'
-                min='1'
+                min='500'
                 max='10000'
                 value={values.count}
                 onChange={handleChange}
