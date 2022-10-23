@@ -6,7 +6,6 @@ import { useParams, Link } from 'react-router-dom'
 import { FaHeart } from 'react-icons/fa'
 
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
-// import Footer from '../Footer/Footer.jsx'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -17,7 +16,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Carousel from 'react-bootstrap/Carousel'
 import Stack from 'react-bootstrap/Stack'
-import Button from 'react-bootstrap/button'
+import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
@@ -25,8 +24,8 @@ import style from './publicationDetail.module.css'
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
-  /*  const questions = useSelector(state => state.questions)
-  const user = useSelector(state => state.user) */
+  const questions = useSelector(state => state.questions)
+  /* const user = useSelector(state => state.user) */
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
@@ -191,7 +190,7 @@ export default function PublicationDetail (props) {
         </Row>
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
-        <Preguntas />
+        <Preguntas questions={questions} publication={publication} />
         {publication
           ? (
             <RecomendedPublications
@@ -205,37 +204,6 @@ export default function PublicationDetail (props) {
     </Container>
   )
 }
-
-/* <div className={style.questionsContainer}>
-          {user && user.id !== publication.userId &&
-            <div className={style.questionsHeader}>
-              <h2>Preguntale al vendedor</h2>
-              <div className={style.inputQuestion}>
-                <input id='question' className={style.input} type='text' placeholder='Escriba su pregunta...' value={question} onChange={(e) => setQuestion(e.target.value)} />
-                <input
-                  className={style.inputBtn} type='submit' value='Preguntar' onClick={(e) => {
-                    e.preventDefault()
-                    if (question === '') {
-                      document.getElementById('question').focus()
-                    } else {
-                      dispatch(addQuestion({
-                        userId: user.id,
-                        publicationId: publication.id,
-                        text: question
-                      }))
-                      setQuestion('')
-                    }
-                  }}
-                />
-              </div>
-            </div>}
-          {typeof questions === 'string'
-            ? <p className={style.message}>{questions}</p>
-            : questions.map(r => (
-              <Question key={r.id} question={r} publication={publication} user={user} />
-            ))}
-
-        </div> */
 
 /* // ________________CODIGO 1 con lo nuevo de Lauti________________________
 // import { useEffect, useState } from 'react'

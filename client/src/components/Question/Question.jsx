@@ -26,12 +26,12 @@ function Question (props) {
       {input &&
         <div className={style.questionsHeader}>
           <div className={style.inputQuestion}>
-            <input id='question' className={style.input} type='text' placeholder='Escriba su respuesta...' value={answer} onChange={(e) => setAnswer(e.target.value)} />
+            <input id='answer' className={style.input} type='text' placeholder='Escriba su respuesta...' value={answer} onChange={(e) => setAnswer(e.target.value)} />
             <input
               className={style.inputBtn} type='submit' value='Responder' onClick={(e) => {
                 e.preventDefault()
                 if (answer === '') {
-                  document.getElementById('question').focus()
+                  document.getElementById('answer').focus()
                 } else {
                   dispatch(addAnswer({
                     publicationId: props.publication.id,
