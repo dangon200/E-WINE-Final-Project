@@ -1,20 +1,5 @@
-/* .globalContainer{
-
-    width: 1400px;
-    
-lo comenté porque rompe el ancho de la página
-} */
-/* @media (max-width: 1250px)  {
-    .containerProducts{
-        display: grid;
-    grid-column: span 6;
-    }
-} */
-
 .globalContainer{
-    width: 100%;
     margin-top: 8px;
-    min-height: 100vh;
 }
 
 .divPagination{
@@ -34,65 +19,38 @@ lo comenté porque rompe el ancho de la página
     }
 }
 
-.filter_products{
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 50px;
-}
-
-.navFilters{
-    grid-column: span 1;
-}
-
 .containerProducts{
-    display: grid;
-    grid-column: span 5;
     width: 100%;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
-    gap: 1rem;
+    gap: 24px;
     padding-bottom: 50px;
 }
 
-/* .sectionCards{
-    display: grid;
-    grid-column: span 1;
-} */
-
-.Filters{
+.sectionCards{
     display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    width: fit-content;
-    gap: 20px;
-    font-size: 2rem;
-    font-weight: 600;
-    font-family: var(--font-family-1);
-    background-color: white;
-    height: fit-content;
-    max-height: 100vh;
-    margin-left: 10px;
-    padding: 10px 10px 10px 0px;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttonLeft, .buttonRight{
     font-weight: bolder;
     width: 30px;
     height: 30px;
-    /* border: 1px solid var(--btn-background-color); */
+    /* border: 1px solid var(--btn-background-color); /
     border-radius: 6px;
     cursor: pointer;
     color: #999491 ;
     transition: 0.2s;
     border:0ch;
-    font-size: 20px;
+    font-size: 20px;*/
 }
 
+
 .buttonLeft:hover, .buttonRight:hover{
-    /* background-color: var(--btn-background-color);
-    color: white; */
+    background-color: var(--btn-background-color);
+    color: white; 
     color: #837e7c;
     transform: scale(1.3);
 }
@@ -103,10 +61,9 @@ lo comenté porque rompe el ancho de la página
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0 10px 20px;
     grid-gap: 16px;
     gap: 16px;
-    
+
 }
 .searchFilter{
     display: flex;
@@ -129,18 +86,5 @@ lo comenté porque rompe el ancho de la página
     }
     100%{
         opacity: 100
-    }
-}
-
-@media (max-width: 992px) {
-    .navFilters{
-        display: grid;
-        justify-content: center;
-        grid-column: span 6;
-        /* grid-template-columns: auto; */
-    }
-    .sectionCards{
-        display: flex;
-        justify-content: center;
     }
 }

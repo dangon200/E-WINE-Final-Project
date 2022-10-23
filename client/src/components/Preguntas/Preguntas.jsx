@@ -1,42 +1,72 @@
-import React from 'react'
-import preguntas from './preguntas'
+import React, { useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Col from 'react-bootstrap/Col'
+/* import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col' */
 import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
+/* import Form from 'react-bootstrap/Form' */
 
-export default function Preguntas (props) {
+import { useSelector, useDispatch } from 'react-redux'
+
+import { addQuestion } from '../../store/actions/actions'
+import Question from '../Question/Question'
+
+import style from './Preguntas.module.css'
+
+export default function Preguntas ({ questions, publication }) {
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const [question, setQuestion] = useState('')
+
   return (
     <Container fluid className='bg-white shadow-lg m-auto rounded mt-5'>
-      <Row className='mt-2'>
-        <Col className=''>
-          <Form.Control size='lg' type='text' placeholder='Escribe tu pregunta...' />
-        </Col>
-        <Col className=' d-flex justify-content-start'>
-          <Button variant='botoncito' size='lg'>Preguntar</Button>
-        </Col>
-      </Row>
+      {user && user.id !== publication.userId &&
+        <div className={style.questionsHeader}>
+          <div className={style.inputQuestion}>
+            <input id='question' className={style.input} type='text' placeholder='Escriba su pregunta...' value={question} onChange={(e) => setQuestion(e.target.value)} />
+            <input
+              className={style.inputBtn} type='submit' value='Preguntar' onClick={(e) => {
+                e.preventDefault()
+                if (question === '') {
+                  document.getElementById('question').focus()
+                } else {
+                  dispatch(addQuestion({
+                    userId: user.id,
+                    publicationId: publication.id,
+                    text: question
+                  }))
+                  setQuestion('')
+                }
+              }}
+            />
+          </div>
+        </div>}
       <Accordion flush>
         <Accordion.Item eventKey='0'>
           <Accordion.Header> <h4 className='text-muted' style={{ fontFamily: 'var(--font-family-1)' }}>Preguntas y Respuestas</h4></Accordion.Header>
           <Accordion.Body>
-            {preguntas.map((e) => {
-              return (
-                <Row key={e.id} className='mb-1 rounded shadow-lg'>
-                  <Row className='fs-4 ms-1'>{e.Nombre}:</Row>
-                  <Row className='fs-5 ms-1'>{e.Preguntas}</Row>
-                  <Row className='fs-5 ms-3 text-black-50'>{e.Respuesta}</Row>
-                  <br />
-                </Row>
-              )
-            })}
+            {typeof questions === 'string'
+              ? <Row className='fs-4 ms-1'>{questions}</Row>
+              : questions.map(r => (
+                <Question key={r.id} question={r} publication={publication} user={user} />
+              ))}
           </Accordion.Body>
         </Accordion.Item>
 
       </Accordion>
-
     </Container>
   )
 }
+
+/* if (question === '') {
+  document.getElementById('question').focus()
+} else {
+  dispatch(addQuestion({
+    userId: user.id,
+    publicationId: publication.id,
+    text: question
+  }))
+  setQuestion('')
+} */
+
+/* value={question} onChange={(e) => setQuestion(e.target.value) */

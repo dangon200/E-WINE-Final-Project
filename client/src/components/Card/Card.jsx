@@ -3,7 +3,7 @@ import style from './card.module.css'
 import { FaHeart } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { addCarrito, addFavorites, getByPublication, removeCarrito, removeFavorites } from '../../store/actions/actions'
+import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
 export default function Card ({ id, title, name, image, price }) {
   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ export default function Card ({ id, title, name, image, price }) {
   }
 
   const addToCarrito = (id, price, title, image, name) => {
+    console.log(price)
     window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1 }))
     dispatch(addCarrito({ id, price, title, image, name, count: 1 }))
   }
@@ -63,12 +64,13 @@ export default function Card ({ id, title, name, image, price }) {
         <h3 className={`card-title ${style.title}`}>{title}</h3>
         <div className={`card-text ${style.infoContainer}`}>
           <h4 className={style.name}>{name}</h4>
-          <h4 className={style.price}>${price}</h4>
+          <h4 className={style.price}>${price.toLocaleString('MX')}</h4>
         </div>
         <div className={`d-inline ${style.btnContainer}`}>
           <Link
             to={`/publication/${id}`} className={`btn btn-primary ${style.moreBtn}`} onClick={() => {
               dispatch(getByPublication(id))
+              dispatch(getQuestions(id))
             }}
           >Más Info
           </Link>
