@@ -27,6 +27,11 @@ export default function Card ({ id, title, name, image, price }) {
     dispatch(addCarrito({ id, price, title, image, name, count: 1 }))
   }
 
+  /* const addToFavorites = (id, price, title, image, name) => {
+    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name }))
+    dispatch(addFavorites({ id, price, title, image, name }))
+  } */
+
   const removeFromCarrito = (id) => {
     window.localStorage.removeItem(id)
     dispatch(removeCarrito(id))

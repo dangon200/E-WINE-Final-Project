@@ -27,7 +27,8 @@
     text-transform: uppercase;
     padding-left: 0.3rem;
     text-decoration: none;
-    color: #1F1F1F
+    color: black;
+    /* color: whitesmoke; */
 }
 
 /* .links{
@@ -44,14 +45,24 @@
     position: relative;
 }
 .carritoContainer img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
+}
+
+.userLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: var(--font-family-1);
+    margin: 0 5px 0 5px;
 }
 
 .numberCarrito{
     position: absolute;
     background-color: var(--btn-background-color);
-    color: white;
+    color: black;
+    /* color: white; */
     font-weight: 500;
     bottom: 40%;
     left: 60%;
@@ -63,8 +74,7 @@
 
 
 @media (max-width: 992px) {
-   .numberCarrito{
+    .numberCarrito{
     left: 50%;
-   }
-  }
-  
+}
+}
