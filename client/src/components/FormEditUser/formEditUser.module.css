@@ -1,0 +1,8 @@
+/* .formContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 2fr)
+} */
+.container{
+    padding-top: 100px;
+    background-color: #EEEEEE;
+}

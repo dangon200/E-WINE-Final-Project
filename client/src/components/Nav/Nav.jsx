@@ -5,8 +5,10 @@ import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
 import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
+import { FaUserAlt } from 'react-icons/fa'
 
 export default function Nav () {
+  const user = useSelector(state => state.user)
   const carritoItems = useSelector(state => state.carrito)
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
@@ -33,6 +35,10 @@ export default function Nav () {
             <FormLogin />
 
             <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
+
+            <div className={style.userLogo}>
+              {user ? <Link to='/userProfile'><FaUserAlt color='black' size={20} /> </Link> : null}
+            </div>
 
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>

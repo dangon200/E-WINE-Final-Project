@@ -21,15 +21,39 @@ function Filters ({ setPage }) {
       ...filter,
       [e.target.name]: e.target.value
     })
-    /*  dispatch(
-      filterPublications(filter)
-    ) */
     setPage(1)
   }
+  /* function handleSelectType (e) {
+    setFilter({
+      ...filter,
+      type: [...filter.type, e.target.value]
+    })
+    setPage(1)
+  }
+  function handleSelectOpt (e) {
+    setFilter({
+      ...filter,
+      opt: [...filter.opt, e.target.value]
+    })
+    setPage(1)
+  }
+  function handleSelectVarietal (e) {
+    setFilter({
+      ...filter,
+      varietal: [...filter.varietal, e.target.value]
+    })
+    setPage(1)
+  }
+  function handleSelectOrigin (e) {
+    setFilter({
+      ...filter,
+      origin: [...filter.origin, e.target.value]
+    })
+    setPage(1)
+  } */
 
   return (
     <div className={s.general}>
-
       <select className={s.optSelect} name='opt' onChange={e => handleSort(e)}>
         <option value='' id='opt'> Ordernar </option>
         <option value='az'> A-Z </option>
@@ -78,6 +102,37 @@ function Filters ({ setPage }) {
         }}
       > Limpiar Filtros
       </button>
+      {/* <div className={s.filtersList}>
+        {filter.opt && filter.opt.map((p) => {
+          return (
+            <div key={p}>
+              <h5>{p}</h5>
+            </div>
+          )
+        })}
+        {filter.varietal && filter.varietal.map((p) => {
+          return (
+            <div key={p}>
+              <h5>{p}</h5>
+            </div>
+          )
+        })}
+        {filter.type && filter.type.map((p) => {
+          return (
+            <div key={p}>
+              <h5>{p}</h5>
+            </div>
+          )
+        })}
+        {filter.origin && filter.origin.map((p) => {
+          return (
+            <div key={p}>
+              <h5>{p}</h5>
+            </div>
+          )
+        })}
+
+      </div> */}
 
     </div>
   )

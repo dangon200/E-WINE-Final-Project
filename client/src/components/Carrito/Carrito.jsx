@@ -4,15 +4,17 @@ import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 import { Link } from 'react-router-dom'
 import PagarMP from '../MercadoPago/PagarMP'
+import Container from 'react-bootstrap/Container'
 
 export default function Carrito () {
+  // const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
     return acumulador + total
   }, 0)
-
+  
   return (
     <div className={style.container}>
       {carrito.length > 0
