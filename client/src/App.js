@@ -27,7 +27,7 @@ function App () {
   useEffect(() => {
     for (let x = 0; x < window.localStorage.length; x++) {
       const id = window.localStorage.key(x)
-      dispatch(addCarrito({ id, price: JSON.parse(window.localStorage.getItem(id)).price, title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
+      dispatch(addCarrito({ id, price: parseFloat(JSON.parse(window.localStorage.getItem(id)).price), title: JSON.parse(window.localStorage.getItem(id)).title, image: JSON.parse(window.localStorage.getItem(id)).image, name: JSON.parse(window.localStorage.getItem(id)).name, count: JSON.parse(window.localStorage.getItem(id)).count }))
     }
     if (token) {
       dispatch(loginUser(token.user))

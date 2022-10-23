@@ -5,14 +5,14 @@ const router = Router()
 
 const { createBuy } = require('../controllers/stripe.js')
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    console.log(req.body)
-    const newBuy = createBuy(req.body)
-    res.status(200).json([newBuy, 'succesful payment'])
+    const newBuy = await createBuy(req.body)
+    console.log(newBuy, 'stripe routes respuesta ')
+    res.status(200).json(newBuy)
   } catch (error) {
-    res.status(400).json(error)
-    // console.log(error, 'error en ruta stripe')
+    console.log(`${error.message} error`)
+    res.status(400).json(error.message)
   }
 })
 
