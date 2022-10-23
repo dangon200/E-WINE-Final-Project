@@ -61,8 +61,7 @@
 .numberCarrito{
     position: absolute;
     background-color: var(--btn-background-color);
-    color: black;
-    /* color: white; */
+    color: white;
     font-weight: 500;
     bottom: 40%;
     left: 60%;
@@ -76,5 +75,8 @@
 @media (max-width: 992px) {
     .numberCarrito{
     left: 50%;
-}
-}
+   }
+  }
+  
+  
+  

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import s from './AdminDashboard.module.css'
-import Nav from '../Nav/Nav.jsx'
 import Widgets from '../Widgets/Widgets.jsx'
 import Featured from '../Featured/Featured.jsx'
 import Chart from '../Chart/Chart.jsx'
@@ -20,13 +19,11 @@ function AdminDashboard () {
     usersRoute: false,
     publicationsRoute: false
   })
+
   return (
-    <div className={`container-fluid ${s.div}`}>
-      <div>
-        <Nav />
-      </div>
+    <div className={`container-fluid px-0 ${s.div}`}>
       <div className={`row ${s.div2}`}>
-        <div className='text-white col-2 d-flex flex-column align-items-center align-items-sm-start min-vh-100 h-100 d-inline-block height: 100px'>
+        <div className='text-white col-2 '>
           <div className='sidebar bg-dark m-0 min-vh-100 d-flex justify-content-center'>
             <div className='top'>
               <span className='logo'>E-wine</span>
@@ -61,28 +58,43 @@ function AdminDashboard () {
             </div>
           </div>
         </div>
-        <div className={`${!render.Adminppal ? 'd-none' : 'd-flex d-inline-block'}`}>
-          <div className=' text-dark col-10 d-flex justify-content-end gap-3 h-25 d-inline-block'>
+        {/* Container padre que tiene todo al lado del dashboard */}
+        <div className='col-10 row'>
+
+          <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
             <Widgets type='user' />
             <Widgets type='order' />
             <Widgets type='earning' />
             <Widgets type='balance' />
           </div>
-          <div className='text-dark d-flex justify-content-center gap-3 h-25 d-inline-block'>
-            <Featured />
+
+          <div className='col-12'>
+            <TableAdmin />
+          </div>
+
+          <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
+            <ListPublications />
+          </div>
+
+          <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
+            <List />
+          </div>
+
+          <div className='col-12 col-xl-6'>
             <Chart />
           </div>
-          <div className='ultimasCompras'>
-            Ultimas Compras
+
+          <div className='col-1'>
+            <Featured />
           </div>
-          <TableAdmin />
+
+          {/* <div className='ultimasCompras'>
+            Ultimas Compras
+          </div> */}
+
         </div>
-      </div>
-      <div className={`${render.usersRoute ? ' d-block' : 'd-none'}`}>
-        <List />
-      </div>
-      <div className={`${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
-        <ListPublications />
+        {/* Fin Container padre que tiene todo al lado del dashboard */}
+
       </div>
 
     </div>

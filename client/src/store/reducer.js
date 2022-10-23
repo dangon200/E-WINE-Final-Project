@@ -11,7 +11,9 @@ const initialState = {
   carrito: [],
   recomendedPublication: [],
   user: '',
-  buy: {}
+  buy: {},
+  questions: [],
+  login: true
 }
 
 export default function reducer (state = initialState, action) {
@@ -45,6 +47,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, carrito: [...state.carrito.filter(p => p.id !== action.payload.id), action.payload].sort((a, b) => parseInt(a.price) - parseInt(b.price)) }
     case 'REMOVE_CARRITO':
       return { ...state, carrito: state.carrito.filter(item => item.id !== action.payload) }
+    case 'CLEAR_CARRITO':
+      return { ...state, carrito: [], buy: {} }
     case 'RECOMENDED_PUBLICATIONS':
       return { ...state, recomendedPublication: action.payload }
     case 'LOGIN_USER':
@@ -53,6 +57,14 @@ export default function reducer (state = initialState, action) {
       return { ...state, user: '' }
     case 'POST_STRIPE':
       return { ...state, buy: action.payload }
+    case 'GET_QUESTIONS':
+      return { ...state, questions: action.payload }
+    case 'ADD_QUESTION':
+      return { ...state, questions: action.payload }
+    case 'ADD_ANSWER':
+      return { ...state, questions: action.payload }
+    case 'RENDER_MODAL_LOGIN':
+      return { ...state, login: !state.login }
     default:
       return { ...state }
   }

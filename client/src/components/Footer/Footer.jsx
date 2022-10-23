@@ -14,7 +14,7 @@ import './style.css'
 export default function Footer () {
   return (
     <Container id='cont' fluid>
-      <Row className='text-center'>
+      <Row xs={1} sm={4} className='text-center'>
         <Col>
           <h1 className='text-capitalize fw-bold pb-4 pt-5'>E-Wine</h1>
           <span className='fw-bold fs-4'>Una forma diferente de comprar vino</span>

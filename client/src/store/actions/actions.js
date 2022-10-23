@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const urlApi = 'https://e-winespf.herokuapp.com
-const urlApi = 'http://localhost:3001'
+const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -191,6 +191,13 @@ export const removeCarrito = (id) => {
   }
 }
 
+export const clearCarrito = (id) => {
+  return {
+    type: 'CLEAR_CARRITO',
+    payload: id
+  }
+}
+
 // RECOMENDED PUBLICATIONS
 
 export const getRecomendedPublications = (type, varietal, origin) => {
@@ -246,5 +253,57 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
         payload: error.response.data
       })
     }
+  }
+}
+
+// QUESTIONS
+
+export const getQuestions = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/questions/${id}`)
+      return dispatch({
+        type: 'GET_QUESTIONS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const addQuestion = (data) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/questions`, data)
+      return dispatch({
+        type: 'ADD_QUESTION',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+
+export const addAnswer = (data, id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/questions/answer/${id}`, data)
+      return dispatch({
+        type: 'ADD_QUESTION',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+// Render Modal Login
+export const modalRender = () => {
+  return {
+    type: 'RENDER_MODAL_LOGIN'
   }
 }

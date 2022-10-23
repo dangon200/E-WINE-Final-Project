@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 import { AiOutlineReload } from 'react-icons/ai'
-
 import Cookies from 'universal-cookie'
 
 export default function FormCreatePubli () {
@@ -17,7 +16,7 @@ export default function FormCreatePubli () {
 
   useEffect(() => {
     dispatch(getProducts())
-  }, [])//eslint-disable-line
+  }, [dispatch])
 
   const { values, setFieldValue, handleBlur, handleChange, handleSubmit, errors, touched, isSubmitting } = useFormik({
     initialValues: {
@@ -75,7 +74,7 @@ export default function FormCreatePubli () {
                 placeholder='Precio'
                 name='price'
                 id='price'
-                min='1'
+                min='500'
                 max='500000'
                 value={values.price}
                 onChange={handleChange}
