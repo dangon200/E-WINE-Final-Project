@@ -5,7 +5,11 @@ const urlApi = 'https://e-winespf.herokuapp.com'
 export function getPublications () {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.get('https://e-winespf.herokuapp.com/publications')
+=======
+      const api = await axios.get(`${urlApi}/publications`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'GET_PUBLICATIONS',
         payload: api.data
@@ -19,7 +23,11 @@ export function getPublications () {
 export function getByPublication (id) {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.get(`https://e-winespf.herokuapp.com/publications/${id}`)
+=======
+      const api = await axios.get(`${urlApi}/publications/${id}`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'GET_BY_ID_PUBLICATION',
         payload: api.data
@@ -33,7 +41,11 @@ export function getByPublication (id) {
 export function postPublication (data, token) {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.post('https://e-winespf.herokuapp.com/publications/', data)
+=======
+      const api = await axios.post(`${urlApi}/publications`, data)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'POST_PUBLICATION',
         Headers: { 'content-type': 'application/json' },
@@ -49,7 +61,11 @@ export function postPublication (data, token) {
 export function getProducts () {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.get('https://e-winespf.herokuapp.com/products')
+=======
+      const api = await axios.get(`${urlApi}/products`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'GET_PRODUCTS',
         payload: api.data
@@ -63,7 +79,11 @@ export function getProducts () {
 export function getByIdProduct (id) {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.get(`https://e-winespf.herokuapp.com/products/${id}`)
+=======
+      const api = await axios.get(`${urlApi}/products/${id}`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'GET_BY_ID_PRODUCT',
         payload: api.data
@@ -77,7 +97,11 @@ export function getByIdProduct (id) {
 export function postProduct (data) {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const api = await axios.post('https://e-winespf.herokuapp.com/products', data)
+=======
+      const api = await axios.post(`${urlApi}/products`, data)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'POST_PRODUCT',
         payload: api.data
@@ -91,7 +115,11 @@ export function postProduct (data) {
 // pending
 export const searchByNameProduct = (name) => {
   return async function (dispatch) {
+<<<<<<< HEAD
     return fetch(`https://e-winespf.herokuapp.com/products?name=${name}`)
+=======
+    return fetch(`${urlApi}/products?name=${name}`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       .then((respuesta) => respuesta.json())
       .then((infoProductName) => {
         dispatch({ type: 'SEARCH_PRODUCT_BY_NAME', payload: infoProductName })
@@ -103,7 +131,11 @@ export const searchByNameProduct = (name) => {
 export const filterPublications = ({ varietal, type, origin, opt }) => {
   return async function (dispatch) {
     try {
+<<<<<<< HEAD
       const { data } = await axios.get(`https://e-winespf.herokuapp.com/publications/filter?varietal=${varietal}&type=${type}&origin=${origin}&opt=${opt}`)
+=======
+      const { data } = await axios.get(`${urlApi}/publications/filter?varietal=${varietal}&type=${type}&origin=${origin}&opt=${opt}`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       return dispatch({
         type: 'FILTER_PUBLICATIONS',
         payload: data
@@ -121,7 +153,11 @@ export const clearFilter = () => {
 
 export const searchPublicationByName = (name) => {
   return async function (dispatch) {
+<<<<<<< HEAD
     return fetch(`https://e-winespf.herokuapp.com/publications?name=${name}`).then((respuesta) =>
+=======
+    return fetch(`${urlApi}/publications?name=${name}`).then((respuesta) =>
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       respuesta.json().then((dataP) => {
         dispatch({ type: 'GET_PUBLICATIONS', payload: dataP })
       })
@@ -197,7 +233,11 @@ export const getRecomendedPublications = (type, varietal, origin) => {
   return async function (dispatch) {
     try {
       console.log(type, varietal, origin)
+<<<<<<< HEAD
       const recPub = await axios(`https://e-winespf.herokuapp.com/publications/filter?type=${type || null}&varietal=${varietal || null}&origin=${origin || null}`)
+=======
+      const recPub = await axios(`${urlApi}/publications/filter?type=${type || null}&varietal=${varietal || null}&origin=${origin || null}`)
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
       console.log(recPub)
       return dispatch({
         type: 'RECOMENDED_PUBLICATIONS',
@@ -249,6 +289,7 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
   }
 }
 
+<<<<<<< HEAD
 // QUESTIONS
 
 export const getQuestions = (id) => {
@@ -292,5 +333,11 @@ export const addAnswer = (data, id) => {
       console.log(error.response)
       throw new Error(error.response.data)
     }
+=======
+// Render Modal Login
+export const modalRender = () => {
+  return {
+    type: 'RENDER_MODAL_LOGIN'
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
   }
 }

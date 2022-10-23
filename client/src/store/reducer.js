@@ -12,7 +12,11 @@ const initialState = {
   recomendedPublication: [],
   user: '',
   buy: {},
+<<<<<<< HEAD
   questions: []
+=======
+  login: true
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
 }
 
 export default function reducer (state = initialState, action) {
@@ -53,6 +57,7 @@ export default function reducer (state = initialState, action) {
     case 'LOGOUT_USER':
       return { ...state, user: '' }
     case 'POST_STRIPE':
+<<<<<<< HEAD
       return { ...state, buy: action.payload }
     case 'GET_QUESTIONS':
       return { ...state, questions: action.payload }
@@ -61,6 +66,11 @@ export default function reducer (state = initialState, action) {
     case 'ADD_ANSWER':
       return { ...state, questions: action.payload }
 
+=======
+      return { ...state, compra: action.payload }
+    case 'RENDER_MODAL_LOGIN':
+      return { ...state, login: !state.login }
+>>>>>>> 0b8750e89561c40014f0494cea6f446195071f5c
     default:
       return { ...state }
   }
