@@ -76,7 +76,7 @@ export default function Home () {
                     title={p.title}
                     name={p.name}
                     image={p.image}
-                    price={p.price.toLocaleString('es-MX')}
+                    price={p.price}
                     key={p.id}
                   />
                 </div>
