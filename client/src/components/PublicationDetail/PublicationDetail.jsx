@@ -75,8 +75,8 @@ export default function PublicationDetail (props) {
   return (
     <Container>
       <Row>
-        <Row className='mt-5 rounded mx-auto shadow-lg'>
-          <Col className=''>
+        <Row xs={1} sm={2} md={2} className='mt-5 rounded mx-auto shadow-lg'>
+          <Col>
             <div className='pt-3 d-flex justify-content-end'>
               <FaHeart
                 className={isInFavorites(id) ? style.iconActive : style.icon}
@@ -126,68 +126,67 @@ export default function PublicationDetail (props) {
                 Famosa escritora y poeta - <cite>asdasds</cite>
               </figcaption>
             </figure> */}
-            <Col>
-              <Stack
-                direction='horizontal'
-                gap={3}
-              >
-                <div>
+            <Row>
+              {/* md={10} lg xl={8} xxl={9} */}
+              <Col>
+                <Stack
+                  direction='horizontal'
+                  gap={1}
+                >
                   <Button
                     variant='prueba'
                     onClick={() => updateCount('rest')}
+                    className='ms-4'
                   >
                     -
                   </Button>
-                </div>
-                <div className='fs-4 fw-bold'>
-                  <span>{counter}</span>
-                </div>
-                <div>
+                  <span className='fs-4 fw-bold'>
+                    {counter}
+                  </span>
+
                   <Button
                     variant='prueba'
                     onClick={() => updateCount('add')}
                   >
                     +
                   </Button>
-                </div>
-                <div>
-                  <Button
-                    className='ms-5 fs-4 p-2'
-                    size='lg'
-                    variant='botoncito'
-                    onClick={() => {
-                      addToCarrito(
-                        id,
-                        price,
-                        title,
-                        image,
-                        name,
-                        counter
-                      )
-                    }}
-                  >
-                    <BsFillCartPlusFill className='me-3 fs-2' />
-                    AGREGAR
-                  </Button>
-                </div>
-
-                <div>
-                  <Link to='/Carrito'>
+                  <Col>
                     <Button
-                      className='fs-4 p-2'
+                      className='ms-2 fs-4 p-2'
                       size='lg'
                       variant='botoncito'
+                      onClick={() => {
+                        addToCarrito(
+                          id,
+                          price,
+                          title,
+                          image,
+                          name,
+                          counter
+                        )
+                      }}
                     >
-                      <BsFillCartCheckFill className='me-3 fs-2' />
-                      COMPRAR
+                      <BsFillCartPlusFill className='me-3 fs-2' />
+                      AGREGAR
                     </Button>
-                  </Link>
-                </div>
-              </Stack>
-            </Col>
+                  </Col>
+                  <Col>
+                    <Link to='/Carrito'>
+                      <Button
+                        className='fs-4 p-2'
+                        size='lg'
+                        variant='botoncito'
+                      >
+                        <BsFillCartCheckFill className='me-3 fs-2' />
+                        COMPRAR
+                      </Button>
+                    </Link>
+                  </Col>
+                </Stack>
+              </Col>
+            </Row>
           </Col>
         </Row>
-
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <Preguntas />
