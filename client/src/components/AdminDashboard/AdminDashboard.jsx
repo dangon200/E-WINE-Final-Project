@@ -60,7 +60,6 @@ function AdminDashboard () {
         </div>
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
-
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
             <Widgets type='user' />
             <Widgets type='order' />
@@ -68,7 +67,7 @@ function AdminDashboard () {
             <Widgets type='balance' />
           </div>
 
-          <div className='col-12'>
+          <div className={`${!render.Adminppal ? 'd-none' : 'd-block'} col-12 text-dark mt-4`}>
             <TableAdmin />
           </div>
 
@@ -84,7 +83,7 @@ function AdminDashboard () {
             <Chart />
           </div>
 
-          <div className='col-1'>
+          <div className='col-6'>
             <Featured />
           </div>
 
