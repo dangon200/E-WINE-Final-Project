@@ -48,7 +48,7 @@ export default function reducer (state = initialState, action) {
     case 'REMOVE_CARRITO':
       return { ...state, carrito: state.carrito.filter(item => item.id !== action.payload) }
     case 'CLEAR_CARRITO':
-      return { ...state, carrito: [] }
+      return { ...state, carrito: [], buy: {} }
     case 'RECOMENDED_PUBLICATIONS':
       return { ...state, recomendedPublication: action.payload }
     case 'LOGIN_USER':
