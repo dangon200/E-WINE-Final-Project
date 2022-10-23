@@ -6,24 +6,24 @@ import s from './Filter.module.css'
 
 function Filters ({ setPage }) {
   const [filter, setFilter] = useState({
-    opt: [],
-    varietal: [],
-    type: [],
-    origin: []
+    opt: '',
+    varietal: '',
+    type: '',
+    origin: ''
   })
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(filterPublications(filter))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
-  /* function handleSort (e) {
+  function handleSort (e) {
     setFilter({
       ...filter,
       [e.target.name]: e.target.value
     })
     setPage(1)
-  } */
-  function handleSelectType (e) {
+  }
+  /* function handleSelectType (e) {
     setFilter({
       ...filter,
       type: [...filter.type, e.target.value]
@@ -50,12 +50,12 @@ function Filters ({ setPage }) {
       origin: [...filter.origin, e.target.value]
     })
     setPage(1)
-  }
+  } */
 
   return (
     <div className={s.general}>
       <div className={s.selects}>
-        <select className={s.optSelect} name='opt' onChange={e => handleSelectOpt(e)}>
+        <select className={s.optSelect} name='opt' onChange={e => handleSort(e)}>
           <option value='' id='opt'> Ordernar </option>
           <option value='az'> A-Z </option>
           <option value='za'> Z-A </option>
@@ -64,7 +64,7 @@ function Filters ({ setPage }) {
         </select>
       </div>
       <div className={s.selects}>
-        <select className={s.optSelect} name='varietal' onChange={e => handleSelectVarietal(e)}>
+        <select className={s.optSelect} name='varietal' onChange={e => handleSort(e)}>
           <option value='' id='varietal'> Varietal</option>
           {varietales && varietales.map(e => {
             return (
@@ -74,7 +74,7 @@ function Filters ({ setPage }) {
         </select>
       </div>
       <div className={s.selects}>
-        <select className={s.optSelect} name='type' onChange={e => handleSelectType(e)}>
+        <select className={s.optSelect} name='type' onChange={e => handleSort(e)}>
           <option value='' id='type'> Tipo </option>
           {types && types.map(e => {
             return (
@@ -84,7 +84,7 @@ function Filters ({ setPage }) {
         </select>
       </div>
       <div className={s.selects}>
-        <select className={s.optSelect} name='origin' onChange={e => handleSelectOrigin(e)}>
+        <select className={s.optSelect} name='origin' onChange={e => handleSort(e)}>
           <option value='' id='origin'> Origen </option>
           {provinces && provinces.map(e => {
             return (
@@ -110,12 +110,11 @@ function Filters ({ setPage }) {
         }}
       > Limpiar Filtros
       </button>
-      <div className={s.filtersList}>
+      {/* <div className={s.filtersList}>
         {filter.opt && filter.opt.map((p) => {
           return (
             <div key={p}>
               <h5>{p}</h5>
-              {/* <button value={p} onClick={() => handleDelete(p)}>x</button> */}
             </div>
           )
         })}
@@ -123,7 +122,6 @@ function Filters ({ setPage }) {
           return (
             <div key={p}>
               <h5>{p}</h5>
-              {/* <button value={p} onClick={() => handleDelete(p)}>x</button> */}
             </div>
           )
         })}
@@ -131,7 +129,6 @@ function Filters ({ setPage }) {
           return (
             <div key={p}>
               <h5>{p}</h5>
-              {/* <button value={p} onClick={() => handleDelete(p)}>x</button> */}
             </div>
           )
         })}
@@ -139,12 +136,11 @@ function Filters ({ setPage }) {
           return (
             <div key={p}>
               <h5>{p}</h5>
-              {/* <button value={p} onClick={() => handleDelete(p)}>x</button> */}
             </div>
           )
         })}
 
-      </div>
+      </div> */}
 
     </div>
   )
