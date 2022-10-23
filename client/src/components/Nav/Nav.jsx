@@ -7,10 +7,11 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
+// import { FaUserAlt } from 'react-icons/fa'
 
 export default function Nav () {
-  const carritoItems = useSelector(state => state.carrito)
   const user = useSelector(state => state.user)
+  const carritoItems = useSelector(state => state.carrito)
 
   // useEffect(() => { console.log(login) }, [login])
   return (

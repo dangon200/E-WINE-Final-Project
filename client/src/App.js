@@ -12,10 +12,13 @@ import { addCarrito, getFavorites, loginUser } from '../src/store/actions/action
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
+import FormSignUp from './components/FormSignUp/FormSignUp'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import UserFavorites from './components/UserFavorites/UserFavorites.jsx'
+import FormEditUser from './components/FormEditUser/FormEditUser'
+import UserProfile from './components/UserProfile/UserProfile'
 import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
-import LoginInit from './components/LoginInit/LoginInit'
 
 import Cookies from 'universal-cookie'
 
@@ -36,11 +39,11 @@ function App () {
   })
 
   return (
-    <div className='App container-xxl px-0'>
-      <Route path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Nav} />
+    <div className='App'>
+      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment']} component={Nav} />
 
       <Switch>
-        <Route exact path='/register' component={LoginInit} />
+        <Route exact path='/register' component={FormSignUp} />
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
@@ -48,6 +51,12 @@ function App () {
         <Route exact path='/admin' component={AdminDashboard} />
         <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
+        <Route path='/user/favorites' component={UserFavorites} />
+        <Route path='/formEditUser' component={FormEditUser} />
+        <Route path='/userProfile' component={UserProfile} />
+        <Route path='/userPurchased' component={PurchasedProducts} />
+        <Route path='*' component={Error404} />
+        <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>

@@ -1,0 +1,16 @@
+.icon{
+    width: 20px;
+    height: 20px;
+    color: grey;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.iconActive{
+
+    width: 20px;
+    height: 20px;
+    color: var(--btn-background-color);
+    cursor: pointer;
+
+}
