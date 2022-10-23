@@ -10,6 +10,7 @@ const initialState = {
   favorites: [],
   carrito: [],
   recomendedPublication: [],
+  user: '',
   buy: {}
 }
 
@@ -34,16 +35,22 @@ export default function reducer (state = initialState, action) {
       return { ...state, publications: action.payload }
     case 'CLEAR_FILTER':
       return { ...state, publications: state.allPublications }
-    case 'ADD_FAVORITES':
-      return { ...state, favorites: [...state.favorites, action.payload] }
-    case 'REMOVE_FAVORITES':
-      return { ...state, favorites: state.favorites.filter(fav => fav !== action.payload) }
+    case 'GET_FAVORITES_ID':
+      return { ...state, favorites: action.payload }
+    case 'ADD_FAVORITE':
+      return { ...state, favorites: action.payload }
+    case 'REMOVE_FAVORITE':
+      return { ...state, favorites: action.payload }
     case 'ADD_CARRITO':
       return { ...state, carrito: [...state.carrito.filter(p => p.id !== action.payload.id), action.payload].sort((a, b) => parseInt(a.price) - parseInt(b.price)) }
     case 'REMOVE_CARRITO':
       return { ...state, carrito: state.carrito.filter(item => item.id !== action.payload) }
     case 'RECOMENDED_PUBLICATIONS':
       return { ...state, recomendedPublication: action.payload }
+    case 'LOGIN_USER':
+      return { ...state, user: action.payload }
+    case 'LOGOUT_USER':
+      return { ...state, user: '' }
     case 'POST_STRIPE':
       return { ...state, compra: action.payload }
     default:

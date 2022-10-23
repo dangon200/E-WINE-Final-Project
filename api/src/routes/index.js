@@ -1,13 +1,14 @@
 const { Router } = require('express')
-const router = Router()
 // ALL ROUTES
 const productRouter = require('./product.js')
 const userRouter = require('./users')
 const publicationRoutes = require('./publicationRoutes.js')
 const checkout = require('./MercadoPago')
-const webhooks = require('../controllers/webhooksMP')
+const webhooks = require('./webhooksMPRoutes')
 const stripeRoutes = require('./stripeRoutes')
 const buyRoutes = require('./buyRoutes')
+const favoritesRouter = require('./favorites')
+const router = Router()
 
 // LOAD EACH ROUTES IN A ROUTE
 router.get('/serverOk', (req, res) => {
@@ -18,6 +19,7 @@ router.use('/users', userRouter)
 router.use('/publications', publicationRoutes)
 router.use('/checkout', checkout)
 router.use('/webhooks', webhooks)
+router.use('/favorites', favoritesRouter)
 router.use('/stripe', stripeRoutes)
 router.use('/buys', buyRoutes)
 

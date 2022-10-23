@@ -7,8 +7,9 @@ const { createBuy } = require('../controllers/stripe.js')
 
 router.post('/', (req, res) => {
   try {
-    console.log(req.body)
+    console.log('REQ BODY stripeRoutes', req.body)
     const newBuy = createBuy(req.body)
+    console.log(newBuy)
     res.status(200).json([newBuy, 'succesful payment'])
   } catch (error) {
     res.status(400).json(error)

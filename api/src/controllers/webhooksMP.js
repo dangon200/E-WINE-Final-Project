@@ -1,37 +1,40 @@
-//const { Buy, Publication, BuyItem, User } = require('../db')//
-const server = require('express').Router()
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+const { Buy, BuyItem } = require('../db')
+
 const fetch = require('node-fetch')
-//notification servicio -> getPaymentInfo getPaymentInfo -> tiene la respuesta de la API de Payments PaymentID = 
 
-server.post('/', (req, res) =>{
-    //newOrder = req.body.data.id//
-    // try {  
-    fetch(`https://api.mercadopago.com/v1/payments/50744636571`, {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP}`
-        }
-      })
-      // .then((data) => {
-      //   const ID = data.body.payer.id
-      //   const payerEmail = data.body.payer.email
-      //   const compraID = data.body.id
-      //   const status = data.body.status
-      // })
-      .then((data) => data.json())
-      .then(json => { console.log(json.additional_info.items[1].category_id)
-        
-    // )
-    // }
-    // catch (error) {
-    //   throw new Error(error, 'Error tratando de obtener orden de compra')
-    // }
-    res.status(200).send(json)
+const createBuy = async (id) => {
+  const response = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP2}`
+    }
   })
-})
+  const result = await response.json()
+  const newBuy = await Buy.create({
+    idBack: id,
+    currency: result.currency_id,
+    paymentMethod: result.payment_type_id,
+    idFront: 'pago MercadoPago',
+    totalAmount: result.transaction_amount,
+    userId: 'b729d530-2bd8-4273-8fae-df0e64e89faf'
+  })
+  result.additional_info.items.map(async (p) => await createBuyItem(p.quantity, p.category_id, newBuy.id))
+  return newBuy
+}
 
+const createBuyItem = async (countProduct, publicationId, buyId) => {
+  try {
+    const newBuyItem = await BuyItem.create({
+      countProduct,
+      publicationId,
+      buyId
+    })
+    console.log('Este es el newBuyItem', newBuyItem)
+    return newBuyItem
+  } catch (error) {
+    return new Error('Error en la creación del BuyItem')
+  }
+}
+// result.additional_info.items[0].id
 
-  module.exports = server;
+module.exports = { createBuy }

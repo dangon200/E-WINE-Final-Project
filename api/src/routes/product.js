@@ -3,7 +3,6 @@ const server = require('express').Router()
 const { isAdmin } = require('../controllers/helper')
 const productController = require('../controllers/products')
 
-
 server.get('/', async (req, res) => {
   try {
     const productsFromDb = await productController.getAllProducts()

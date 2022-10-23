@@ -1,4 +1,4 @@
-const { Buy, Publication, BuyItem, User } = require('../db')
+const { Buy, BuyItem } = require('../db')
 const Stripe = require('stripe')
 // const BuyItem = require('../models/BuyItem')
 // const Publication = require('../models/Publication')
@@ -9,6 +9,7 @@ const stripe = new Stripe(STRIPE_KEY)
 
 const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
   try {
+    console.log('Este es el idStripe', idStripe)
     const payment = await stripe.paymentIntents.create({
       amount: totalAmount,
       currency: 'ARS',
@@ -16,22 +17,18 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
       payment_method: idStripe,
       confirm: true
     })
-    console.log(payment)
+    console.log('Este es el payment', payment)
+    if (!payment.hasOwnProperty('id')) throw new Error(payment.raw.message) //eslint-disable-line
     const newBuy = await Buy.create({
       idBack: payment.id,
       currency: payment.currency,
       paymentMethod: payment.payment_method_types.toString(),
       idFront: idStripe,
-      totalAmount
+      totalAmount,
+      userId
     })
-    carrito?.map(async (p) => {
-      const newBuyItem = await createBuyItem(p.count, p.id)
-      newBuy.addBuyItem(newBuyItem)
-    })
-    console.log(userId)
-    // const userId2 = 'ba116f56-90eb-4f3e-ab5a-ac556dcf7e44'
-    const user = User.findByPk(userId)
-    newBuy.addUser(user)
+    console.log('Esta es la nueva compra', newBuy)
+    carrito?.map(async (p) => await createBuyItem(p.count, p.id, newBuy.id))
 
     return newBuy
   } catch (error) {
@@ -39,13 +36,14 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
     return new Error(`${error.raw.message} Error en la generación del pago con tarjeta`)
   }
 }
-const createBuyItem = async (countProduct, publicationId) => {
+const createBuyItem = async (countProduct, publicationId, buyId) => {
   try {
     const newBuyItem = await BuyItem.create({
-      countProduct
+      countProduct,
+      publicationId,
+      buyId
     })
-    const publication = Publication.findByPk(publicationId)
-    newBuyItem.addPublication(publication)
+    console.log('Este es el newBuyItem', newBuyItem)
     return newBuyItem
   } catch (error) {
     return new Error('Error en la creación del BuyItem')

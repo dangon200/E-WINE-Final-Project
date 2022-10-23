@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { schemaValidateUser } from '../utilities/schemas'
 import { provinces } from '../utilities/data'
 import axios from 'axios'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 
 export default function FormLogin () {
   const dispatch = useDispatch() //eslint-disable-line
@@ -16,7 +18,7 @@ export default function FormLogin () {
     },
     validationSchema: schemaValidateUser,
     onSubmit: async (values, { resetForm }) => {
-      const response = await axios.post('https://e-winespf.herokuapp.com/users', values)
+      const response = await axios.post(`${urlApi}/users`, values)
       console.log(response)
       resetForm()
     }
@@ -104,8 +106,8 @@ export default function FormLogin () {
         </div>
 
       </form>
-      <h2>O inicie con:</h2>
-      <div className='d-flex justify-content-center'>
+      <h2 className='d-none'>O inicie con:</h2>
+      <div className='d-none justify-content-center'>
         <button className='btn btn-primary mx-2'>Google</button>
         <button className='btn btn-primary mx-2'>Facebook</button>
       </div>

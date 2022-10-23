@@ -3,32 +3,10 @@ import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 import { Link } from 'react-router-dom'
+import PagarMP from '../MercadoPago/PagarMP'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
-  const pagarMP = async () => {
-    const buying = carrito.map(item => {
-      return {
-        title: item.title,
-        description: item.description,
-        unit_price: parseInt(item.price),
-        quantity: parseInt(item.count),
-        category_id: parseInt(item.id)
-      }
-    })
-    fetch('http://localhost:3001/checkout', {
-      method: 'POST',
-      body: JSON.stringify(buying),
-      headers: {
-        'Content-type': 'application/json'
-      },
-      credentials: 'include'
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        document.location = data.data
-      })
-  }
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
@@ -54,7 +32,7 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <button onClick={pagarMP}>Pagar con MercadoPago</button>
+      <PagarMP />
       <Link to={`/payment/${totalAmount}`}>
         <button>Pagar con Tarjeta</button>
       </Link>

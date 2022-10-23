@@ -28,7 +28,6 @@ server.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, Accept-Encoding, redirect'
   )
   next()
- 
 })
 
 // Express Session
