@@ -14,8 +14,8 @@ export default function FormLogin () {
 
   const dispatch = useDispatch()
   const userLogged = useSelector(state => state.user)
-  const urlApi = 'http://localhost:3001'
-  // const urlApi = https://e-winespf.herokuapp.com
+  // const urlApi = 'http://localhost:3001'
+  const urlApi = 'https://e-winespf.herokuapp.com'
 
   function handleCallbackResponse (response) {
     const userObject = jwtdecode(response.credential)
@@ -115,6 +115,7 @@ export default function FormLogin () {
 
           .then((res) => res.json())
           .then((data) => {
+            console.log(data)
             if (typeof data !== 'string') {
               cookies.set('TOKEN', data, {
                 path: '/'

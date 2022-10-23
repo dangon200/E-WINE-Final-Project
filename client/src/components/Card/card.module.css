@@ -27,6 +27,8 @@
     display: flex;
     text-align: left;
     margin-bottom: 16px;
+    height: 40px;
+    width: 40px;
 }
 
 .icon{
@@ -38,12 +40,10 @@
 }
 
 .iconActive{
-
     width: 20px;
     height: 20px;
     color: var(--btn-background-color);
     cursor: pointer;
-
 }
 
 .imgContainer{

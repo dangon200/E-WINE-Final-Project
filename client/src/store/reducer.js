@@ -12,6 +12,7 @@ const initialState = {
   recomendedPublication: [],
   user: '',
   buy: {},
+  questions: [],
   login: true
 }
 
@@ -53,7 +54,13 @@ export default function reducer (state = initialState, action) {
     case 'LOGOUT_USER':
       return { ...state, user: '' }
     case 'POST_STRIPE':
-      return { ...state, compra: action.payload }
+      return { ...state, buy: action.payload }
+    case 'GET_QUESTIONS':
+      return { ...state, questions: action.payload }
+    case 'ADD_QUESTION':
+      return { ...state, questions: action.payload }
+    case 'ADD_ANSWER':
+      return { ...state, questions: action.payload }
     case 'RENDER_MODAL_LOGIN':
       return { ...state, login: !state.login }
     default:

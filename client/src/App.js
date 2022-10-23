@@ -57,9 +57,8 @@ function App () {
         <Route path='/formEditUser' component={FormEditUser} />
         <Route path='/userProfile' component={UserProfile} />
         <Route path='/userPurchased' component={PurchasedProducts} />
-        <Route path='*' component={Error404} />
         <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
-        <Route path='/payment/:totalAmount' component={CardStripe} />
+        <Route exact path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />

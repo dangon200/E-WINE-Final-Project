@@ -16,7 +16,7 @@ export default function PagarMP () {
         id: user.user.id
       }
     })
-    fetch('http://localhost:3001/checkout', {
+    fetch('https://e-winespf.herokuapp.com/checkout', {
       method: 'POST',
       body: JSON.stringify(buying),
       headers: {

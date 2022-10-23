@@ -249,6 +249,51 @@ export const postStripe = (idStripe, totalAmount, carrito, userId) => {
   }
 }
 
+// QUESTIONS
+
+export const getQuestions = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/questions/${id}`)
+      return dispatch({
+        type: 'GET_QUESTIONS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const addQuestion = (data) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/questions`, data)
+      return dispatch({
+        type: 'ADD_QUESTION',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+
+export const addAnswer = (data, id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/questions/answer/${id}`, data)
+      return dispatch({
+        type: 'ADD_QUESTION',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
 // Render Modal Login
 export const modalRender = () => {
   return {
