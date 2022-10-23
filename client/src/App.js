@@ -51,13 +51,13 @@ function App () {
         <Route exact path='/publication/:id' component={PublicationDetail} />
         <Route path='/createPublication' exact component={FormCreatePubli} />
         <Route exact path='/admin' component={AdminDashboard} />
-        <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
+        <ProtectedRoutes path='/createpublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
         <Route path='/user/favorites' component={UserFavorites} />
         <Route path='/formEditUser' component={FormEditUser} />
         <Route path='/userProfile' component={UserProfile} />
-        <Route path='/userPurchased' component={PurchasedProducts} />
-        <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito']} component={Footer} />
+        <Route path='/userpurchased' component={PurchasedProducts} />
+        <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route exact path='/payment/:totalAmount' component={CardStripe} />
         <Route path='*' component={Error404} />
       </Switch>

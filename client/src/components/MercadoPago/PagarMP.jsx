@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
+const urlApi = 'https://e-winespf.herokuapp.com'
 
 export default function PagarMP () {
   const carrito = useSelector(state => state.carrito)
@@ -16,7 +17,7 @@ export default function PagarMP () {
         id: user.user.id
       }
     })
-    fetch('https://e-winespf.herokuapp.com/checkout', {
+    fetch(`${urlApi}/checkout`, {
       method: 'POST',
       body: JSON.stringify(buying),
       headers: {

@@ -100,6 +100,7 @@ export default function FormLogin () {
     validationSchema: schemaLogin,
 
     onSubmit: async (values, { resetForm }) => {
+      setSend(true)
       if (!user) {
         fetch(`${urlApi}/users/login`, {
           method: 'POST',
@@ -122,18 +123,32 @@ export default function FormLogin () {
               })
               dispatch(loginUser(data.user))
               dispatch(getFavorites(data.user.id))
+              setMesagge('Ha iniciado sesión')
+              setSend(false)
               setSuccess(true)
               setTimeout(() => { setSuccess(false) }, 3000)
             } else {
-              setError(!err)
+              setMesagge('Correo o contraseña incorrectos')
+              setError(true)
               setTimeout(() => {
                 setError(false)
               }, 3000)
             }
           })
+          .catch(err => {
+            console.log(err)
+            setSend(false)
+            setMesagge('Algo salio mal')
+            setError(true)
+            setTimeout(() => {
+              setError(false)
+            }, 5000)
+          })
       }
     }
   })
+  const [send, setSend] = useState(false)
+  const [message, setMesagge] = useState('')
   const [err, setError] = useState(false)
   const [success, setSuccess] = useState(false)
 
@@ -172,10 +187,10 @@ export default function FormLogin () {
             />
             {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
           </div>
-          {!userLogged && <button className='btn btn-success mt-3 ' type='submit'>Iniciar sesión</button>}
+          {!userLogged && <button disabled={send && true} className='btn btn-success mt-3 ' type='submit'>{!send ? 'Iniciar sesión' : '....'}</button>}
           {userLogged && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
           {err &&
-            <div className='alert alert-danger mt-3' role='alert'><p>Correo o contraseña incorrecto</p></div>}
+            <div className='alert alert-danger mt-3 text-center' role='alert'><p>{message}</p></div>}
           <>
             <div
               className={style.googleBtn}
@@ -184,7 +199,7 @@ export default function FormLogin () {
           </>
 
           {success &&
-            <div className='alert alert-success mt-3' role='alert'><p>Ha iniciado sesion</p> </div>}
+            <div className='alert alert-success mt-3  text-center' role='alert'><p>{message}</p> </div>}
         </div>
       </form>
 
