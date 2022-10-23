@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux'
 import { schemaValidateUser } from '../utilities/schemas'
 import { provinces } from '../utilities/data'
 import axios from 'axios'
-// const urlApi = 'https://e-winespf.herokuapp.com'
-const urlApi = 'http://localhost:3001'
+import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function FormLogin () {
+  const patch = useHistory()
   const dispatch = useDispatch() //eslint-disable-line
   const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({
     initialValues: {
@@ -18,15 +19,23 @@ export default function FormLogin () {
     },
     validationSchema: schemaValidateUser,
     onSubmit: async (values, { resetForm }) => {
-      const response = await axios.post(`${urlApi}/users`, values)
-      console.log(response)
-      resetForm()
+      try {
+        const response = await axios.post('https://e-winespf.herokuapp.com/users', values)
+        console.log(response)
+        resetForm()
+        setSend(true)
+        setTimeout(() => { patch.push('/home') }, 3000)
+      } catch (error) {
+        setErr(true)
+        setTimeout(() => { setErr(false) }, 2000)
+      }
     }
   })
-  console.log(values)
+  const [send, setSend] = useState(false)
+  const [err, setErr] = useState(false)
   return (
     <div className='container user-select-none'>
-      <form onSubmit={handleSubmit} className='card d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
+      <form onSubmit={handleSubmit} className='card w-75 d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
         <div className='row justify-content-center'>
           <h2>Cree su cuenta</h2>
           <div className='col-12'>
@@ -89,13 +98,15 @@ export default function FormLogin () {
               className={`form-select ${touched.region ? errors.region ? 'is-invalid' : 'is-valid' : null}`}
               onChange={handleChange}
               onBlur={handleBlur}
-              value={values.origin}
+              value={values.region}
             >
               <option value=''>Seleccione una provincia</option>
               {provinces.map((province, index) => (<option key={index} value={province}>{province}</option>))}
             </select>
             {touched.region && errors.region ? <div className='invalid-feedback'>{errors.region}</div> : null}
           </div>
+          {send && <div class='alert alert-success' role='alert'>Felicitaciones creo su cuenta</div>}
+          {err && <div class='alert alert-danger' role='alert'>Algo salio mal vuelva a intentarlo</div>}
 
           <button
             type='submit'
@@ -106,11 +117,11 @@ export default function FormLogin () {
         </div>
 
       </form>
-      <h2 className='d-none'>O inicie con:</h2>
+      {/* <h2 className='d-none'>O inicie con:</h2>
       <div className='d-none justify-content-center'>
         <button className='btn btn-primary mx-2'>Google</button>
         <button className='btn btn-primary mx-2'>Facebook</button>
-      </div>
+      </div> */}
     </div>
   )
 }
