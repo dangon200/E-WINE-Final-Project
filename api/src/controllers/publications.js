@@ -35,6 +35,45 @@ const getPublicationsDb = async () => {
   }
 }
 
+const getAllPublicationsDb = async () => {
+  const results = []
+
+  try {
+    const dbResults = await Publication.findAll({
+      include: [{
+        model: Product
+      }, {
+        model: User
+      }]
+    })
+
+    dbResults.forEach(async r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        isBanned: r.isBanned,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin,
+        userId: r.userId,
+        email: r.user.email,
+        username: r.user.username
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error('Error tratando de obtener todas las publicaciones!')
+  }
+}
+
 const getPublicationsOfUser = async (id) => {
   const results = []
 
@@ -283,5 +322,6 @@ module.exports = {
   orderPublicationsZtoA,
   getPublicationsByName,
   getPublicationsOfUser,
-  updatePublicationStock
+  updatePublicationStock,
+  getAllPublicationsDb
 }

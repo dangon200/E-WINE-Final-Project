@@ -77,6 +77,7 @@ export default function Home () {
                     name={p.name}
                     image={p.image}
                     price={p.price}
+                    userId={p.userId}
                     key={p.id}
                   />
                 </div>
