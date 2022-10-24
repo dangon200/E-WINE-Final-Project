@@ -8,8 +8,11 @@ const {
   orderPublicationsLessPrice,
   orderPublicationsAtoZ,
   orderPublicationsZtoA,
-  getPublicationsByName
-} = require('../controllers')
+  getPublicationsByName,
+  getPublicationsOfUser,
+  updatePublicationStock,
+  getAllPublicationsDb
+} = require('../controllers/publications')
 
 const router = Router()
 
@@ -31,6 +34,37 @@ router.get('/', async (req, res) => {
         .status(200)
         .json('No hay publicaciones guardadas en la Base de Datos!')
     }
+
+    return res.status(200).json(publications)
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
+router.get('/all', async (req, res) => {
+  try {
+    const publications = await getAllPublicationsDb()
+
+    if (!publications.length) {
+      return res
+        .status(200)
+        .json('No hay publicaciones guardadas en la Base de Datos!')
+    }
+
+    return res.status(200).json(publications)
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
+router.get('/user/:id', async (req, res) => {
+  const { id } = req.params
+
+  console.log(id)
+
+  try {
+    const publications = await getPublicationsOfUser(id)
+    if (!publications.length) return res.status(200).json('No hay publicaciones de ese usuario!')
 
     return res.status(200).json(publications)
   } catch (error) {
@@ -133,16 +167,19 @@ router.get('/order/:opt', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { productId, title, price, count, image, description } = req.body
+  const { userId, productId, title, price, count, image, description } = req.body
 
   if (!title) return res.status(400).json('Falta la propiedad titulo!')
   if (!price) return res.status(400).json('Falta la propiedad precio!')
   if (!count) return res.status(400).json('Falta la propiedad stock!')
   if (!image) return res.status(400).json('Falta la imagen de la publicacion!')
   if (!description) { return res.status(400).json('Falta la propiedad descripcion!') }
+  if (!userId) return res.status(400).json('Falta la propiedad id del usuario!')
+  if (!productId) return res.status(400).json('Falta la propiedad id del producto!')
 
   try {
     const newPublication = await createPublication(
+      userId,
       productId,
       title,
       price,
@@ -164,6 +201,16 @@ router.put('/:id', async (req, res) => {
   try {
     const pbBanned = await bannedPublication(id, banned)
     return res.status(200).json(pbBanned)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+router.put('/stock/:id', async (req, res) => {
+  const { id } = req.params
+  const { newStock } = req.query
+  try {
+    const publicationUpdated = await updatePublicationStock(newStock, id)
+    return res.status(200).json(publicationUpdated)
   } catch (error) {
     res.status(400).json(error.message)
   }

@@ -1,4 +1,4 @@
-const { Publication, Product } = require('../db.js')
+const { Publication, Product, User } = require('../db.js')
 const { Op } = require('sequelize')
 
 const getPublicationsDb = async () => {
@@ -34,13 +34,97 @@ const getPublicationsDb = async () => {
     throw new Error('Error tratando de obtener todas las publicaciones!')
   }
 }
-const createPublication = async (productId, title, price, count, image, description) => {
+
+const getAllPublicationsDb = async () => {
+  const results = []
+
   try {
-    const newPublication = await Publication.create({ title, price, count, image, description, productId })
+    const dbResults = await Publication.findAll({
+      include: [{
+        model: Product
+      }, {
+        model: User
+      }]
+    })
+
+    dbResults.forEach(async r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        isBanned: r.isBanned,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin,
+        userId: r.userId,
+        email: r.user.email,
+        username: r.user.username
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error('Error tratando de obtener todas las publicaciones!')
+  }
+}
+
+const getPublicationsOfUser = async (id) => {
+  const results = []
+
+  try {
+    const dbResults = await Publication.findAll({
+      include: [{
+        model: Product
+      }, {
+        model: User,
+        where: {
+          id
+        }
+      }],
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.forEach(async r => {
+      results.push({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin,
+        userId: r.userId,
+        email: r.user.email,
+        username: r.user.username
+      })
+    })
+
+    return results
+  } catch (error) {
+    throw new Error(`Error tratando de obtener todas las publicaciones del usuario con el id: ${id}!`)
+  }
+}
+
+const createPublication = async (userId, productId, title, price, count, image, description) => {
+  try {
+    const newPublication = await Publication.create({ title, price, count, image, description, productId, userId })
 
     return newPublication
   } catch (error) {
-    throw new Error('Error tratando de crear nueva publicacion!')
+    throw new Error([error.message, 'Error tratando de crear nueva publicacion!'])
   }
 }
 const getOnePublication = async (id) => {
@@ -161,7 +245,35 @@ const getPublicationsByName = async (name) => {
       }
     })
 
-    dbResults.forEach(r => {
+    const dbResultsType = await Publication.findAll({
+      include: {
+        model: Product,
+        where: {
+          type: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+      },
+      where: {
+        isBanned: false
+      }
+    })
+
+    const dbResultsOrigin = await Publication.findAll({
+      include: {
+        model: Product,
+        where: {
+          origin: {
+            [Op.iLike]: `%${name}%`
+          }
+        }
+      },
+      where: {
+        isBanned: false
+      }
+    })
+
+    dbResults.concat(dbResultsType).concat(dbResultsOrigin).forEach(r => {
       results.push({
         id: r.id,
         title: r.title,
@@ -183,7 +295,22 @@ const getPublicationsByName = async (name) => {
     throw new Error('Error tratando de obtener publicaciones por nombre de producto!')
   }
 }
+const updatePublicationStock = async (newStock, publicationId) => {
+  try {
+    const publicationUpdated = await Publication.update(
+      {
+        count: newStock
+      },
+      {
+        where: { publicationId }
 
+      }
+    )
+    return publicationUpdated
+  } catch (error) {
+    throw new Error('Error al intentar actualizar el stock')
+  }
+}
 module.exports = {
   getPublicationsDb,
   createPublication,
@@ -193,5 +320,8 @@ module.exports = {
   orderPublicationsLessPrice,
   orderPublicationsAtoZ,
   orderPublicationsZtoA,
-  getPublicationsByName
+  getPublicationsByName,
+  getPublicationsOfUser,
+  updatePublicationStock,
+  getAllPublicationsDb
 }

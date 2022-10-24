@@ -9,13 +9,28 @@ import { GiWineBottle } from 'react-icons/gi'
 import { BiBookBookmark } from 'react-icons/bi'
 import { RiCustomerService2Fill } from 'react-icons/ri'
 
+import logo from '../assets/imgs/arriba.png'
+
 import Button from '../Button/Button.jsx'
+import { useEffect } from 'react'
 // import NavBar from '../Nav/Nav.jsx'
 
 export default function LandingPage () {
+  const showBtn = () => {
+    if (window.pageYOffset > document.getElementById('home').getBoundingClientRect().height) {
+      document.getElementById('toTop').style.display = 'block'
+    } else {
+      document.getElementById('toTop').style.display = 'none'
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', showBtn)
+    return () => window.removeEventListener('scroll', showBtn)
+  }, [])
+
   return (
     <>
-      <header className={style.header}>
+      <header id='home' className={style.header}>
         <h1 className={style.h1}>Descrubrí <span>E-wine</span></h1>
         <p className='fs-3'>Acceder a todos sus vinos favoritos nunca ha sido tan fácil</p>
         <div className={style.buttons}>
@@ -68,7 +83,7 @@ export default function LandingPage () {
 
       <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
         <h2 className='row'>Recomendados por expertos</h2>
-        <article className={`row ${style.gridCards}`}>
+        <article className={`row mb-5 ${style.gridCards}`}>
           <div className={`card  ${style.card}`}>
             <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
             <section className='card-body'>
@@ -140,6 +155,7 @@ export default function LandingPage () {
           </div>
         </div>
       </section>
+      <a href='#h' id='toTop' className={style.icon} onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}><img className={style.iconImg} src={logo} alt='top' /></a>
 
     </>
   )

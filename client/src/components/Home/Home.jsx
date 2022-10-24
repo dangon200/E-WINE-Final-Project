@@ -51,8 +51,6 @@ export default function Home () {
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
           <SearchBar />
-        </div>
-        <div>
           <Filters setPage={setPage} />
         </div>
       </div>
@@ -67,20 +65,25 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-
       <div className={style.containerProducts}>
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
             return (
               <section className={style.sectionCards} key={p.id}>
-                <Card
-                  id={p.id}
-                  title={p.title}
-                  name={p.name}
-                  image={p.image}
-                  price={p.price.toLocaleString('es-MX')}
-                  key={p.id}
-                />
+                <div>
+                  {p.count > 0 &&
+                    <Card
+                      count={p.count}
+                      id={p.id}
+                      title={p.title}
+                      name={p.name}
+                      image={p.image}
+                      price={p.price}
+                      userId={p.userId}
+                      key={p.id}
+                    />}
+
+                </div>
               </section>
             )
           })

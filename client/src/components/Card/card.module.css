@@ -1,11 +1,13 @@
 .card{
     width: 300px;
-    height: 500px;
-    background-color: var(--background-color);
+    height: 400px;
+    background-color: #FFFFFF;
     margin-top: 10%;
     padding: 16px;
     transition: 0.3s;
-    animation: show 2s
+    animation: show 2s;
+    border: 1px solid rgba(179, 179, 179, 0.2);
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes show{
@@ -25,6 +27,8 @@
     display: flex;
     text-align: left;
     margin-bottom: 16px;
+    height: 40px;
+    width: 40px;
 }
 
 .icon{
@@ -36,37 +40,56 @@
 }
 
 .iconActive{
-
     width: 20px;
     height: 20px;
     color: var(--btn-background-color);
     cursor: pointer;
-
 }
 
 .imgContainer{
-    height: 300px;
-    width: 100%;
+    position: absolute;
+    width: 254px;
+    height: 272px;
+    left: 27px;
+    top: 48px;
 }
 
 .img{
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     object-fit: contain;
 }
 
 .dataContainer{
-    margin-top: 8px;
+    /* margin-top: 8px;
     width: 100%;
     flex: display;
-    text-align: left;
-    font-family: var(--font-family-1);
+    text-align: left; */
+    font-family: var(--font-family-1);    
+}
+
+.title{
+    width: 100%;
+    position: absolute;
+    height: 24px;
+    left: 0px;
+    top: 279px;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 24px;
+    overflow: hidden;
+    /* identical to box height, or 150% */
+    text-align: center;
+    letter-spacing: 0.15px;
 }
 
 .dataContainer h3{
     font-size: 16px;
     font-family: var(--font-family-2);
-    height: 30px;
+    width: 100%;
+    /* height: 30px; */
     color: black;
 }
 
@@ -83,13 +106,30 @@
 }
 
 .name{
-    color: gray;
+    color: #000000;
+    position: absolute;
+    width: 110px;
+    height: 22px;
+    left: 21px;
+    top: 304px;
+    font-style: normal;
+    font-weight: 600;
     font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+letter-spacing: 0.1px;
+
 }
 
 .price{
     color: var(--btn-background-color);
-    font-size: 16px;
+    position: absolute;
+    width: 100px;
+    height: 16px;
+    left: 190px;
+    top: 305px;
+    font-style: normal;
+    font-weight: 400;
 }
 
 .btnContainer{
@@ -101,34 +141,78 @@
 }
 
 .addBtn{
-    background-color: var(--btn-background-color);
-    color: white;
-    padding: 8px 16px;
-    border: 2px solid var(--btn-background-color);
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+    box-sizing: border-box;
 
+    /* Auto layout */
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 8px 16px;
+    gap: 8px;
+    
+    position: absolute;
+    /* width: 106px; */
+    height: 40px;
+    left: 190px;
+    top: 346px;
+    
+    background: #56070C;
+    border: 1px solid #56070C;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: uppercase;
+    
+
+}
+.carritito svg{
+    color: aliceblue;
+    width: 300px;
+    height: 300px;  
+}
 .addBtn:hover{
     background-color: white;
     color: var(--btn-background-color);
+    border-color: #56070C;
 }
 
 .moreBtn{
     border: none;
     padding: 8px 16px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 12px;
     font-family: var(--font-family-2);
     cursor: pointer;
     background-color: var(--background-color);
     text-decoration: none;
-    color: black;
+    color: #56070C;
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    position: absolute;
+    width: 98px;
+    height: 40px;
+    left: 27px;
+    top: 346px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 8px;
+    background: #F1F0F0;
+    border: 1px solid #56070C;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    text-transform: uppercase;
 }
 
 .moreBtn:hover{
-    background-color: var(--background-color);
-    color: var(--btn-background-color)
+    background-color: #56070C;
+    color: #F1F0F0;
+    border-color: #56070C;
 }

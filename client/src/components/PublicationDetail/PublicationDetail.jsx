@@ -1,99 +1,213 @@
-// _______________________CODIGO con estilo________________________
-
+/* eslint-disable no-prototype-builtins */
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-// import { MdFavoriteBorder } from 'react-icons/md'
+
 import { FaHeart } from 'react-icons/fa'
-import { addCarrito, addFavorites, getByPublication, removeFavorites } from '../../store/actions/actions'
-// import Footer from '../Footer/Footer.jsx'
-import style from './publicationDetail.module.css'
-import RecomendedPublications from '../RecomendedPublications/RecomendedPublications'
+
+import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
+/* import Question from '../Question/Question' */
+
 import ProductDetail from '../ProductDetail/ProductDetail'
+import Preguntas from '../Preguntas/Preguntas.jsx'
+import RecomendedPublications from '../RecomendedPublications/RecomendedPublications'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Carousel from 'react-bootstrap/Carousel'
+import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
+import Image from 'react-bootstrap/Image'
+import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
+import style from './publicationDetail.module.css'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
+  const questions = useSelector(state => state.questions)
+  /* const user = useSelector(state => state.user) */
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
-  const { id } = useParams()// props.match.params.id
-  const { name, price, title, image } = publication
+  const { id } = useParams() // props.match.params.id
+  const { name, price, title, image, count } = publication
   const [counter, setCounter] = useState(1)
+  /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
     dispatch(getByPublication(id))
+    dispatch(getQuestions(id))
   }, [dispatch, id])
 
   const isInFavorites = (id) => {
-    return favorites.some(f => f === id)
+    return favorites.some((f) => f === id)
   }
-  const addToCarrito = (id, price, title, image, name, countParam) => {
-    if (window.localStorage.hasOwnProperty(id)) { // eslint-disable-line
-      console.log('entre al if')
-      window.localStorage[id] = JSON.stringify({ ...JSON.parse(window.localStorage[id]), count: (countParam + JSON.parse(window.localStorage[id]).count) })
-      dispatch(addCarrito({ id, price, title, image, name, count: JSON.parse(window.localStorage[id]).count }))
+  const addToCarrito = (id, price, title, image, name, countParam, count) => {
+    if (window.localStorage.hasOwnProperty(id)) {
+      window.localStorage[id] = JSON.stringify({
+        ...JSON.parse(window.localStorage[id]),
+
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
+      })
+      dispatch(
+        addCarrito({
+          id,
+          price,
+          title,
+          image,
+          name,
+          count: JSON.parse(window.localStorage[id]).count,
+          stock: count
+        })
+      )
     } else {
       console.log('entre al else')
-      window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: countParam }))
-      dispatch(addCarrito({ id, price, title, image, name, count: countParam }))
+      window.localStorage.setItem(
+        id,
+        JSON.stringify({ price, title, image, name, count: countParam, stock: count })
+      )
+      dispatch(
+        addCarrito({ id, price, title, image, name, count: countParam, stock: count })
+      )
     }
   }
   const updateCount = (param) => {
     if (param === 'rest' && counter > 1) setCounter(counter - 1)
-    if (param === 'add') setCounter(counter + 1)
+    if (param === 'add' && counter <= count) setCounter(counter + 1)
   }
-
   return (
-    <div className={style.container}>
-      <div className={style.cardContainer}>
-        {/* Esta es la primera tarjeta */}
-        <div className={style.card1}>
-          {/* Icono de favorito */}
-          <div className={style.iconContainer}>
-            <FaHeart
-              className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-                isInFavorites(id) ? dispatch(removeFavorites(id)) : dispatch(addFavorites(id))
-              }}
-            />
-          </div>
-          {/* Div que contiene la imagen del Product */}
-          <div className={style.imageContainer}>
-            <img src={image} alt={`${publication.name}`} />
-          </div>
-        </div>
+    <Container>
+      <Row>
+        <Row xs={1} sm={2} md={2} className='mt-5 rounded mx-auto shadow-lg'>
+          <Col>
+            <div className='pt-3 d-flex justify-content-end'>
+              <FaHeart
+                className={isInFavorites(id) ? style.iconActive : style.icon}
+                onClick={() => {
+                  isInFavorites(id)
+                    ? dispatch(removeFavorites(id))
+                    : dispatch(addFavorites(id))
+                }}
+              />
+            </div>
+            <Carousel className='mb-5 mt-4'>
+              <Carousel.Item
+                className={style.imageCarru}
+              >
+                <Image
+                  className={style.image}
+                  src={image}
+                  alt={`${publication.name}`}
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <Image
+                  className={style.image}
+                  src={image}
+                  alt={`${publication.name}`}
 
-        {/* Esta es la segunda tarjeta */}
-        <div className={style.card2}>
-          <div className={style.header}>
-            <h1 className={style.h1}>{name}</h1>
-            <span>${price}</span>
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <Image
+                  className={style.image}
+                  src={image}
+                  alt={`${publication.name}`}
+                />
+              </Carousel.Item>
+            </Carousel>
+          </Col>
+          <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
+            <h1 className='mt-3 text-capitalize fw-bold'>{name}</h1>
+            <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
-            <span>Stock: {publication.count}</span>
-          </div>
-          <div className={style.body}>
-            {/* PEDIDO */}
-            <div className={style.pedido}>
-              <button className={style.btnR} onClick={() => updateCount('rest')}> - </button>
-              <span>{counter}</span>
-              <button className={style.btnS} onClick={() => updateCount('add')}> + </button>
-            </div>
-            {/* CARRITO */}
-            <div className={style.carrito}>
-              <button onClick={() => { addToCarrito(id, price, title, image, name, counter) }}>AGREGAR AL CARRITO</button>
-              <Link to='/Carrito'>
-                <button>COMPRAR AHORA</button>
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div>
+            <span className='fs-2'>
+              Disponibilidad: {publication.count}
+            </span>
+            {/* <figure className='text-center mt-5'>
+              <blockquote className='blockquote fs-4 fst-italic'>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit facere cumque ratione, odio expedita quisquam iusto reprehenderit? Hic ea autem cupiditate ducimus similique molestiae eligendi voluptatibus facere debitis eveniet!</p>
+              </blockquote>
+              <figcaption className='blockquote-footer fs-5 text-end'>
+                Famosa escritora y poeta - <cite>asdasds</cite>
+              </figcaption>
+            </figure> */}
+            <Row className='mt-5 me-5'>
+              {/* md={10} lg xl={8} xxl={9} */}
+              <Col>
+                <Stack
+                  direction='horizontal'
+                  gap={1}
+                >
+                  <Button
+                    variant='prueba'
+                    onClick={() => updateCount('rest')}
+                    className='d-flex justify-content-center align-items-center'
+                  >
+                    -
+                  </Button>
+                  <span className='fs-2 fw-bold'>
+                    {counter}
+                  </span>
+                  <Button
+                    variant='prueba'
+                    onClick={() =>
+                      counter < count &&
+                      updateCount('add')}
+                  >
+                    +
+                  </Button>
+                  <Col>
+                    <Button
+                      className='d-flex mx-5 fs-4 p-2'
+                      size='lg'
+                      variant='botoncito'
+                      onClick={() => {
+                        addToCarrito(
+                          id,
+                          price,
+                          title,
+                          image,
+                          name,
+                          counter,
+                          count
+                        )
+                      }}
+                    >
+                      <BsFillCartPlusFill className='me-3 fs-2' />
+                      AGREGAR
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Link to='/Carrito'>
+                      <Button
+                        className='fs-4 p-2'
+                        size='lg'
+                        variant='botoncito'
+                      >
+                        <BsFillCartCheckFill className='me-3 fs-2' />
+                        COMPRAR
+                      </Button>
+                    </Link>
+                  </Col>
+                </Stack>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+        {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
-        {publication ? <RecomendedPublications type={publication.type} varietal={publication.varietal} origin={publication.origin} /> : null}
-
-      </div>
-    </div>
+        <Preguntas questions={questions} publication={publication} />
+        {publication
+          ? (
+            <RecomendedPublications
+              type={publication.type}
+              varietal={publication.varietal}
+              origin={publication.origin}
+            />
+            )
+          : null}
+      </Row>
+    </Container>
   )
 }
 

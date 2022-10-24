@@ -1,15 +1,19 @@
 import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
-// import logo from '../assets/imgs/e-wine-logo.png'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import { useSelector } from 'react-redux'
-// import SearchBar from '../SearchBar/SearchBar'
-// import { BsCart } from 'react-icons/bs'
 import bolsita from '../assets/imgs/bolsita.png'
+import FormLogin from '../FormLogin/FormLogin'
+import Modale from '../Modale/Modale'
+// import { useEffect } from 'react'
+import { FiUser } from 'react-icons/fi'
 
 export default function Nav () {
+  const user = useSelector(state => state.user)
   const carritoItems = useSelector(state => state.carrito)
+
+  // useEffect(() => { console.log(login) }, [login])
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
       <div className='container-fluid'>
@@ -32,16 +36,24 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
-            <Navegador link='/createAccount' span='Crear Cuenta' className='nav-link' />
-
-            <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
-
+            {/* <FormLogin /> */}
+            {user &&
+              <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}
+            <Modale
+              buttonText={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              render={FormLogin}
+              link='/register'
+              createAcc
+            />
+          </div>
+          <div className={style.userLogo}>
+            {user ? <Link to='/userProfile'><FiUser color='black' size={20} /> </Link> : null}
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
             <img src={bolsita} alt='bolsita' />
           </Link>
-
         </div>
       </div>
 

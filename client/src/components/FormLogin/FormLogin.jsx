@@ -1,57 +1,205 @@
+import style from './formLogin.module.css'
 import { useFormik } from 'formik'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
+import Cookies from 'universal-cookie'
+import jwtdecode from 'jwt-decode'
+import { schemaLogin } from '../utilities/schemas'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
 
 export default function FormLogin () {
+  const cookies = new Cookies()
+  const user = cookies.get('TOKEN')
+
+  const dispatch = useDispatch()
+  const userLogged = useSelector(state => state.user)
+  // const urlApi = 'http://localhost:3001'
   const urlApi = 'https://e-winespf.herokuapp.com'
-  const { values, handleChange, handleBlur, errors, touched, handleSubmit, isSubmitting } = useFormik({ //eslint-disable-line
+
+  function handleCallbackResponse (response) {
+    const userObject = jwtdecode(response.credential)
+    console.log(userObject)
+    fetch(`${urlApi}/users/email/` + userObject.email)
+      .then(res => res.json())
+      .then(data => {
+        if (!data) {
+          fetch(`${urlApi}/users/`, {
+            method: 'POST',
+            body: JSON.stringify({
+              email: userObject.email,
+              password: 'password',
+              region: 'null',
+              username: userObject.name,
+              image: userObject.picture
+            }),
+            headers: {
+              'Content-type': 'application/json'
+            },
+            credentials: 'include'
+          })
+
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data)
+            })
+        }
+        fetch(`${urlApi}/users/login`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: userObject.email,
+            password: 'password'
+          }),
+          headers: {
+            'Content-type': 'application/json'
+          },
+          credentials: 'include'
+        })
+
+          .then((res) => res.json())
+          .then((data) => {
+            if (typeof data !== 'string') {
+              cookies.set('TOKEN', data, {
+                path: '/'
+              })
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
+              setSuccess(true)
+              setTimeout(() => { setSuccess(false) }, 3000)
+            } else {
+              setError(!err)
+              setTimeout(() => {
+                setError(false)
+              }, 3000)
+            }
+          })
+      }
+
+      )
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: '299866186395-evt7gful4jbfl5bctqnbp74c9a8i6h88.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      { theme: 'outline', size: 'large' }
+    )
+  }, [])//eslint-disable-line
+
+  const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
+
     initialValues: {
       email: '',
       password: ''
     },
+    validationSchema: schemaLogin,
 
-    onSubmit: async (values) => {
-      const response = await axios.post(urlApi + '/users/login', values)
-      console.log(response)
+    onSubmit: async (values, { resetForm }) => {
+      setSend(true)
+      if (!user) {
+        fetch(`${urlApi}/users/login`, {
+          method: 'POST',
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password
+          }),
+          headers: {
+            'Content-type': 'application/json'
+          },
+          credentials: 'include'
+        })
+
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data)
+            if (typeof data !== 'string') {
+              cookies.set('TOKEN', data, {
+                path: '/'
+              })
+              dispatch(loginUser(data.user))
+              dispatch(getFavorites(data.user.id))
+              setMesagge('Ha iniciado sesión')
+              setSend(false)
+              setSuccess(true)
+              setTimeout(() => { setSuccess(false) }, 3000)
+            } else {
+              setMesagge('Correo o contraseña incorrectos')
+              setError(true)
+              setTimeout(() => {
+                setError(false)
+              }, 3000)
+            }
+          })
+          .catch(err => {
+            console.log(err)
+            setSend(false)
+            setMesagge('Algo salio mal')
+            setError(true)
+            setTimeout(() => {
+              setError(false)
+            }, 5000)
+          })
+      }
     }
   })
+  const [send, setSend] = useState(false)
+  const [message, setMesagge] = useState('')
+  const [err, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  function removeCookies () {
+    dispatch(logoutUser())
+    cookies.remove('TOKEN')
+  }
   return (
-    <div className='container user-select-none'>
+    <div className='user-select-none'>
       <form onSubmit={handleSubmit} className='card d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
         <div className='row justify-content-center'>
-          <h2>Inicie sesión</h2>
           <div className='col-12'>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='email' className='fs-3'>Email</label>
             <input
               type='email'
               name='email'
               id='email'
-              className={`form-control ${touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null}`}
+              className={`form-control ${!err ? touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {touched.email && errors.email ? <div className='invalid-feedback'>{errors.email}</div> : null}
+            {touched.email && errors.email ? <div className='invalid-feedback fs-4'>{errors.email}</div> : null}
           </div>
           <div className='col-12'>
-            <label htmlFor='password'>Password</label>
+            <label htmlFor='password' className='fs-3'>Password</label>
             <input
               type='password'
               name='password'
               id='password'
-              className={`form-control ${touched.password ? errors.password ? 'is-invalid' : 'is-valid' : null}`}
+              className={`form-control 
+                      ${!err ? touched.password ? errors.password ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
               value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {touched.password && errors.password ? <div className='invalid-feedback'>{errors.password}</div> : null}
+            {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
           </div>
-          <button
-            type='submit'
-            className={`btn btn-primary mt-3 ${isSubmitting && 'disabled'}`}
-            disabled={isSubmitting && true}
-          >
-            Iniciar sesión
-          </button>
+          {!userLogged && <button disabled={send && true} className='btn btn-success mt-3 ' type='submit'>{!send ? 'Iniciar sesión' : '....'}</button>}
+          {userLogged && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
+          {err &&
+            <div className='alert alert-danger mt-3 text-center' role='alert'><p>{message}</p></div>}
+          <>
+            <div
+              className={style.googleBtn}
+              id='signInDiv'
+            />
+          </>
+
+          {success &&
+            <div className='alert alert-success mt-3  text-center' role='alert'><p>{message}</p> </div>}
         </div>
       </form>
 

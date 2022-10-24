@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRecomendedPublications } from '../../store/actions/actions'
 import Card from '../Card/Card'
-import style from './recomendedPublications.module.css'
+import Container from 'react-bootstrap/Container'
 
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 export default function RecomendedPublications (props) {
   const dispatch = useDispatch()
   const recomendedPublication = useSelector((state) => state.recomendedPublication)
@@ -13,24 +15,32 @@ export default function RecomendedPublications (props) {
     dispatch(getRecomendedPublications(type, varietal, origin))
   }, [dispatch, type, varietal, origin])
   return (
-    <div className={style.container}>
-      <div className={style.title}><h1>Recomendado para vos</h1></div>
-      <div className={style.cards}>
-        {Array.isArray(recomendedPublication) && recomendedPublication.length > 0
-          ? recomendedPublication.slice(0, 3).map(p => {
-            return (
-              <Card
-                id={p.id}
-                title={p.title}
-                name={p.name}
-                image={p.image}
-                price={p.price.toLocaleString('es-MX')}
-                key={p.id}
-              />
-            )
-          })
-          : null}
-      </div>
-    </div>
+    <Container fluid>
+      <Row className='mb-5 mt-5'>
+        <h1 className='fw-bold' style={{ color: '#56070C', fontFamily: 'var(--font-family-1)' }}>Recomendados para vos</h1>
+        {
+            Array.isArray(recomendedPublication) && recomendedPublication.length > 0
+              ? recomendedPublication.slice(0, 3).map((p) => {
+                return (
+                // eslint-disable-next-line react/jsx-key
+                  <Col
+                    key={p.id}
+                    className='w-100 shadow-lg mb-5 mt-5 rounded'
+                  >
+                    <Card
+                      id={p.id}
+                      title={p.title}
+                      name={p.name}
+                      image={p.image}
+                      price={p.price.toLocaleString('es-MX')}
+                      key={p.id}
+                    />
+                  </Col>
+                )
+              })
+              : null
+            }
+      </Row>
+    </Container>
   )
 }

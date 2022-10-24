@@ -14,7 +14,7 @@
   .buttons{
     flex-direction: column;
   }
- }
+}
 
 
 .h1{
@@ -135,19 +135,21 @@
 }
 
 .card{
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: center; */
+  align-items: center;
   width: 85%;
-  /* height: 300px; */
+  height: 300px;
   background-color: #F1F0F0;
-  border-radius: 0 0 6px 6px;
+  border-radius:  6px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.16);;
 }
 .cardImg{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  padding-top: 5px;
+  border-radius: 6px 6px 6px 6px;
 }
 .gridCards{
   width: 80%;
@@ -169,9 +171,9 @@
  }
 
 .card section{
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start; */
+  align-items: flex-start;
   padding: 10px;
 }
 
@@ -255,3 +257,38 @@
   --btn-border-color: #56070C;
   --font-family-1: 'Source Sans Pro', sans-serif;
   --font-family-2: 'Montserrat', sans-serif; */
+
+  .icon{
+    background-color: #56070C;
+	  border-radius: 10px;
+	  box-shadow: 1px 1px 5px black;
+
+	  position: fixed;
+	  bottom: 100px;
+	  right: 150px;
+	  padding: 8px;
+
+	  width: 50px;
+
+	  cursor: pointer;
+	  opacity: 1;
+
+    width: 50px;
+    height: 50px;
+    animation: fadeIn 1s, scaleButton 2s infinite;
+    display: none;
+  }
+
+  @keyframes scaleButton{
+
+    0% {transform: scale(0.8);}
+    50% {transform: scale(1);}
+    100% {transform: scale(0.8);}
+  
+  }
+
+  .iconImg{
+   color: white;
+    width: 100%;
+    height: 100%;
+  }
