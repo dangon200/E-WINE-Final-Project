@@ -48,7 +48,7 @@ export const bannedPublication = (id, isBanned) => {
     try {
       console.log(isBanned)
       console.log('Llegue')
-      const res = await axios.put(`${urlApi}/publications/${id}`, isBanned)
+      const res = await axios.put(`${urlApi}/publications/${id}?banned=${!isBanned}`)
       console.log(res)
       return dispatch({
         type: 'GET_PUBLICATION_BANNED',
