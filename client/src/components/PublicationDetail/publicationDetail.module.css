@@ -61,6 +61,11 @@ display: block
     font-family: var(--font-family-1);
 }
 
+.image{
+    max-height: 400px;
+    max-width: 400px;
+}
+
 h1{
     font-size:  40px;
     font-family: var(--font-family-2);

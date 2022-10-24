@@ -25,7 +25,7 @@ export default function ItemCarrito (props) {
           <Col className={s.image}>
             <img className='img-fluid' src={image} alt={image} />
           </Col>
-          <Col className='d-flex flex-column justify-content-center align-items-left ms-4'>
+          <Col className='d-flex flex-column col-4 justify-content-center align-items-left ms-4'>
             <Row className='fs-2'>{title}</Row>
             <Row className='fw-bold'>{name}</Row>
           </Col>
@@ -43,7 +43,7 @@ export default function ItemCarrito (props) {
               stock={stock}
             />
           </Col>
-          <Col className='d-flex flex-column gap-3'>
+          <Col className='d-flex flex-column justify-content-center gap-3'>
             <Row>
               <Button className={s.button} onClick={() => { removeFromCarrito(id) }}>
                 Eliminar
