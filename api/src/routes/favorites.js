@@ -107,7 +107,7 @@ router.post('/', async (req, res) => {
       results.push({
         id: r.id,
         publicationId: r.publicationId,
-        userId: r.userId
+        userId: r.userId,
       })
     })
     res.status(200).json(results)
