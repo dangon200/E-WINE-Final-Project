@@ -25,7 +25,8 @@ const columns = [
   { field: 'type', headerName: 'Tipo', width: 70 },
   { field: 'varietal', headerName: 'Varietal', sortable: false, width: 70 },
   { field: 'origin', headerName: 'Origen', width: 70 },
-  { field: 'description', headerName: 'Descripción', width: 170 }
+  { field: 'description', headerName: 'Descripción', width: 170 },
+  { field: 'isBanned', headerName: 'isBanned', width: 170 }
 
 ]
 
