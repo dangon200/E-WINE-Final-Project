@@ -22,7 +22,7 @@ export default function Counter (props) {
   }, [count])// eslint-disable-line
   return (
     <div className={style.pedido}>
-      <button className={style.buttonMasMenos} onClick={() => updateCount('rest', id)}><BsDashCircleFill size={20} /></button>{count}<button className={style.buttonMasMenos} onClick={() => updateCount('add', id)}><BsFillPlusCircleFill size={20} /></button>
+      <button className={style.buttonMasMenos} onClick={() => updateCount('rest', id)}><BsDashCircleFill size={20} /></button><span className='px-3 fs-3'>{count}</span><button className={style.buttonMasMenos} onClick={() => updateCount('add', id)}><BsFillPlusCircleFill size={20} /></button>
     </div>
   )
 }

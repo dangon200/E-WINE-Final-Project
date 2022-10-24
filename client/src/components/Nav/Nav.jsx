@@ -7,7 +7,7 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
-import { FaUserAlt } from 'react-icons/fa'
+import { FiUser } from 'react-icons/fi'
 
 export default function Nav () {
   const user = useSelector(state => state.user)
@@ -37,8 +37,8 @@ export default function Nav () {
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
             {/* <FormLogin /> */}
-
-            <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
+            {user &&
+              <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}
             <Modale
               buttonText={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
               title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
@@ -48,7 +48,7 @@ export default function Nav () {
             />
           </div>
           <div className={style.userLogo}>
-            {user ? <Link to='/userProfile'><FaUserAlt color='black' size={20} /> </Link> : null}
+            {user ? <Link to='/userProfile'><FiUser color='black' size={20} /> </Link> : null}
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>

@@ -6,19 +6,8 @@ import Card from 'react-bootstrap/Card'
 // import { addFavorites, removeFavorites } from '../../store/actions/actions'
 import Col from 'react-bootstrap/esm/Col'
 // import style from './cardFavorite.module.css'
-// import Counter from '../Counter/Counter'
 
-export default function CardFavorites ({ id, title, price, image, name }) {
-  /* const dispatch = useDispatch()
-  const favorites = useSelector(state => state.favorites)
-  const user = useSelector(state => state.user) */
-  // const countItemCarrito=useSelector
-  /* const isInFavorites = (id) => {
-    for (let x = 0; x < favorites.length; x++) {
-      if (favorites[x].publicationId === id) return true
-    }
-    return false
-  } */
+export default function CardFavorites ({ id, title, description, image, name, price }) {
   return (
     <div>
       <Card style={{ width: '28rem' }}>
@@ -41,9 +30,14 @@ export default function CardFavorites ({ id, title, price, image, name }) {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Text>
-            {price}
+            {description}
+          </Card.Text>
+          <Card.Text>
             {name}
           </Card.Text>
+          {/* <Card.Text>
+            {price}
+          </Card.Text> */}
           <Button className='p-3 fs-5' variant='dark'>
             <Link className='text-light text-decoration-none' to={`/publication/${id}`}>
               Volver a la publicación

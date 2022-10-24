@@ -30,25 +30,6 @@ server.use((req, res, next) => {
   next()
 })
 
-// Express Session
-// server.use(
-//   session({
-//     secret: 'secretcode',
-//     resave: true,
-//     saveUninitialized: true,
-//     cookie: {
-//       sameSite: 'none',
-//       maxAge: 24 * 60 * 60 * 1000
-//     }
-//   })
-// )
-
-// server.use(cookieParser('secretcode'))
-
-// server.use(passport.initialize())
-// server.use(passport.session())
-// require('./config/passport.js')(passport)
-
 server.use('/', routes)
 
 // Error catching endware.

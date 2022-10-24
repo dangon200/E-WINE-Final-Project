@@ -11,6 +11,7 @@ const initialState = {
   detailProduct: {},
   favorites: [],
   carrito: [],
+  publicationsUserFavorites: [],
   recomendedPublication: [],
   user: '',
   users: [],
@@ -43,6 +44,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, publications: state.allPublications }
     case 'GET_FAVORITES_ID':
       return { ...state, favorites: action.payload }
+    case 'GET_PUBLICATIONS_USERFAVORITES':
+      return { ...state, publicationsUserFavorites: [...state.publicationsUserFavorites, action.payload] }
+    case 'REMOVE_PUBLICATIONS_USERFAVORITES':
+      return { ...state, publicationsUserFavorites: [...state.publicationsUserFavorites.filter(p => p.id !== action.payload)] }
     case 'ADD_FAVORITE':
       return { ...state, favorites: action.payload }
     case 'REMOVE_FAVORITE':
@@ -71,6 +76,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, login: !state.login }
     case 'GET_USERS':
       return { ...state, users: action.payload }
+    case 'GET_USER_BUYS':
+      return { ...state, buys: action.payload }
     case 'GET_ALL_BUYS':
       return { ...state, buys: action.payload }
     case 'GET_USER_BANNED':

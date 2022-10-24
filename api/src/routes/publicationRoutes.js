@@ -10,7 +10,8 @@ const {
   orderPublicationsZtoA,
   getPublicationsByName,
   getPublicationsOfUser,
-  updatePublicationStock
+  updatePublicationStock,
+  getAllPublicationsDb
 } = require('../controllers/publications')
 
 const router = Router()
@@ -27,6 +28,22 @@ router.get('/', async (req, res) => {
     }
 
     const publications = await getPublicationsDb()
+
+    if (!publications.length) {
+      return res
+        .status(200)
+        .json('No hay publicaciones guardadas en la Base de Datos!')
+    }
+
+    return res.status(200).json(publications)
+  } catch (error) {
+    res.status(404).json(error.message)
+  }
+})
+
+router.get('/all', async (req, res) => {
+  try {
+    const publications = await getAllPublicationsDb()
 
     if (!publications.length) {
       return res

@@ -7,12 +7,19 @@ import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
 import { AiOutlineReload } from 'react-icons/ai'
 import Cookies from 'universal-cookie'
+import { useHistory } from 'react-router-dom'
 
 export default function FormCreatePubli () {
   const dispatch = useDispatch()
   const products = useSelector(state => state.products)
   const cookies = new Cookies()
   const token = cookies.get('TOKEN')
+  /*  const user = useSelector(state => state.user) */
+  const history = useHistory()
+
+  useEffect(() => {
+    !token && history.push('/register')
+  }, [])
 
   useEffect(() => {
     dispatch(getProducts())

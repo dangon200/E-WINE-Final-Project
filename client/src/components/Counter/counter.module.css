@@ -14,5 +14,5 @@
     background-color: white;
     border: none;
     font-size: 25px;
-    color: #00ABB3;
+    color: var(--btn-background-color);
 }
