@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
     width: 70%;
+    max-height: 200px;
 }
 /*
 .ItemCarrito{
