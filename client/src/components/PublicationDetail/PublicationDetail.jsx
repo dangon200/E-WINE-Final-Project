@@ -29,7 +29,7 @@ export default function PublicationDetail (props) {
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image } = publication
+  const { name, price, title, image, count } = publication
   const [counter, setCounter] = useState(1)
   /* const [question, setQuestion] = useState('') */
 
@@ -41,13 +41,12 @@ export default function PublicationDetail (props) {
   const isInFavorites = (id) => {
     return favorites.some((f) => f === id)
   }
-  const addToCarrito = (id, price, title, image, name, countParam) => {
+  const addToCarrito = (id, price, title, image, name, countParam, count) => {
     if (window.localStorage.hasOwnProperty(id)) {
-         // eslint-disable-line
-      console.log('entre al if')
       window.localStorage[id] = JSON.stringify({
         ...JSON.parse(window.localStorage[id]),
-        count: countParam + JSON.parse(window.localStorage[id]).count
+
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
       })
       dispatch(
         addCarrito({
@@ -56,23 +55,24 @@ export default function PublicationDetail (props) {
           title,
           image,
           name,
-          count: JSON.parse(window.localStorage[id]).count
+          count: JSON.parse(window.localStorage[id]).count,
+          stock: count
         })
       )
     } else {
       console.log('entre al else')
       window.localStorage.setItem(
         id,
-        JSON.stringify({ price, title, image, name, count: countParam })
+        JSON.stringify({ price, title, image, name, count: countParam, stock: count })
       )
       dispatch(
-        addCarrito({ id, price, title, image, name, count: countParam })
+        addCarrito({ id, price, title, image, name, count: countParam, stock: count })
       )
     }
   }
   const updateCount = (param) => {
     if (param === 'rest' && counter > 1) setCounter(counter - 1)
-    if (param === 'add') setCounter(counter + 1)
+    if (param === 'add' && counter <= count) setCounter(counter + 1)
   }
   return (
     <Container>
@@ -90,7 +90,9 @@ export default function PublicationDetail (props) {
               />
             </div>
             <Carousel className='mb-5 mt-4'>
-              <Carousel.Item>
+              <Carousel.Item
+                className={style.imageCarru}
+              >
                 <Image
                   className={style.image}
                   src={image}
@@ -102,6 +104,7 @@ export default function PublicationDetail (props) {
                   className={style.image}
                   src={image}
                   alt={`${publication.name}`}
+
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -147,7 +150,9 @@ export default function PublicationDetail (props) {
                   </span>
                   <Button
                     variant='prueba'
-                    onClick={() => updateCount('add')}
+                    onClick={() =>
+                      counter < count &&
+                      updateCount('add')}
                   >
                     +
                   </Button>
@@ -163,7 +168,8 @@ export default function PublicationDetail (props) {
                           title,
                           image,
                           name,
-                          counter
+                          counter,
+                          count
                         )
                       }}
                     >

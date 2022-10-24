@@ -221,3 +221,7 @@ h1{
     background-color: white;
     color:#56070C;
 }
+
+.imageCarru img{
+    max-height: 300px;
+}
