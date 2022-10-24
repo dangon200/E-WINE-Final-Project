@@ -95,6 +95,7 @@ export default function PublicationDetail (props) {
                   fluid
                   src={image}
                   alt={`${publication.name}`}
+                  className={style.imageCarru}
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -102,6 +103,7 @@ export default function PublicationDetail (props) {
                   fluid
                   src={image}
                   alt={`${publication.name}`}
+                  className={style.imageCarru}
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -109,6 +111,7 @@ export default function PublicationDetail (props) {
                   fluid
                   src={image}
                   alt={`${publication.name}`}
+                  className={style.imageCarru}
                 />
               </Carousel.Item>
             </Carousel>

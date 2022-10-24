@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 import { Link, useHistory } from 'react-router-dom'
-import PagarMP from '../MercadoPago/PagarMP'
+import PagarMP from '../MercadoPago/PagarMP'//eslint-disable-line
 
 import Cookies from 'universal-cookie'
 
@@ -16,9 +16,9 @@ export default function Carrito () {
   // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
-  const history = useHistory()
+  const history = useHistory()//eslint-disable-line
   const cookies = new Cookies()
-  const token = cookies.get('TOKEN')
+  const token = cookies.get('TOKEN') //eslint-disable-line
   const user = useSelector(state => state.user)
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
@@ -54,7 +54,7 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      {token ? <PagarMP /> : history.push('/register')}
+      {/* {token ? <PagarMP /> : history.push('/register')} Button Meli */}
       <Button className={style.button}>
         <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
           Pagar con Tarjeta
