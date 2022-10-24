@@ -2,12 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import PagarMP from '../MercadoPago/PagarMP'
+import Cookies from 'universal-cookie'
 
 export default function Carrito () {
   // const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
+  /* const user = useSelector(state => state.user) */
+  const history = useHistory()
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
@@ -33,7 +38,7 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <PagarMP />
+      {token ? <PagarMP /> : history.push('/register')}
       <Link to={`/payment/${totalAmount}`}>
         <button>Pagar con Tarjeta</button>
       </Link>

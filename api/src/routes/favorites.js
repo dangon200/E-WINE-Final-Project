@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 
-const { Favorite } = require('../db')
+const { Favorite, Publication } = require('../db')
 const { v4: uuidv4 } = require('uuid')
 
 router.get('/delete/:userId', async (req, res) => {
@@ -44,6 +44,7 @@ router.get('/:id', async (req, res) => {
   const results = []
   try {
     const favorites = await Favorite.findAll({
+      include: Publication,
       where: {
         userId: id,
         isBanned: false
@@ -54,7 +55,10 @@ router.get('/:id', async (req, res) => {
       results.push({
         id: r.id,
         publicationId: r.publicationId,
-        userId: r.userId
+        userId: r.userId,
+        title: r.publication.title,
+        image: r.publication.image,
+        description: r.publication.description
       })
     })
 

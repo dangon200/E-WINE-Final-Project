@@ -51,12 +51,12 @@
     width: 254px;
     height: 272px;
     left: 27px;
-    top: 12px;
+    top: 48px;
 }
 
 .img{
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     object-fit: contain;
 }
 
@@ -72,7 +72,7 @@
     width: 100%;
     position: absolute;
     height: 24px;
-    left: 21px;
+    left: 0px;
     top: 279px;
     font-family: 'Source Sans Pro';
     font-style: normal;
