@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 export default function Modale (props) {
   const login = useSelector(state => state.login)
-  useEffect(() => { handleChange() }, [login])
+  useEffect(() => { handleChange() }, [login]) //eslint-disable-line
   const [show, setShow] = useState(login)
   const handleChange = () => setShow(!show)
 

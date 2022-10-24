@@ -8,7 +8,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import React, { useEffect } from 'react'
 // import s from './itemPurchased.module.css'
 // import image from '../../utils/images/vector.jpg'
-import { getBuys } from '../../store/actions/actions'
+import { getUserBuys } from '../../store/actions/actions'
 import ItemPurchased from '../ItemPurchased/ItemPurchased'
 
 export default function PurchasedProducts () {
@@ -16,7 +16,7 @@ export default function PurchasedProducts () {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   console.log(buys)
-  useEffect(() => { dispatch(getBuys(user.id)) }, [dispatch]) //eslint-disable-line
+  useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch]) //eslint-disable-line
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>

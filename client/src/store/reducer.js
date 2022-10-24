@@ -3,6 +3,8 @@
 const initialState = {
   allPublications: [],
   publications: [],
+  publicationsAdm: [],
+  publicationBanned: {},
   products: [],
   allProducts: [],
   detailPublication: {},
@@ -12,6 +14,8 @@ const initialState = {
   publicationsUserFavorites: [],
   recomendedPublication: [],
   user: '',
+  users: [],
+  userDetail: {},
   buy: {},
   buys: [],
   questions: [],
@@ -22,7 +26,6 @@ export default function reducer (state = initialState, action) {
   switch (action.type) {
     case 'GET_PUBLICATIONS':
       return { ...state, allPublications: action.payload, publications: action.payload, error: action.payload }
-
     case 'GET_BY_ID_PUBLICATION':
       return { ...state, detailPublication: action.payload }
     case 'POST_PUBLICATION':
@@ -71,8 +74,18 @@ export default function reducer (state = initialState, action) {
       return { ...state, questions: action.payload }
     case 'RENDER_MODAL_LOGIN':
       return { ...state, login: !state.login }
+    case 'GET_USERS':
+      return { ...state, users: action.payload }
     case 'GET_USER_BUYS':
       return { ...state, buys: action.payload }
+    case 'GET_ALL_BUYS':
+      return { ...state, buys: action.payload }
+    case 'GET_USER_BANNED':
+      return { ...state, userDetail: action.payload }
+    case 'GET_PUBLICATIONS_ALL':
+      return { ...state, publicationsAdm: action.payload }
+    case 'GET_PUBLICATION_BANNED':
+      return { ...state, publicationBanned: action.payload }
     default:
       return { ...state }
   }

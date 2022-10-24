@@ -29,6 +29,36 @@ export function getByPublication (id) {
     }
   }
 }
+export const getPublicationsAdm = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/publications/all`)
+
+      return dispatch({
+        type: 'GET_PUBLICATIONS_ALL',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+export const bannedPublication = (id, isBanned) => {
+  return async function (dispatch) {
+    try {
+      console.log(isBanned)
+      console.log('Llegue')
+      const res = await axios.put(`${urlApi}/publications/${id}`, isBanned)
+      console.log(res)
+      return dispatch({
+        type: 'GET_PUBLICATION_BANNED',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
 
 export function postPublication (data, token) {
   return async function (dispatch) {
@@ -259,6 +289,38 @@ export const logoutUser = () => {
     type: 'LOGOUT_USER'
   }
 }
+
+export const getUsers = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/users`)
+
+      return dispatch({
+        type: 'GET_USERS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+export const bannedUser = (id, isBanned) => {
+  return async function (dispatch) {
+    try {
+      console.log(isBanned)
+      console.log('Llegue')
+      const res = await axios.put(`${urlApi}/users/${id}?banned=${!isBanned}`)
+      console.log(res)
+      return dispatch({
+        type: 'GET_USER_BANNED',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
 // STRIPE
 
 export const postStripe = (idStripe, totalAmount, carrito, userId) => {
@@ -338,12 +400,26 @@ export const modalRender = () => {
 }
 
 // BUYS
-export const getBuys = (userId) => {
+export const getUserBuys = (userId) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/buys/user/${userId}`)
       return dispatch({
         type: 'GET_USER_BUYS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+export const getBuys = () => {
+  return async function (dispatch) {
+    try {
+      const res = axios.get(`${urlApi}/buys`)
+      return dispatch({
+        type: 'GET_ALL_BUYS',
         payload: res.data
       })
     } catch (error) {

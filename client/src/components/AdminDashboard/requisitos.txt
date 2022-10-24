@@ -1,0 +1,60 @@
+Vision General:
+    1.Usuarios:
+        -Cantidad de Usuarios   
+        -Aumento en la ultima semana
+        -Regiones
+    2.Publicaciones:
+        -cantidad de publicaciones
+        -cantidad Activas/No Activas
+    3.Compras
+        -Cantidad de compras realizadas
+        -Cantidad de dinero en transacciones
+
+    4.Productos:
+            -Cantidad de productos
+
+
+
+    
+Vision Usuarios:
+-Columna Regiones
+-Bannear Usuarios
+-Ver detalle
+({
+        id: r.id,
+        username: r.username,
+        email: r.email,
+        region: r.region,
+        image: r.image,
+        isBanned: r.isBanned,
+        isAdmin: r.isAdmin,
+        isSommelier: r.isSommelier,
+        balance: r.balance
+})
+
+
+
+
+Vision Publicaciones:
+-Tablas 
+-Columna Regiones
+-Bannear Publicaciones
+-Ver detalle
+({
+        id: r.id,
+        title: r.title,
+        price: r.price,
+        count: r.count,
+        image: r.image,
+        description: r.description,
+        name: r.product.name,
+        type: r.product.type,
+        varietal: r.product.varietal,
+        cellar: r.product.cellar,
+        img: r.product.img,
+        origin: r.product.origin
+})
+
+
+Vision Compras:
+
