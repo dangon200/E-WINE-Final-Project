@@ -23,7 +23,10 @@ export default function RecomendedPublications (props) {
               ? recomendedPublication.slice(0, 3).map((p) => {
                 return (
                 // eslint-disable-next-line react/jsx-key
-                  <Col className='w-100 shadow-lg mb-5 mt-5 rounded'>
+                  <Col
+                    key={p.id}
+                    className='w-100 shadow-lg mb-5 mt-5 rounded'
+                  >
                     <Card
                       id={p.id}
                       title={p.title}

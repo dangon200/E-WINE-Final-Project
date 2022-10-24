@@ -73,6 +73,7 @@ export default function Home () {
                 <div>
                   {p.count > 0 &&
                     <Card
+                      count={p.count}
                       id={p.id}
                       title={p.title}
                       name={p.name}

@@ -31,13 +31,22 @@ export default function Carrito () {
       {carrito.length > 0
         ? carrito.map(p => {
           return (
-            <ItemCarrito key={p.id} id={p.id} title={p.title} price={p.price} count={p.count} image={p.image} name={p.name} />
+            <ItemCarrito
+              key={p.id}
+              id={p.id}
+              title={p.title}
+              price={p.price}
+              count={p.count}
+              image={p.image}
+              name={p.name}
+              stock={p.stock}
+            />
           )
         })
         : <h3 className='fs-4'>No has agregado nada al carrito aún!</h3>}
       <div className={style.total}>
         <div className='fs-4'>
-          Costo de envio a {user.region ? user.region : 'su domicilio'}: $350
+          Costo de envio a {user.region !== 'null' ? user.region : 'su domicilio'}: $350
         </div>
         <div className='fs-4'>
           Total con envio: {carrito.length > 0

@@ -37,7 +37,8 @@ function App () {
         title: JSON.parse(window.localStorage.getItem(id)).title,
         image: JSON.parse(window.localStorage.getItem(id)).image,
         name: JSON.parse(window.localStorage.getItem(id)).name,
-        count: JSON.parse(window.localStorage.getItem(id)).count
+        count: JSON.parse(window.localStorage.getItem(id)).count,
+        stock: JSON.parse(window.localStorage.getItem(id)).stock
       }))
     }
     if (token) {

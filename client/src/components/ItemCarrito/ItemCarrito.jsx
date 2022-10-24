@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/esm/Col'
 import Button from 'react-bootstrap/esm/Button'
 
 export default function ItemCarrito (props) {
-  const { id, title, price, count, image, name } = props
+  const { id, title, price, count, image, name, stock } = props
   const dispatch = useDispatch()
   // const countItemCarrito=useSelector
 
@@ -18,33 +18,6 @@ export default function ItemCarrito (props) {
     window.localStorage.removeItem(id)
     dispatch(removeCarrito(id))
   }
-  /* <div className={style.container}>
-
-      <button className={style.close} onClick={() => { removeFromCarrito(id) }}>
-        X
-      </button>
-      <Link to={`/publication/${id}`}>
-        Volver a la publicación
-      </Link>
-      <div className={style.ItemCarrito}>
-        <div className={style.image}>
-          <img className={style.imagePublication} src={image} alt='publication' />
-        </div>
-
-        <div className={style.containerCounter}>
-
-          <div className={style.publication}>
-            {title}
-          </div>
-          <div className={style.count}>
-            <Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} />
-          </div>
-          <div className={style.price}>
-            $ {parseInt(price) * count}
-          </div>
-        </div>
-      </div>
-    </div> */
   return (
     <div className={s.container}>
       <Row className='w-75 bg-light p-4 border-bottom rounded-4 fs-4'>
@@ -67,6 +40,7 @@ export default function ItemCarrito (props) {
               image={image}
               name={name}
               countFromPub={count}
+              stock={stock}
             />
           </Col>
           <Col className='d-flex flex-column gap-3'>
