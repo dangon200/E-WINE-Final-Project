@@ -25,35 +25,35 @@ export default function UserFavorites ({ id }) {
   console.log(favorites)
 
   return (
-    <div className='grid h-100'>
-      <Container fluid style={{ height: '100vh' }}>
+    <div>
+      <Container fluid style={{ height: '100%' }}>
         <Row className='grid h-100 bg-grey bg-opacity-25'>
           <Col className='col-auto min-vh-100 pt-5 rounded'>
             <Sidebar />
           </Col>
           <Col className={s.container}>
-            <h1>Favoritos</h1>
-            <Col>
+            <Row className='mt-5'>
+              <h1>Favoritos</h1>
+            </Row>
+            <div className={s.cont}>
               {favorites.length > 0
                 ? favorites.map(p => {
                   return (
-                    <section key={p.publicationId}>
-                      <Col className='mb-5'>
-                        <CardFavorites
-                          id={p.publicationId}
-                          title={p.title}
-                          name={p.name}
+                    <section className={s.section} key={p.publicationId}>
+                      <CardFavorites
+                        id={p.publicationId}
+                        title={p.title}
+                        name={p.name}
                             // price={p.price}
-                          description={p.description}
-                          key={p.publicationId}
-                          image={p.image}
-                        />
-                      </Col>
+                        description={p.description}
+                        key={p.publicationId}
+                        image={p.image}
+                      />
                     </section>
                   )
                 })
                 : null}
-            </Col>
+            </div>
           </Col>
         </Row>
       </Container>

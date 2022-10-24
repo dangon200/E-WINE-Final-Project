@@ -68,7 +68,7 @@ export default function LandingPage () {
 
       <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
         <h2 className='row'>Recomendados por expertos</h2>
-        <article className={`row ${style.gridCards}`}>
+        <article className={`row mb-5 ${style.gridCards}`}>
           <div className={`card  ${style.card}`}>
             <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
             <section className='card-body'>
