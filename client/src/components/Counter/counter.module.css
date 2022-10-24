@@ -11,8 +11,10 @@
 }
 
 .buttonMasMenos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     border: none;
-    font-size: 25px;
     color: var(--btn-background-color);
 }
