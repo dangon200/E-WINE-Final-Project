@@ -9,9 +9,11 @@ const initialState = {
   detailProduct: {},
   favorites: [],
   carrito: [],
+  publicationsUserFavorites: [],
   recomendedPublication: [],
   user: '',
   buy: {},
+  buys: [],
   questions: [],
   login: true
 }
@@ -39,6 +41,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, publications: state.allPublications }
     case 'GET_FAVORITES_ID':
       return { ...state, favorites: action.payload }
+    case 'GET_PUBLICATIONS_USERFAVORITES':
+      return { ...state, publicationsUserFavorites: [...state.publicationsUserFavorites, action.payload] }
+    case 'REMOVE_PUBLICATIONS_USERFAVORITES':
+      return { ...state, publicationsUserFavorites: [...state.publicationsUserFavorites.filter(p => p.id !== action.payload)] }
     case 'ADD_FAVORITE':
       return { ...state, favorites: action.payload }
     case 'REMOVE_FAVORITE':
@@ -65,6 +71,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, questions: action.payload }
     case 'RENDER_MODAL_LOGIN':
       return { ...state, login: !state.login }
+    case 'GET_USER_BUYS':
+      return { ...state, buys: action.payload }
     default:
       return { ...state }
   }

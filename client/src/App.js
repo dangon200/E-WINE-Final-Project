@@ -8,7 +8,7 @@ import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home.jsx'
 import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
-import { addCarrito, loginUser } from '../src/store/actions/actions'
+import { addCarrito, loginUser, getFavorites } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
@@ -35,7 +35,7 @@ function App () {
     }
     if (token) {
       dispatch(loginUser(token.user))
-      // dispatch(getFavorites(token.user.id))
+      dispatch(getFavorites(token.user.id))
     }
   })
 

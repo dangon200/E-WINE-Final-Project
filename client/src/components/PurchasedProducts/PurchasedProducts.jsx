@@ -1,15 +1,22 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import Button from 'react-bootstrap/esm/Button'
+// import Button from 'react-bootstrap/esm/Button'
 import s from './purchasedProducts.module.css'
 import Sidebar from '../Sidebar/Sidebar'
-// import Card from '../Card/Card'
+import React, { useEffect } from 'react'
+// import s from './itemPurchased.module.css'
+// import image from '../../utils/images/vector.jpg'
+import { getBuys } from '../../store/actions/actions'
+import ItemPurchased from '../ItemPurchased/ItemPurchased'
 
 export default function PurchasedProducts () {
-  const compras = useSelector(state => state.buy)
-  console.log(compras)
+  const buys = useSelector(state => state.buys)
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  console.log(buys)
+  useEffect(() => { dispatch(getBuys(user.id)) }, [dispatch]) //eslint-disable-line
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
@@ -19,24 +26,15 @@ export default function PurchasedProducts () {
           </Col>
           <Col className={s.container}>
             <h1>Mis Compras</h1>
-            <Row className='w-75 bg-light p-3 rounded-4 fs-4 mt-5'>
-              <Row className='border-bottom mb-4'>Fecha realizada: </Row>
-              <Row>
-                <Col>
-                  Imagen
-                </Col>
-                <Col>
-                  Nombre
-                </Col>
-                <Col>
-                  Proveedor
-                </Col>
-                <Col className='d-flex flex-column gap-3'>
-                  <Row><Button className={s.button}>Ver compra</Button></Row>
-                  <Row><Button className={s.button2}>Ver producto</Button></Row>
-                </Col>
-              </Row>
-            </Row>
+            {buys.length > 0 && buys.map((b) => (
+              <ItemPurchased
+                key={b.id}
+                currency={b.currency}
+                totalAmount={b.totalAmount}
+                paymentMethod={b.paymentMethod}
+                date={b.createdAt}
+              />
+            ))}
           </Col>
         </Row>
       </Container>

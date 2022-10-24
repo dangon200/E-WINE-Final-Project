@@ -145,6 +145,35 @@ export const getFavorites = (id) => {
   }
 }
 
+export const getPublicationsUserFavorites = (ids) => {
+//   return async function (dispatch) {
+//     try {
+//       // const publications = ids.map(async (idP) => await axios.get(`${urlApi}/favorites/${idP}`))
+//       // const api = await axios.get(`${urlApi}/favorites/${id}`)
+//       return dispatch({
+//         type: 'GET_PUBLICATIONS_USERFAVORITES',
+//         payload: api.data
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+}
+
+export const removePublicationsUserFavorites = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/favorites/${id}`)
+      return dispatch({
+        type: 'REMOVE_PUBLICATIONS_USERFAVORITES',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export const addFavorites = (data) => {
   return async function (dispatch) {
     try {
@@ -305,5 +334,20 @@ export const addAnswer = (data, id) => {
 export const modalRender = () => {
   return {
     type: 'RENDER_MODAL_LOGIN'
+  }
+}
+
+// BUYS
+export const getBuys = (userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buys/user/${userId}`)
+      return dispatch({
+        type: 'GET_USER_BUYS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
   }
 }
