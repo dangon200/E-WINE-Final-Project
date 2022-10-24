@@ -90,12 +90,13 @@ export default function PublicationDetail (props) {
               />
             </div>
             <Carousel className='mb-5 mt-4'>
-              <Carousel.Item>
+              <Carousel.Item
+                className={style.imageCarru}
+              >
                 <Image
                   className={style.image}
                   src={image}
                   alt={`${publication.name}`}
-                  className={style.imageCarru}
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -103,7 +104,7 @@ export default function PublicationDetail (props) {
                   className={style.image}
                   src={image}
                   alt={`${publication.name}`}
-                  className={style.imageCarru}
+
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -111,7 +112,6 @@ export default function PublicationDetail (props) {
                   className={style.image}
                   src={image}
                   alt={`${publication.name}`}
-                  className={style.imageCarru}
                 />
               </Carousel.Item>
             </Carousel>
