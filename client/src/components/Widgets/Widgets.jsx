@@ -5,18 +5,18 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined'
 // import { Link } from 'react-router-dom'
 
-export default function Widgets ({ type }) {
+export default function Widgets ({ type, cantidadUsers }) {
   let data
   // temporary
   const amount = 100
-  const diff = 20
+  // const diff = 20
 
   switch (type) {
     case 'user':
       data = {
         title: 'USERS',
         isMoney: false,
-        link: 'See all users',
+        cantidadUsers: cantidadUsers + ' usuarios registrados' || false,
         icon: <PersonOutlineOutlinedIcon className='icon' />
       }
       break
@@ -24,7 +24,6 @@ export default function Widgets ({ type }) {
       data = {
         title: 'ÓRDENES',
         isMoney: false,
-        link: 'Ver todas las órdenes',
         icon: <ShoppingCartOutlinedIcon className='icon' />
       }
       break
@@ -32,7 +31,6 @@ export default function Widgets ({ type }) {
       data = {
         title: 'GANANCIAS',
         isMoney: true,
-        link: 'Ver ganancias netas',
         icon: <MonetizationOnOutlinedIcon className='icon' />
       }
       break
@@ -40,7 +38,6 @@ export default function Widgets ({ type }) {
       data = {
         title: 'BALANCE',
         isMoney: true,
-        link: 'Ver detalles',
         icon: <AccountBalanceWalletIcon className='icon' />
       }
       break
@@ -59,8 +56,9 @@ export default function Widgets ({ type }) {
         <div className='col d-flex flex-column bg-white p-5'>
           <div className='percentage'>
             <KeyboardArrowUpIcon />
-            {diff}%
+            {data.cantidadUsers}
           </div>
+
           {data.icon}
         </div>
       </div>
