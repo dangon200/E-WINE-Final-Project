@@ -3,7 +3,6 @@ import {
   FaStore,
   FaBars,
   FaHeart,
-  FaCommentAlt,
   FaUser
 } from 'react-icons/fa'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
@@ -27,11 +26,6 @@ const Sidebar = () => {
       path: '/user/favorites',
       name: 'Favoritos',
       icon: <FaHeart color='#630606' size={25} />
-    },
-    {
-      path: '/comment',
-      name: 'Reseñas',
-      icon: <FaCommentAlt color='#630606' size={25} />
     },
     {
       path: '/userPurchased',
