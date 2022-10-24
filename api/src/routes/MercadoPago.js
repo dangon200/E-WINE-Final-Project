@@ -25,9 +25,8 @@ server.post('/', (req, res) => {
       failure: 'https://e-wine-ashen.vercel.app',
       pending: 'https://e-wine-ashen.vercel.app'
     },
-    notification_url: 'https://e-winespf.herokuapp.com/webhooks'
+    notification_url: 'https://6fca-2803-9800-9447-8622-34a6-b1c0-e51b-5a0f.sa.ngrok.io/webhooks'
   }
-
   mercadopago.preferences.create(preference)
     .then(function (response) {
       res.status(200).json({ data: response.body.init_point })

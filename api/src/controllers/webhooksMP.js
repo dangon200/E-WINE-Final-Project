@@ -35,6 +35,7 @@ const createBuyItem = async (countProduct, publicationId, buyId) => {
     return new Error('Error en la creación del BuyItem')
   }
 }
+
 // result.additional_info.items[0].id
 
 module.exports = { createBuy }
