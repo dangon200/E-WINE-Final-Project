@@ -2,8 +2,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import PagarMP from '../MercadoPago/PagarMP'
+
+import Cookies from 'universal-cookie'
+
 import Button from 'react-bootstrap/esm/Button'
 // import Col from 'react-bootstrap/esm/Col'
 // import Row from 'react-bootstrap/esm/Row'
@@ -11,6 +14,10 @@ import Button from 'react-bootstrap/esm/Button'
 export default function Carrito () {
   // const dispatch = useDispatch()
   const carrito = useSelector(state => state.carrito)
+  /* const user = useSelector(state => state.user) */
+  const history = useHistory()
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
@@ -37,12 +44,13 @@ export default function Carrito () {
           : 'No hay productos en el carrito'}
         </div>
       </div>
-      <PagarMP />
+      {token ? <PagarMP /> : history.push('/register')}
       <Button className={style.button}>
         <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
           Pagar con Tarjeta
         </Link>
       </Button>
+
     </div>
   )
 }

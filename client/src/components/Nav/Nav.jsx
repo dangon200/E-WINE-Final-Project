@@ -37,8 +37,8 @@ export default function Nav () {
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
             {/* <FormLogin /> */}
-
-            <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />
+            {user &&
+              <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}
             <Modale
               buttonText={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
               title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
