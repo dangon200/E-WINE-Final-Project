@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/esm/Button'
 
 export default function Carrito () {
   // const dispatch = useDispatch()
+  // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
   const history = useHistory()

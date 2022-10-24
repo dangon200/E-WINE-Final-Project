@@ -29,7 +29,7 @@ export default function PublicationDetail (props) {
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image } = publication
+  const { name, price, title, image, count } = publication
   const [counter, setCounter] = useState(1)
   /* const [question, setQuestion] = useState('') */
 
@@ -147,7 +147,9 @@ export default function PublicationDetail (props) {
                   </span>
                   <Button
                     variant='prueba'
-                    onClick={() => updateCount('add')}
+                    onClick={() =>
+                      counter < count &&
+                      updateCount('add')}
                   >
                     +
                   </Button>

@@ -60,7 +60,14 @@ export default function ItemCarrito (props) {
             ${price}
           </Col>
           <Col className='d-flex align-items-center'>
-            <Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} />
+            <Counter
+              id={id}
+              title={title}
+              price={price}
+              image={image}
+              name={name}
+              countFromPub={count}
+            />
           </Col>
           <Col className='d-flex flex-column gap-3'>
             <Row>
