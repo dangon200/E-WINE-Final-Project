@@ -17,12 +17,9 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
         <Col className={s.image}>
           <img className='img-fluid' src={image} alt={image} />
         </Col>
-        <Col>
+        <Col className='ms-4'>
           <Row>
-            {paymentMethod}
-          </Row>
-          <Row>
-            {currency}
+            Metodo de pago: {paymentMethod}
           </Row>
         </Col>
         <Col>

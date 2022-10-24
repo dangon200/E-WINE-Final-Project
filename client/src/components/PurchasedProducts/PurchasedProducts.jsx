@@ -18,8 +18,8 @@ export default function PurchasedProducts () {
   console.log(buys)
   useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch]) //eslint-disable-line
   return (
-    <div className='grid h-100'>
-      <Container fluid style={{ height: '100vh' }}>
+    <div className='grid h-100 pb-5'>
+      <Container fluid style={{ height: '100%' }}>
         <Row className='grid h-100 bg-grey bg-opacity-25'>
           <Col className='col-auto min-vh-100 pt-5 rounded'>
             <Sidebar />

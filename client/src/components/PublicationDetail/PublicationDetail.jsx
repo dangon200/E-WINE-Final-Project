@@ -113,7 +113,7 @@ export default function PublicationDetail (props) {
               </Carousel.Item>
             </Carousel>
           </Col>
-          <Col className='text-center mt-5 mb-5'>
+          <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{name}</h1>
             <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
@@ -128,7 +128,7 @@ export default function PublicationDetail (props) {
                 Famosa escritora y poeta - <cite>asdasds</cite>
               </figcaption>
             </figure> */}
-            <Row>
+            <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
                 <Stack
@@ -138,11 +138,11 @@ export default function PublicationDetail (props) {
                   <Button
                     variant='prueba'
                     onClick={() => updateCount('rest')}
-                    className='ms-4'
+                    className='d-flex justify-content-center align-items-center'
                   >
                     -
                   </Button>
-                  <span className='fs-4 fw-bold'>
+                  <span className='fs-2 fw-bold'>
                     {counter}
                   </span>
                   <Button
@@ -155,7 +155,7 @@ export default function PublicationDetail (props) {
                   </Button>
                   <Col>
                     <Button
-                      className='ms-2 fs-4 p-2'
+                      className='d-flex mx-5 fs-4 p-2'
                       size='lg'
                       variant='botoncito'
                       onClick={() => {

@@ -14,3 +14,9 @@
     cursor: pointer;
 
 }
+
+.image{
+    height: 30rem;
+    width: 28rem;
+    object-fit: cover;
+}
