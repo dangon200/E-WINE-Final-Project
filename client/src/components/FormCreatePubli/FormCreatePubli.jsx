@@ -181,7 +181,7 @@ export default function FormCreatePubli () {
               {errors.productId && touched.productId && <p className='fs-4'>{errors.productId}</p>}
             </div>
           </div>
-          <div className='progress mt-4'>
+          <div className='progress mt-4' style={{ height: 15 }}>
             <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
           </div>
           <button
