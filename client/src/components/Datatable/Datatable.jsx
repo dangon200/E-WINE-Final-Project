@@ -1,53 +1,47 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
+import { useDispatch, useSelector } from 'react-redux'
+import { bannedUser, getUsers } from '../../store/actions/actions'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`
+  { field: 'username', headerName: 'Nombre usuario', width: 130 },
+  { field: 'email', headerName: 'email', width: 130 },
+  { field: 'isBanned', headerName: 'Banneado', width: 70 },
+  { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
+  { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 }
+]
+
+export default function Datatable (props) {
+  const dispatch = useDispatch()
+  const users = useSelector(state => state.users)
+  const userDetail = useSelector(state => state.userDetail)
+  // const { users } = props
+  const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance } }
+  )
+  const handleBanned = (id, isBanned) => {
+    console.log('Entre al handleBanned')
+    console.log(id)
+    dispatch(bannedUser(id, isBanned))
   }
-]
-
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 }
-]
-
-export const Datatable = () => {
   const actionColumn = [{
     field: 'action',
     headerName: 'Action',
-    width: 200,
-    renderCell: () => {
+    width: 900,
+    renderCell: (params) => {
+      // console.log(params)
       return (
-        <div>
-          <div>View</div>
-          <div>Delete</div>
+        <div className='w'>
+          <button type='button' className='btn btn-outline-danger' onClick={() => handleBanned(params.row.id, params.row.isBanned)}>
+            {
+              params.row.isBanned ? <div>Habilitar</div> : <div>Bannear</div>
+            }
+          </button>
         </div>
       )
     }
   }]
+  useEffect(() => { dispatch(getUsers()) }, [userDetail]) //eslint-disable-line
   return (
 
     <div style={{ height: 400, width: '100%' }}>
