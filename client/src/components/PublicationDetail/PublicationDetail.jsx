@@ -92,21 +92,21 @@ export default function PublicationDetail (props) {
             <Carousel className='mb-5 mt-4'>
               <Carousel.Item>
                 <Image
-                  fluid
+                  className={style.image}
                   src={image}
                   alt={`${publication.name}`}
                 />
               </Carousel.Item>
               <Carousel.Item>
                 <Image
-                  fluid
+                  className={style.image}
                   src={image}
                   alt={`${publication.name}`}
                 />
               </Carousel.Item>
               <Carousel.Item>
                 <Image
-                  fluid
+                  className={style.image}
                   src={image}
                   alt={`${publication.name}`}
                 />
