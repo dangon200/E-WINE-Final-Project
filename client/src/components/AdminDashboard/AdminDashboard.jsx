@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
-// import Featured from '../Featured/Featured.jsx'
-// import Chart from '../Chart/Chart.jsx'
+import Featured from '../Featured/Featured.jsx'
+import Chart from '../Chart/Chart.jsx'
 import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
@@ -22,7 +22,6 @@ function AdminDashboard () {
   // const products = useSelector(state => state.allProducts)
   // const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
-  const dateUsers = users.map(e => { return { id: e.id, username: e.username, date: e.createdAt } })
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -78,7 +77,7 @@ function AdminDashboard () {
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
-            <Widgets type='user' cantidadUsers={cantidadUsers} dateUsers={dateUsers} />
+            <Widgets type='user' cantidadUsers={cantidadUsers} />
             <Widgets type='order' />
             <Widgets type='earning' />
             <Widgets type='balance' />
@@ -96,17 +95,17 @@ function AdminDashboard () {
             <Datatable users={users} />
           </div>
 
-          {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
+          <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
           </div>
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             <Featured />
-          </div> */}
+          </div>
 
           {/* <div className='ultimasCompras'>
             Ultimas Compras
-          </div> */}
+          // </div> */}
 
         </div>
         {/* Fin Container padre que tiene todo al lado del dashboard */}

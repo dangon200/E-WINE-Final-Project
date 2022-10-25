@@ -8,7 +8,7 @@ import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlin
 export default function Widgets ({ type, cantidadUsers, dateUsers }) {
   let data
   // temporary
-  const amount = 100
+  // const amount = 100
   // const diff = 20
 
   switch (type) {
@@ -51,7 +51,7 @@ export default function Widgets ({ type, cantidadUsers, dateUsers }) {
       <div className='row justify-content-between'>
         <div className='col d-flex flex-column bg-white p-5'>
           <span name='title' className='flex-column'>{data.title}</span>
-          <span className='flex-column'>{data.isMoney && '$'}{amount}</span>
+          <span className='flex-column'>{data.isMoney && '$'}{'35'}</span>
           <span className='flex-column'>{data.link}</span>
         </div>
         <div className='col d-flex flex-column bg-white p-5'>
