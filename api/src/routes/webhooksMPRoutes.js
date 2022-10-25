@@ -16,7 +16,6 @@ server.post('/', (req, res, next) => {
     } catch (error) {
       throw console.error(error)
     }
-    res.status(200).send('ok')
   } else next()
 })
 module.exports = server

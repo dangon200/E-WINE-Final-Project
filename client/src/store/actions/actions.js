@@ -1,6 +1,6 @@
 import axios from 'axios'
-const urlApi = 'https://e-winespf.herokuapp.com'
-// const urlApi = 'http://localhost:3001'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -167,6 +167,35 @@ export const getFavorites = (id) => {
       const api = await axios.get(`${urlApi}/favorites/${id}`)
       return dispatch({
         type: 'GET_FAVORITES_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const getPublicationsUserFavorites = (ids) => {
+//   return async function (dispatch) {
+//     try {
+//       // const publications = ids.map(async (idP) => await axios.get(`${urlApi}/favorites/${idP}`))
+//       // const api = await axios.get(`${urlApi}/favorites/${id}`)
+//       return dispatch({
+//         type: 'GET_PUBLICATIONS_USERFAVORITES',
+//         payload: api.data
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+}
+
+export const removePublicationsUserFavorites = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/favorites/${id}`)
+      return dispatch({
+        type: 'REMOVE_PUBLICATIONS_USERFAVORITES',
         payload: api.data
       })
     } catch (error) {
@@ -371,6 +400,20 @@ export const modalRender = () => {
 }
 
 // BUYS
+export const getUserBuys = (userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buys/user/${userId}`)
+      return dispatch({
+        type: 'GET_USER_BUYS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
 export const getBuys = () => {
   return async function (dispatch) {
     try {
@@ -384,3 +427,5 @@ export const getBuys = () => {
     }
   }
 }
+
+// REVIEWS

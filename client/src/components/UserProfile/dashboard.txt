@@ -1,0 +1,9 @@
+vistas: 
+
+perfil --> datos de cuenta, opcion cambio de datos con formulario de autenticacion.
+
+publicaciones hechas --> card de la publicacion con boton para editar, que lo rediriga a un form con los datos que desea editar
+
+historial de compras --> card tipo table con datos de proveedor, fecha, comprobante, etc
+
+favoritos --> cards de favoritos

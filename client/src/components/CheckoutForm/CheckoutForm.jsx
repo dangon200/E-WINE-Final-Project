@@ -52,7 +52,7 @@ export default function CheckoutForm (props) {
       setSuccess(true)
       setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')
       setTimeout(() => {
-        history.push('/userprofile')
+        history.push('/userPurchased')
       }, 3000)
     }
   }, [buy]) // eslint-disable-line
@@ -64,16 +64,18 @@ export default function CheckoutForm (props) {
   return (
     <form onSubmit={handleSubmit} className='card card-body'>
       <img src='https://imgs.search.brave.com/Y5KS64aNvBNg8mwK5G1ks_1XK8_Fnorl1iMGPkBmSu4/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC53/MTlpVHR6Qzk0ZHBM/elZZdXFqMzZnSGFF/NyZwaWQ9QXBp' alt='vino' className='img-fluid' />
-      <h4 className='text-center my-2 fs-2'>$ {totalAmount}</h4>
-      <div className='form-group'>
-        <CardElement className='form-control' />
+      <h4 className='text-center mt-3 fs-2'>$ {totalAmount}</h4>
+      <div className='form-group my-3'>
+        <CardElement className='form-control p-4' />
       </div>
-      <button
-        className='btn btn-success my-3'
-        disabled={send && true}
-      >
-        Comprar
-      </button>
+      <div className='d-flex justify-content-center align-items-center'>
+        <button
+          className='btn btn-success fs-4 p-2 my-3 w-50'
+          disabled={send && true}
+        >
+          Comprar
+        </button>
+      </div>
       {err && <div class='alert alert-danger' role='alert'>{message}</div>}
       {success && <div class='alert alert-success' role='alert'>{message}</div>}
     </form>

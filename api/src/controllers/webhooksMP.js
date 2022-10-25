@@ -36,6 +36,4 @@ const createBuyItem = async (countProduct, publicationId, buyId) => {
   }
 }
 
-// result.additional_info.items[0].id
-
 module.exports = { createBuy }

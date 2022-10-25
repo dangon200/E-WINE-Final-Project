@@ -5,8 +5,11 @@ import Sidebar from '../Sidebar/Sidebar'
 import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
 import s from './userProfile.module.css'
+import { useSelector } from 'react-redux'
 
 export default function UserProfile () {
+  const user = useSelector(state => state.user)
+
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
@@ -16,34 +19,6 @@ export default function UserProfile () {
           </Col>
           <Col className={s.container}>
             <Row className='m-auto w-75 pt-5' id={s.grid}>
-              {/* <table>
-                <thead>
-                  <tr>
-                    <th className='pb-3'>
-                      Datos de cuenta
-                    </th>
-                    <th className='pb-3 text-decoration-none'>
-                      <Link className='text-decoration-none' to='/formEditUser'>
-                        Modificar datos de cuenta
-                      </Link>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Usuario</td>
-                    <td>juana.64</td>
-                  </tr>
-                  <tr>
-                    <td>E-mail</td>
-                    <td>juana.64@gmail.com</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Table cell</td>
-                  </tr>
-                </tbody>
-              </table> */}
               <Row className='d-flex text-start w-75 mb-5'>
                 <h1>Mis datos</h1>
               </Row>
@@ -51,11 +26,6 @@ export default function UserProfile () {
                 <Col className='d-flex justify-content-start'>
                   <h2>Datos de la cuenta</h2>
                 </Col>
-                {/* <Col className='d-flex justify-content-end'>
-                  <Link className='text-decoration-none' to='/formEditUser'>
-                    Modificar datos de cuenta
-                  </Link>
-                </Col> */}
               </Row>
               <Container>
                 <Table responsive className={s.table} size='lg'>
@@ -72,19 +42,19 @@ export default function UserProfile () {
                   <tbody className={s.firstTd}>
                     <tr>
                       <td style={{ 'padding-left': '10px' }}>Usuario</td>
-                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.username}</td>
                     </tr>
                     <tr>
                       <td style={{ 'padding-left': '10px' }}>E-mail</td>
-                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>mark.65@gmail.com</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.email}</td>
                     </tr>
                     <tr>
                       <td style={{ 'padding-left': '10px' }}>Domicilio</td>
-                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>Corrientes 123</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.region !== 'null' ? user.region : <span>Aún no ha registrado una dirección</span>} </td>
                     </tr>
                     <tr>
-                      <td style={{ 'padding-left': '10px' }}>Telefono</td>
-                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>47326875</td>
+                      <td style={{ 'padding-left': '10px' }}>Teléfono</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.phone ? user.phone : <span>Aún no ha registrado un teléfono</span>}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -96,7 +66,7 @@ export default function UserProfile () {
                   </Link>
                 </Col>
               </Row>
-              <Table responsive className={s.table2} size='lg'>
+              {/* <Table responsive className={s.table2} size='lg'>
                 <tbody className={s.Td}>
                   <tr>
                     <td style={{ 'padding-left': '10px' }}>Usuario</td>
@@ -115,7 +85,7 @@ export default function UserProfile () {
                     <td style={{ 'padding-right': '10px' }} className={s.secTd}>47326875</td>
                   </tr>
                 </tbody>
-              </Table>
+              </Table> */}
             </Row>
           </Col>
         </Row>

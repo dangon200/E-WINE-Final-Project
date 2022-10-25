@@ -4,3 +4,10 @@ user TETE4159723
 pass JwN4vW0RQG
 email test_user_35012065@testuser.com
 DNI 01111111
+
+nivel usuario comprador 
+1 - newuser
+2 - primera compra
+3 - primer review
+4 - 3 compras 3 reviews
+5 - 5 compras 5 reviews

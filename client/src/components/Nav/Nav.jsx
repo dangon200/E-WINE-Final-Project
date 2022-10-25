@@ -7,7 +7,7 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
-import { FaUserAlt } from 'react-icons/fa'
+import { FiUser } from 'react-icons/fi'
 
 export default function Nav () {
   const user = useSelector(state => state.user)
@@ -48,7 +48,7 @@ export default function Nav () {
             />
           </div>
           <div className={style.userLogo}>
-            {user ? <Link to='/userProfile'><FaUserAlt color='black' size={20} /> </Link> : null}
+            {user ? <Link to='/userProfile'><FiUser color='black' size={20} /> </Link> : null}
           </div>
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
