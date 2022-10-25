@@ -9,7 +9,9 @@ const columns = [
   { field: 'email', headerName: 'email', width: 130 },
   { field: 'isBanned', headerName: 'Banneado', width: 70 },
   { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
-  { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 }
+  { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 },
+  { field: 'date', headerName: 'date', sortable: false, width: 70 }
+
 ]
 
 export default function Datatable (props) {
@@ -17,7 +19,7 @@ export default function Datatable (props) {
   const users = useSelector(state => state.users)
   const userDetail = useSelector(state => state.userDetail)
   // const { users } = props
-  const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance } }
+  const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance, date: u.createdAt } }
   )
   const handleBanned = (id, isBanned) => {
     console.log('Entre al handleBanned')
@@ -41,7 +43,7 @@ export default function Datatable (props) {
       )
     }
   }]
-  useEffect(() => { dispatch(getUsers()) }, [userDetail]) //eslint-disable-line
+  useEffect(() => { dispatch(getUsers())}, [userDetail]) //eslint-disable-line
   return (
 
     <div style={{ height: 400, width: '100%' }}>

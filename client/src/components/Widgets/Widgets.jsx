@@ -5,7 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined'
 import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined'
 // import { Link } from 'react-router-dom'
 
-export default function Widgets ({ type, cantidadUsers }) {
+export default function Widgets ({ type, cantidadUsers, dateUsers }) {
   let data
   // temporary
   const amount = 100
@@ -17,6 +17,7 @@ export default function Widgets ({ type, cantidadUsers }) {
         title: 'USERS',
         isMoney: false,
         cantidadUsers: cantidadUsers + ' usuarios registrados' || false,
+        date: dateUsers,
         icon: <PersonOutlineOutlinedIcon className='icon' />
       }
       break

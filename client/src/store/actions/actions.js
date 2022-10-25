@@ -294,6 +294,7 @@ export const getUsers = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/users`)
+      console.log(res.data)
 
       return dispatch({
         type: 'GET_USERS',

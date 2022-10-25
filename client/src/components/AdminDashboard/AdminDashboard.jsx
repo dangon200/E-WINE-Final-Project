@@ -22,6 +22,7 @@ function AdminDashboard () {
   // const products = useSelector(state => state.allProducts)
   // const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
+  const dateUsers = users.map(e => { return { id: e.id, username: e.username, date: e.createdAt } })
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -77,7 +78,7 @@ function AdminDashboard () {
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
-            <Widgets type='user' cantidadUsers={cantidadUsers} />
+            <Widgets type='user' cantidadUsers={cantidadUsers} dateUsers={dateUsers} />
             <Widgets type='order' />
             <Widgets type='earning' />
             <Widgets type='balance' />
