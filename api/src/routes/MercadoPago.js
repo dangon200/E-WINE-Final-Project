@@ -25,7 +25,7 @@ server.post('/', (req, res) => {
       failure: 'https://e-wine-ashen.vercel.app',
       pending: 'https://e-wine-ashen.vercel.app'
     },
-    notification_url: 'https://aea8-2803-9800-9447-8622-8023-b39e-ccec-a5ae.sa.ngrok.io/webhooks'
+    notification_url: 'https://e-wine.herokuapp.com/notificacion'
   }
   mercadopago.preferences.create(preference)
     .then(function (response) {
