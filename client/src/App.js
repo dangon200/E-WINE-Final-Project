@@ -20,6 +20,7 @@ import AdminDashboard from './components/AdminDashboard/AdminDashboard'
 import CardStripe from './components/CardStripe/CardStripe'
 import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
 import LogInit from './components/LoginInit/LoginInit'
+import Messenger from './components/messenger/Messenger'
 
 import Cookies from 'universal-cookie'
 
@@ -67,6 +68,7 @@ function App () {
         <Route path='/userpurchased' component={PurchasedProducts} />
         <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route exact path='/payment/:totalAmount' component={CardStripe} />
+        <Route exact path='/messenger' component={Messenger} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
