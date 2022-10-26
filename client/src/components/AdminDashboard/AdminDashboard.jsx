@@ -3,7 +3,7 @@ import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
 // import Featured from '../Featured/Featured.jsx'
 // import Chart from '../Chart/Chart.jsx'
-import TableAdmin from '../TableAdmin/TableAdmin.jsx'
+// import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import StoreMallDirectoryIcon from '@mui/icons-material/StoreMallDirectory'
@@ -19,9 +19,11 @@ function AdminDashboard () {
   const dispatch = useDispatch()
   const users = useSelector(state => state.users)
   const publications = useSelector(state => state.publicationsAdm)
-  // const products = useSelector(state => state.allProducts)
+  const products = useSelector(state => state.allProducts)
   // const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
+  const cantidadPublications = publications.length
+  const cantidad = products.length
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -59,11 +61,15 @@ function AdminDashboard () {
                 </li>
                 <li className={s.li}>
                   <StoreMallDirectoryIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Productos</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Publicaciones</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <span>Ordenes</span>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: true })}><span>Compras</span></Button>
+                </li>
+                <li className={s.li}>
+                  <ListAltIcon className={s.icon} />
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Productos</span></Button>
                 </li>
                 <p className={s.title}>PERFIL</p>
                 <li className={s.li}>
@@ -77,21 +83,24 @@ function AdminDashboard () {
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
+            <div><h2>Bienvenido a tu dashboard</h2></div>
             <Widgets type='user' cantidadUsers={cantidadUsers} />
-            <Widgets type='order' />
-            <Widgets type='earning' />
+            <Widgets type='order' cantidadPublications={cantidadPublications} />
+            <Widgets type='earning' cantidad={cantidad} />
             <Widgets type='balance' />
           </div>
 
-          <div className={`${!render.Adminppal ? 'd-none' : 'd-block'} col-12 text-dark mt-4`}>
+          {/* <div className={`${!render.Adminppal ? 'd-none' : 'd-block'} col-12 text-dark mt-4`}>
             <TableAdmin />
-          </div>
+          </div> */}
 
           <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
+            <div> <h3>PUBLICACIONES</h3></div>
             <DatatablePublications publications={publications} />
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
+            <div> <h3>USUARIOS</h3></div>
             <Datatable users={users} />
           </div>
 

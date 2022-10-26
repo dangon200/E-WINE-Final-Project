@@ -1,17 +1,16 @@
 Vision General:
     1.Usuarios:
-        -Cantidad de Usuarios   
-        -Aumento en la ultima semana
-        -Regiones
+        -Cantidad de Usuarios   LISTO
+        -Aumento en la ultima semana (creados última semana, mes)
     2.Publicaciones:
-        -cantidad de publicaciones
-        -cantidad Activas/No Activas
+        -cantidad de publicaciones LISTO
+        -cantidad Activas/No Activas (no encuentro data de activas)
     3.Compras
-        -Cantidad de compras realizadas
+        -Cantidad de compras realizadas en la última semana 
         -Cantidad de dinero en transacciones
-
+        compras del día
     4.Productos:
-            -Cantidad de productos
+        -Cantidad de productos LISTO
 
 
 
