@@ -20,12 +20,12 @@ Vision General:
 
     
 Vision Usuarios:
--Columna Regiones       graci
+// -Columna Regiones       graci
 // -Bannear Usuarios                   
--Ver detalle
--Regiones con grafico
--ve la cantidad de usuarios que efectivamente han hecho una compra
--% usuarios banneados
+-Regiones con grafico (grafico de torta)
+-ve la cantidad de usuarios que efectivamente han hecho una compra (grafico de torta)
+-% usuarios banneados (grafico de torta)
+-grafico de usuarios/tiempo
 ({
     id: r.id,
     username: r.username,

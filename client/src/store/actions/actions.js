@@ -322,6 +322,22 @@ export const bannedUser = (id, isBanned) => {
     }
   }
 }
+export const sommelierUser = (id, isSommelier) => {
+  return async function (dispatch) {
+    try {
+      console.log(isSommelier)
+      console.log('Llegue al Sommelier')
+      const res = await axios.put(`${urlApi}/users/${id}?sommelier=${!isSommelier}`)
+      console.log('esta es la respuesta de la API', res)
+      return dispatch({
+        type: 'GET_USER_SOMMELIER',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
 // STRIPE
 
 export const postStripe = (idStripe, totalAmount, carrito, userId) => {

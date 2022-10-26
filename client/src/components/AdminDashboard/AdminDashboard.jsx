@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
 import Featured from '../Featured/Featured.jsx'
-import Chart from '../Chart/Chart.jsx'
+// import Chart from '../Chart/Chart.jsx'
 import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
@@ -12,8 +12,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys } from '../../store/actions/actions'
-import Datatable from '../Datatable/Datatable.jsx'
 import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
+import UserAdmin from '../UserAdmin/UserAdmin'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -33,7 +33,7 @@ function AdminDashboard () {
   const [render, setRender] = useState({
     Adminppal: false,
     usersRoute: true,
-    publicationsRoute: true
+    publicationsRoute: false
   })
 
   return (
@@ -92,12 +92,12 @@ function AdminDashboard () {
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
-            <Datatable users={users} />
+            <UserAdmin users={users} />
           </div>
 
-          <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
+          {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
-          </div>
+          </div> */}
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             <Featured />
