@@ -61,6 +61,11 @@ display: block
     font-family: var(--font-family-1);
 }
 
+.image{
+    max-height: 400px;
+    max-width: 400px;
+}
+
 h1{
     font-size:  40px;
     font-family: var(--font-family-2);
@@ -215,4 +220,8 @@ h1{
 .inputBtn:hover{
     background-color: white;
     color:#56070C;
+}
+
+.imageCarru img{
+    max-height: 300px;
 }

@@ -48,7 +48,7 @@ export const bannedPublication = (id, isBanned) => {
     try {
       console.log(isBanned)
       console.log('Llegue')
-      const res = await axios.put(`${urlApi}/publications/${id}`, isBanned)
+      const res = await axios.put(`${urlApi}/publications/${id}?banned=${!isBanned}`)
       console.log(res)
       return dispatch({
         type: 'GET_PUBLICATION_BANNED',
@@ -428,4 +428,32 @@ export const getBuys = () => {
   }
 }
 
-// REVIEWS
+// REVIEWSBUYS
+
+export const addReviewBuy = (data) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/reviewBuy`, data)
+      return dispatch({
+        type: 'ADD_REVIEWBUY',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+export const getReviewBuy = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewBuy/${id}`)
+      return dispatch({
+        type: 'GET_REVIEWBUY_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

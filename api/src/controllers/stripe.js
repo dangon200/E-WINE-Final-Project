@@ -1,4 +1,4 @@
-const { Buy, BuyItem } = require('../db')
+const { Buy, Buyitem } = require('../db')
 const Stripe = require('stripe')
 // const BuyItem = require('../models/BuyItem')
 // const Publication = require('../models/Publication')
@@ -38,7 +38,7 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
 }
 const createBuyItem = async (countProduct, publicationId, buyId) => {
   try {
-    const newBuyItem = await BuyItem.create({
+    const newBuyItem = await Buyitem.create({
       countProduct,
       publicationId,
       buyId

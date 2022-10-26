@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
-export default function Card ({ id, title, name, image, price }) {
+export default function Card ({ id, title, name, image, price, userId, count }) {
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.favorites)
   const carrito = useSelector(state => state.carrito)
@@ -22,10 +22,10 @@ export default function Card ({ id, title, name, image, price }) {
     return carrito.some(p => p.id === id)
   }
 
-  const addToCarrito = (id, price, title, image, name) => {
+  const addToCarrito = (id, price, title, image, name, count) => {
     console.log(price)
-    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1 }))
-    dispatch(addCarrito({ id, price, title, image, name, count: 1 }))
+    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1, stock: count }))
+    dispatch(addCarrito({ id, price, title, image, name, count: 1, stock: count }))
   }
 
   /* const addToFavorites = (id, price, title, image, name) => {
@@ -42,7 +42,7 @@ export default function Card ({ id, title, name, image, price }) {
 
     <div className={`card ${style.card}`}>
       <div className={style.iconContainer}>
-        {user &&
+        {user && user.id !== userId &&
           <FaHeart
             className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
               isInFavorites(id)
@@ -74,13 +74,14 @@ export default function Card ({ id, title, name, image, price }) {
             }}
           >Más Info
           </Link>
-          <button
-            className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
-              window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name)
-            }}
-          >
-            {isInCarrito(id) ? 'Remover' : 'Añadir'}
-          </button>
+          {user.id !== userId &&
+            <button
+              className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
+                window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
+              }}
+            >
+              {isInCarrito(id) ? 'Remover' : 'Añadir'}
+            </button>}
         </div>
       </div>
     </div>

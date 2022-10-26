@@ -5,9 +5,9 @@ server.post('/', (req, res, next) => {
   const { body, query } = req
   const id = body.data.id
   const payment = query.type
-  console.log(body)
-  console.log(query)
-  if (id && payment === 'payment') {
+  console.log(id)
+  console.log(payment)
+  if (id) {
     try {
       const newBuy = createBuy(id)
       if (newBuy) {

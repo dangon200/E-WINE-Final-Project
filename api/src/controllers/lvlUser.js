@@ -1,4 +1,4 @@
-const { User, Buy, Reviews } = require('../db')
+const { User, Buy, Reviewbuy } = require('../db')
 
 const userBuylvlUp = async (id) => {
   const buyLvl = User.buyLevel
@@ -7,14 +7,14 @@ const userBuylvlUp = async (id) => {
       userId: id
     }
   })
-  const dbReviews = await Reviews.findAll({
+  const dbReviews = await Reviewbuy.findAll({
     where: {
       userId: id
     }
   })
   try {
     if (buyLvl < 5) {
-      if (buyLvl === 1 && dbBuys.length() === 1) {
+      if (buyLvl === 1 && dbBuys.length >= 1) {
         const lvlUp = await User.update(
           {
             buyLevel: 2
@@ -27,7 +27,7 @@ const userBuylvlUp = async (id) => {
         )
         return lvlUp
       }
-      if (buyLvl === 2 && dbReviews.length() === 1) {
+      if (buyLvl === 2 && dbReviews.length >= 1) {
         const lvlUp = await User.update(
           {
             buyLevel: 3
@@ -40,7 +40,7 @@ const userBuylvlUp = async (id) => {
         )
         return lvlUp
       }
-      if (buyLvl === 3 && dbBuys === 3 && dbReviews === 3) {
+      if (buyLvl === 3 && dbBuys >= 3 && dbReviews >= 3) {
         const lvlUp = await User.update(
           {
             buyLevel: 4
@@ -53,7 +53,7 @@ const userBuylvlUp = async (id) => {
         )
         return lvlUp
       }
-      if (buyLvl === 4 && dbBuys === 5 && dbReviews === 5) {
+      if (buyLvl === 4 && dbBuys >= 5 && dbReviews >= 5) {
         const lvlUp = await User.update(
           {
             buyLevel: 5

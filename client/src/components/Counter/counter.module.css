@@ -13,6 +13,5 @@
 .buttonMasMenos{
     background-color: white;
     border: none;
-    font-size: 25px;
     color: var(--btn-background-color);
 }

@@ -10,11 +10,11 @@ import Container from 'react-bootstrap/esm/Container'
 
 function About () {
   return (
-    <Container fluid>
+    <Container className='px-0'>
       <div>
         <div className={s.header}>
           <div className={s.apartado}>
-            <h1 className={s.h1}>Conocé mas sobre <h1 className={s.enfasis}>E-Wine</h1></h1>
+            <h1 className={s.h1}>Conocé mas sobre <p className={s.enfasis}>E-Wine</p></h1>
             <h2>Con nuestra variedad, podrás encontrar lo que buscas y recibirlo en el momento oportuno.</h2>
             <Button content='Visitar la tienda' link='/home' />
           </div>

@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 // import { FaHeart } from 'react-icons/fa'
 // import { addFavorites, removeFavorites } from '../../store/actions/actions'
 import Col from 'react-bootstrap/esm/Col'
-// import style from './cardFavorite.module.css'
+import s from './cardFavorite.module.css'
 
 export default function CardFavorites ({ id, title, description, image, name, price }) {
   return (
@@ -26,10 +26,10 @@ export default function CardFavorites ({ id, title, description, image, name, pr
             }}
           /> */}
         </Col>
-        <Card.Img variant='top' src={image} alt={image} />
+        <Card.Img className={s.image} variant='top' src={image} alt={image} />
         <Card.Body>
-          <Card.Title>{title}</Card.Title>
-          <Card.Text>
+          <Card.Title className='fs-3 mt-3'>{title}</Card.Title>
+          <Card.Text className='fs-4 my-3'>
             {description}
           </Card.Text>
           <Card.Text>

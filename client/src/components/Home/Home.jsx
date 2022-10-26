@@ -71,14 +71,18 @@ export default function Home () {
             return (
               <section className={style.sectionCards} key={p.id}>
                 <div>
-                  <Card
-                    id={p.id}
-                    title={p.title}
-                    name={p.name}
-                    image={p.image}
-                    price={p.price}
-                    key={p.id}
-                  />
+                  {p.count > 0 &&
+                    <Card
+                      count={p.count}
+                      id={p.id}
+                      title={p.title}
+                      name={p.name}
+                      image={p.image}
+                      price={p.price}
+                      userId={p.userId}
+                      key={p.id}
+                    />}
+
                 </div>
               </section>
             )
