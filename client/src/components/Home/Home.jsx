@@ -6,9 +6,13 @@ import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import Filters from '../Filters/Filters.jsx'
-import SearchBar from '../SearchBar/SearchBar'
+// import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
+import image1 from '../../utils/images/vinos2-unsplash.jpg'
+import image3 from '../../utils/images/vinos4-unsplash.jpg'
+import Image from 'react-bootstrap/Image'
+import Nav from '../Nav/Nav'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
@@ -48,9 +52,22 @@ export default function Home () {
 
   return (
     <div className={style.globalContainer}>
+      <header className={style.header}>
+        E-WINE
+      </header>
+      <nav>
+        <Nav />
+      </nav>
+      <section>
+        <Image
+          className={style.image}
+          src={image1}
+          alt='image1'
+        />
+      </section>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
-          <SearchBar />
+          {/* <SearchBar /> */}
           <Filters setPage={setPage} />
         </div>
       </div>
@@ -65,6 +82,7 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
+
       <div className={style.containerProducts}>
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
@@ -77,7 +95,33 @@ export default function Home () {
                     name={p.name}
                     image={p.image}
                     price={p.price}
-                    userId={p.userId}
+                    key={p.id}
+                  />
+                </div>
+              </section>
+            )
+          })
+          : <Message message={publications} />}
+      </div>
+      <section className='mx-5 h-50'>
+        <Image
+          className={style.image2}
+          src={image3}
+          alt='image3'
+        />
+      </section>
+      <div className={style.containerProducts}>
+        {typeof publications !== 'string'
+          ? currentPageProducts.map((p) => {
+            return (
+              <section className={style.sectionCards} key={p.id}>
+                <div>
+                  <Card
+                    id={p.id}
+                    title={p.title}
+                    name={p.name}
+                    image={p.image}
+                    price={p.price}
                     key={p.id}
                   />
                 </div>

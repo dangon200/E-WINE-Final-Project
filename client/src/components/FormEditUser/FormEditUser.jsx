@@ -7,8 +7,23 @@ import Sidebar from '../Sidebar/Sidebar'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import s from './formEditUser.module.css'
+import { useFormik } from 'formik'
+import { schemaFormPubli } from '../utilities/schemas'
 
 export default function FormEditUser () {
+  const { handleChange, handleSubmit, errors, values } = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+      repeatPassword: ''
+    },
+    validationSchema: schemaFormPubli,
+    onSubmit: async (values, { resetForm }) => {
+      console.log(values)
+      resetForm()
+    }
+  })
+
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
@@ -23,19 +38,48 @@ export default function FormEditUser () {
                 <Row>
                   <Col>
                     <Form.Group className='mb-3' controlId='formBasicEmail'>
-                      <Form.Control className='p-3 fs-4' type='email' placeholder='Direccion de Email' />
+                      <Form.Control
+                        className='p-3 fs-4'
+                        type='name'
+                        name='username'
+                        placeholder='Nombre de usuario'
+                        value={values.username}
+                        onChange={handleChange}
+                        error={errors.username}
+                      />
                     </Form.Group>
                   </Col>
                   <Col>
                     <Form.Group className='mb-3' controlId='formBasicPassword'>
-                      <Form.Control className='p-3 fs-4' type='password' placeholder='Contraseña' />
+                      <Form.Control
+                        className='p-3 fs-4'
+                        type='password'
+                        placeholder='Contraseña'
+                        value={values.password}
+                        name='password'
+                        onChange={handleChange}
+                        error={errors.password}
+                      />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Form.Group className='mb-3' controlId='formBasicPassword'>
-                  <Form.Control className='p-3 fs-4' type='email' placeholder='Nueva contraseña' />
+                  <Form.Control
+                    className='p-3 fs-4'
+                    type='password'
+                    placeholder='Nueva Contraseña'
+                    value={values.repeatPassword}
+                    name='repeatPassword'
+                    onChange={handleChange}
+                    error={errors.repeatPassword}
+                  />
                 </Form.Group>
-                <Button className='w-25 p-3 fs-4' variant='primary' type='submit'>
+                <Button
+                  className='w-25 p-3 fs-4'
+                  variant='primary'
+                  type='submit'
+                  onSubmit={handleSubmit}
+                >
                   Submit
                 </Button>
               </Form>

@@ -83,18 +83,19 @@
 .optSelect{
     margin-inline: 10px;
     font-weight: 500;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 
     outline: none;
-    color: #b9b3af;
+    color: #484D55;
 
     cursor: pointer;
     background-color: #fefefe;
     border-color: #b9b3af;
 }
 .optSelect:hover{
-    background-color: var(--btn-background-color);
-    color: var(--background-color);
+    /* background-color: var(--btn-background-color);
+    color: var(--background-color); */
+    background-color: #f3f2f2;
     font-weight: 500;
     transition: .3s;
 }
@@ -105,7 +106,7 @@
     padding: 10px;
     width: 120px;
     border-width: 1px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     font-family: var(--font-family-2);
     font-weight: 600;
     color: var(--btn-sel-background-color);
@@ -116,7 +117,8 @@
 
 }
 .limpiarFiltros:hover{
-    background-color: var(--btn-background-color);
-    color: var(--background-color);
+    /* background-color: var(--btn-background-color); */
+    background-color: #f3f2f2;
+    /* color: var(--background-color); */
     transition: .3s;
 }

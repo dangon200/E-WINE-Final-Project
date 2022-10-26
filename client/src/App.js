@@ -41,7 +41,7 @@ function App () {
 
   return (
     <div className='App'>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Nav} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Nav} />
 
       <Switch>
         <Route exact path='/register' component={LogInit} />

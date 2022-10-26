@@ -1,6 +1,6 @@
-.globalContainer{
+/* .globalContainer{
     margin-top: 8px;
-}
+} */
 
 .divPagination{
     display: flex;
@@ -9,6 +9,14 @@
     justify-content: center;
     gap: 8px;
     animation: show 3s;
+}
+
+.header{
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+    background-color: #91091E;
+    /* background-color: var(--background-color); */
 }
 
 @keyframes show{
@@ -26,6 +34,19 @@
     justify-content: center;
     gap: 24px;
     padding-bottom: 50px;
+}
+
+.image{
+    max-height: 350px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.image2{
+    max-height: 250px;
+    width: 85%;
+    object-fit: cover;
+    margin-bottom: 25px;
 }
 
 .sectionCards{
@@ -59,6 +80,7 @@
     animation: show 2s;
     width: 100%;
     display: flex;
+    margin: 20px 0 15px 0;
     justify-content: center;
     align-items: center;
     grid-gap: 16px;
