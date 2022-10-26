@@ -309,10 +309,7 @@ export const getUsers = () => {
 export const bannedUser = (id, isBanned) => {
   return async function (dispatch) {
     try {
-      console.log(isBanned)
-      console.log('Llegue')
       const res = await axios.put(`${urlApi}/users/${id}?banned=${!isBanned}`)
-      console.log(res)
       return dispatch({
         type: 'GET_USER_BANNED',
         payload: res.data
@@ -325,12 +322,24 @@ export const bannedUser = (id, isBanned) => {
 export const sommelierUser = (id, isSommelier) => {
   return async function (dispatch) {
     try {
-      console.log(isSommelier)
-      console.log('Llegue al Sommelier')
       const res = await axios.put(`${urlApi}/users/${id}?sommelier=${!isSommelier}`)
-      console.log('esta es la respuesta de la API', res)
+
       return dispatch({
         type: 'GET_USER_SOMMELIER',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+export const usersByProvinces = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/users/provinces`)
+      console.log('esta es la respuesta de la API para las provincias', res)
+      return dispatch({
+        type: 'GET_USER_PROVINCES',
         payload: res.data
       })
     } catch (error) {

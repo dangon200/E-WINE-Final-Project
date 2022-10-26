@@ -11,7 +11,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPublicationsAdm, getUsers, getProducts, getBuys } from '../../store/actions/actions'
+import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
 import UserAdmin from '../UserAdmin/UserAdmin'
 
@@ -19,6 +19,7 @@ function AdminDashboard () {
   const dispatch = useDispatch()
   const users = useSelector(state => state.users)
   const publications = useSelector(state => state.publicationsAdm)
+  const userProv = useSelector(state => state.usersByProvinces)
   // const products = useSelector(state => state.allProducts)
   // const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
@@ -28,6 +29,7 @@ function AdminDashboard () {
     dispatch(getBuys())
     dispatch(getUsers())
     dispatch(getProducts())
+    dispatch(usersByProvinces())
   }, [])//eslint-disable-line
 
   const [render, setRender] = useState({
@@ -92,7 +94,7 @@ function AdminDashboard () {
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
-            <UserAdmin users={users} />
+            <UserAdmin users={users} userProv={userProv} />
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>

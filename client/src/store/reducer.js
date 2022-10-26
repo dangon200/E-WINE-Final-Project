@@ -20,6 +20,7 @@ const initialState = {
   buy: {},
   buys: [],
   questions: [],
+  usersByProvinces: {},
   login: true
 }
 
@@ -89,6 +90,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, publicationBanned: action.payload }
     case 'GET_USER_SOMMELIER':
       return { ...state, userSommelier: action.payload }
+    case 'GET_USER_PROVINCES':
+      return { ...state, usersByProvinces: action.payload }
     default:
       return { ...state }
   }
