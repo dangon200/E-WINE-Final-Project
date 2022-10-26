@@ -3,7 +3,7 @@ const { createBuy } = require('../controllers/webhooksMP')
 
 server.post('/', (req, res, next) => {
   const { body, query } = req
-  const id = body.data.id
+  const id = body['data.id']
   const payment = query.type
   console.log(body)
   console.log(query)

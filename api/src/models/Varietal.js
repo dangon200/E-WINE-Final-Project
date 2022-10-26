@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize')
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('product', {
+  sequelize.define('varietal', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -14,21 +14,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    type: {
+    description: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    origin: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    img: {
-      type: DataTypes.TEXT,
-      defaultValue: null
-    },
-    cellar: {
-      type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   })
 }
