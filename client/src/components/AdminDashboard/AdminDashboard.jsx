@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
-import Featured from '../Featured/Featured.jsx'
-import Chart from '../Chart/Chart.jsx'
+// import Featured from '../Featured/Featured.jsx'
+// import Chart from '../Chart/Chart.jsx'
 import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
@@ -31,9 +31,9 @@ function AdminDashboard () {
   }, [])//eslint-disable-line
 
   const [render, setRender] = useState({
-    Adminppal: true,
-    usersRoute: false,
-    publicationsRoute: false
+    Adminppal: false,
+    usersRoute: true,
+    publicationsRoute: true
   })
 
   return (
@@ -95,13 +95,13 @@ function AdminDashboard () {
             <Datatable users={users} />
           </div>
 
-          <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
+          {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
           </div>
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             <Featured />
-          </div>
+          </div> */}
 
           {/* <div className='ultimasCompras'>
             Ultimas Compras
