@@ -22,6 +22,7 @@ const initialState = {
   questions: [],
   usersByProvinces: {},
   allVarietals: [],
+  detailVarietal: {},
   login: true
 }
 
@@ -95,6 +96,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, usersByProvinces: action.payload }
     case 'GET_ALL_VARIETALS':
       return { ...state, allVarietals: action.payload }
+    case 'POST_VARIETALS':
+      return { ...state, detailVarietal: action.payload }
     default:
       return { ...state }
   }

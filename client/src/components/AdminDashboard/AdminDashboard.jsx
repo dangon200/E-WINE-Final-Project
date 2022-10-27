@@ -79,8 +79,8 @@ function AdminDashboard () {
   const [render, setRender] = useState({
     Adminppal: false,
     usersRoute: false,
-    publicationsRoute: true,
-    productsRoute: false,
+    publicationsRoute: false,
+    productsRoute: true,
     buysRoutes: false
   })
 
