@@ -21,10 +21,50 @@ function AdminDashboard () {
   const publications = useSelector(state => state.publicationsAdm)
   const userProv = useSelector(state => state.usersByProvinces)
   const products = useSelector(state => state.allProducts)
-  // const buys = useSelector(state => state.buys)
+  const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
-  const cantidad = products.length
+  const cantidadProducts = products.length
+  const cantidadNewUsers = () => {
+    const arrayM = []
+    for (let i = 0; i < users.length; i++) {
+      if (!users[i]) return arrayM
+      if (users[i]) {
+        const fechaInicio = new Date(users[i].createdAt.slice(0, 10)).getTime()
+        const fechaFin = Date.now()
+        const diff = fechaFin - fechaInicio
+        const dias = diff / (10006060 * 24)
+        if (dias < 7)arrayM.push(dias)
+      }
+    }
+    return arrayM.length
+  }
+
+  const publicationsFilter = publications.filter((e) => e.isBanned === false)
+  const publicationsNoIsBanned = publicationsFilter.length
+  const cantidadBuys = buys.length
+
+  const totalBuys = () => {
+    let cont = 0
+    for (let i = 0; i < buys.length; i++) {
+      cont += buys[i].totalAmount
+    } return cont
+  }
+
+  const cantidadLastBuys = () => {
+    const arrayB = []
+    for (let i = 0; i < buys.length; i++) {
+      if (!buys[i]) return arrayB
+      if (buys[i]) {
+        const fechaInicio = new Date(buys[i].createdAt.slice(0, 10)).getTime()
+        const fechaFin = Date.now()
+        const diff = fechaFin - fechaInicio
+        const dias = diff / (10006060 * 24)
+        if (dias < 7)arrayB.push(dias)
+      }
+    }
+    return arrayB.length
+  }
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -82,14 +122,15 @@ function AdminDashboard () {
             </div>
           </div>
         </div>
+
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
             <div><h2>Bienvenido a tu dashboard</h2></div>
-            <Widgets type='user' cantidadUsers={cantidadUsers} />
-            <Widgets type='order' cantidadPublications={cantidadPublications} />
-            <Widgets type='earning' cantidad={cantidad} />
-            <Widgets type='balance' />
+            <Widgets type='user' cantidadUsers={cantidadUsers} cantidadNewUsers={cantidadNewUsers()} />
+            <Widgets type='publications' cantidadPublications={cantidadPublications} publicationsNoIsBanned={publicationsNoIsBanned} />
+            <Widgets type='products' cantidadProducts={cantidadProducts} />
+            <Widgets type='balance' cantidadBuys={cantidadBuys} totalBuys={totalBuys()} cantidadLastBuys={cantidadLastBuys()} />
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'd-none' : 'd-block'} col-12 text-dark mt-4`}>

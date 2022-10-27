@@ -443,7 +443,7 @@ export const getUserBuys = (userId) => {
 export const getBuys = () => {
   return async function (dispatch) {
     try {
-      const res = axios.get(`${urlApi}/buys`)
+      const res = await axios.get(`${urlApi}/buys`)
       return dispatch({
         type: 'GET_ALL_BUYS',
         payload: res.data
