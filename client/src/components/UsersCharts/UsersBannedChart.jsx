@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import s from './Charts.module.css'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -49,12 +50,17 @@ function UsersBannedChart () {
   }
   useEffect(() => { dispatch(getUsers()) }, []) //eslint-disable-line
   return (
-    <div>
-      <button onClick={() => dataGraphic()}>Ver el grafico</button>
-      <div className='w-50 h-50'>
-        <Doughnut
-          data={chartData}
-        />
+    <div className={`container-fluid px-0 ${s.div}`}>
+      <div className={`row justify-content-center ${s.div2}`}>
+        <h2>Usuarios Habilitados/Baneados</h2>
+        <div className='d-grid gap-2 d-md-block'>
+          <button type='button' className='btn btn-info' onClick={() => dataGraphic()}>Ver el grafico</button>
+        </div>
+        <div className='w-50 h-50 d-flex justify-content-end'>
+          <Doughnut
+            data={chartData}
+          />
+        </div>
       </div>
     </div>
   )

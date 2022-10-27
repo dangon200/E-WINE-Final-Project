@@ -10,8 +10,8 @@ const columns = [
   { field: 'isBanned', headerName: 'Banneado', width: 70 },
   { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
   { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 },
-  { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 100 },
-  { field: 'region', headerName: 'Region', sortable: false, width: 100 }
+  { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 70 },
+  { field: 'region', headerName: 'Region', sortable: false, width: 70 }
 
 ]
 
@@ -36,7 +36,7 @@ export default function Datatable (props) {
   const actionColumn = [{
     field: 'action',
     headerName: 'Action',
-    width: 900,
+    width: 150,
     renderCell: (params) => {
       // console.log(params)
       return (
@@ -48,7 +48,7 @@ export default function Datatable (props) {
           </button>
           <button type='button' className='btn btn-outline-danger' onClick={() => handleSommelier(params.row.id, params.row.isSommelier, params.row.createdAt)}>
             {
-              params.row.isSommelier ? <div>Verificar</div> : <div>Verificado</div>
+              params.row.isSommelier ? <div>Verificado</div> : <div>Verificar</div>
             }
           </button>
         </div>
@@ -63,8 +63,8 @@ export default function Datatable (props) {
         <DataGrid
           rows={rows}
           columns={columns.concat(actionColumn)}
-          pageSize={9}
-          rowsPerPageOptions={[9]}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
           checkboxSelection
         />
       </div>

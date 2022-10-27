@@ -45,7 +45,7 @@ function UsersByProvincesChart () {
       labels: provincias,
       datasets: [
         {
-          label: 'Cantidad de usuarios nuevos por semana en el mes',
+          label: 'Cantidad de usuarios por Provincia',
           data: usuarios,
           borderColor: 'rgb(53, 162, 235)',
           backgroundColor: 'rgba(53, 162, 235, 0.4)'
@@ -60,7 +60,7 @@ function UsersByProvincesChart () {
         },
         title: {
           display: true,
-          text: 'Cantidad de usuarios nuevos por semana en el mes'
+          text: 'Cantidad de usuarios por Provincia'
         }
       }
     })
@@ -68,8 +68,8 @@ function UsersByProvincesChart () {
   useEffect(() => { dispatch(usersByProvinces()) }, [dispatch]) //eslint-disable-line
   return (
     <div>
-      <h1>Usuarios nuevos por provincia</h1>
-      <button onClick={() => handleSort()}>Ver el grafico </button>
+      <h2>Usuarios nuevos por provincia</h2>
+      <button type='button' className='btn btn-info' onClick={() => handleSort()}>Ver el grafico </button>
 
       <Bar options={chartOptions} data={chartData} />
     </div>

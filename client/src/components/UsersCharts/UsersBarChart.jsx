@@ -149,7 +149,7 @@ function UsersBarChart ({ users }) {
   // useEffect(() => { dispatch(getUsers()) }, []) //eslint-disable-line
   return (
     <div>
-      <h1>Usuarios nuevos por periodo de tiempo</h1>
+      <h2>Usuarios nuevos por periodo de tiempo</h2>
       <select onChange={e => handleSort(e)}>
         <option value=''>Elja un valor</option>
         <option value='meses'>6 meses</option>

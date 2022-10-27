@@ -12,8 +12,8 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
-import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
 import UserAdmin from '../UserAdmin/UserAdmin'
+import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -34,8 +34,8 @@ function AdminDashboard () {
 
   const [render, setRender] = useState({
     Adminppal: false,
-    usersRoute: true,
-    publicationsRoute: false
+    usersRoute: false,
+    publicationsRoute: true
   })
 
   return (
@@ -90,7 +90,8 @@ function AdminDashboard () {
           </div>
 
           <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
-            <DatatablePublications publications={publications} />
+
+            <PublicationsAdmin publications={publications} />
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
