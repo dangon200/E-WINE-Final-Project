@@ -11,6 +11,7 @@ const buyItemRoutes = require('./buyItemRoutes')
 const questionsRouter = require('./questions')
 const reviewsRouter = require('./reviews')
 const reviewsBuys = require('./reviewsBuy')
+const varietalRoutes = require('./varietalRoutes')
 const { PagarProducto } = require('./webhooksMPRoutes')
 const router = Router()
 
@@ -30,5 +31,6 @@ router.use('/questions', questionsRouter)
 router.use('/reviews', reviewsRouter)
 router.use('/buyItems', buyItemRoutes)
 router.use('/reviewsBuys', reviewsBuys)
+router.use('/varietals', varietalRoutes)
 
 module.exports = router

@@ -19,7 +19,7 @@ export const schemaFormPubli = Yup.object().shape({
   productId: Yup.string().required('Por favor seleccione un producto').uuid(),
   image: Yup.mixed().required('Es Requerido')
     .test('fileSize', 'La imagen es requerida', value => value && value.size >= 1000)
-    .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
+    .test('fileSize', 'Max 5 MB ', value => value && value.size <= 5000000)
     .test('fileFormat', 'Solo jpg, jpge, gif, png', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
 })
 
