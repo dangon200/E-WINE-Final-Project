@@ -10,7 +10,7 @@ const mercadopago = require('mercadopago')
 
 // Agrega credenciales
 mercadopago.configure({
-  access_token: process.env.ACCESS_TOKEN_MP2
+  access_token: process.env.ACCESS_TOKEN_MP
 })
 
 // routes
@@ -25,7 +25,7 @@ server.post('/', (req, res) => {
       failure: 'https://e-wine-ashen.vercel.app',
       pending: 'https://e-wine-ashen.vercel.app'
     },
-    notification_url: 'https://e-wine.herokuapp.com/notificacion'
+    notification_url: 'https://e-winespf.herokuapp.com/notificacion'
   }
   mercadopago.preferences.create(preference)
     .then(function (response) {

@@ -22,7 +22,7 @@ const { conn } = require('./src/db.js')
 
 // Syncing all the models at once.
 conn.sync({}).then(() => {
-  router.listen(process.env.PORT || 3001, () => {
+  router.listen(3001, () => {
     console.log('%is listening at 3001') // eslint-disable-line no-console
   })
 })

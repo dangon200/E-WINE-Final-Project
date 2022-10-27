@@ -1,7 +1,6 @@
 import axios from 'axios'
 // const urlApi = 'https://e-winespf.herokuapp.com'
-// const urlApi = 'http://localhost:3001'
-const urlApi = 'https://e-wine.herokuapp.com/'
+const urlApi = 'http://localhost:3001'
 
 export function getPublications () {
   return async function (dispatch) {

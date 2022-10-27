@@ -6,7 +6,7 @@ const createBuy = async (id) => {
   const response = await fetch(`https://api.mercadopago.com/v1/payments/${id}`, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP2}`
+      Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP}`
     }
   })
   const result = await response.json()
