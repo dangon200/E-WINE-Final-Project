@@ -58,8 +58,8 @@ function UsersBarChart ({ users }) {
   const fiveDaysAgo = week.filter(e => e === hoy - 5)
   const sixDaysAgo = week.filter(e => e === hoy - 6)
 
-  const datitos = [sexMesAnterior.length, quinMesAnterior.lenght, cuarMesAnterior.length, terMesAnterior.length, segMesAnterior.length, mesAnterior.length, mesAhora.length]
-  const datitosSemana = [firstWeek.length, secondWeek.lenght, thirdWeek.length, fourthWeek.length]
+  const datitos = [sexMesAnterior.length, quinMesAnterior.length, cuarMesAnterior.length, terMesAnterior.length, segMesAnterior.length, mesAnterior.length, mesAhora.length]
+  const datitosSemana = [firstWeek.length, secondWeek.length, thirdWeek.length, fourthWeek.length]
   const datitosDia = [sixDaysAgo.length, fiveDaysAgo.length, fourDaysAgo.length, threeDaysAgo.length, beforeYesterday.length, yesterday.length, today.length]
 
   const [chartData, setChartData] = useState({

@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
+import { Link } from 'react-router-dom'
+import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -77,7 +79,9 @@ function AdminDashboard () {
   const [render, setRender] = useState({
     Adminppal: false,
     usersRoute: false,
-    publicationsRoute: true
+    publicationsRoute: true,
+    productsRoute: false,
+    buysRoutes: false
   })
 
   return (
@@ -94,29 +98,31 @@ function AdminDashboard () {
                 <p className={s.title}>PRINCIPAL</p>
                 <li className={s.li}>
                   <DashboardIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false })}> <span>Tablero</span> </Button>
+                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}> <span className={s.text}>Tablero</span> </Button>
                 </li>
                 <p className={s.title}>LISTA</p>
                 <li className={s.li}>
                   <PersonOutlineOutlinedIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false })}><span>Usuarios</span> </Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}><span className={s.text}>Usuarios</span> </Button>
                 </li>
                 <li className={s.li}>
                   <StoreMallDirectoryIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Publicaciones</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}><span className={s.text}>Productos</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: true })}><span>Compras</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: true, publicationsRoute: false, buysRoutes: true })}><span className={s.text}>Compras</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Productos</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={s.text}>Publicaciones</span></Button>
                 </li>
                 <p className={s.title}>PERFIL</p>
                 <li className={s.li}>
                   <LogoutIcon className={s.icon} />
-                  <span>LogOut</span>
+                  <Link className={s.link} to='/'>
+                    <span className={s.text}>SALIR</span>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -145,6 +151,9 @@ function AdminDashboard () {
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
             <UserAdmin users={users} userProv={userProv} />
+          </div>
+          <div className={`col-12 ${render.productsRoute ? ' d-block' : 'd-none'}`}>
+            <ProductsAdmin />
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>

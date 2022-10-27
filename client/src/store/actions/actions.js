@@ -453,3 +453,17 @@ export const getBuys = () => {
     }
   }
 }
+// Varietales
+export const getVarietals = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/products/varietals`)
+      return dispatch({
+        type: 'GET_ALL_VARIETALS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}

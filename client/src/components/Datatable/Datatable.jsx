@@ -11,7 +11,7 @@ const columns = [
   { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
   { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 },
   { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 70 },
-  { field: 'region', headerName: 'Region', sortable: false, width: 70 }
+  { field: 'region', headerName: 'Region', sortable: true, width: 70 }
 
 ]
 
