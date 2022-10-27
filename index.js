@@ -19,10 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const router = require('./src/app.js')
 const { conn } = require('./src/db.js')
+require('dotenv').config()
 
 // Syncing all the models at once.
 conn.sync({}).then(() => {
-  router.listen(3001, () => {
+  router.listen(process.env.PORT || 3001, () => {
     console.log('%is listening at 3001') // eslint-disable-line no-console
   })
 })
