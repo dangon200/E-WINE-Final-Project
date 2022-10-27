@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const { Publication, User, Reviewbuy, Buyitem, Buy } = require('../db')
+const { userBuylvlUp } = require('../controllers/lvlUse')
 
 // CREAR REVIEW
 router.post('/', async (req, res) => {
@@ -43,6 +44,8 @@ router.post('/', async (req, res) => {
         }
       )
       console.log(AddReview)
+      // revisar nivel usuario
+      await userBuylvlUp(userId)
       return res.status(200).json(AddReview)
     } else return res.status(404).json('No se puede puntuar por que no hay compra registrada')
   } catch (error) {

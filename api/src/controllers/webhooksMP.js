@@ -1,5 +1,5 @@
 const { Buy, BuyItem } = require('../db')
-
+const { userBuylvlUp } = require('../controllers/lvlUse')
 const fetch = require('node-fetch')
 
 const createBuy = async (id) => {
@@ -19,6 +19,7 @@ const createBuy = async (id) => {
     userId: result.additional_info.items[0].id
   })
   result.additional_info.items.map(async (p) => await createBuyItem(p.quantity, p.category_id, newBuy.id))
+  await userBuylvlUp(result.additional_info.items[0].id)
   return newBuy
 }
 
