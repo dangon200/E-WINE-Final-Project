@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
-// import Featured from '../Featured/Featured.jsx'
+import Featured from '../Featured/Featured.jsx'
 // import Chart from '../Chart/Chart.jsx'
 // import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
@@ -11,14 +11,15 @@ import ListAltIcon from '@mui/icons-material/ListAlt'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPublicationsAdm, getUsers, getProducts, getBuys } from '../../store/actions/actions'
-import Datatable from '../Datatable/Datatable.jsx'
+import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
+import UserAdmin from '../UserAdmin/UserAdmin'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
   const users = useSelector(state => state.users)
   const publications = useSelector(state => state.publicationsAdm)
+  const userProv = useSelector(state => state.usersByProvinces)
   const products = useSelector(state => state.allProducts)
   // const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
@@ -30,12 +31,13 @@ function AdminDashboard () {
     dispatch(getBuys())
     dispatch(getUsers())
     dispatch(getProducts())
+    dispatch(usersByProvinces())
   }, [])//eslint-disable-line
 
   const [render, setRender] = useState({
     Adminppal: false,
     usersRoute: true,
-    publicationsRoute: true
+    publicationsRoute: false
   })
 
   return (
@@ -100,21 +102,20 @@ function AdminDashboard () {
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
-            <div> <h3>USUARIOS</h3></div>
-            <Datatable users={users} />
+            <UserAdmin users={users} userProv={userProv} />
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
-          </div>
+          </div> */}
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             <Featured />
-          </div> */}
+          </div>
 
           {/* <div className='ultimasCompras'>
             Ultimas Compras
-          </div> */}
+          // </div> */}
 
         </div>
         {/* Fin Container padre que tiene todo al lado del dashboard */}

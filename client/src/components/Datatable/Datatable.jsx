@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
-import { bannedUser, getUsers } from '../../store/actions/actions'
+import { bannedUser, getUsers, sommelierUser } from '../../store/actions/actions'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -9,20 +9,29 @@ const columns = [
   { field: 'email', headerName: 'email', width: 130 },
   { field: 'isBanned', headerName: 'Banneado', width: 70 },
   { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
-  { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 }
+  { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 },
+  { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 100 },
+  { field: 'region', headerName: 'Region', sortable: false, width: 100 }
+
 ]
 
 export default function Datatable (props) {
   const dispatch = useDispatch()
   const users = useSelector(state => state.users)
   const userDetail = useSelector(state => state.userDetail)
+  const userSommelier = useSelector(state => state.userSommelier)
   // const { users } = props
-  const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance } }
+  const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance, date: u.createdAt.slice(0, 10) } }
   )
-  const handleBanned = (id, isBanned) => {
+  const handleBanned = (id, isBanned, createdAt) => {
     console.log('Entre al handleBanned')
-    console.log(id)
+    console.log(createdAt)
     dispatch(bannedUser(id, isBanned))
+  }
+  const handleSommelier = (id, isSommelier, createdAt) => {
+    console.log('Entre al handleSommelier')
+    console.log(createdAt)
+    dispatch(sommelierUser(id, isSommelier))
   }
   const actionColumn = [{
     field: 'action',
@@ -32,27 +41,33 @@ export default function Datatable (props) {
       // console.log(params)
       return (
         <div className='w'>
-          <button type='button' className='btn btn-outline-danger' onClick={() => handleBanned(params.row.id, params.row.isBanned)}>
+          <button type='button' className='btn btn-outline-danger' onClick={() => handleBanned(params.row.id, params.row.isBanned, params.row.createdAt)}>
             {
               params.row.isBanned ? <div>Habilitar</div> : <div>Bannear</div>
+            }
+          </button>
+          <button type='button' className='btn btn-outline-danger' onClick={() => handleSommelier(params.row.id, params.row.isSommelier, params.row.createdAt)}>
+            {
+              params.row.isSommelier ? <div>Verificar</div> : <div>Verificado</div>
             }
           </button>
         </div>
       )
     }
   }]
-  useEffect(() => { dispatch(getUsers()) }, [userDetail]) //eslint-disable-line
+  useEffect(() => { dispatch(getUsers())}, [userDetail, userSommelier]) //eslint-disable-line
   return (
+    <div>
 
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
-      />
+      <div style={{ height: 400, width: '100%' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns.concat(actionColumn)}
+          pageSize={9}
+          rowsPerPageOptions={[9]}
+          checkboxSelection
+        />
+      </div>
     </div>
-
   )
 }
