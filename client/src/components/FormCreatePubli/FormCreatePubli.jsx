@@ -1,7 +1,8 @@
 import style from './formCreatePubli.module.css'
+import axios from 'axios'
 import { useFormik } from 'formik'
 import { useState, useEffect } from 'react'
-import { schemaFormPubli, uplodCloudinary } from '../utilities/schemas'
+import { schemaFormPubli } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts, postPublication } from '../../store/actions/actions'
 import FormCreateProduct from '../FormCreateProduct/FormCreateProduct'
@@ -33,12 +34,31 @@ export default function FormCreatePubli () {
       description: '',
       count: 0,
       image: {},
-      userId: token ? token.user.id : 0
+      userId: token.user.id
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values, { resetForm }) => {
-      const url = await uplodCloudinary(values.image)
-      values.image = url
+      // const url = await uplodCloudinary(values.image)
+      const cloudName = 'dfq27ytd2'
+      const preset = 'cpnushlf'
+      const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+
+      const formData = new FormData()
+      formData.append('upload_preset', preset)
+      formData.append('file', values.image)
+
+      const send = await axios.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress (e) {
+          setCharge(Math.round((e.loaded * 100) / e.total))
+        }
+      })
+      const urlImage = send.data.secure_url
+
+      values.image = urlImage
+      console.log(values)
       dispatch(postPublication({ ...values }, token.token))
       resetForm()
       setSend(true)
@@ -48,6 +68,7 @@ export default function FormCreatePubli () {
       )
     }
   })
+  const [charge, setCharge] = useState(0) // eslint-disable-line
   const [send, setSend] = useState(false)
   const [createProduct, setCreateProduct] = useState(false)
   return (
@@ -160,12 +181,16 @@ export default function FormCreatePubli () {
               {errors.productId && touched.productId && <p className='fs-4'>{errors.productId}</p>}
             </div>
           </div>
+          <div className='progress mt-4' style={{ height: 15 }}>
+            <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
+          </div>
           <button
             type='submit'
             className={`btn btn-success btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
             disabled={isSubmitting && true}
           >Crear Publicación
           </button>
+
           {send && <div className={style.send}>Publicación creada con éxito!</div>}
         </form>
 
