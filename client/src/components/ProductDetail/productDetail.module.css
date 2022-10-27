@@ -1,0 +1,14 @@
+.container{
+    border: solid 2px gainsboro;
+    background-color: white;
+    display: flex;
+    border-radius: 20px;
+    width: 90%;
+    height: 150px;
+    grid-template-columns: auto auto auto auto;
+    margin:  auto auto;
+    margin-top: 60px;
+}
+.text{
+    color:  #610a10;
+}
