@@ -90,9 +90,7 @@ export default function PublicationDetail (props) {
               />
             </div>
             <Carousel className='mb-5 mt-4'>
-              <Carousel.Item
-                className={style.imageCarru}
-              >
+              <Carousel.Item>
                 <Image
                   className={style.image}
                   src={image}

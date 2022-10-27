@@ -23,7 +23,7 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
           </Row>
         </Col>
         <Col>
-          $ {totalAmount}
+          $ {totalAmount / 100}
         </Col>
         <Col className='d-flex flex-column gap-3'>
           <Row>

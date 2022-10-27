@@ -165,7 +165,7 @@ const bannedPublication = async (id, banned) => {
     if (pb) {
       const publicationById = await getOnePublication(id)
       return publicationById
-    }
+    } else { throw new Error('La publicación que desea actualizar no existe') }
   } catch (error) {
     throw new Error('Error tratando de actualizar la publicacion!')
   }
