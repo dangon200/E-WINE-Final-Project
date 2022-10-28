@@ -1,6 +1,7 @@
 const { Product, Varietal } = require('../db')
 
 const createProduct = async (name, type, varietalId, origin, img, cellar) => {
+  console.log(varietalId)
   try {
     const productCreated = await Product.create({
       name,

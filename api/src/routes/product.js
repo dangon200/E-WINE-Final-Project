@@ -31,7 +31,7 @@ server.get('/:id', async (req, res) => {
 // crear producto
 server.post('/', async (req, res) => {
   const { name, type, varietalId, origin, img, cellar } = req.body
-
+  console.log(varietalId)
   if (!name) return res.status(400).json('Falta parametro nombre!')
   if (!type) return res.status(400).json('Falta parametro tipo!')
   if (!varietalId) return res.status(400).json('Falta parametro varietal!')

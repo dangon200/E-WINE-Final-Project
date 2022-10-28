@@ -1,34 +1,57 @@
-import { UseSelector } from 'react-redux'
-import React, { UseState } from 'react'
-import { FaStart } from 'react-icons/fa'
+import Container from 'react-bootstrap/Container'
+import React, { useRef, useState } from 'react'
+import { ImGlass } from 'react-icons/im'
+import style from './reviewBuy.module.css'
+const urlApi = 'http://localhost:3001'
 
-export default function reviewBuy (publicationId) {
-  const review = UseSelector(state => state.reviewBuy)
-  const { rating, setRating } = UseState(null)
-  const { hover, setHover } = UseState(null)
-  console.log(review)
+export default function ReviewBuy (id, pubId) {
+  const [rating, setRating] = useState(null)
+  const [hover, setHover] = useState(null)
+  const text = useRef(null)
+  const handleClick = () => {
+    const comentario = {
+      userId: id,
+      publicationId: pubId,
+      puntaje: rating,
+      textRev: text.current.value
+    }
+    fetch(`${urlApi}/reviewsBuy`, {
+      method: 'POST',
+      body: JSON.stringify(comentario),
+      headers: {
+        'Content-type': 'application/json'
+      },
+      credentials: 'include'
+    })
+  }
+
   return (
-    <div>
-      {[...Array].map((star, i) => {
+    <Container className='mt-5 bg-body shadow-lg' fluid>
+      {[...Array(5)].map((star, i) => {
         const starRating = i + 1
         return (
-          <label key>
+          <label key={Math.random()}>
             <input
+              className={style.input}
               type='radio'
               name='rating'
               value={starRating}
               onClick={() => setRating(starRating)}
             />
-            <FaStart
-              className='star'
-              size={100} key
+            <ImGlass
+              className={style.star}
+              size={50} key={Math.random()}
               onMouseEnter={() => setHover(starRating)}
               onMouseLeave={() => setHover(null)}
-              color={starRating > (hover || rating) ? '#ffc107' : '#e4e5e9'}
+              color={starRating > (hover || rating) ? '#e4e5e9' : '#56070C'}
             />
           </label>
         )
       })}
-    </div>
+      <form>
+        <textarea type='text' name='Comentario' placeholder='Agregar comentario...' ref={text} />
+        <button type='button' onClick={e => handleClick()}>Enviar</button>
+      </form>
+    </Container>
   )
 }

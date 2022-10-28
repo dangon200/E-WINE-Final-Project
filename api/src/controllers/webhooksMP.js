@@ -1,5 +1,5 @@
 const { Buy, BuyItem } = require('../db')
-const { userBuylvlUp } = require('../controllers/lvlUse')
+const { userBuylvlUp } = require('../controllers/lvlUser')
 const fetch = require('node-fetch')
 
 const createBuy = async (id) => {

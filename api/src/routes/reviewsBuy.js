@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const { Publication, User, Reviewbuy, Buyitem, Buy } = require('../db')
-const { userBuylvlUp } = require('../controllers/lvlUse')
+const { userBuylvlUp } = require('../controllers/lvlUser')
 
 // CREAR REVIEW
 router.post('/', async (req, res) => {

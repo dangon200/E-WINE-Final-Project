@@ -3,7 +3,7 @@ const Stripe = require('stripe')
 // const BuyItem = require('../models/BuyItem')
 // const Publication = require('../models/Publication')
 // const User = require('../models/User')
-const { userBuylvlUp } = require('../controllers/lvlUse')
+const { userBuylvlUp } = require('../controllers/lvlUser')
 
 const { STRIPE_KEY } = process.env
 const stripe = new Stripe(STRIPE_KEY)
