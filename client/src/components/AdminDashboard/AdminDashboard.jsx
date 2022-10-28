@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import s from './AdminDashboard.module.css'
 import Widgets from '../Widgets/Widgets.jsx'
-import Featured from '../Featured/Featured.jsx'
+// import Featured from '../Featured/Featured.jsx'
 // import Chart from '../Chart/Chart.jsx'
 // import TableAdmin from '../TableAdmin/TableAdmin.jsx'
 import DashboardIcon from '@mui/icons-material/Dashboard'
@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
 import UserAdmin from '../UserAdmin/UserAdmin'
+import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
+import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -24,7 +26,10 @@ function AdminDashboard () {
   const buys = useSelector(state => state.buys)
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
+  const cantidadBuys = buys.length
   const cantidadProducts = products.length
+
+  // usuarios registrados últimos 7 días ____________________
   const cantidadNewUsers = () => {
     const arrayM = []
     for (let i = 0; i < users.length; i++) {
@@ -40,17 +45,18 @@ function AdminDashboard () {
     return arrayM.length
   }
 
+  // publicaciones no Banned _______________________________
   const publicationsFilter = publications.filter((e) => e.isBanned === false)
   const publicationsNoIsBanned = publicationsFilter.length
-  const cantidadBuys = buys.length
 
+  // total dinero en compras a la fecha ______________________
   const totalBuys = () => {
     let cont = 0
     for (let i = 0; i < buys.length; i++) {
       cont += buys[i].totalAmount
     } return cont
   }
-
+  // compras realizadas en los últimos 7 días  _______________
   const cantidadLastBuys = () => {
     const arrayB = []
     for (let i = 0; i < buys.length; i++) {
@@ -77,7 +83,8 @@ function AdminDashboard () {
   const [render, setRender] = useState({
     Adminppal: false,
     usersRoute: true,
-    publicationsRoute: false
+    publicationsRoute: false,
+    buysRoute: false
   })
 
   return (
@@ -99,19 +106,19 @@ function AdminDashboard () {
                 <p className={s.title}>LISTA</p>
                 <li className={s.li}>
                   <PersonOutlineOutlinedIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false })}><span>Usuarios</span> </Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, buysRoute: false })}><span>Usuarios</span> </Button>
                 </li>
                 <li className={s.li}>
                   <StoreMallDirectoryIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Publicaciones</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, buysRoute: false })}><span>Publicaciones</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: true })}><span>Compras</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, buysRoute: true })}><span>Compras</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true })}><span>Productos</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, buysRoute: false })}><span>Productos</span></Button>
                 </li>
                 <p className={s.title}>PERFIL</p>
                 <li className={s.li}>
@@ -126,7 +133,6 @@ function AdminDashboard () {
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
           <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
-            <div><h2>Bienvenido a tu dashboard</h2></div>
             <Widgets type='user' cantidadUsers={cantidadUsers} cantidadNewUsers={cantidadNewUsers()} />
             <Widgets type='publications' cantidadPublications={cantidadPublications} publicationsNoIsBanned={publicationsNoIsBanned} />
             <Widgets type='products' cantidadProducts={cantidadProducts} />
@@ -146,12 +152,18 @@ function AdminDashboard () {
             <UserAdmin users={users} userProv={userProv} />
           </div>
 
+          <div className={`col-12 ${render.buysRoute ? ' d-block' : 'd-none'}`}>
+            <div> <h3>COMPRAS</h3></div>
+            <DataTableBuys buys={buys} />
+          </div>
+
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
           </div> */}
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
-            <Featured />
+            {/* <Featured /> */}
+            <BuyProfitsChart />
           </div>
 
           {/* <div className='ultimasCompras'>
