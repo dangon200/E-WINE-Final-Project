@@ -18,10 +18,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    varietal: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     origin: {
       type: DataTypes.STRING,
       allowNull: false

@@ -1,11 +1,12 @@
-const { Product } = require('../db')
+const { Product, Varietal } = require('../db')
 
-const createProduct = async (name, type, varietal, origin, img, cellar) => {
+const createProduct = async (name, type, varietalId, origin, img, cellar) => {
+  console.log(varietalId)
   try {
     const productCreated = await Product.create({
       name,
       type,
-      varietal,
+      varietalId,
       origin,
       img,
       cellar
@@ -21,7 +22,11 @@ const getAllProducts = async () => {
   const results = []
 
   try {
-    const dbResults = await Product.findAll()
+    const dbResults = await Product.findAll({
+      include: [{
+        model: Varietal
+      }]
+    })
 
     dbResults.forEach(r => {
       results.push({
@@ -29,7 +34,7 @@ const getAllProducts = async () => {
         id: r.id,
         name: r.name,
         type: r.type,
-        varietal: r.varietal,
+        varietal: r.varietal.name,
         origin: r.origin,
         img: r.img,
         cellar: r.cellar
@@ -45,7 +50,9 @@ const getAllProducts = async () => {
 
 const getProductById = async (id) => {
   try {
-    const dbResult = await Product.findByPk(id)
+    const dbResult = await Product.findByPk(id, {
+      include: Varietal
+    })
 
     if (!dbResult) return null
 
@@ -54,7 +61,7 @@ const getProductById = async (id) => {
       id: dbResult.id,
       name: dbResult.name,
       type: dbResult.type,
-      varietal: dbResult.varietal,
+      varietal: dbResult.varietal.name,
       origin: dbResult.origin,
       img: dbResult.img,
       cellar: dbResult.cellar

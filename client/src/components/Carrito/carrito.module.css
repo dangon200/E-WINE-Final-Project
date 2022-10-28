@@ -1,9 +1,4 @@
 .container{
-    display: flex;
-    gap: 30px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     margin: 50px 0 50px 0;
     height: 100%;
     width: 100%;
@@ -18,14 +13,17 @@
 .button{
     font-family: var(--font-family-1);
     font-style: normal;
+    width: 75%;
     font-weight: 400;
     font-size: 15px;
     line-height: 20px;
     color: var(--background-color);
-    background-color: var(--btn-background-color);
+    background-color: #91091E;
+    /* background-color: var(--btn-background-color); */
     box-sizing: border-box;
     padding: 7px;
-    border: 1px solid var(--btn-border-color);
+    border: none;
+    /* border: 1px solid var(--btn-border-color); */
     border-radius: 6px;  
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     cursor: pointer;
@@ -34,9 +32,15 @@
 
 .button:hover{
     font-family: var(--font-family-1);
-    background-color: #56070cd2;
+    background-color: #91091dbe;
     color: #FFFFFF;
-    border: 1px solid var(--btn-border-color);
+    /* border: 1px solid var(--btn-border-color); */
     transition: .3s;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    /* box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12); */
 }
+
+/* @media (max-width: 1250px) {
+    .cont{
+        flex-direction: column;
+    }
+} */

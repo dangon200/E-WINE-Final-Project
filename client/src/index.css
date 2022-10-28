@@ -17,6 +17,7 @@ body{
   height: 100%;
   background-color: black;
   font-family: var(--font-family-1), var(--font-family-2), sans-serif;
+  overflow-x: hidden;
 }
 .App{
   /* width: 100%; */

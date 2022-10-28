@@ -86,6 +86,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, publicationsAdm: action.payload }
     case 'GET_PUBLICATION_BANNED':
       return { ...state, publicationBanned: action.payload }
+    case 'ADD_REVIEWBUY':
+      return { ...state, reviewBuy: action.payload }
+    case 'GET_REVIEWBUY_ID':
+      return { ...state, reviewBuy: action.payload }
     default:
       return { ...state }
   }

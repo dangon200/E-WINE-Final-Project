@@ -6,7 +6,7 @@ import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import Filters from '../Filters/Filters.jsx'
-// import SearchBar from '../SearchBar/SearchBar'
+import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import image1 from '../../utils/images/vinos2-unsplash.jpg'
@@ -67,7 +67,7 @@ export default function Home () {
       </section>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
-          {/* <SearchBar /> */}
+          <SearchBar />
           <Filters setPage={setPage} />
         </div>
       </div>
@@ -82,8 +82,13 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-
-      <div className={style.containerProducts}>
+      <div className='row fs-2 fw-bold ms-5 ps-5'>
+        Productos recomendados
+      </div>
+      {/* <div className='d-flex justify-content-center mt-5 col-3'>
+          <Filters setPage={setPage} />
+        </div> */}
+      <div className={`${style.containerProducts}`}>
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
             return (
@@ -103,13 +108,16 @@ export default function Home () {
           })
           : <Message message={publications} />}
       </div>
-      <section className='mx-5 h-50'>
+      <section className='h-50'>
         <Image
           className={style.image2}
           src={image3}
           alt='image3'
         />
       </section>
+      <div className='row fs-2 fw-bold ms-5 ps-5 pt-3'>
+        Mejores reseñas
+      </div>
       <div className={style.containerProducts}>
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {

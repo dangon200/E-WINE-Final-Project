@@ -1,6 +1,7 @@
 import axios from 'axios'
-const urlApi = 'https://e-winespf.herokuapp.com'
-// const urlApi = 'http://localhost:3001'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
+// const urlApi = 'https://56af-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -424,6 +425,36 @@ export const getBuys = () => {
       })
     } catch (error) {
       return error.message
+    }
+  }
+}
+
+// REVIEWSBUYS
+
+export const addReviewBuy = (data) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/reviewBuy`, data)
+      return dispatch({
+        type: 'ADD_REVIEWBUY',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error.response)
+      throw new Error(error.response.data)
+    }
+  }
+}
+export const getReviewBuy = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewBuy/${id}`)
+      return dispatch({
+        type: 'GET_REVIEWBUY_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 }

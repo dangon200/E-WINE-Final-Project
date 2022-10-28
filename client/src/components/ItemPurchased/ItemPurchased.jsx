@@ -23,23 +23,26 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
           </Row>
         </Col>
         <Col>
-          $ {totalAmount}
+          $ {totalAmount / 100}
         </Col>
         <Col className='d-flex flex-column gap-3'>
           <Row>
-            <Button className={s.button}>
+            <Button
+              className={s.button}
+              disabled
+            >
               <Link className='text-light text-decoration-none' to=''>
                 Ver compra
               </Link>
             </Button>
           </Row>
-          <Row>
+          {/* <Row>
             <Button className={s.button2}>
               <Link className='text-dark text-decoration-none' to={`/publication/${publicationId}`}>
                 Ver Publicación
               </Link>
             </Button>
-          </Row>
+          </Row> */}
         </Col>
       </Row>
     </Row>

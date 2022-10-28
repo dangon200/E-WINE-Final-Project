@@ -87,10 +87,9 @@
 
     outline: none;
     color: #484D55;
-
     cursor: pointer;
     background-color: #fefefe;
-    border-color: #b9b3af;
+    /* border-color: #b9b3af; */
 }
 .optSelect:hover{
     /* background-color: var(--btn-background-color);

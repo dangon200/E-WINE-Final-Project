@@ -20,16 +20,17 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
+import ReviewBuy from '../ReviewBuy/ReviewBuy'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
-  /* const user = useSelector(state => state.user) */
+  const User = useSelector(state => state.user)
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image } = publication
+  const { name, price, title, image, count } = publication
   const [counter, setCounter] = useState(1)
   /* const [question, setQuestion] = useState('') */
 
@@ -41,13 +42,12 @@ export default function PublicationDetail (props) {
   const isInFavorites = (id) => {
     return favorites.some((f) => f === id)
   }
-  const addToCarrito = (id, price, title, image, name, countParam) => {
+  const addToCarrito = (id, price, title, image, name, countParam, count) => {
     if (window.localStorage.hasOwnProperty(id)) {
-         // eslint-disable-line
-      console.log('entre al if')
       window.localStorage[id] = JSON.stringify({
         ...JSON.parse(window.localStorage[id]),
-        count: countParam + JSON.parse(window.localStorage[id]).count
+
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
       })
       dispatch(
         addCarrito({
@@ -56,23 +56,24 @@ export default function PublicationDetail (props) {
           title,
           image,
           name,
-          count: JSON.parse(window.localStorage[id]).count
+          count: JSON.parse(window.localStorage[id]).count,
+          stock: count
         })
       )
     } else {
       console.log('entre al else')
       window.localStorage.setItem(
         id,
-        JSON.stringify({ price, title, image, name, count: countParam })
+        JSON.stringify({ price, title, image, name, count: countParam, stock: count })
       )
       dispatch(
-        addCarrito({ id, price, title, image, name, count: countParam })
+        addCarrito({ id, price, title, image, name, count: countParam, stock: count })
       )
     }
   }
   const updateCount = (param) => {
     if (param === 'rest' && counter > 1) setCounter(counter - 1)
-    if (param === 'add') setCounter(counter + 1)
+    if (param === 'add' && counter <= count) setCounter(counter + 1)
   }
   return (
     <Container>
@@ -102,6 +103,7 @@ export default function PublicationDetail (props) {
                   className={style.image}
                   src={image}
                   alt={`${publication.name}`}
+
                 />
               </Carousel.Item>
               <Carousel.Item>
@@ -113,10 +115,12 @@ export default function PublicationDetail (props) {
               </Carousel.Item>
             </Carousel>
           </Col>
+
           <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{name}</h1>
             <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
+            <ReviewBuy />
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
@@ -147,7 +151,9 @@ export default function PublicationDetail (props) {
                   </span>
                   <Button
                     variant='prueba'
-                    onClick={() => updateCount('add')}
+                    onClick={() =>
+                      counter < count &&
+                      updateCount('add')}
                   >
                     +
                   </Button>
@@ -163,7 +169,8 @@ export default function PublicationDetail (props) {
                           title,
                           image,
                           name,
-                          counter
+                          counter,
+                          count
                         )
                       }}
                     >
@@ -188,6 +195,7 @@ export default function PublicationDetail (props) {
             </Row>
           </Col>
         </Row>
+        <ReviewBuy userId={User.id} pubId={publication.id} />
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <Preguntas questions={questions} publication={publication} />

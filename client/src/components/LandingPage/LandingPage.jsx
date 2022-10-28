@@ -14,7 +14,8 @@ import { useEffect } from 'react'
 
 export default function LandingPage () {
   const showBtn = () => {
-    if (window.pageYOffset > document.getElementById('home').getBoundingClientRect().height) {
+    /* document.getElementById('home').getBoundingClientRect().height */
+    if (window.pageYOffset > 100) {
       document.getElementById('toTop').style.display = 'block'
     } else {
       document.getElementById('toTop').style.display = 'none'
@@ -142,7 +143,6 @@ export default function LandingPage () {
         </div>
       </section>
       <a href='#h' id='toTop' className={style.icon} onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}><img className={style.iconImg} src={logo} alt='top' /></a>
-
     </>
   )
 }
