@@ -130,6 +130,7 @@ export default function FormLogin () {
             } else {
               setMesagge('Correo o contraseña incorrectos')
               setError(true)
+              setSend(false)
               setTimeout(() => {
                 setError(false)
               }, 3000)
