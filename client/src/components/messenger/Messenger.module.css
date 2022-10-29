@@ -58,6 +58,7 @@
     flex: 1.5;
     border-left: 1px solid gray;
     background-color: lightgray;
+    overflow: scroll;
 }
 
 .chatMenuWrapper{
