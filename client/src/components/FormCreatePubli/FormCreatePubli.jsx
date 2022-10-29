@@ -186,7 +186,7 @@ export default function FormCreatePubli () {
           </div>
           <button
             type='submit'
-            className={`btn btn-success w-50 btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
+            className={`btn w-50 btn-block btn-lg mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
             disabled={isSubmitting && true}
           >Crear Publicación
           </button>

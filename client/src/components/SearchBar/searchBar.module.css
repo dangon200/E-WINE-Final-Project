@@ -18,12 +18,12 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    /* background-color: var(--btn-background-color); */
+    background-color: var(--btn-background-color);
     background-color: #91091E;
     font-size: 16px;
     padding: 12px; 
     border: none; 
-    /* border-radius: 10px; */
+    border-radius: 10px;
     border: 1px solid var(--btn-background-color);
     color: white;
 } 
@@ -41,7 +41,7 @@
     font-size: 16px;
     border: 1px solid gray;
     background-color: white;
-    /* border-radius: 10px; */
+    border-radius: 10px;
     cursor: pointer;
     font-family: var(--font-family-1);
 } 
