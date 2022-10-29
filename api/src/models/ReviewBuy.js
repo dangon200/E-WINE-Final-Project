@@ -3,15 +3,26 @@ const { DataTypes } = require('sequelize')
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('buyitem', {
+  sequelize.define('reviewbuy', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    countProduct: {
+    stars: {
       type: DataTypes.INTEGER,
+      defaultValue: 0,
+      allowNull: false
+    },
+    puntuado: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1,
+      allowNull: false
+    },
+    text: {
+      type: DataTypes.STRING,
       allowNull: false
     }
+
   })
 }

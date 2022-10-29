@@ -1,8 +1,9 @@
-const { Buy, BuyItem } = require('../db')
+const { Buy, Buyitem } = require('../db')
 const Stripe = require('stripe')
 // const BuyItem = require('../models/BuyItem')
 // const Publication = require('../models/Publication')
 // const User = require('../models/User')
+const { userBuylvlUp } = require('../controllers/lvlUser')
 
 const { STRIPE_KEY } = process.env
 const stripe = new Stripe(STRIPE_KEY)
@@ -29,7 +30,7 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
     })
     // console.log('Esta es la nueva compra', newBuy)
     carrito?.map(async (p) => await createBuyItem(p.count, p.id, newBuy.id))
-
+    await userBuylvlUp(userId)
     return newBuy
   } catch (error) {
     console.log(error, 'Error createBuy stripe')
@@ -38,7 +39,7 @@ const createBuy = async ({ idStripe, totalAmount, carrito, userId }) => {
 }
 const createBuyItem = async (countProduct, publicationId, buyId) => {
   try {
-    const newBuyItem = await BuyItem.create({
+    const newBuyItem = await Buyitem.create({
       countProduct,
       publicationId,
       buyId

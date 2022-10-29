@@ -50,14 +50,20 @@ Buy.belongsTo(User)
 Product.hasMany(Publication)
 Publication.belongsTo(Product)
 
-Publication.hasMany(BuyItem)
-BuyItem.belongsTo(Publication)
+Publication.hasMany(Buyitem)
+Buyitem.belongsTo(Publication)
 
-Buy.hasMany(BuyItem)
-BuyItem.belongsTo(Buy)
+Buy.hasMany(Buyitem)
+Buyitem.belongsTo(Buy)
 
 User.hasMany(Favorite)
 Favorite.belongsTo(User)
+
+Reviewbuy.belongsTo(User)
+User.hasMany(Reviewbuy)
+
+Publication.hasMany(Reviewbuy)
+Reviewbuy.belongsTo(Publication)
 
 User.hasMany(Question)
 Question.belongsTo(User)

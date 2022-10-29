@@ -21,6 +21,9 @@ import CardStripe from './components/CardStripe/CardStripe'
 import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
 import LogInit from './components/LoginInit/LoginInit'
 import Messenger from './components/messenger/Messenger'
+import FormForgotPassword from './components/FormForgotPassword/FormForgotPassword'
+import RecoverPassword from './components/RecoverPassword/RecoverPassword'
+// import ReviewBuy from '../ReviewBuy/ReviewBuy'
 
 import Cookies from 'universal-cookie'
 
@@ -50,7 +53,7 @@ function App () {
 
   return (
     <div className='App'>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Nav} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register', '/forgotPassword', '/recoverPassword']} component={Nav} />
 
       <Switch>
         <Route exact path='/register' component={LogInit} />
@@ -69,6 +72,8 @@ function App () {
         <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route exact path='/payment/:totalAmount' component={CardStripe} />
         <Route exact path='/messenger' component={Messenger} />
+        <Route exact path='/forgotPassword' component={FormForgotPassword} />
+        <Route exact path='/recoverPassword' component={RecoverPassword} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
