@@ -22,7 +22,7 @@ export default function Footer () {
         <Col className='text-center text-md-start mt-4'>
           <div className='mx-auto mb-4'>
             <ul className='fs-4'>
-              <li className='fs-1'>COMPRAS</li>
+              <li className='fs-1 fw-bold'>COMPRAS</li>
               <br />
               <li>Carrito</li>
               <li>Tus compras</li>
@@ -33,15 +33,15 @@ export default function Footer () {
         <Col className='text-center text-md-start mt-4'>
           <div className='mx-auto mb-4'>
             <ul className='fs-4'>
-              <li className='fs-1'>ACERCA DE</li>
+              <li className='fs-1 fw-bold'>ACERCA DE</li>
               <br />
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>E-Wine</li>
               </Link>
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Developers</li>
               </Link>
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Proyecto</li>
               </Link>
             </ul>
@@ -50,15 +50,15 @@ export default function Footer () {
         <Col className='text-center text-md-start mt-4'>
           <div className='mx-auto mb-4 '>
             <ul className='fs-4'>
-              <li className='fs-1'>AYUDA</li>
+              <li className='fs-1 fw-bold'>AYUDA</li>
               <br />
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Preguntas Frecuentes</li>
               </Link>
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Terminos y condiciones</li>
               </Link>
-              <Link className='text-decoration-none text-light' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Contacto</li>
               </Link>
             </ul>
@@ -68,28 +68,28 @@ export default function Footer () {
       <Row className='pt-5 pb-5 row justify-content-center'>
         <Col xs lg='2'>
           <a href='https://www.instagram.com/ewine.marketplace/'>
-            <IconContext.Provider value={{ size: '3em', className: 'instagram', color: 'white' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'instagram', color: '#484D55' }}>
               <GrInstagram />
             </IconContext.Provider>
           </a>
         </Col>
         <Col xs lg='2'>
           <a href='https://www.facebook.com/profile.php?id=100086790943958'>
-            <IconContext.Provider value={{ size: '3em', className: 'facebook', color: 'white' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'facebook', color: '#484D55' }}>
               <GrFacebookOption />
             </IconContext.Provider>
           </a>
         </Col>
         <Col xs lg='2'>
           <a href='https://twitter.com/EWinemarket'>
-            <IconContext.Provider value={{ size: '3em', className: 'twitter', color: 'white' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'twitter', color: '#484D55' }}>
               <GrTwitter />
             </IconContext.Provider>
           </a>
         </Col>
         <Col xs lg='2'>
           <a href='https://github.com/dangon200/E-WINE-Final-Project'>
-            <IconContext.Provider value={{ size: '3em', className: 'github', color: 'white' }}>
+            <IconContext.Provider value={{ size: '3em', className: 'github', color: '#484D55' }}>
               <GrGithub />
             </IconContext.Provider>
           </a>

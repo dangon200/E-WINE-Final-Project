@@ -5,6 +5,7 @@
     align-items: center;
     padding-top: 80px;
     background-color: #EEEEEE;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .image{

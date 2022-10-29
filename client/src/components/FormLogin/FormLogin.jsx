@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie'
 import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
+import { loginUser, logoutUser, getFavorites, modalRender } from '../../store/actions/actions'
 
 export default function FormLogin () {
   const cookies = new Cookies()
@@ -16,6 +16,7 @@ export default function FormLogin () {
   const userLogged = useSelector(state => state.user)
   // const urlApi = 'http://localhost:3002'
   const urlApi = 'https://e-winespf.herokuapp.com'
+  // const urlApi = 'https://73fb-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
   function handleCallbackResponse (response) {
     const userObject = jwtdecode(response.credential)
@@ -126,7 +127,10 @@ export default function FormLogin () {
               setMesagge('Ha iniciado sesión')
               setSend(false)
               setSuccess(true)
-              setTimeout(() => { setSuccess(false) }, 3000)
+              setTimeout(() => {
+                setSuccess(false)
+                dispatch(modalRender())
+              }, 3000)
             } else {
               setMesagge('Correo o contraseña incorrectos')
               setError(true)
@@ -167,7 +171,7 @@ export default function FormLogin () {
               type='email'
               name='email'
               id='email'
-              className={`form-control ${!err ? touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
+              className={`form-control p-2 ${!err ? touched.email ? errors.email ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -180,7 +184,7 @@ export default function FormLogin () {
               type='password'
               name='password'
               id='password'
-              className={`form-control 
+              className={`form-control p-2
                       ${!err ? touched.password ? errors.password ? 'is-invalid' : 'is-valid' : null : 'is-invalid'}`}
               value={values.password}
               onChange={handleChange}
@@ -188,8 +192,8 @@ export default function FormLogin () {
             />
             {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
           </div>
-          {!userLogged && <button disabled={send && true} className='btn btn-success mt-3 ' type='submit'>{!send ? 'Iniciar sesión' : '....'}</button>}
-          {userLogged && <button className='btn btn-danger mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
+          {!userLogged && <button disabled={send && true} className='btn btn-success fs-4 mt-3 ' type='submit'>{!send ? 'Iniciar sesión' : '....'}</button>}
+          {userLogged && <button className='btn btn-danger fs-4 mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
           {err &&
             <div className='alert alert-danger mt-3 text-center' role='alert'><p>{message}</p></div>}
           <>
@@ -203,7 +207,6 @@ export default function FormLogin () {
             <div className='alert alert-success mt-3  text-center' role='alert'><p>{message}</p> </div>}
         </div>
       </form>
-
     </div>
   )
 }

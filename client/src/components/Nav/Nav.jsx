@@ -8,6 +8,9 @@ import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
 import { FiUser } from 'react-icons/fi'
+// import SeachBar from '../SearchBar/SearchBar'
+
+// import { showModal } from '../../store/actions/actions'
 
 export default function Nav () {
   const user = useSelector(state => state.user)
@@ -20,8 +23,12 @@ export default function Nav () {
 
         <Link to='/home' className={`me-auto ${style.span}`}>
           <img src={logo} alt='logo' className={`navbar-brand ${style.logo}`} />
-          <span className={style.span}>E-WINE</span>
+          {/* <span className={style.span}>E-WINE</span> */}
         </Link>
+
+        {/* <div>
+          <SeachBar />
+        </div> */}
 
         <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
           <span className='navbar-toggler-icon' />

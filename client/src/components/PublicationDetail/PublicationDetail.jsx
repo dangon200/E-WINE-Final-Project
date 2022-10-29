@@ -20,12 +20,13 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
+// import ReviewBuy from '../ReviewBuy/ReviewBuy'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
-  /* const user = useSelector(state => state.user) */
+  // const User = useSelector(state => state.user)
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
@@ -114,10 +115,12 @@ export default function PublicationDetail (props) {
               </Carousel.Item>
             </Carousel>
           </Col>
+
           <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{name}</h1>
             <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
+            {/* <ReviewBuy /> */}
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
@@ -192,6 +195,7 @@ export default function PublicationDetail (props) {
             </Row>
           </Col>
         </Row>
+        {/* <ReviewBuy userId={User.id} pubId={publication.id} /> */}
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <Preguntas questions={questions} publication={publication} />

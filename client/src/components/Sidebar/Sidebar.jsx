@@ -20,22 +20,22 @@ const Sidebar = () => {
     {
       path: '/home',
       name: 'Tienda',
-      icon: <FaStore color='#630606' size={25} />
+      icon: <FaStore color='#91091E' size={25} />
     },
     {
       path: '/user/favorites',
       name: 'Favoritos',
-      icon: <FaHeart color='#630606' size={25} />
+      icon: <FaHeart color='#91091E' size={25} />
     },
     {
       path: '/userPurchased',
       name: 'Mis compras',
-      icon: <HiOutlineShoppingBag color='#630606' size={25} />
+      icon: <HiOutlineShoppingBag color='#91091E' size={25} />
     },
     {
       path: '/userProfile',
       name: 'Datos de usuario',
-      icon: <FaUser color='#630606' size={25} />
+      icon: <FaUser color='#91091E' size={25} />
     }
   ]
   return (
