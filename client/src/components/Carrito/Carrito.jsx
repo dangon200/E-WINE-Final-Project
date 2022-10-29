@@ -29,7 +29,7 @@ export default function Carrito () {
   return (
     <div className={style.container}>
       <Row className={`container-fluid ${style.cont}`}>
-        <Col className='d-flex flex-column w-75 gap-3'>
+        <Col className={`d-flex flex-column col-9 gap-3 ${style.containerItems}`}>
           {carrito.length > 0
             ? carrito.map(p => {
               return (
@@ -38,7 +38,7 @@ export default function Carrito () {
             })
             : <h3 className='fs-4'>No has agregado nada al carrito aún!</h3>}
         </Col>
-        <Col className='d-flex flex-column justify-content-center align-items-start gap-5 w-25'>
+        <Col className={`d-flex flex-column col-3 gap-5 ${style.containerOrden}`}>
           <Row className='fs-3 fw-bold'>
             Resumen de orden
           </Row>

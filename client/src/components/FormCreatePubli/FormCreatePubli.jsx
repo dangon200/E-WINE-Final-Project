@@ -73,7 +73,7 @@ export default function FormCreatePubli () {
   const [createProduct, setCreateProduct] = useState(false)
   return (
 
-    <section className='w-75 container user-select-none my-5'>
+    <section className={`w-50 container user-select-none my-5 ${style.card}`}>
       <div className='row'>
         <h2>Crear Nueva Publicación</h2>
         <form onSubmit={handleSubmit} autoComplete='off' className='card d-flex justify-content-center mx-auto my-3 p-5'>
@@ -186,7 +186,7 @@ export default function FormCreatePubli () {
           </div>
           <button
             type='submit'
-            className={`btn btn-success btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
+            className={`btn btn-success w-50 btn-block btn-lg mt-4 ${isSubmitting && 'disabled'}`}
             disabled={isSubmitting && true}
           >Crear Publicación
           </button>
@@ -194,7 +194,7 @@ export default function FormCreatePubli () {
           {send && <div className={style.send}>Publicación creada con éxito!</div>}
         </form>
 
-        <button onClick={() => setCreateProduct(!createProduct)} className='btn btn-primary btn-block btn-lg mt-4'>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
+        <button onClick={() => setCreateProduct(!createProduct)} className={`btn w-50 btn-block btn-lg mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
 
       </div>
       {createProduct && <FormCreateProduct />}

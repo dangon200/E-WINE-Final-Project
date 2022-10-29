@@ -1,6 +1,6 @@
 import axios from 'axios'
-// const urlApi = 'https://e-winespf.herokuapp.com'
-const urlApi = 'http://localhost:3001'
+const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 // const urlApi = 'https://56af-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
 export function getPublications () {

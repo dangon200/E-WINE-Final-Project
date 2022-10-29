@@ -76,15 +76,41 @@ export const schemaValidateUser = Yup.object().shape({
   region: Yup.string().required('Por favor seleccione una Provincia').oneOf(provinces)
 })
 
+export const schemaValidateEmail = Yup.object().shape({
+  email: Yup.string().email('Email no válido').required('Es Requerido')
+    .test('testEmail', 'Este correo no existe como cuenta',
+      value => {
+        return new Promise((resolve, reject) => {
+          axios.get(`${urlApi}/users/email/${value}`)
+            .then(res => {
+              resolve(false)
+            })
+            .catch(error => {
+              if (error.response.data === true) {
+                resolve(true) // eslint-disable-line
+              }
+            })
+        })
+      })
+})
+
 export const schemaValidateChangesOfUser = Yup.object().shape({
   password: Yup.string().required('Es Requerido')
-    .min(8, 'Min 8 caracteres')
-    .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número'),
+    .min(8, 'Min 8 caracteres'),
+  /* .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número'), */
   newPassword: Yup.string().required('Es Requerido')
     .min(8, 'Min 8 caracteres')
     .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número')
     .oneOf([Yup.ref('repeatNewPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
   repeatNewPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('repeatNewPassword'), null], 'Las contraseñas no coinciden')
+})
+
+export const schemaValidatePasswordEmail = Yup.object().shape({
+  password: Yup.string().required('Es Requerido')
+    .min(8, 'Min 8 caracteres')
+    .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número')
+    .oneOf([Yup.ref('repeatPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
+  repeatPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('repeatPassword'), null], 'Las contraseñas no coinciden')
 })
 
 export const schemaLogin = Yup.object().shape({

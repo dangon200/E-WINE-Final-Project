@@ -38,9 +38,29 @@
     transition: .3s;
     /* box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12); */
 }
+.containerItems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+.containerOrden{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 25%;
+}
 
-/* @media (max-width: 1250px) {
-    .cont{
-        flex-direction: column;
+@media (max-width: 1250px) {
+    .containerItems{
+        width: 100%;
     }
-} */
+    .containerOrden{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 75%;
+        margin: auto;
+        margin-top: 50px;
+    }
+}

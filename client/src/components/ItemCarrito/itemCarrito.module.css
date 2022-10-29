@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
     max-height: 200px;
 }
 .image{
@@ -52,4 +52,30 @@
     background-color: transparent;
     color: var(--btn-background-color);
 }
+.eliminar{
+    display: flex;
+    flex-direction: column;
+}
+.item{
+    width: 75%;
+    padding: 20px;
+}
 
+@media (max-width: 768px) {
+    .container{
+        margin-top: 30px;
+    }
+    .image{
+        width: 120px;
+        background-size: cover;
+    }
+    .eliminar{
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+    }
+    .item{
+        width: 75%;
+        padding: 0px;
+    }
+}

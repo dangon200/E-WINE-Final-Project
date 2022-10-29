@@ -20,13 +20,13 @@ export default function ItemCarrito (props) {
   }
   return (
     <div className={s.container}>
-      <div className='row w-75 p-4 border-bottom border-2 fs-4'>
+      <div className={`row border-bottom border-2 fs-4 ${s.item}`}>
         <Row>
           <Col className={s.image}>
             <img className='img-fluid' src={image} alt={image} />
           </Col>
           <Col className='d-flex flex-column col-4 justify-content-center align-items-left ms-4'>
-            <Row className='fs-3'>{title}</Row>
+            <Row className='fs-3 text-start'>{title}</Row>
             <Row className='fw-bold'>{name}</Row>
             <Row><span className='fs-3 fw-semibold text-start pt-5'>$ {price}</span></Row>
           </Col>
@@ -39,7 +39,7 @@ export default function ItemCarrito (props) {
           {/* <Col className='d-flex align-items-center'>
             <Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} />
           </Col> */}
-          <Col className='d-flex flex-column gap-5 justify-content-center align-items-end'>
+          <Col className={`d-flex gap-5 justify-content-center align-items-end ${s.eliminar}`}>
             <Row>
               <Button className={s.button} onClick={() => { removeFromCarrito(id) }}>
                 Eliminar
