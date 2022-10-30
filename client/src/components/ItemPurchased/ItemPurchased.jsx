@@ -9,6 +9,8 @@ import image from '../../utils/images/vector.jpg'
 import axios from 'axios'
 import { getUserBuys } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
+import ItemModaleBuy from '../ItemModaleBuy/ItemModaleBuy'
+import Modale from '../Modale/Modale'
 
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
@@ -53,15 +55,13 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
         </Col>
         <Col className='d-flex flex-column gap-3'>
           <Row>
-            <Button
-              className={s.button}
-              onClick={async () => {
-                const res = await axios.get(`https://e-winespf.herokuapp.com/buyItems/buy/${buyId}`)
-                console.log(res.data)
-              }}
-            >
-              Ver Compra
-            </Button>
+            <Modale
+              buttonText='Ver compra'
+              title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              render={ItemModaleBuy}
+              link='/userPurchased'
+              createAcc
+            />
           </Row>
           {status === 'ENVIADO'
             ? <div className='row'>
