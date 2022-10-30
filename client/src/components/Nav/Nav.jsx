@@ -8,6 +8,7 @@ import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
 import { FiUser } from 'react-icons/fi'
+import NavProfile from '../NavProfile/NavProfile'
 // import SeachBar from '../SearchBar/SearchBar'
 
 // import { showModal } from '../../store/actions/actions'
@@ -47,7 +48,7 @@ export default function Nav () {
             {user &&
               <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}
             <Modale
-              buttonText={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              buttonText={!user ? 'Iniciar sesión' : <NavProfile />}
               title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
               render={FormLogin}
               link='/register'

@@ -11,7 +11,7 @@ import image from '../../utils/images/vector.jpg'
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, publicationId }) {
   /* const {  } = props */
   return (
-    <Row className='w-75 bg-light p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
+    <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
       <Row className='border-bottom mb-4'>Fecha: {date?.slice(0, 10)} </Row>
       <Row>
         <Col className={s.image}>
