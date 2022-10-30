@@ -16,7 +16,7 @@ export default function PurchasedProducts () {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   console.log(buys)
-  useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch]) //eslint-disable-line
+  useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch, user.id])
   return (
     <div className='grid h-100 pb-5'>
       <Container fluid style={{ height: '100%' }}>
