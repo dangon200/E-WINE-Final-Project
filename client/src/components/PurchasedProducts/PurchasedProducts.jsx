@@ -33,6 +33,7 @@ export default function PurchasedProducts () {
                 totalAmount={b.totalAmount}
                 paymentMethod={b.paymentMethod}
                 date={b.createdAt}
+                status={b.status}
               />
             ))}
           </Col>

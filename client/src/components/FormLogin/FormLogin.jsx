@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie'
 import jwtdecode from 'jwt-decode'
 import { schemaLogin } from '../utilities/schemas'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, logoutUser, getFavorites, modalRender } from '../../store/actions/actions'
+import { loginUser, logoutUser, getFavorites } from '../../store/actions/actions'
 
 export default function FormLogin () {
   const cookies = new Cookies()
@@ -126,10 +126,11 @@ export default function FormLogin () {
               dispatch(getFavorites(data.user.id))
               setMesagge('Ha iniciado sesión')
               setSend(false)
+              resetForm()
               setSuccess(true)
               setTimeout(() => {
                 setSuccess(false)
-                dispatch(modalRender())
+                /* dispatch(modalRender()) */
               }, 3000)
             } else {
               setMesagge('Correo o contraseña incorrectos')
@@ -196,9 +197,10 @@ export default function FormLogin () {
           {userLogged && <button className='btn btn-danger fs-4 mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
           {err &&
             <div className='alert alert-danger mt-3 text-center' role='alert'><p>{message}</p></div>}
+
           <>
             <div
-              className={style.googleBtn}
+              className={user ? style.googleBtnHide : style.googleBtn}
               id='signInDiv'
             />
           </>

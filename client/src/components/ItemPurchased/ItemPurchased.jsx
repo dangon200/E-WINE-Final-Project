@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/esm/Col'
 import Button from 'react-bootstrap/esm/Button'
 import image from '../../utils/images/vector.jpg'
 
-export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, publicationId }) {
+export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status }) {
   /* const {  } = props */
   return (
     <Row className='w-75 bg-light p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
@@ -20,6 +20,12 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
         <Col className='ms-4'>
           <Row>
             Metodo de pago: {paymentMethod}
+          </Row>
+          <Row>
+            Estado del envio:
+            <Col className={s.status}>
+              {status}
+            </Col>
           </Row>
         </Col>
         <Col>
