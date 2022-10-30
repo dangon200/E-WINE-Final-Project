@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import s from './itemSales.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
@@ -9,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import image from '../../utils/images/vector.jpg'
 import axios from 'axios'
 import { getUserSales } from '../../store/actions/actions'
+import ModaleDetail from '../ModaleDetail/ModaleDetail'
 
 export default function ItemSales ({ name, envio, totalAmount, paymentMethod, date, deliveryId, buyId }) {
   /* const {  } = props */
@@ -57,13 +57,13 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
         </Col>
         <Col className='d-flex flex-column justify-content-start align-items-end gap-3'>
           <Row>
-            <Button
+            <ModaleDetail
               className={s.button}
-            >
-              <Link className='text-light text-decoration-none' to=''>
-                Ver Venta
-              </Link>
-            </Button>
+              buttonText='Ver Venta'
+              title='Detalle Venta'
+              link='/userSales'
+              createAcc
+            />
           </Row>
           {envio === 'PENDIENTE'
             ? <div className='row'>

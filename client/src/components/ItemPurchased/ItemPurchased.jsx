@@ -13,8 +13,6 @@ import { useDispatch, useSelector } from 'react-redux'
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  /* const [show, setShow] = useState(false)
-  const [items, setItems] = useState([]) */
 
   return (
     <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
@@ -83,11 +81,6 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
             : null}
         </Col>
       </Row>
-      {/* {show &&
-        <Row>
-          Detalle Compra
-
-        </Row>} */}
     </Row>
   )
 }

@@ -444,6 +444,21 @@ export const getUserSales = (userId) => {
   }
 }
 
+// SALES BUYS DETAIL
+export const getItemsDetails = (buyId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/buy/${buyId}`)
+      return dispatch({
+        type: 'GET_ITEMS_DETAIL',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
 // DELIVERY
 export const deliveryStatus = (deliveryId, status) => {
   return async function (dispatch) {
