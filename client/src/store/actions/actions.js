@@ -429,6 +429,39 @@ export const getBuys = () => {
   }
 }
 
+// SALES
+export const getUserSales = (userId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buys/user/sales/${userId}`)
+      return dispatch({
+        type: 'GET_USER_SALES',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+// DELIVERY
+export const deliveryStatus = (deliveryId, status) => {
+  return async function (dispatch) {
+    const data = {
+      status
+    }
+    try {
+      const res = await axios.put(`${urlApi}/delivery/${deliveryId}`, data)
+      return dispatch({
+        type: 'GET_DELIVERY_STATUS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
 // REVIEWSBUYS
 
 export const addReviewBuy = (data) => {
