@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getItemsDetails } from '../../store/actions/actions'
 import Modal from 'react-bootstrap/Modal'
 import s from './ModaleDetail.module.css'
+import ItemModaleSales from '../ItemModaleSales/ItemModaleSales'
 
 function ModaleDetail (props) {
   const dispatch = useDispatch()
   const items = useSelector(state => state.itemsDetail)
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(true)
   const handleChange = () => setShow(!show)
-
+  useEffect(() => { handleChange() }, [])
   useEffect(() => {
     dispatch(getItemsDetails(props.buyId))
   }, [dispatch, props.buyId])
@@ -19,15 +20,18 @@ function ModaleDetail (props) {
       <div className={s.button} type='button' onClick={handleChange}>
         {props.buttonText}
       </div>
-      <Modal show={show} onHide={handleChange}>
-        <Modal.Header closeButton>
-          <Modal.Title>{props.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {items}
-          {/* Esperamos un componente a renderizar en el body del modal sino un texto y caso que no esten tiramos un texto */}
-          {props.render ? <props.render /> : props.body ? props.body : 'Debes pasar la data por body o pasar el componente a renderizar'}
-        </Modal.Body>
+      <Modal className={s.container} show={show} onHide={handleChange}>
+        <div className={s.modalBody}>
+
+          <Modal.Header closeButton>
+            <Modal.Title>{props.title}</Modal.Title>
+          </Modal.Header>
+          <div>
+            {items?.map(item => {
+              return <ItemModaleSales key={item.id} id={item.publicationId} title={item.title} name={item.name} price={item.price} count={item.countProducts} image={item.image} />
+            })}
+          </div>
+        </div>
       </Modal>
     </>
   )

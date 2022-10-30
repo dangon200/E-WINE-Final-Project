@@ -62,6 +62,7 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
               buttonText='Ver Venta'
               title='Detalle Venta'
               link='/userSales'
+              buyId={buyId}
               createAcc
             />
           </Row>

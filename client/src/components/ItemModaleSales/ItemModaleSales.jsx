@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 // import { useSelector } from 'react-redux'
-import Counter from '../Counter/Counter'
 import s from './itemModaleSales.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import Button from 'react-bootstrap/esm/Button'
 
-export default function ItemModaleBuy (props) {
+export default function ItemModaleSales (props) {
   const { id, title, price, count, image, name } = props
   // const countItemCarrito=useSelector
   return (
@@ -23,7 +22,7 @@ export default function ItemModaleBuy (props) {
             <Row><span className='fs-3 fw-semibold text-start pt-5'>$ {price}</span></Row>
           </Col>
           <Col className='d-flex flex-column gap-3 justify-content-center align-items-center'>
-            <Row><Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} /></Row>
+            <Row>{count}</Row>
           </Col>
           <Col className={`d-flex gap-5 justify-content-center align-items-end ${s.eliminar}`}>
             <Row>
