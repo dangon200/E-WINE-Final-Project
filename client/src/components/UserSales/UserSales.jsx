@@ -29,6 +29,7 @@ export default function UserSales () {
             {sales.length > 0 && sales.map((s) => (
               <ItemSales
                 key={s.id}
+                buyId={s.buyId}
                 name={s.username}
                 image={s.image}
                 envio={s.status}

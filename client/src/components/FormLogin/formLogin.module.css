@@ -21,3 +21,10 @@
   margin-top: 16px;
   width: 100%;
 }
+
+.googleBtnHide{
+  display: none;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}

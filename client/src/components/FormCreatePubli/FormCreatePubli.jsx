@@ -187,15 +187,18 @@ export default function FormCreatePubli () {
             <div className='progress mt-4' style={{ height: 15 }}>
               <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
             </div>
-            <button
-              type='submit'
-              className={`btn btn-block fs-4 btn-lg mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
-              disabled={isSubmitting && true}
-            >Crear Publicación
-            </button>
-
-            {send && <div className={style.send}>Publicación creada con éxito!</div>}
           </form>
+          <div className='progress mt-4' style={{ height: 15 }}>
+            <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
+          </div>
+          <button
+            type='submit'
+            className={`btn btn-success btn-block btn-lg mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
+            disabled={isSubmitting && true}
+          >Crear Publicación
+          </button>
+
+          {send && <div className={style.send}>Publicación creada con éxito!</div>}
 
           <button onClick={() => setCreateProduct(!createProduct)} className={`btn btn-block fs-4 btn-lg mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
 

@@ -69,9 +69,6 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-      <div className='row fs-2 fw-bold ms-5 ps-5'>
-        Productos recomendados
-      </div>
       {/* <div className='d-flex justify-content-center mt-5 col-3'>
           <Filters setPage={setPage} />
         </div> */}
@@ -87,6 +84,7 @@ export default function Home () {
                     name={p.name}
                     image={p.image}
                     price={p.price}
+                    userId={p.userId}
                     key={p.id}
                   />
                 </div>
