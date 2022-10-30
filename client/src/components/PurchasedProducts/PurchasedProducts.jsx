@@ -15,7 +15,6 @@ export default function PurchasedProducts () {
   const buys = useSelector(state => state.buys)
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
-  console.log(buys)
   useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch, user.id])
   return (
     <div className='grid h-100 pb-5'>
@@ -28,12 +27,14 @@ export default function PurchasedProducts () {
             <h1>Mis Compras</h1>
             {buys.length > 0 && buys.map((b) => (
               <ItemPurchased
-                key={b.id}
+                key={b.buyId}
+                buyId={b.buyId}
                 currency={b.currency}
                 totalAmount={b.totalAmount}
                 paymentMethod={b.paymentMethod}
                 date={b.createdAt}
                 status={b.status}
+                deliveryId={b.deliveryId}
               />
             ))}
           </Col>

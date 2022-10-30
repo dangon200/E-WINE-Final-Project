@@ -23,6 +23,7 @@ import LogInit from './components/LoginInit/LoginInit'
 import Messenger from './components/messenger/Messenger'
 import FormForgotPassword from './components/FormForgotPassword/FormForgotPassword'
 import RecoverPassword from './components/RecoverPassword/RecoverPassword'
+import UserSales from './components/UserSales/UserSales'
 // import ReviewBuy from '../ReviewBuy/ReviewBuy'
 
 import Cookies from 'universal-cookie'
@@ -74,9 +75,10 @@ function App () {
         <Route exact path='/messenger' component={Messenger} />
         <Route exact path='/forgotPassword' component={FormForgotPassword} />
         <Route exact path='/recoverPassword' component={RecoverPassword} />
+        <Route exact path='/userSales' component={UserSales} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
+      <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
     </div>
   )
 }

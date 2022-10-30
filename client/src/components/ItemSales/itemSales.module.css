@@ -21,7 +21,9 @@
     font-size: 15px;
     line-height: 20px;
     color: var(--background-color);
-    background-color: var(--btn-background-color);
+    background-color: #91091E;
+    width: 200px;
+    /* background-color: var(--btn-background-color); */
     box-sizing: border-box;
     padding: 7px;
     border: 1px solid var(--btn-border-color);
