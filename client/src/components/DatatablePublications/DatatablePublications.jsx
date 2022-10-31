@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { bannedPublication, getPublicationsAdm } from '../../store/actions/actions'
+import { useHistory } from 'react-router-dom'
+
 // ({
 //     id: r.id,
 //     title: r.title,              +
@@ -34,6 +36,8 @@ export default function Datatable (props) {
   const dispatch = useDispatch()
   const publications = useSelector(state => state.publicationsAdm)
   const publicationBanned = useSelector(state => state.publicationBanned)
+  const { token } = props
+  const history = useHistory()
 
   // const { users } = props
   const rows = publications.map(p => { return { id: p.id, title: p.title, name: p.name, type: p.type, varietal: p.varietal, description: p.description, origin: p.origin, isBanned: p.isBanned } }
@@ -41,7 +45,11 @@ export default function Datatable (props) {
   const handleBanned = (id, isBanned) => {
     console.log('Entre al handleBanned')
     console.log(id)
-    dispatch(bannedPublication(id, isBanned))
+    if (!token) {
+      history.push('/')
+    } else {
+      dispatch(bannedPublication(id, isBanned))
+    }
   }
   const actionColumn = [{
     field: 'action',

@@ -1,6 +1,4 @@
 import style from './landingPage.module.css'
-/* import React, { useEffect } from 'react' */
-// import bodega from '../assets/imgs/bodega.png'
 import copa from '../assets/imgs/copa.png'
 import teamwork from '../../utils/images/teamwork1.jpg'//eslint-disable-line
 import barriles from '../../utils/images/bodegabarriles.jpg'
@@ -8,7 +6,6 @@ import { BsCheck2 } from 'react-icons/bs'
 import { GiWineBottle } from 'react-icons/gi'
 import { BiBookBookmark } from 'react-icons/bi'
 import { RiCustomerService2Fill } from 'react-icons/ri'
-
 import logo from '../assets/imgs/arriba.png'
 
 import Button from '../Button/Button.jsx'
@@ -39,8 +36,7 @@ export default function LandingPage () {
           <Button link='/home' content='EXPLORÁ LA TIENDA' />
         </div>
       </header>
-
-      <section className='container-fluid mt-5'>
+      <section className='mt-5'>
         <article className={`row align-items-center text-start ${style.cont}`}>
           <img src={copa} alt='copa de vino' className={`col img-fluid d-none d-sm-block ${style.img}`} />
           <div className={`col ${style.details} heigth100 text-center text-sm-start`}>
@@ -71,16 +67,6 @@ export default function LandingPage () {
           <img src={barriles} alt='Bodega' className={`col img-fluid d-none d-sm-block ${style.img}`} />
         </article>
       </section>
-
-      {/* <section className={`container my-5 ${style.carrusel}`}>
-        <div className='row'>
-          <div className='col d-flex justify-content-center'>
-            <Carousel />
-          </div>
-
-        </div>
-
-      </section> */}
 
       <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
         <h2 className='row'>Recomendados por expertos</h2>

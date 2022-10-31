@@ -1,8 +1,8 @@
-/* .general{
+.general{
     font-family: var(--font-family-2) !important;
     line-height: 1.2;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
     color: #170000; 
     font-size: 1.2rem;
@@ -29,14 +29,15 @@
     border: none;
     cursor: pointer;
     background-color: #fefefe;
-    /* border-bottom-color: 1px solid #b9b3af; */
-
-/* .optSelect:hover{
+    border-bottom-color: 1px solid #b9b3af;
+}
+.optSelect:hover{
     background-color: var(--btn-background-color);
     color: var(--background-color);
     font-weight: 500;
     transition: .3s;
 }
+
 .limpiarFiltros{
     align-content: space-around;
     margin-inline: 10px;
@@ -64,59 +65,5 @@
     .general{
         flex-direction: row;
     }
-}  */
-.general{
-    font-family: var(--font-family-2) !important;
-    line-height: 1.2;
-    display: flex;
-    flex-direction: row;
-    color: #170000; 
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-inline: 10px;
-    align-content: space-around;
+} 
 
-}
-.filtros{
-    margin-inline: 10px;
-}
-.optSelect{
-    margin-inline: 10px;
-    font-weight: 500;
-    border-radius: 5px;
-
-    outline: none;
-    color: #b9b3af;
-
-    cursor: pointer;
-    background-color: #fefefe;
-    border-color: #b9b3af;
-}
-.optSelect:hover{
-    background-color: var(--btn-background-color);
-    color: var(--background-color);
-    font-weight: 500;
-    transition: .3s;
-}
-.limpiarFiltros{
-    align-content: space-around;
-    margin-inline: 10px;
-    display: inline;
-    padding: 10px;
-    width: 120px;
-    border-width: 1px;
-    border-radius: 5px;
-    font-family: var(--font-family-2);
-    font-weight: 600;
-    color: var(--btn-sel-background-color);
-    cursor: pointer;
-
-    border-color: #b9b3af;
-    background-color: #fefefe;
-
-}
-.limpiarFiltros:hover{
-    background-color: var(--btn-background-color);
-    color: var(--background-color);
-    transition: .3s;
-}

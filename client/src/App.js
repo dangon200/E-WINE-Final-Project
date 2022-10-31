@@ -8,7 +8,7 @@ import Nav from './components/Nav/Nav'
 import Home from './components/Home/Home.jsx'
 import PublicationDetail from './components/PublicationDetail/PublicationDetail'
 import { useEffect } from 'react'
-import { addCarrito, loginUser, getFavorites } from '../src/store/actions/actions'
+import { addCarrito, loginUser, getFavorites, getVarietals } from '../src/store/actions/actions'
 import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
@@ -21,6 +21,10 @@ import CardStripe from './components/CardStripe/CardStripe'
 import PurchasedProducts from './components/PurchasedProducts/PurchasedProducts'
 import LogInit from './components/LoginInit/LoginInit'
 import Messenger from './components/messenger/Messenger'
+import FormForgotPassword from './components/FormForgotPassword/FormForgotPassword'
+import RecoverPassword from './components/RecoverPassword/RecoverPassword'
+import UserSales from './components/UserSales/UserSales'
+// import ReviewBuy from '../ReviewBuy/ReviewBuy'
 
 import Cookies from 'universal-cookie'
 
@@ -45,12 +49,14 @@ function App () {
     if (token) {
       dispatch(loginUser(token.user))
       dispatch(getFavorites(token.user.id))
+      dispatch(getVarietals())
+      dispatch(getVarietals())
     }
   })
 
   return (
     <div className='App'>
-      <Route exact path={['/', '/home', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Nav} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register', '/forgotPassword', '/recoverPassword']} component={Nav} />
 
       <Switch>
         <Route exact path='/register' component={LogInit} />
@@ -69,9 +75,13 @@ function App () {
         <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
         <Route exact path='/payment/:totalAmount' component={CardStripe} />
         <Route exact path='/messenger' component={Messenger} />
+        <Route exact path='/forgotPassword' component={FormForgotPassword} />
+        <Route exact path='/recoverPassword' component={RecoverPassword} />
+        <Route exact path='/userSales' component={UserSales} />
+        <Route exact path='/messenger' component={Messenger} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
+      <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
     </div>
   )
 }

@@ -7,7 +7,6 @@ const userBuylvlUp = async (id) => {
     }
   }
   )
-
   const dbBuys = await Buy.findAll({
     where: {
       userId: id
