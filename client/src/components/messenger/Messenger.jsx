@@ -5,7 +5,7 @@ import ItemConversation from '../ItemConversation/ItemConversation'
 import style from './Messenger.module.css'
 import axios from 'axios'
 import SidebarMessenger from '../SidebarMessenger/SidebarMessenger'
-
+import { BsFillChatDotsFill } from 'react-icons/bs'
 import { FiSend } from 'react-icons/fi'
 import { io } from 'socket.io-client'
 
@@ -118,7 +118,6 @@ function Messenger () {
           <p className={style.messages}>Messages</p>
           {conversations.map(c => (
             <div key={c.id} onClick={() => setCurrentChat(c)}>
-
               <Conversations key={c.id} conversation={c} currentUser={user} currentChat={currentChat} />
             </div>
           )
@@ -141,7 +140,7 @@ function Messenger () {
                   <button className={style.chatSubmitButton} onClick={handleSubmit}><FiSend /></button>
                 </div>
               </>)
-            : <span className={style.noConversationText}>Abre un conversacion para empezar!</span>}
+            : <div className='d-flex flex-column justify-content-center align-items-center gap-4'><BsFillChatDotsFill size={50} color='#91091E' /><span className={style.noConversationText}>Abre un conversacion para empezar!</span></div>}
         </div>
       </div>
       <div className={style.chatOnline}>

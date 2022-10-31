@@ -26,7 +26,9 @@ function ItemConversation ({ message, own }) {
     <div className={own ? style.messageOwn : style.message}>
       <div className={style.messageTop}>
         <img className={style.messageImage} src='https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png' alt='' />
-        <p className={own ? style.messageTextOwn : style.messageText}>{message.text}</p>
+        <div>
+          <p className={own ? style.messageTextOwn : style.messageText}>{message.text}</p>
+        </div>
       </div>
       <div className={style.messageBottom}>{timeago(message.createdAt)}</div>
     </div>

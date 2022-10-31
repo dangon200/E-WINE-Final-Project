@@ -295,6 +295,7 @@ export const getUsers = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/users`)
+      console.log(res.data)
 
       return dispatch({
         type: 'GET_USERS',
@@ -309,12 +310,37 @@ export const getUsers = () => {
 export const bannedUser = (id, isBanned) => {
   return async function (dispatch) {
     try {
-      console.log(isBanned)
-      console.log('Llegue')
       const res = await axios.put(`${urlApi}/users/${id}?banned=${!isBanned}`)
-      console.log(res)
       return dispatch({
         type: 'GET_USER_BANNED',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+export const sommelierUser = (id, isSommelier) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.put(`${urlApi}/users/${id}?sommelier=${!isSommelier}`)
+
+      return dispatch({
+        type: 'GET_USER_SOMMELIER',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+export const usersByProvinces = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/users/provinces`)
+      console.log('esta es la respuesta de la API para las provincias', res)
+      return dispatch({
+        type: 'GET_USER_PROVINCES',
         payload: res.data
       })
     } catch (error) {
@@ -418,13 +444,40 @@ export const getUserBuys = (userId) => {
 export const getBuys = () => {
   return async function (dispatch) {
     try {
-      const res = axios.get(`${urlApi}/buys`)
+      const res = await axios.get(`${urlApi}/buys`)
       return dispatch({
         type: 'GET_ALL_BUYS',
         payload: res.data
       })
     } catch (error) {
       return error.message
+    }
+  }
+}
+// Varietales
+export const getVarietals = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/varietals`)
+      return dispatch({
+        type: 'GET_ALL_VARIETALS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+export function postVarietals (data) {
+  return async function (dispatch) {
+    try {
+      const api = await axios.post(`${urlApi}/varietals`, data)
+      return dispatch({
+        type: 'POST_VARIETALS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 }
@@ -436,6 +489,21 @@ export const getUserSales = (userId) => {
       const res = await axios.get(`${urlApi}/buys/user/sales/${userId}`)
       return dispatch({
         type: 'GET_USER_SALES',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+// SALES BUYS DETAIL
+export const getItemsDetails = (buyId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/buy/${buyId}`)
+      return dispatch({
+        type: 'GET_ITEMS_DETAIL',
         payload: res.data
       })
     } catch (error) {
@@ -488,6 +556,23 @@ export const getReviewBuy = (id) => {
       })
     } catch (error) {
       console.log(error)
+    }
+  }
+}
+
+// volver Admin a un usuario
+
+export const adminUser = (id, isAdmin) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.put(`${urlApi}/users/${id}?admin=${!isAdmin}`)
+
+      return dispatch({
+        type: 'GET_USER_ADMIN',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
     }
   }
 }

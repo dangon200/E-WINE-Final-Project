@@ -7,7 +7,6 @@ import Counter from '../Counter/Counter'
 import s from './itemCarrito.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import Button from 'react-bootstrap/esm/Button'
 
 export default function ItemCarrito (props) {
   const { id, title, price, count, image, name } = props
@@ -41,16 +40,16 @@ export default function ItemCarrito (props) {
           </Col> */}
           <Col className={`d-flex gap-5 justify-content-center align-items-end ${s.eliminar}`}>
             <Row>
-              <Button className={s.button} onClick={() => { removeFromCarrito(id) }}>
+              <button className={s.button} onClick={() => { removeFromCarrito(id) }}>
                 Eliminar
-              </Button>
+              </button>
             </Row>
             <Row>
-              <Button className={s.button2}>
+              <button className={s.button2}>
                 <Link className='text-decoration-none text-dark' to={`/publication/${id}`}>
                   Ver producto
                 </Link>
-              </Button>
+              </button>
             </Row>
           </Col>
         </Row>

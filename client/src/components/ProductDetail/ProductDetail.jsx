@@ -32,7 +32,7 @@ export default function ProductDetail (props) {
           </Row>
         </Tab>
         <Tab eventKey='masInfo' title='MAS INFO'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro asperiores, minus hic nam unde earum quos iure consequatur eius nemo quam, natus nostrum eos temporibus, fugiat illo dolorum sapiente atque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati facere eius eveniet omnis. Ipsa magni nulla maxime. Ad odio corporis nisi? Assumenda animi laudantium, soluta et distinctio nisi doloribus minima? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, doloribus sequi soluta dolores minus voluptates deleniti nulla adipisci similique distinctio sit quos delectus ullam consequuntur quisquam accusantium blanditiis impedit fugiat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa asperiores molestias iusto. Magnam facilis ipsam repellat cupiditate earum omnis, sequi quia exercitationem necessitatibus doloribus harum numquam. Perferendis non id beatae?
+          {publication.description}
         </Tab>
         {/* Agregar mas en caso de ser necesario */}
         {/* <Tab eventKey='contact' title='Contact'>

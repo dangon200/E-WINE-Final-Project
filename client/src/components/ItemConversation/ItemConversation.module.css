@@ -33,8 +33,8 @@
     font-size: 2rem;
     padding: 12px;
     border-radius: 20px;
-    background-color: #56070C;
-    color: white;
+    background-color: #e3e2e2;
+    color: black;
     height: 100%;
     max-width: 300px;
 }
@@ -49,10 +49,10 @@
 
 .messageTextOwn{
     font-size: 2rem;
-    height: auto;
     padding: 12px;
     border-radius: 20px;
-    background-color: lightgray;
+    background-color: #e3e2e2;
     color: black;
+    max-height: 500px;
     max-width: 300px;
 }

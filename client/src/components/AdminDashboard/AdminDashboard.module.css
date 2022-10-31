@@ -23,14 +23,25 @@
        align-items: center;
        padding: 5px;
        cursor: pointer;
+       /* color: #f1f0f0; */
    }
    .li:hover{
-       background-color: #ece8ff;
+       background-color: #56070C;
+      
    }
    .icon {
        font-size: 18px;
-       color: #7451f8;
+       color: #63161b;
    }
    .center{
        padding-left: 10px;
    }
+   .link{
+    text-decoration: none;
+   }
+   .text{
+    color: #f1f0f0;
+   }
+   /* .text:hover{
+    color: #1F1F1F;
+   } */

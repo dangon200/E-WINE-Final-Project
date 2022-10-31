@@ -69,7 +69,7 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
         </div>
         <div className={`d-inline ${style.btnContainer}`}>
           <Link
-            to={`/publication/${id}`} className={`btn btn-primary ${style.moreBtn}`} onClick={() => {
+            to={`/publication/${id}`} className={`${style.moreBtn}`} onClick={() => {
               dispatch(getByPublication(id))
               dispatch(getQuestions(id))
             }}
@@ -77,7 +77,7 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
           </Link>
           {user.id !== userId
             ? <button
-                className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
+                className={`d-inline me-5 ms-0 ${style.addBtn}`} onClick={() => {
                   window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
                 }}
               >

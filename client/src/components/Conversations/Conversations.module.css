@@ -4,7 +4,7 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 20px;
-    border-bottom: 1px solid rgb(204, 202, 202);
+    border-bottom: .8px solid rgb(204, 202, 202);
 }
 
 .conversationActive{
@@ -18,7 +18,7 @@
 }
 
 .conversation:hover{
-    background-color: rgba(246, 246, 246, 0.706);
+    background-color: rgba(246, 246, 246, 0.776);
 }
 
 .conversationImage{

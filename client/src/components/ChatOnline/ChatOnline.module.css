@@ -17,7 +17,6 @@
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid black;
 }
 
 .chatOnlineBadge{
@@ -25,8 +24,8 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #379237;
-    top: 0;
+    background-color: #54B435;
+    top: 30px;
     right: 0;
 }
 
@@ -36,7 +35,7 @@
     height: 10px;
     border-radius: 50%;
     background-color: #CF0A0A;
-    top: 0;
+    top: 30px;
     right: 0;
 }
 
