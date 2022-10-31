@@ -10,19 +10,20 @@ import axios from 'axios'
 import { getUserBuys } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
+import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 
-export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
+export default function ItemPurchased ({ currency, totalAmount, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
 
   return (
-    <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
+    <Row className='w-75 p-3 mb-0 border-bottom border-2 rounded-4 fs-4 mt-5'>
       <Row className='border-bottom mb-4'>
-        <Col>
+        <Col className='text-start'>
           Fecha: {date?.slice(0, 10)}
         </Col>
         <Col>
-          #{buyId}
+          Id de compra: #{buyId}
         </Col>
       </Row>
       <Row>
@@ -30,25 +31,27 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
           <img className='img-fluid' src={image} alt={image} />
         </Col>
         <Col className={s.dataContainer}>
-          <Row>
+          {/* <Row>
             <Col>
               Metodo de pago:
             </Col>
             <Col>
               {paymentMethod}
             </Col>
-          </Row>
+          </Row> */}
           <Row>
-            <Col>
+            <Col className={s.status}>
               Estado del envio:
             </Col>
-            <Col className={status !== 'RECIBIDO' ? s.status : s.statusSuccess}>
-              {status}
-            </Col>
+          </Row>
+          <Row>
+            <DeliveryTracker status={status} />
           </Row>
         </Col>
-        <Col>
-          $ {totalAmount / 100}
+        <Col className='d-flex justify-content-start align-items-center'>
+          <Row>
+            Valor de compra: $ {totalAmount / 100}
+          </Row>
         </Col>
         <Col className='d-flex flex-column gap-3'>
           <Row>

@@ -90,6 +90,8 @@
 
 .logoContainer{
     display: flex;
+    flex-direction: row;
+    align-items: center;
     height: 60px;
 }
 
@@ -99,9 +101,32 @@
     border-radius: 50%;
     border: 1px solid black;
     margin-left: 16px;
+    object-fit: cover;
 }
   
 .username{
     font-size: 16px;
     color: black;
+}
+
+.messenger{
+    margin-left: 16px;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    background-color: #91091E;
+    padding: 4px 8px;
+    border-radius: 5px;
+    border:1px solid #91091E;
+}
+
+.messenger:hover{
+    color:  #91091E;
+    background-color: white;
+}
+
+.notificationIcon{
+    width: 30px;
+    height: 30px;
+    margin-left: 16px;
 }

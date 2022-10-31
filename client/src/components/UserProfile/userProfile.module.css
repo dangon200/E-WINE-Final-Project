@@ -20,10 +20,53 @@
     background-color: #EEEEEE;
 }
 
-.table, .table2{
-    width: 75%;
+.table{
+    width: 600px;
     background-color: #FFFFFF;
     border-radius: 10px;
     font-size: 1.5rem;
     margin-top: 10px;
+}
+
+.dataContainer{
+    margin: 20px 0 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 40px;
+}
+
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image{
+    border-radius: 50%;
+    border: 2px solid #56070C;;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.input{
+    display: none;
+}
+
+.btn{
+    background-color: #890F0D;
+    color: white;
+    border: 1px solid #890F0D;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 1.4rem;
+}
+
+.btn:hover{
+    background-color: white;
+    color:  #56070C;
 }

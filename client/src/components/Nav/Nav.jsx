@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
+import { MdNotifications } from 'react-icons/md'
 // import { useEffect } from 'react'
 // import SeachBar from '../SearchBar/SearchBar'
 
@@ -31,6 +32,14 @@ export default function Nav () {
               <img className={style.userImage} src={user.image ? user.image : 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png'} alt='user' />
               <span className={style.username}>{user.username}</span>
   </Link> //eslint-disable-line
+            : null}
+          {user
+            ? <MdNotifications className={style.notificationIcon} />
+            : null}
+          {user
+            ? <Link to='/messenger' className={style.messenger}>
+              Chatear con un Sommelier
+            </Link> //eslint-disable-line
             : null}
         </div>
 

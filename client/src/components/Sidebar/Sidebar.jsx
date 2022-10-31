@@ -7,25 +7,25 @@ import {
 } from 'react-icons/fa'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { GoGraph } from 'react-icons/go'
-import { BiLogOut } from 'react-icons/bi'
+// import { BiLogOut } from 'react-icons/bi'
 import s from './Sidebar.module.css'
 import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../../utils/images/logo.png'
-import { useDispatch } from 'react-redux'
+/* import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../store/actions/actions'
-import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie' */
 
 const Sidebar = () => {
-  const cookies = new Cookies()
+  /* const cookies = new Cookies()
+  const dispatch = useDispatch() */
   const location = useLocation()
-  const dispatch = useDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   /* const untoggle = () => setIsOpen(isOpen) */
-  function removeCookies () {
+  /* function removeCookies () {
     dispatch(logoutUser())
     cookies.remove('TOKEN')
-  }
+  } */
   const menuItem = [
     {
       path: '/home',
@@ -75,12 +75,12 @@ const Sidebar = () => {
                   </NavLink>
                 ))
         }
-        <div style={{ 'margin-top': '150px' }} className={`${(isOpen ? 'd-flex justify-content-start align-items-center' : '')}`}>
+        {/* <div style={{ 'margin-top': '150px' }} className={`${(isOpen ? 'd-flex justify-content-start align-items-center' : '')}`}>
           <div className='pt-5'><button onClick={() => removeCookies()} className={s.logout}><BiLogOut color='#91091E' size={25} /></button></div>
           <div style={{ display: isOpen ? 'block' : 'none' }} className='pt-5 fs-4 fw-semibold text-dark ms-5'>
             <span>Cerrar sesion</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )

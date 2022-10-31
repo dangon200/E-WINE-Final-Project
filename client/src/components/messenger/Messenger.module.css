@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.sidebar{
+    padding-top: 10px;
+}
+
 .chatMenu{
     background-color: #FEFEFE;
     box-shadow: 3px 0px 5px 0px rgba(214, 214, 214, 0.842);
@@ -76,7 +80,7 @@
 }
 
 .chatOnline{
-    flex: 1.5;
+    flex: 2;
     border-left: 1px solid gray;
     background-color: #e8e3e3;
     overflow: scroll;

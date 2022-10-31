@@ -6,6 +6,7 @@ import elegis from '../../utils/images/elegis.png'
 import disfrutas from '../../utils/images/disfrutas.png'
 import recibis from '../../utils/images/recibis.png'
 // import Footer from '../Footer/Footer.jsx'
+import team from '../../utils/images/teamwork1.jpg'
 
 function About () {
   return (
@@ -17,6 +18,36 @@ function About () {
           <Button content='Visitar la tienda' link='/home' />
         </div>
       </div> */}
+      <h1 className='text-center mt-5'>Nuestro equipo</h1>
+      <div className={s.container}>
+        <section className={s.cardSection}>
+          <div className={s.card}>
+            <img className={s.cardImage} src={team} alt='team' />
+            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+            <span className='fs-4'>Fullstack developer</span>
+          </div>
+          <div className={s.card}>
+            <img className={s.cardImage} src={team} alt='team' />
+            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+            <span className='fs-4'>Fullstack developer</span>
+          </div>
+          <div className={s.card}>
+            <img className={s.cardImage} src={team} alt='team' />
+            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+            <span className='fs-4'>Fullstack developer</span>
+          </div>
+          <div className={s.card}>
+            <img className={s.cardImage} src={team} alt='team' />
+            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+            <span className='fs-4'>Fullstack developer</span>
+          </div>
+          <div className={s.card}>
+            <img className={s.cardImage} src={team} alt='team' />
+            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+            <span className='fs-4'>Fullstack developer</span>
+          </div>
+        </section>
+      </div>
       <div className={s.entrega}>
         <h1 className={s.h1exp}>¿Cómo es la experiencia?</h1>
         <div className={s.contenedor}>

@@ -5,11 +5,37 @@ import Sidebar from '../Sidebar/Sidebar'
 import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
 import s from './userProfile.module.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import axios from 'axios'
+import { updateProfileImage } from '../../store/actions/actions'
 
 export default function UserProfile () {
   const user = useSelector(state => state.user)
+  const dispatch = useDispatch()
+  const handleChange = async (e) => {
+    const reader = new FileReader()
+    reader.addEventListener('load', function () {
+      document.getElementById('image').src = reader.result
+    })
+    reader.readAsDataURL(e.target.files[0])
 
+    const cloudName = 'dfq27ytd2'
+    const preset = 'cpnushlf'
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
+
+    const formData = new FormData()
+    formData.append('upload_preset', preset)
+    formData.append('file', e.target.files[0])
+
+    const send = await axios.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+    console.log(send)
+    const urlImage = send.data.secure_url
+    dispatch(updateProfileImage(user.id, urlImage))
+  }
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
@@ -27,7 +53,12 @@ export default function UserProfile () {
                   <h2>Datos de la cuenta</h2>
                 </Col>
               </Row>
-              <Container>
+              <Container className={s.dataContainer}>
+                <div className={s.imageContainer}>
+                  <img id='image' className={s.image} src={user.image ? user.image : 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png'} alt='profile' />
+                  <input type='file' className={s.input} id='input' onChange={handleChange} />
+                  <button className={s.btn} onClick={() => document.getElementById('input').click()}>Cambiar foto de perfil</button>
+                </div>
                 <Table responsive className={s.table} size='lg'>
                   {/* <thead>
                   <tr>
@@ -59,10 +90,10 @@ export default function UserProfile () {
                   </tbody>
                 </Table>
               </Container>
-              <Row className='fs-4 d-flex justify-content-center align-items-center pt-3'>
+              <Row className='fs-3 d-flex justify-content-center align-items-center pt-3'>
                 <Col className='d-flex justify-content-start'>
                   <Link className='text-decoration-none' to='/formEditUser'>
-                    Modificar datos de cuenta
+                    Cambiar contraseña
                   </Link>
                 </Col>
               </Row>
@@ -88,6 +119,7 @@ export default function UserProfile () {
               </Table> */}
             </Row>
           </Col>
+
         </Row>
       </Container>
     </div>

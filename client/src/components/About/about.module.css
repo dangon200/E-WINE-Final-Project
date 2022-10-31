@@ -2,7 +2,7 @@
     margin-left: auto;
     margin-right: auto;
 } */
-.header {
+/* .header {
     background-image: url('../../utils/images/MayorCalidadFotoAbout.jpg');
     background-size: cover;
     height: 80em;
@@ -25,6 +25,37 @@
 .h1{
     font-size: 50px;
     text-transform: uppercase;
+} */
+
+.container{
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 50rem;
+    margin: 50px 20px 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+}
+.cardSection{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 20px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: 350px;
+    width: 250px;
+    background-color: #e5e3e3;
+    border-radius: 15px;
+}
+.cardImage{
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 120px;
+    height: 150px;
+    object-fit: cover;
 }
 .enfasis{
     font-family: var(--font-family-2);
