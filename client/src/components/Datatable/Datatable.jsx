@@ -29,7 +29,7 @@ export default function Datatable (props) {
   const handleBanned = (id, isBanned, createdAt) => {
     console.log('Entre al handleBanned')
     console.log(createdAt)
-    if (!token) {
+    if (!token.user.isAdmin) {
       history.push('/')
     } else {
       dispatch(bannedUser(id, isBanned))
@@ -38,7 +38,7 @@ export default function Datatable (props) {
   const handleSommelier = (id, isSommelier, createdAt) => {
     console.log('Entre al handleSommelier')
     console.log(createdAt)
-    if (!token) {
+    if (!token.user.isAdmin) {
       history.push('/')
     } else {
       dispatch(sommelierUser(id, isSommelier))

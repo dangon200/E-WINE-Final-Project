@@ -11,15 +11,15 @@ import Container from 'react-bootstrap/esm/Container'
 function About () {
   return (
     <Container className='px-0'>
-      <div>
-        <div className={s.header}>
+      <div className={`container d-flex justify-content-center d-grid gap-3 ${s.entrega}`}>
+        <div className={`row ${s.header}`}>
           <div className={s.apartado}>
             <h1 className={s.h1}>Conocé mas sobre <p className={s.enfasis}>E-Wine</p></h1>
             <h2>Con nuestra variedad, podrás encontrar lo que buscas y recibirlo en el momento oportuno.</h2>
             <Button content='Visitar la tienda' link='/home' />
           </div>
         </div>
-        <div className={s.entrega}>
+        <div className={`container d-flex justify-content-center d-grid gap-3 ${s.entrega}`}>
           <h1 className={s.h1exp}>¿Cómo es la experiencia?</h1>
           <div className={s.contenedor}>
             <div className={s.box}>

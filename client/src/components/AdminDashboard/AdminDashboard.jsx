@@ -78,7 +78,9 @@ function AdminDashboard () {
     return arrayB.length
   }
   useEffect(() => {
-    !token && history.push('/register')
+    console.log(token)
+    console.log(token.user.isAdmin)
+    !token.user.isAdmin && history.push('/')
   }, [token, history])
 
   useEffect(() => {
