@@ -56,6 +56,7 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
                 }))
             }}
           />}
+        <div />
       </div>
       <div className={`card-img-top ${style.imgContainer}`}>
         <img className={style.img} src={image} alt='Wine-Img' />
@@ -74,14 +75,15 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
             }}
           >Más Info
           </Link>
-          {user.id !== userId &&
-            <button
-              className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
-                window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
-              }}
-            >
+          {user.id !== userId
+            ? <button
+                className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
+                  window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
+                }}
+              >
               {isInCarrito(id) ? 'Remover' : 'Añadir'}
-            </button>}
+            </button> //eslint-disable-line
+            : null}
         </div>
       </div>
     </div>

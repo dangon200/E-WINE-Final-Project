@@ -7,7 +7,9 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 // import { useEffect } from 'react'
-import { FiUser } from 'react-icons/fi'
+// import SeachBar from '../SearchBar/SearchBar'
+
+// import { showModal } from '../../store/actions/actions'
 
 export default function Nav () {
   const user = useSelector(state => state.user)
@@ -17,11 +19,22 @@ export default function Nav () {
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
       <div className='container-fluid'>
+        <div className={style.logoContainer}>
 
-        <Link to='/home' className={`me-auto ${style.span}`}>
-          <img src={logo} alt='logo' className={`navbar-brand ${style.logo}`} />
-          <span className={style.span}>E-WINE</span>
-        </Link>
+          <Link to='/home' className={`me-auto ${style.span}`}>
+            <img src={logo} alt='logo' className={`navbar-brand ${style.logo}`} />
+            {/* <span className={style.span}>E-WINE</span> */}
+          </Link>
+          {user
+            ? <Link to='/userProfile' className={style.userDataContainer}>
+              <img className={style.userImage} src={user.image ? user.image : 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png'} alt='user' />
+              <span className={style.username}>{user.username}</span>
+            </Link> //eslint-disable-line
+            : null}
+        </div>
+        {/* <div>
+          <SeachBar />
+        </div> */}
 
         <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
           <span className='navbar-toggler-icon' />
@@ -47,9 +60,7 @@ export default function Nav () {
               createAcc
             />
           </div>
-          <div className={style.userLogo}>
-            {user ? <Link to='/userProfile'><FiUser color='black' size={20} /> </Link> : null}
-          </div>
+
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
             <img src={bolsita} alt='bolsita' />

@@ -21,7 +21,8 @@ body{
 }
 .App{
   /* width: 100%; */
-  background-color: #F1F0F0;
+  background-color: #FFFFFF;
+  /* background-color: #F1F0F0; */
   position: relative;
 }
 .heigth100{

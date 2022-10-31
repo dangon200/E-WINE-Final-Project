@@ -19,6 +19,7 @@ const initialState = {
   userSommelier: {},
   buy: {},
   buys: [],
+  sales: [],
   questions: [],
   usersByProvinces: {},
   allVarietals: [],
@@ -84,6 +85,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, buys: action.payload }
     case 'GET_ALL_BUYS':
       return { ...state, buys: action.payload }
+    case 'GET_USER_SALES':
+      return { ...state, sales: action.payload }
+    case 'GET_DELIVERY_STATUS':
+      return { ...state, sales: action.payload }
     case 'GET_USER_BANNED':
       return { ...state, userDetail: action.payload }
     case 'GET_PUBLICATIONS_ALL':
@@ -98,6 +103,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, allVarietals: action.payload }
     case 'POST_VARIETALS':
       return { ...state, detailVarietal: action.payload }
+    case 'ADD_REVIEWBUY':
+      return { ...state, reviewBuy: action.payload }
+    case 'GET_REVIEWBUY_ID':
+      return { ...state, reviewBuy: action.payload }
     default:
       return { ...state }
   }

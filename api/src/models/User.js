@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         primaryKey: true
       },
       username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING ,
         allowNull: false
       },
       password: {

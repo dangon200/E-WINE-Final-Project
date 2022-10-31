@@ -2,61 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70%;
+    width: 100%;
     max-height: 200px;
 }
-/*
-.ItemCarrito{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 50px;
-    height: 200px;
-    width: 50%;
-    background-color: white;
-    backdrop-filter: blur(10px);
-}
-
 .image{
     display: flex;
     justify-content: flex-start;
-    height: 100%;
-    width: 200px;
-}
-
-.imagePublication{
-    height: 100%;
-    min-width: 200px;
-    object-fit: cover;
-}
-
-.containerCounter{
-    display: grid;
-    flex-direction: column;
-    align-items: center;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-}
-
-
-.publication{
-    font-family: var(--font-family-1);
-    font-size: large;
-    display: flex;
-    text-align: left;
-}
-
-.count, .price{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-family-1);
-    font-size: medium;
-} */
-.image{
-    display: flex;
-    justify-content: flex-start;
-    height: 100%;
+    max-height: 180px;
     width: 200px;
     object-fit: cover;
 }
@@ -64,16 +16,15 @@
 .button{
     font-family: var(--font-family-1);
     font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 20px;
-    color: var(--background-color);
-    background-color: var(--btn-background-color);
-    box-sizing: border-box;
-    padding: 7px;
-    border: 1px solid var(--btn-border-color);
+    padding: 0;
+    width: 60px;
+    color: #91091E;
+    background-color: transparent;
+    border: none;
     border-radius: 6px;  
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     transition: .3s;
 }
@@ -81,34 +32,50 @@
 .button2{
     font-family: var(--font-family-1);
     font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
+    font-weight: 500;
+    font-size: 16px;
     line-height: 20px;
+    padding: 0;
+    width: 95px;
     color: var(--btn-background-color);
-    background-color: #FFFFFF;
-    box-sizing: border-box;
-    padding: 7px;
-    border: 1px solid var(--btn-border-color);
-    border-radius: 6px;  
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    transition: .3s;
 }
 
 .button:hover{
-    font-family: var(--font-family-1);
-    background-color: #56070cd2;
-    color: #FFFFFF;
-    border: 1px solid var(--btn-border-color);
-    transition: .3s;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+    background-color: transparent;
+    color: #91091E;
 }
 
 .button2:hover{
-    font-family: var(--font-family-1);
-    background-color: #EEEEEE;
+    background-color: transparent;
     color: var(--btn-background-color);
-    border: 1px solid var(--btn-border-color);
-    transition: .3s;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+}
+.eliminar{
+    display: flex;
+    flex-direction: column;
+}
+.item{
+    width: 75%;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .container{
+        margin-top: 30px;
+    }
+    .image{
+        width: 120px;
+        background-size: cover;
+    }
+    .eliminar{
+        display: flex;
+        flex-direction: row;
+        margin-top: 15px;
+    }
+    .item{
+        width: 75%;
+        padding: 0px;
+    }
 }

@@ -55,6 +55,12 @@
   flex-direction: column;
 }
 
+.image{
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .details h2{
   font-family: var(--font-family-2);
   font-size: 3.6rem;

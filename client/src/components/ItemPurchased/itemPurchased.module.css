@@ -5,6 +5,7 @@
     align-items: center;
     padding-top: 80px;
     background-color: #EEEEEE;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .image{
@@ -63,4 +64,17 @@
     border: 1px solid var(--btn-border-color);
     transition: .3s;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.dataContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.status{
+    color: red
+}
+
+.statusSuccess{
+    color: green;
 }

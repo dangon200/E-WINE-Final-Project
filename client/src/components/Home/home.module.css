@@ -1,6 +1,6 @@
-.globalContainer{
+/* .globalContainer{
     margin-top: 8px;
-}
+} */
 
 .divPagination{
     display: flex;
@@ -9,6 +9,14 @@
     justify-content: center;
     gap: 8px;
     animation: show 3s;
+}
+
+.header{
+    padding: 5px;
+    color: white;
+    font-size: 18px;
+    background-color: #91091E;
+    /* background-color: var(--background-color); */
 }
 
 @keyframes show{
@@ -20,12 +28,24 @@
 }
 
 .containerProducts{
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 50rem;
+    margin: 0px 40px 30px 40px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 31rem), 1fr));
+}
+
+.image{
+    max-height: 350px;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 24px;
-    padding-bottom: 50px;
+    object-fit: cover;
+}
+
+.image2{
+    max-height: 300px;
+    width: 85%;
+    object-fit: cover;
+    margin-bottom: 25px;
 }
 
 .sectionCards{
@@ -37,21 +57,12 @@
 .buttonLeft, .buttonRight{
     font-weight: bolder;
     width: 30px;
-    height: 30px;
-    /* border: 1px solid var(--btn-background-color); /
-    border-radius: 6px;
     cursor: pointer;
-    color: #999491 ;
-    transition: 0.2s;
-    border:0ch;
-    font-size: 20px;*/
+    height: 30px;
 }
 
-
 .buttonLeft:hover, .buttonRight:hover{
-    background-color: var(--btn-background-color);
-    color: white; 
-    color: #837e7c;
+    transition: .3s;
     transform: scale(1.3);
 }
 
@@ -59,6 +70,7 @@
     animation: show 2s;
     width: 100%;
     display: flex;
+    margin: 20px 0 15px 0;
     justify-content: center;
     align-items: center;
     grid-gap: 16px;
@@ -86,5 +98,19 @@
     }
     100%{
         opacity: 100
+    }
+}
+
+@media (max-width: 992px){
+    .image2{
+        max-height: 275px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 576px){
+    .image2{
+        max-height: 200px;
+        width: 100%;
     }
 }
