@@ -9,14 +9,11 @@ import image from '../../utils/images/vector.jpg'
 import axios from 'axios'
 import { getUserBuys } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
-import ItemModaleBuy from '../ItemModaleBuy/ItemModaleBuy'
-import Modale from '../Modale/Modale'
+import ModaleDetail from '../ModaleDetail/ModaleDetail'
 
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-  /* const [show, setShow] = useState(false)
-  const [items, setItems] = useState([]) */
 
   return (
     <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
@@ -55,39 +52,35 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
         </Col>
         <Col className='d-flex flex-column gap-3'>
           <Row>
-            <Modale
-              buttonText='Ver compra'
-              title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
-              render={ItemModaleBuy}
-              link='/userPurchased'
+            <ModaleDetail
+              className={s.button}
+              buttonText='Ver Compra'
+              title='Detalle Compra'
+              link='/userSales'
+              buyId={buyId}
               createAcc
             />
           </Row>
-          {status === 'ENVIADO'
-            ? <div className='row'>
-              <Button
-                className={s.button}
-                onClick={async () => {
-                  const data = {
-                    status: 'RECIBIDO'
-                  }
-                  const delivery = await axios.put(`https://e-winespf.herokuapp.com/delivery/${deliveryId}`, data)
-                  if (delivery) {
-                    dispatch(getUserBuys(user.id))
-                  }
-                }}
-              >
+          <Row>
+            {status === 'ENVIADO'
+              ? <Button
+                  className={s.button}
+                  onClick={async () => {
+                    const data = {
+                      status: 'RECIBIDO'
+                    }
+                    const delivery = await axios.put(`https://e-winespf.herokuapp.com/delivery/${deliveryId}`, data)
+                    if (delivery) {
+                      dispatch(getUserBuys(user.id))
+                    }
+                  }}
+                >
                 Recibi la compra
-              </Button>
-              </div>  //eslint-disable-line
-            : null}
+                </Button> //eslint-disable-line
+              : null}
+          </Row>
         </Col>
       </Row>
-      {/* {show &&
-        <Row>
-          Detalle Compra
-
-        </Row>} */}
     </Row>
   )
 }
