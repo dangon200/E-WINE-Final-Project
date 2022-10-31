@@ -19,6 +19,8 @@ const initialState = {
   buy: {},
   buys: [],
   questions: [],
+  reviewBuy: [],
+  reviewBuys: [],
   login: true
 }
 
@@ -90,6 +92,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, reviewBuy: action.payload }
     case 'GET_REVIEWBUY_ID':
       return { ...state, reviewBuy: action.payload }
+    case 'GET_REVIEWBUYS_ID':
+      return { ...state, reviewBuys: action.payload }
     default:
       return { ...state }
   }

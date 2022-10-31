@@ -433,7 +433,7 @@ export const getBuys = () => {
 export const addReviewBuy = (data) => {
   return async function (dispatch) {
     try {
-      const api = await axios.post(`${urlApi}/reviewBuy`, data)
+      const api = await axios.post(`${urlApi}/reviewsBuys`, data)
       return dispatch({
         type: 'ADD_REVIEWBUY',
         payload: api.data
@@ -447,9 +447,22 @@ export const addReviewBuy = (data) => {
 export const getReviewBuy = (id) => {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/reviewBuy/${id}`)
+      const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
       return dispatch({
         type: 'GET_REVIEWBUY_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const getReviewBuys = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
+      return dispatch({
+        type: 'GET_REVIEWBUYS_ID',
         payload: api.data
       })
     } catch (error) {

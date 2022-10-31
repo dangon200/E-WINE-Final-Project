@@ -1,11 +1,13 @@
 const { Router } = require('express')
 const router = Router()
-const { Publication, User, Reviewbuy, Buyitem, Buy } = require('../db')
+const { Publication, User, ReviewBuy, BuyItem, Buy } = require('../db')
 const { userBuylvlUp } = require('../controllers/lvlUser')
 
 // CREAR REVIEW
 router.post('/', async (req, res) => {
   const { userId, publicationId, puntaje, textRev } = req.body
+  console.log(userId)
+  console.log(publicationId)
 
   const hasBuy = await Buy.findAll(
     {
@@ -16,7 +18,7 @@ router.post('/', async (req, res) => {
   )
   const buyIds = hasBuy.map(p => p.id)
 
-  const hasBuyItem = await Buyitem.findAll(
+  const hasBuyItem = await BuyItem.findAll(
     {
       where: {
         buyId: buyIds,
@@ -24,7 +26,7 @@ router.post('/', async (req, res) => {
       }
     }
   )
-  const revPuntuada = await Reviewbuy.findAll(
+  const revPuntuada = await ReviewBuy.findOne(
     {
       where: {
         userId,
@@ -33,9 +35,9 @@ router.post('/', async (req, res) => {
     }
   )
   try {
-    if (revPuntuada) { return res.status(400).json('La publicacion ya fue puntuada por este usuario') }
+    if (revPuntuada) { return res.status(400).send(console.log('La publicacion ya fue puntuada por este usuario')) }
     if (hasBuyItem.length >= 1) {
-      const AddReview = await Reviewbuy.create(
+      const AddReview = await ReviewBuy.create(
         {
           stars: puntaje,
           text: textRev,
@@ -45,9 +47,10 @@ router.post('/', async (req, res) => {
       )
       console.log(AddReview)
       // revisar nivel usuario
-      await userBuylvlUp(userId)
+      const lvlUp = await userBuylvlUp(userId)
+      console.log(lvlUp)
       return res.status(200).json(AddReview)
-    } else return res.status(404).json('No se puede puntuar por que no hay compra registrada')
+    } else return res.status(404).send(console.log('No se puede puntuar por que no hay compra registrada'))
   } catch (error) {
     console.log(error)
   }
@@ -56,7 +59,7 @@ router.post('/', async (req, res) => {
 // CONSTESTA CON EL PUNTAJE GRAL Y LA CANTIDAD
 router.get('/:id', async (req, res) => {
   const { id } = req.params
-  const PubPunctuated = await Reviewbuy.findAll(
+  const PubPunctuated = await ReviewBuy.findAll(
     {
       where: {
         publicationId: id
@@ -77,7 +80,7 @@ router.get('/reviewsDetail/:id', async (req, res) => {
   try {
     const results = []
 
-    const reviewsDetail = await Reviewbuy.findAll({
+    const reviewsDetail = await ReviewBuy.findAll({
       include: [{
         model: Publication
       }, {
@@ -96,7 +99,8 @@ router.get('/reviewsDetail/:id', async (req, res) => {
         id: r.id,
         text: r.text,
         stars: r.stars,
-        username: r.user.username
+        username: r.user.username,
+        createdAt: r.createdAt
       })
     })
     console.log(results)

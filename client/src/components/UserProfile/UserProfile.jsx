@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 
 export default function UserProfile () {
   const user = useSelector(state => state.user)
-
+  console.log(user.username, user.buyLevel)
   return (
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
@@ -43,6 +43,10 @@ export default function UserProfile () {
                     <tr>
                       <td style={{ 'padding-left': '10px' }}>Usuario</td>
                       <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.username}</td>
+                    </tr>
+                    <tr>
+                      <td style={{ 'padding-left': '10px' }}>Nivel</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.buyLevel}</td>
                     </tr>
                     <tr>
                       <td style={{ 'padding-left': '10px' }}>E-mail</td>
