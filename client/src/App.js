@@ -76,6 +76,7 @@ function App () {
         <Route exact path='/forgotPassword' component={FormForgotPassword} />
         <Route exact path='/recoverPassword' component={RecoverPassword} />
         <Route exact path='/userSales' component={UserSales} />
+        <Route exact path='/messenger' component={Messenger} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />

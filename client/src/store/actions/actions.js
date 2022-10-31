@@ -506,3 +506,22 @@ export const getReviewBuy = (id) => {
     }
   }
 }
+
+// UPDATE PROFILE IMAGE
+
+export const updateProfileImage = (id, url) => {
+  return async function (dispatch) {
+    const data = {
+      url
+    }
+    try {
+      const api = await axios.put(`${urlApi}/users/${id}/image-upload`, data)
+      return dispatch({
+        type: 'UPDATE_PROFILE_PICTURE',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
