@@ -27,7 +27,7 @@ export default function Datatable (props) {
   const rows = buys.map(b => { return { id: b.buyId, currency: b.currency, userId: b.userId, totalAmount: b.totalAmount, createdAt: b.createdAt.slice(0, 10) } }
   )
 
-  useEffect(() => { dispatch(getBuys()) }, [buys]) //eslint-disable-line
+  useEffect(() => { dispatch(getBuys()) }, []) //eslint-disable-line
   return (
 
     <div style={{ height: 400, width: '100%' }}>
