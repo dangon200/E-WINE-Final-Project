@@ -559,3 +559,20 @@ export const getReviewBuy = (id) => {
     }
   }
 }
+
+// volver Admin a un usuario
+
+export const adminUser = (id, isAdmin) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.put(`${urlApi}/users/${id}?admin=${!isAdmin}`)
+
+      return dispatch({
+        type: 'GET_USER_ADMIN',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
