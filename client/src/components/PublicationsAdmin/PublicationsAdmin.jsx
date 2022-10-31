@@ -1,11 +1,11 @@
 import React from 'react'
 import DatatablePublications from '../DatatablePublications/DatatablePublications.jsx'
 
-function PublicationsAdmin ({ publications }) {
+function PublicationsAdmin ({ publications, token }) {
   return (
     <div>
       <div>
-        <DatatablePublications publications={publications} />
+        <DatatablePublications token={token} publications={publications} />
       </div>
     </div>
   )

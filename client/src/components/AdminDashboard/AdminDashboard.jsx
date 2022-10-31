@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 
@@ -26,11 +26,12 @@ function AdminDashboard () {
   const products = useSelector(state => state.allProducts)
   const buys = useSelector(state => state.buys)
   const cookies = new Cookies()
+  const history = useHistory()
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
   const cantidadProducts = products.length
+  const token = cookies.get('TOKEN')
   const cantidadNewUsers = () => {
-    console.log(cookies)
     const arrayM = []
     for (let i = 0; i < users.length; i++) {
       if (!users[i]) return arrayM
@@ -70,6 +71,9 @@ function AdminDashboard () {
     }
     return arrayB.length
   }
+  useEffect(() => {
+    !token && history.push('/register')
+  }, [token, history])
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -149,11 +153,11 @@ function AdminDashboard () {
           <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
             <div> <h3>PUBLICACIONES</h3></div>
 
-            <PublicationsAdmin publications={publications} />
+            <PublicationsAdmin token={token} publications={publications} />
           </div>
 
           <div className={`col-12 ${render.usersRoute ? ' d-block' : 'd-none'}`}>
-            <UserAdmin users={users} userProv={userProv} />
+            <UserAdmin token={token} users={users} userProv={userProv} />
           </div>
           <div className={`col-12 ${render.productsRoute ? ' d-block' : 'd-none'}`}>
             <ProductsAdmin />

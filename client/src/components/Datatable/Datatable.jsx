@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { bannedUser, getUsers, sommelierUser } from '../../store/actions/actions'
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -20,18 +21,28 @@ export default function Datatable (props) {
   const users = useSelector(state => state.users)
   const userDetail = useSelector(state => state.userDetail)
   const userSommelier = useSelector(state => state.userSommelier)
+  const { token } = props
+  const history = useHistory()
   // const { users } = props
   const rows = users.map(u => { return { id: u.id, username: u.username, email: u.email, region: u.region, isBanned: u.isBanned, isSommelier: u.isSommelier, balance: u.balance, date: u.createdAt.slice(0, 10) } }
   )
   const handleBanned = (id, isBanned, createdAt) => {
     console.log('Entre al handleBanned')
     console.log(createdAt)
-    dispatch(bannedUser(id, isBanned))
+    if (!token) {
+      history.push('/')
+    } else {
+      dispatch(bannedUser(id, isBanned))
+    }
   }
   const handleSommelier = (id, isSommelier, createdAt) => {
     console.log('Entre al handleSommelier')
     console.log(createdAt)
-    dispatch(sommelierUser(id, isSommelier))
+    if (!token) {
+      history.push('/')
+    } else {
+      dispatch(sommelierUser(id, isSommelier))
+    }
   }
   const actionColumn = [{
     field: 'action',

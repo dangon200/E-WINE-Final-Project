@@ -5,7 +5,7 @@ import UsersBarChart from '../UsersCharts/UsersBarChart'
 import UsersByProvincesChart from '../UsersCharts/UsersByProvincesChart'
 import s from './UserAdmin.module.css'
 
-function UserAdmin ({ users, userProv }) {
+function UserAdmin ({ users, userProv, token }) {
   return (
     <div className={`container-fluid px-0 ${s.div}`}>
       <div className={`row ${s.div2}`}>
@@ -19,7 +19,7 @@ function UserAdmin ({ users, userProv }) {
           <UsersByProvincesChart userProv={userProv} />
         </div>
         <div className='h-75'>
-          <Datatable users={users} />
+          <Datatable token={token} users={users} />
         </div>
       </div>
     </div>
