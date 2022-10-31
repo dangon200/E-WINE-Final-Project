@@ -9,6 +9,7 @@ import image from '../../utils/images/vector.jpg'
 import axios from 'axios'
 import { getUserSales } from '../../store/actions/actions'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
+import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 
 export default function ItemSales ({ name, envio, totalAmount, paymentMethod, date, deliveryId, buyId }) {
   /* const {  } = props */
@@ -44,12 +45,12 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col className={s.status}>
               Estado del envio:
             </Col>
-            <Col className={envio !== 'RECIBIDO' ? s.status : s.statusSuccess}>
-              {envio}
-            </Col>
+          </Row>
+          <Row>
+            <DeliveryTracker status={envio} />
           </Row>
         </Col>
         <Col>

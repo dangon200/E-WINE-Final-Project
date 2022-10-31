@@ -1,15 +1,16 @@
 import style from './formCreateProduct.module.css'
 import { useState } from 'react'
 import { schemaFormProduct, uplodCloudinary } from '../utilities/schemas'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useFormik } from 'formik'
-import { varietales, provinces, types } from '../utilities/data'
+import { provinces, types } from '../utilities/data'
 import { postProduct } from '../../store/actions/actions'
 
 // name, type, varietal, origin, img, cellar
 
 export default function FormCreateProduct () {
   const dispatch = useDispatch() //
+  const varietals = useSelector(state => state.allVarietals)
   const { values, handleChange, handleBlur, setFieldValue, errors, handleSubmit, touched, isSubmitting } = useFormik({
     initialValues: {
       name: '',
@@ -83,7 +84,7 @@ export default function FormCreateProduct () {
               onBlur={handleBlur}
             >
               <option value=''>Selecciona Varietal</option>
-              {varietales.map(name => <option key={name} value={name}>{name}</option>)}
+              {varietals.map(name => <option key={name} value={name}>{name}</option>)}
             </select>
             {errors.varietal && touched.varietal && <p className='text-danger'>{errors.varietal}</p>}
           </div>

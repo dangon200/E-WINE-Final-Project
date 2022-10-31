@@ -10,6 +10,7 @@ import axios from 'axios'
 import { getUserBuys } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
+import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
@@ -39,12 +40,12 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
             </Col>
           </Row>
           <Row>
-            <Col>
+            <Col className={s.status}>
               Estado del envio:
             </Col>
-            <Col className={status !== 'RECIBIDO' ? s.status : s.statusSuccess}>
-              {status}
-            </Col>
+          </Row>
+          <Row>
+            <DeliveryTracker status={status} />
           </Row>
         </Col>
         <Col>
