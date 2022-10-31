@@ -16,6 +16,7 @@ import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
 import { Link } from 'react-router-dom'
 import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
+import Cookies from 'universal-cookie'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -24,10 +25,12 @@ function AdminDashboard () {
   const userProv = useSelector(state => state.usersByProvinces)
   const products = useSelector(state => state.allProducts)
   const buys = useSelector(state => state.buys)
+  const cookies = new Cookies()
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
   const cantidadProducts = products.length
   const cantidadNewUsers = () => {
+    console.log(cookies)
     const arrayM = []
     for (let i = 0; i < users.length; i++) {
       if (!users[i]) return arrayM

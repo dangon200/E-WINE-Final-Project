@@ -34,6 +34,9 @@ export const schemaFormProduct = Yup.object().shape({
     .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
     .test('fileFormat', 'Solo jpg, jpge, gif, png', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
 })
+export const schemaFormVarietal = Yup.object().shape({
+  name: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres').max(50, 'Max 50 caracteres').oneOf(varietales)
+})
 
 export const schemaValidateUser = Yup.object().shape({
   username: Yup.string().required('Es Requerido')

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { postVarietals } from '../../store/actions/actions'
 import s from './ProductsAdmin.module.css'
+// import { schemaFormVarietal } from '../utilities/schemas'
 
 function ProductsAdmin () {
   const [exito, setExito] = useState(false)
@@ -16,15 +17,14 @@ function ProductsAdmin () {
           }}
           validate={(valores) => {
             let errores = {} //eslint-disable-line
-            // const varietal = ['Graciana']
+            const varietal = 'Graciana'
             if (!valores.name) {
               errores.name = 'Debes escribir un nombre'
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
               errores.name = 'El nombre solo puede contener letras y espacios'
+            } else if (varietal === valores.name) {
+              errores.name = 'El varietal ya existe'
             }
-            // else if (varietal.filter(e => e === valores.name)) {
-            //   errores.name = 'El varietal ya existe'
-            // }
             return errores
           }}
           onSubmit={(valores, { resetForm }) => {
@@ -34,7 +34,7 @@ function ProductsAdmin () {
             setTimeout(() => setExito(false), 5000)
           }}
         >
-          {({ values, errors, handleChange, handleBlur }) => (
+          {({ values, errors }) => (
             <Form className={s.formulario}>
               <div>
                 <label htmlFor='name'>Varietal</label>
