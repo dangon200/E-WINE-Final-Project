@@ -51,9 +51,9 @@ export default function Datatable (props) {
     console.log(createdAt)
     if (!token) {
       history.push('/')
-    } else {
+    } else if (id !== token.user.id) {
       dispatch(adminUser(id, isAdmin))
-    }
+    } else return alert('Un admin no puede quitarse a sí mismo la prop admin')
   }
   const actionColumn = [{
     field: 'action',
