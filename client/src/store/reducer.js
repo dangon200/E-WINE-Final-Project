@@ -104,7 +104,7 @@ export default function reducer (state = initialState, action) {
     case 'GET_ALL_VARIETALS':
       return { ...state, allVarietals: action.payload }
     case 'POST_VARIETALS':
-      return { ...state, detailVarietal: action.payload }
+      return { ...state, allVarietals: action.payload }
     case 'ADD_REVIEWBUY':
       return { ...state, reviewBuy: action.payload }
     case 'GET_REVIEWBUY_ID':

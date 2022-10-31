@@ -468,7 +468,11 @@ export const getVarietals = () => {
     }
   }
 }
-export function postVarietals (data) {
+export function postVarietals (name, description) {
+  const data = {
+    name,
+    description
+  }
   return async function (dispatch) {
     try {
       const api = await axios.post(`${urlApi}/varietals`, data)
