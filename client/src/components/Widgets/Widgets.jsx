@@ -54,7 +54,7 @@ export default function Widgets ({ type, cantidadUsers, dateUsers, cantidadPubli
       break
   }
   return (
-    <div className='container border border-dark border-2'>
+    <div className='container border border-dark border-2 w-10'>
       <div className='row justify-content-between'>
         <div className=''>
           <span name='title' className='flex-column'>{data.title}</span>
