@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     }
   )
   try {
-    if (revPuntuada) { return res.status(400).send(console.log('La publicacion ya fue puntuada por este usuario')) }
+    if (revPuntuada) { return res.status(400).json('La publicacion ya fue puntuada por este usuario') }
     if (hasBuyItem.length >= 1) {
       const AddReview = await ReviewBuy.create(
         {
@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
       const lvlUp = await userBuylvlUp(userId)
       console.log(lvlUp)
       return res.status(200).json(AddReview)
-    } else return res.status(404).send(console.log('No se puede puntuar por que no hay compra registrada'))
+    } else return res.status(404).json('No se puede puntuar por que no hay compra registrada')
   } catch (error) {
     console.log(error)
   }
