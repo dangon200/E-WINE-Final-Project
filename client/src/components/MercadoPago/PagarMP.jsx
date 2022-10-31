@@ -2,7 +2,8 @@ import { useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
 import s from './pagarMP.module.css'
 import Button from 'react-bootstrap/esm/Button'
-const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 
 export default function PagarMP () {
   const carrito = useSelector(state => state.carrito)

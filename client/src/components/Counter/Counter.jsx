@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import style from './counter.module.css'
-import { BsFillPlusCircleFill, BsDashCircleFill } from 'react-icons/bs'
+// import { BsFillPlusCircleFill, BsDashCircleFill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { addCarrito } from '../../store/actions/actions'
+import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai'
 
 export default function Counter (props) {
   const [count, setCount] = useState(props.countFromPub)
@@ -22,11 +23,11 @@ export default function Counter (props) {
   return (
     <div className={style.pedido}>
       <button className={style.buttonMasMenos} onClick={() => updateCount('rest', id)}>
-        <BsDashCircleFill size={20} />
+        <AiOutlineMinusSquare size={20} />
       </button>
       <span className='px-3 fs-3'>{count}</span>
       <button className={style.buttonMasMenos} onClick={() => updateCount('add', id)}>
-        <BsFillPlusCircleFill size={20} />
+        <AiOutlinePlusSquare size={20} />
       </button>
     </div>
   )

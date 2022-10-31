@@ -55,6 +55,12 @@
   flex-direction: column;
 }
 
+.image{
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
 .details h2{
   font-family: var(--font-family-2);
   font-size: 3.6rem;
@@ -265,7 +271,7 @@
 
 	  position: fixed;
 	  bottom: 100px;
-	  right: 150px;
+	  right: 50px;
 	  padding: 8px;
 
 	  width: 50px;

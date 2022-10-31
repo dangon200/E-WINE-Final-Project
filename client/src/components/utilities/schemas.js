@@ -19,7 +19,7 @@ export const schemaFormPubli = Yup.object().shape({
   productId: Yup.string().required('Por favor seleccione un producto').uuid(),
   image: Yup.mixed().required('Es Requerido')
     .test('fileSize', 'La imagen es requerida', value => value && value.size >= 1000)
-    .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
+    .test('fileSize', 'Max 5 MB ', value => value && value.size <= 5000000)
     .test('fileFormat', 'Solo jpg, jpge, gif, png', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
 })
 
@@ -33,6 +33,9 @@ export const schemaFormProduct = Yup.object().shape({
     .test('fileSize', 'La imagen es requerida', value => value && value.size >= 1000)
     .test('fileSize', 'Max 3 MB ', value => value && value.size <= 3000000)
     .test('fileFormat', 'Solo jpg, jpge, gif, png', value => value && ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'].includes(value.type))
+})
+export const schemaFormVarietal = Yup.object().shape({
+  name: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres').max(50, 'Max 50 caracteres').oneOf(varietales)
 })
 
 export const schemaValidateUser = Yup.object().shape({
@@ -74,6 +77,43 @@ export const schemaValidateUser = Yup.object().shape({
     .oneOf([Yup.ref('copyPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
   copyPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('password'), null], 'Las contraseñas no coinciden'),
   region: Yup.string().required('Por favor seleccione una Provincia').oneOf(provinces)
+})
+
+export const schemaValidateEmail = Yup.object().shape({
+  email: Yup.string().email('Email no válido').required('Es Requerido')
+    .test('testEmail', 'Este correo no existe como cuenta',
+      value => {
+        return new Promise((resolve, reject) => {
+          axios.get(`${urlApi}/users/email/${value}`)
+            .then(res => {
+              resolve(false)
+            })
+            .catch(error => {
+              if (error.response.data === true) {
+                resolve(true) // eslint-disable-line
+              }
+            })
+        })
+      })
+})
+
+export const schemaValidateChangesOfUser = Yup.object().shape({
+  password: Yup.string().required('Es Requerido')
+    .min(8, 'Min 8 caracteres'),
+  /* .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número'), */
+  newPassword: Yup.string().required('Es Requerido')
+    .min(8, 'Min 8 caracteres')
+    .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número')
+    .oneOf([Yup.ref('repeatNewPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
+  repeatNewPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('repeatNewPassword'), null], 'Las contraseñas no coinciden')
+})
+
+export const schemaValidatePasswordEmail = Yup.object().shape({
+  password: Yup.string().required('Es Requerido')
+    .min(8, 'Min 8 caracteres')
+    .matches(passwordValidate, 'Debe contener al menos 1 mayúscula, 1 minúscula y 1 número')
+    .oneOf([Yup.ref('repeatPassword'), null], 'Las contraseñas no coinciden').max(20, 'Max 20 caracteres'),
+  repeatPassword: Yup.string().required('Es Requerido').oneOf([Yup.ref('repeatPassword'), null], 'Las contraseñas no coinciden')
 })
 
 export const schemaLogin = Yup.object().shape({
