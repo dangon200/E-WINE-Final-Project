@@ -28,7 +28,7 @@ export default function UserSales () {
             <h1>Mis Ventas</h1>
             {sales.length > 0 && sales.map((s) => (
               <ItemSales
-                key={s.id}
+                key={s.buyId}
                 buyId={s.buyId}
                 name={s.username}
                 image={s.image}
