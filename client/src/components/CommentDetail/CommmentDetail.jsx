@@ -31,7 +31,7 @@ export default function CommentDetail (props) {
           </Row>
         </Tab>
         <Tab eventKey='ComentariosGral' title='Más Opiniones'>
-          {Comentarios.map((comentario, idx) => {
+          {Array.isArray(Comentarios) && Comentarios.map((comentario, idx) => {
             return <CommentCard key={idx} comentario={comentario} />
           })}
         </Tab>
