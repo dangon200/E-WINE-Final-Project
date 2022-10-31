@@ -124,7 +124,7 @@ function AdminDashboard () {
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: true, publicationsRoute: false, buysRoutes: true })}><span className={s.text}>Compras</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={s.text}>Compras</span></Button>
                 </li>
                 <li className={s.li}>
                   <ListAltIcon className={s.icon} />
@@ -168,7 +168,7 @@ function AdminDashboard () {
             <ProductsAdmin />
           </div>
 
-          <div className={`col-12 ${render.buysRoute ? ' d-block' : 'd-none'}`}>
+          <div className={`col-12 ${render.buysRoutes ? ' d-block' : 'd-none'}`}>
             <div> <h3>COMPRAS</h3></div>
             <DataTableBuys buys={buys} />
           </div>
