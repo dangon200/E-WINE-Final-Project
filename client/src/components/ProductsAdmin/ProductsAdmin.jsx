@@ -2,10 +2,14 @@ import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { postVarietals } from '../../store/actions/actions'
 import s from './ProductsAdmin.module.css'
+import { useDispatch, useSelector } from 'react-redux'
 // import { schemaFormVarietal } from '../utilities/schemas'
 
 function ProductsAdmin () {
   const [exito, setExito] = useState(false)
+  const [fallo, setFallo] = useState(false)
+  const dispatch = useDispatch()
+  const varietals = useSelector(state => state.allVarietals)
   return (
     <div className='flex-wrap '>
       {/* aca deberia renderizar la tabla  que es TableVarietalAdmin pero esta comentado porque me tira error porque no hay varietals */}
@@ -29,10 +33,17 @@ function ProductsAdmin () {
             return errores
           }}
           onSubmit={(valores, { resetForm }) => {
-            postVarietals(valores)
-            setExito(true)
-            resetForm()
-            setTimeout(() => setExito(false), 5000)
+            const str = valores.name
+            const str2 = str.charAt(0).toUpperCase() + str.slice(1)
+            if (varietals.includes(str2)) {
+              setFallo(true)
+              setTimeout(() => setFallo(false), 5000)
+            } else {
+              dispatch(postVarietals(str2, valores.description))
+              setExito(true)
+              resetForm()
+              setTimeout(() => setExito(false), 5000)
+            }
           }}
         >
           {({ values, errors }) => (
@@ -58,6 +69,7 @@ function ProductsAdmin () {
               </div>
               <button type='submit'>Crear</button>
               {exito && <p className={s.exito}> Varietal creado con éxito</p>}
+              {fallo && <p className={s.fallo}> El varietal ya existe</p>}
             </Form>
           )}
         </Formik>

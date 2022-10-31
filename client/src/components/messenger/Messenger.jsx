@@ -4,6 +4,7 @@ import Conversations from '../Conversations/Conversations'
 import ItemConversation from '../ItemConversation/ItemConversation'
 import style from './Messenger.module.css'
 import axios from 'axios'
+import Sidebar from '../Sidebar/Sidebar'
 
 import { io } from 'socket.io-client'
 
@@ -108,6 +109,10 @@ function Messenger () {
 
   return (
     <div className={style.messenger}>
+      <div className={style.sidebar}>
+
+        <Sidebar />
+      </div>
       <div className={style.chatMenu}>
         <div className={style.chatMenuWrapper}>
           {conversations.map(c => (
@@ -127,7 +132,7 @@ function Messenger () {
                 <div id='chat' className={style.chatBoxTop}>
                   {messages.map(m => (
                     <div key={m.id} ref={scrollRef}>
-                      <ItemConversation message={m} own={m.userId === user.id} />
+                      <ItemConversation message={m} own={m.userId === user.id} currentUser={user} friendId={m.userId} conversations={conversations} />
                     </div>))}
                 </div>
                 <div className={style.chatBoxBottom}>
