@@ -18,7 +18,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .messageImage{
@@ -30,16 +30,17 @@
 }
 
 .messageText{
-    font-size: 14px;
-    padding: 10px;
+    font-size: 2rem;
+    padding: 12px;
     border-radius: 20px;
     background-color: #56070C;
     color: white;
+    height: 100%;
     max-width: 300px;
 }
 
 .messageBottom{
-    font-size: 10px;
+    font-size: 1.2rem;
     color: gray;
     font-weight: 700;
 }
@@ -47,8 +48,9 @@
 
 
 .messageTextOwn{
-    font-size: 14px;
-    padding: 10px;
+    font-size: 2rem;
+    height: auto;
+    padding: 12px;
     border-radius: 20px;
     background-color: lightgray;
     color: black;

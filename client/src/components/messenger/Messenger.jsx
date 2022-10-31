@@ -4,7 +4,9 @@ import Conversations from '../Conversations/Conversations'
 import ItemConversation from '../ItemConversation/ItemConversation'
 import style from './Messenger.module.css'
 import axios from 'axios'
+import SidebarMessenger from '../SidebarMessenger/SidebarMessenger'
 
+import { FiSend } from 'react-icons/fi'
 import { io } from 'socket.io-client'
 
 import { useSelector } from 'react-redux'
@@ -108,8 +110,12 @@ function Messenger () {
 
   return (
     <div className={style.messenger}>
+      <div className={`col-auto my-4 mx-4 rounded-5 ${style.sidebar} `}>
+        <SidebarMessenger />
+      </div>
       <div className={style.chatMenu}>
         <div className={style.chatMenuWrapper}>
+          <p className={style.messages}>Messages</p>
           {conversations.map(c => (
             <div key={c.id} onClick={() => setCurrentChat(c)}>
 
@@ -132,7 +138,7 @@ function Messenger () {
                 </div>
                 <div className={style.chatBoxBottom}>
                   <input className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...' />
-                  <button className={style.chatSubmitButton} onClick={handleSubmit}>Enviar</button>
+                  <button className={style.chatSubmitButton} onClick={handleSubmit}><FiSend /></button>
                 </div>
               </>)
             : <span className={style.noConversationText}>Abre un conversacion para empezar!</span>}

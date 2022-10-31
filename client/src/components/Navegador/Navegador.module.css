@@ -33,3 +33,9 @@
   color:#1F1F1F;
   /* color: rgb(210, 210, 210); */
 }
+
+@media (max-width: 992px) {
+  .navlinkActive{
+    border: none;
+  }
+}

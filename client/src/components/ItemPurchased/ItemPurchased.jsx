@@ -57,7 +57,7 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
           <Row>
             <Modale
               buttonText='Ver compra'
-              title={!user ? 'Iniciar sesión' : 'Cerrar sesión'}
+              title='Detalle de compra'
               render={ItemModaleBuy}
               link='/userPurchased'
               createAcc

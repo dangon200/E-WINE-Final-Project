@@ -8,14 +8,14 @@ import {
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { GoGraph } from 'react-icons/go'
 import { BiLogOut } from 'react-icons/bi'
-import s from './Sidebar.module.css'
+import s from './SidebarMessenger.module.css'
 import { NavLink, useLocation } from 'react-router-dom'
-import logo from '../../utils/images/logo.png'
+// import logo from '../../utils/images/logo.png'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../store/actions/actions'
 import Cookies from 'universal-cookie'
 
-const Sidebar = () => {
+const SidebarMessenger = () => {
   const cookies = new Cookies()
   const location = useLocation()
   const dispatch = useDispatch()
@@ -30,34 +30,34 @@ const Sidebar = () => {
     {
       path: '/home',
       name: 'Tienda',
-      icon: <FaStore color='#91091E' size={25} />
+      icon: <FaStore color='#FEFEFE' size={25} />
     },
     {
       path: '/user/favorites',
       name: 'Favoritos',
-      icon: <FaHeart color='#91091E' size={25} />
+      icon: <FaHeart color='#FEFEFE' size={25} />
     },
     {
       path: '/userPurchased',
       name: 'Mis compras',
-      icon: <HiOutlineShoppingBag color='#91091E' size={25} />
+      icon: <HiOutlineShoppingBag color='#FEFEFE' size={25} />
     },
     {
       path: '/userSales',
       name: 'Mis ventas',
-      icon: <GoGraph color='#91091E' size={25} />
+      icon: <GoGraph color='#FEFEFE' size={25} />
     },
     {
       path: '/userProfile',
       name: 'Datos de usuario',
-      icon: <FaUser color='#91091E' size={25} />
+      icon: <FaUser color='#FEFEFE' size={25} />
     }
   ]
   return (
     <div className='container-fluid'>
       <div style={{ width: isOpen ? '180px' : '30px' }}>
         <div className={`${(isOpen ? 'd-flex justify-content-start align-items-center' : 'none')}`}>
-          <img src={logo} alt={logo} style={{ display: isOpen ? 'block' : 'none' }} className='m-auto w-50 h50' />
+          {/* <img src={logo} alt={logo} style={{ display: isOpen ? 'block' : 'none' }} className='m-auto w-50 h50' /> */}
           <div className='d-flex justify-content-center pb-5'>
             <FaBars role='button' size={25} onClick={toggle} />
           </div>
@@ -70,15 +70,15 @@ const Sidebar = () => {
                   >
                     <div className={`${(isOpen ? 'd-flex justify-content-start align-items-center mt-5' : 'mt-5')}`}>
                       <div className={location.pathname === item.path ? s.navlinkActive : s.navlink}>{item.icon}</div>
-                      <div style={{ display: isOpen ? 'block' : 'none' }} className='fs-4 fw-semibold text-dark ms-5'><span>{item.name}</span></div>
+                      <div style={{ display: isOpen ? 'block' : 'none' }} className='fs-4 fw-semibold text-dark ms-5'><span className='text-light'>{item.name}</span></div>
                     </div>
                   </NavLink>
                 ))
         }
         <div style={{ 'margin-top': '150px' }} className={`${(isOpen ? 'd-flex justify-content-start align-items-center' : '')}`}>
-          <div className='pt-5'><button onClick={() => removeCookies()} className={s.logout}><BiLogOut color='#91091E' size={25} /></button></div>
+          <div className='pt-5'><button onClick={() => removeCookies()} className={s.logout}><BiLogOut color='#FEFEFE' size={25} /></button></div>
           <div style={{ display: isOpen ? 'block' : 'none' }} className='pt-5 fs-4 fw-semibold text-dark ms-5'>
-            <span>Cerrar sesion</span>
+            <span className='text-light'>Cerrar sesion</span>
           </div>
         </div>
       </div>
@@ -86,4 +86,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default SidebarMessenger

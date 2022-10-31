@@ -63,7 +63,7 @@ export default function Carrito () {
           </Row>
           <Button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Continuar la compra
+              Pagar
             </Link>
           </Button>
           {/* {token ? <PagarMP /> : history.push('/register')} */}
