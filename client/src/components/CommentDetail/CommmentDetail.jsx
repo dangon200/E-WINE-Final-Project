@@ -10,7 +10,6 @@ import CommentCard from './CommentCard'
 
 export default function CommentDetail (props) {
   const Comentarios = props.comment
-  console.log(Comentarios)
   return (
     <Container className='mt-5 bg-body shadow-lg' fluid>
       <Tabs

@@ -6,8 +6,6 @@ const { userBuylvlUp } = require('../controllers/lvlUser')
 // CREAR REVIEW
 router.post('/', async (req, res) => {
   const { userId, publicationId, puntaje, textRev } = req.body
-  console.log(userId)
-  console.log(publicationId)
 
   const hasBuy = await Buy.findAll(
     {
@@ -45,7 +43,7 @@ router.post('/', async (req, res) => {
           publicationId
         }
       )
-      console.log(AddReview)
+      console.log('Nueva review', AddReview)
       // revisar nivel usuario
       const lvlUp = await userBuylvlUp(userId)
       console.log(lvlUp)
@@ -76,7 +74,6 @@ router.get('/:id', async (req, res) => {
 // ARRAY CON EL DETALLE DE LOS COMENTARIOS DE LAS REVIEWS (USER,COMENTARIO,PUNTAJE,ID)
 router.get('/reviewsDetail/:id', async (req, res) => {
   const { id } = req.params
-
   try {
     const results = []
 
@@ -103,7 +100,6 @@ router.get('/reviewsDetail/:id', async (req, res) => {
         createdAt: r.createdAt
       })
     })
-    console.log(results)
     res.status(201).json(results)
   } catch (error) {
     res.status(400).json(error.message)
