@@ -66,7 +66,7 @@ function BuyProfitsChart () {
 
   return (
     <div>
-      <div>GANANCIAS POR COMPRAS</div>
+      <div><h3>GANANCIAS POR COMPRAS</h3></div>
       <div className='w-50 h-50'>
         <Doughnut
           data={dataGraphic()}

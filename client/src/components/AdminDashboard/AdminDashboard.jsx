@@ -19,6 +19,7 @@ import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
 import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
+import ProductsCharts from '../ProductsCharts/ProductsCharts'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -179,7 +180,8 @@ function AdminDashboard () {
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             {/* <Featured /> */}
-            <BuyProfitsChart />
+            <div><BuyProfitsChart /></div>
+            <div><ProductsCharts /></div>
           </div>
 
           {/* <div className='ultimasCompras'>

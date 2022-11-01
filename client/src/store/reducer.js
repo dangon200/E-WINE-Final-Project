@@ -26,7 +26,8 @@ const initialState = {
   detailVarietal: {},
   userDetail2: {},
   login: true,
-  itemsDetail: []
+  itemsDetail: [],
+  popularProduts: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -113,6 +114,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, userDetail2: action.payload }
     case 'GET_ITEMS_DETAIL':
       return { ...state, itemsDetail: action.payload }
+    case 'GET_POPULAR_PRODUCTS':
+      return { ...state, popularProduts: action.payload }
     default:
       return { ...state }
   }
