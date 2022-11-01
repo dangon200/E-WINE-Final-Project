@@ -70,8 +70,10 @@ function UsersByProvincesChart () {
     <div>
       <h2>Usuarios nuevos por provincia</h2>
       <button type='button' className='btn btn-info' onClick={() => handleSort()}>Ver el grafico </button>
+      <div className='w-75 d-flex justify-content-end'>
 
-      <Bar options={chartOptions} data={chartData} />
+        <Bar options={chartOptions} data={chartData} />
+      </div>
     </div>
   )
 }

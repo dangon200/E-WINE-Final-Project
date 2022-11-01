@@ -1,47 +1,51 @@
 .div2{
     margin-right: 0px;
+    background-color: #EEEEEE;
+    
 }
 .texto{
-    font-size: 20px;
+    font-size: 25px;
+    color: #1F1F1F;
 
 }
  .logo{
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     background-color: #f1f0f0;
     border-radius: 30px;
 }
  
- .div{
+.div{
     padding-right: 0px;
 }
- .ul {
+.ul {
    list-style: none;
    margin: 0;
    padding: 0;
 }
 
 .title {
-    font-size: 10px;
+    font-size: 15px;
     font-weight: bold;
-    color: #999;
+    color: #1F1F1F;
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 5px
 }
 .li {
     display: flex;
     align-items: center;
     padding: 5px;
     cursor: pointer;
+    padding: 20px;
     /* color: #f1f0f0; */
 }
-.li:hover{
+/* .li:hover{
     background-color: #56070C;
     
-}
+} */
    .icon {
-       font-size: 18px;
-       color: #63161b;
+       font-size: 50px;
+       color: #91091E;
    }
    .center{
        padding-left: 10px;
@@ -50,7 +54,8 @@
     text-decoration: none;
    }
    .text{
-    color: #f1f0f0;
+    color: #1F1F1F;
+    font-size: 12px;
    }
    /* .text:hover{
     color: #1F1F1F;

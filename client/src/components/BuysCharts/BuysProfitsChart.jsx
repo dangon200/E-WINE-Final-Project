@@ -55,10 +55,10 @@ function BuyProfitsChart () {
         {
           label: 'Total Transacciones',
           data: [buysTotal(), buysProfits()],
-          borderColor: ['rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)'],
-          backgroundColor: ['rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)']
+          borderColor: ['rgb(42, 157, 143,1)',
+            'rgba(244, 162, 97,1)'],
+          backgroundColor: ['rgb(42, 157, 143,0.2)',
+            'rgba(244, 162, 97,0.2)']
         }
       ]
     })
@@ -66,8 +66,11 @@ function BuyProfitsChart () {
 
   return (
     <div>
-      <div>GANANCIAS POR COMPRAS</div>
-      <div className='w-50 h-50'>
+      <div className='d-flex px-5 mx-3 fs-1 fw-bold'>
+        <h3 className='fs-1'>GANANCIAS POR COMPRAS</h3>
+
+      </div>
+      <div className='w-50 h-75 align-items-center justify-content-center'>
         <Doughnut
           data={dataGraphic()}
         />

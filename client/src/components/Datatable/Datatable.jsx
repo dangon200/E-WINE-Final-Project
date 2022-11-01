@@ -58,7 +58,7 @@ export default function Datatable (props) {
   const actionColumn = [{
     field: 'action',
     headerName: 'Action',
-    width: 210,
+    width: 220,
     renderCell: (params) => {
       // console.log(params)
       return (
@@ -86,7 +86,7 @@ export default function Datatable (props) {
   return (
     <div>
 
-      <div style={{ height: 400, width: '100%' }}>
+      <div style={{ height: 400, width: '60%' }}>
         <DataGrid
           rows={rows}
           columns={columns.concat(actionColumn)}
