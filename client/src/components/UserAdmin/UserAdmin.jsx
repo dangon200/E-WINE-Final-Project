@@ -9,16 +9,16 @@ function UserAdmin ({ users, userProv, token }) {
   return (
     <div className={`container-fluid px-0 ${s.div}`}>
       <div className={`row ${s.div2}`}>
-        <div className='col-6 w-50'>
+        <div className={`col-6 w-50 ${s.chart}`}>
           <UsersBarChart users={users} />
         </div>
         <div className='w-50'>
           <UsersBannedChart users={users} />
         </div>
-        <div className='w-75'>
+        <div className='w-50'>
           <UsersByProvincesChart userProv={userProv} />
         </div>
-        <div className='h-75'>
+        <div className='h-50'>
           <Datatable token={token} users={users} />
         </div>
       </div>
