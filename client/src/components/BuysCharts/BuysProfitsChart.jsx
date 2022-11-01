@@ -66,16 +66,11 @@ function BuyProfitsChart () {
 
   return (
     <div>
-<<<<<<< HEAD
-      <div><h3>GANANCIAS POR COMPRAS</h3></div>
-      <div className='w-50 h-50'>
-=======
       <div className='d-flex px-5 mx-3 fs-1 fw-bold'>
         <h3 className='fs-1'>GANANCIAS POR COMPRAS</h3>
 
       </div>
       <div className='w-50 h-75 align-items-center justify-content-center'>
->>>>>>> 1a2619cd4a12a9c90d3798ee6396e6a5b8adcfed
         <Doughnut
           data={dataGraphic()}
         />
