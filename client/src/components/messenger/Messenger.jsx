@@ -126,6 +126,9 @@ function Messenger () {
       </div>
       <div className={style.chatBox}>
         <div className={style.chatBoxWrapper}>
+          {/* <nav className='p-4 bg-secondary bg-opacity-25 text-dark fs-4'>
+            Hola
+          </nav> */}
           {currentChat
             ? (
               <>
@@ -136,7 +139,9 @@ function Messenger () {
                     </div>))}
                 </div>
                 <div className={style.chatBoxBottom}>
-                  <input className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...' />
+                  <input
+                    className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...'
+                  />
                   <button className={style.chatSubmitButton} onClick={handleSubmit}><FiSend /></button>
                 </div>
               </>)
@@ -145,6 +150,7 @@ function Messenger () {
       </div>
       <div className={style.chatOnline}>
         <div className={style.chatOnlineWrapper}>
+          <h2 style={{ color: '#484D55' }} className='fw-semibold'>Lista de sommeliers</h2>
           <ChatOnline onlineUsers={onlineUsers} currentId={user.id} setCurrentChat={setCurrentChat} conversations={conversations} setConversations={setConversations} socket={socket} />
         </div>
       </div>

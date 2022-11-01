@@ -7,6 +7,7 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 import { MdNotifications } from 'react-icons/md'
+import { BsFillChatFill } from 'react-icons/bs'
 // import { useEffect } from 'react'
 // import SeachBar from '../SearchBar/SearchBar'
 
@@ -38,7 +39,7 @@ export default function Nav () {
             : null}
           {user
             ? <Link to='/messenger' className={style.messenger}>
-              Chatear con un Sommelier
+              <BsFillChatFill />
             </Link> //eslint-disable-line
             : null}
         </div>
@@ -60,6 +61,11 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
+            {/* {user
+              ? <Link to='/messenger' className={style.messenger}>
+                <BsFillChatFill />
+            </Link> //eslint-disable-line
+              : null} */}
             {/* <FormLogin /> */}
             {user &&
               <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}

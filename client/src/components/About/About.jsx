@@ -1,13 +1,14 @@
 import React from 'react'
 import s from './about.module.css'
 // import Button from '../Button/Button.jsx'
-import catamos from '../../utils/images/icono_catamos.png'
+/* import catamos from '../../utils/images/icono_catamos.png'
 import elegis from '../../utils/images/elegis.png'
 import disfrutas from '../../utils/images/disfrutas.png'
-import recibis from '../../utils/images/recibis.png'
+import recibis from '../../utils/images/recibis.png' */
 // import Footer from '../Footer/Footer.jsx'
 import team from '../../utils/images/teamwork1.jpg'
-
+import { AiOutlineInstagram, AiOutlineGithub } from 'react-icons/ai'
+import { SiGmail } from 'react-icons/si'
 function About () {
   return (
     <div>
@@ -18,37 +19,96 @@ function About () {
           <Button content='Visitar la tienda' link='/home' />
         </div>
       </div> */}
-      <h1 className='text-center mt-5'>Nuestro equipo</h1>
+      <h1 className={s.title}>Conoce nuestro equipo</h1>
       <div className={s.container}>
         <section className={s.cardSection}>
-          <div className={s.card}>
-            <img className={s.cardImage} src={team} alt='team' />
-            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
-            <span className='fs-4'>Fullstack developer</span>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
           </div>
-          <div className={s.card}>
-            <img className={s.cardImage} src={team} alt='team' />
-            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
-            <span className='fs-4'>Fullstack developer</span>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
           </div>
-          <div className={s.card}>
-            <img className={s.cardImage} src={team} alt='team' />
-            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
-            <span className='fs-4'>Fullstack developer</span>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
           </div>
-          <div className={s.card}>
-            <img className={s.cardImage} src={team} alt='team' />
-            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
-            <span className='fs-4'>Fullstack developer</span>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
           </div>
-          <div className={s.card}>
-            <img className={s.cardImage} src={team} alt='team' />
-            <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
-            <span className='fs-4'>Fullstack developer</span>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
+          </div>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
+          </div>
+          <div className={s.divCard}>
+            <div className={s.card}>
+              <img className={s.cardImage} src={team} alt='team' />
+              <p className='fs-3 fw-semibold'>Felipe gomez castro</p>
+              <span className='fs-4'>Fullstack developer</span>
+              <div className='d-flex gap-5 mt-5'>
+                <a href='#'><AiOutlineInstagram size={25} color='#484d55' /></a>
+                <a href='#'><SiGmail color='#484d55' size={25} /></a>
+                <a href='#'><AiOutlineGithub size={25} color='#484d55' /></a>
+              </div>
+            </div>
           </div>
         </section>
       </div>
-      <div className={s.entrega}>
+      {/* <div className={s.entrega}>
         <h1 className={s.h1exp}>¿Cómo es la experiencia?</h1>
         <div className={s.contenedor}>
           <div className={s.box}>
@@ -81,7 +141,7 @@ function About () {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* <Footer /> */}
     </div>
   )

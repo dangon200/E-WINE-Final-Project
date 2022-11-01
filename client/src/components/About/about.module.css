@@ -26,19 +26,20 @@
     font-size: 50px;
     text-transform: uppercase;
 } */
-
-.container{
-    display: grid;
-    gap: 2rem;
-    grid-auto-rows: 50rem;
-    margin: 50px 20px 0 20px;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+.title{
+    font-family: var(--font-family-1);
+    margin-top: 50px;
 }
 .cardSection{
+    display: grid;
+    gap: 1rem;
+    grid-auto-rows: 50rem;
+    margin: 30px 50px 0 50px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+}
+.divCard{
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-top: 20px;
 }
 .card{
     display: flex;

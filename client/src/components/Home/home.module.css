@@ -111,11 +111,21 @@
         max-height: 275px;
         width: 90%;
     }
+    .filtersContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .sectionImage{
+        height: 300px;
+    }
 }
 
 @media (max-width: 576px){
     .image2{
         max-height: 200px;
         width: 100%;
+    }
+    .sectionImage{
+        height: 220px;
     }
 }

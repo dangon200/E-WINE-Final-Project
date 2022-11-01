@@ -14,10 +14,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
+import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
 
 function AdminDashboard () {
@@ -28,7 +29,7 @@ function AdminDashboard () {
   const products = useSelector(state => state.allProducts)
   const buys = useSelector(state => state.buys)
   const cookies = new Cookies()
-  const history = useHistory()
+  // const history = useHistory()
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
   const cantidadBuys = buys.length
@@ -77,11 +78,11 @@ function AdminDashboard () {
     }
     return arrayB.length
   }
-  useEffect(() => {
-    console.log(token)
-    console.log(token.user.isAdmin)
-    !token.user.isAdmin && history.push('/')
-  }, [token, history])
+  // useEffect(() => {
+  //   console.log(token)
+  //   console.log('Este es el token de isAdmimn', token.user.isAdmin)
+  //   !token.user.isAdmin && history.push('/')
+  // }, [])//eslint-disable-line
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -101,42 +102,45 @@ function AdminDashboard () {
 
   return (
     <div className={`container-fluid px-0 ${s.div}`}>
-      <div className={`row ${s.div2}`}>
-        <div className='text-white col-2 '>
-          <div className='sidebar bg-dark m-0 min-vh-100 d-flex justify-content-center'>
-            <div className='top'>
-              <span className='logo'>E-wine</span>
+      <div className={`row flex-nowrap ${s.div2}`}>
+        <div className='sidebar text-white col-auto col-md-3 col-xl-2 px-sm-2 px-0 h-100'>
+          <div className='sidebar bg-dark d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100'>
+            <div className='d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
+              <div>
+                <img src={logo} alt='logo' className={`navbar-brand ${s.logo}`} />
+              </div>
+              <span className={`px-3 ${s.texto}`}>E-wine</span>
             </div>
             <hr />
             <div className={s.center}>
-              <ul className={s.ul}>
-                <p className={s.title}>PRINCIPAL</p>
-                <li className={s.li}>
+              <ul className={`nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start ${s.ul}`}>
+                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>PRINCIPAL</p>
+                <li className={` nav-item ${s.li}`}>
                   <DashboardIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}> <span className={s.text}>Tablero</span> </Button>
+                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}> <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Tablero</span> </Button>
                 </li>
-                <p className={s.title}>LISTA</p>
-                <li className={s.li}>
+                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>LISTA</p>
+                <li className={` nav-item ${s.li}`}>
                   <PersonOutlineOutlinedIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}><span className={s.text}>Usuarios</span> </Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Usuarios</span> </Button>
                 </li>
-                <li className={s.li}>
+                <li className={` nav-item ${s.li}`}>
                   <StoreMallDirectoryIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}><span className={s.text}>Productos</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Productos</span></Button>
                 </li>
-                <li className={s.li}>
+                <li className={` nav-item ${s.li}`}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={s.text}>Compras</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Compras</span></Button>
                 </li>
-                <li className={s.li}>
+                <li className={` nav-item ${s.li}`}>
                   <ListAltIcon className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={s.text}>Publicaciones</span></Button>
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Publicaciones</span></Button>
                 </li>
-                <p className={s.title}>PERFIL</p>
-                <li className={s.li}>
+                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>PERFIL</p>
+                <li className={` nav-item ${s.li}`}>
                   <LogoutIcon className={s.icon} />
                   <Link className={s.link} to='/'>
-                    <span className={s.text}>SALIR</span>
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>SALIR</span>
                   </Link>
                 </li>
               </ul>

@@ -38,4 +38,7 @@
   .navlinkActive{
     border: none;
   }
+  .navlink{
+    font-size: 1.5rem;
+  }
 }

@@ -54,3 +54,8 @@
 .progressbar li.active + li:after{
     background-color: #484d55;
 }
+@media (max-width: 576px){
+    .container{
+        width: 500px;
+    }
+}
