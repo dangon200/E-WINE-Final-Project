@@ -459,6 +459,7 @@ export const getVarietals = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/varietals`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ALL_VARIETALS',
         payload: res.data

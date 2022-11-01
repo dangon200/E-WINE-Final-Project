@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { postVarietals } from '../../store/actions/actions'
 import s from './ProductsAdmin.module.css'
 import { useDispatch, useSelector } from 'react-redux'
+import TableVarietalAdmin from '../TableVarietalAdmin/TableVarietalAdmin'
 // import { schemaFormVarietal } from '../utilities/schemas'
 
 function ProductsAdmin () {
@@ -13,22 +14,21 @@ function ProductsAdmin () {
   return (
     <div className='flex-wrap '>
       {/* aca deberia renderizar la tabla  que es TableVarietalAdmin pero esta comentado porque me tira error porque no hay varietals */}
+      <div>
+        <TableVarietalAdmin />
+      </div>
       <h2>Agregar nuevo varietal</h2>
       <div className='w-50 d-flex justify-content-center'>
         <Formik
           initialValues={{
-            name: '',
-            description: ''
+            name: ''
           }}
           validate={(valores) => {
             let errores = {} //eslint-disable-line
-            const varietal = 'Graciana'
             if (!valores.name) {
               errores.name = 'Debes escribir un nombre'
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
               errores.name = 'El nombre solo puede contener letras y espacios'
-            } else if (varietal === valores.name) {
-              errores.name = 'El varietal ya existe'
             }
             return errores
           }}
@@ -57,15 +57,6 @@ function ProductsAdmin () {
                   placeholder='nombre'
                 />
                 <ErrorMessage name='name' component={() => (<div className={s.error}>{errors.name}</div>)} />
-              </div>
-              <div>
-                <label htmlFor='descripción'>Descripción</label>
-                <Field
-                  type='text'
-                  id='descrption'
-                  name='description'
-                  placeholder='descripción'
-                />
               </div>
               <button type='submit'>Crear</button>
               {exito && <p className={s.exito}> Varietal creado con éxito</p>}
