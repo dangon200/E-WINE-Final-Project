@@ -20,6 +20,8 @@ import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
+import ProductsCharts from '../ProductsCharts/ProductsCharts'
+import UsersByProvincesChart from '../UsersCharts/UsersByProvincesChart.jsx'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -188,6 +190,7 @@ function AdminDashboard () {
           <div className={`col-12 ${render.buysRoutes ? ' d-block' : 'd-none'}`}>
             <div> <h3>COMPRAS</h3></div>
             <DataTableBuys buys={buys} />
+            <ProductsCharts />
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
@@ -196,7 +199,8 @@ function AdminDashboard () {
 
           <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
             {/* <Featured /> */}
-            <BuyProfitsChart />
+            <div><BuyProfitsChart /></div>
+            <div><UsersByProvincesChart userProv={userProv} /></div>
           </div>
 
           {/* <div className='ultimasCompras'>

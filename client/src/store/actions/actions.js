@@ -597,3 +597,19 @@ export const adminUser = (id, isAdmin) => {
     }
   }
 }
+
+// productos mas comprados
+export const popularProducts = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/productsCount`)
+      console.log('esta es la respuesta de la API para los productos mas vendidos', res)
+      return dispatch({
+        type: 'GET_POPULAR_PRODUCTS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
