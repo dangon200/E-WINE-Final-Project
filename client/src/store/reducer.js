@@ -114,13 +114,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, userDetail2: action.payload }
     case 'GET_ITEMS_DETAIL':
       return { ...state, itemsDetail: action.payload }
-<<<<<<< HEAD
     case 'GET_POPULAR_PRODUCTS':
       return { ...state, popularProduts: action.payload }
-=======
     case 'UPDATE_PROFILE_PICTURE':
       return { ...state, user: action.payload }
->>>>>>> 1a2619cd4a12a9c90d3798ee6396e6a5b8adcfed
     default:
       return { ...state }
   }
