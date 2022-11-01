@@ -95,10 +95,10 @@ function AdminDashboard () {
   }, [])//eslint-disable-line
 
   const [render, setRender] = useState({
-    Adminppal: false,
+    Adminppal: true,
     usersRoute: false,
     publicationsRoute: false,
-    productsRoute: true,
+    productsRoute: false,
     buysRoutes: false
   })
 
@@ -197,10 +197,14 @@ function AdminDashboard () {
             <Chart />
           </div> */}
 
-          <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
+          <div className={`${!render.Adminppal ? 'd-none' : 'col-12 pt-5 d-flex'}`}>
             {/* <Featured /> */}
-            <div><BuyProfitsChart /></div>
-            <div><UsersByProvincesChart userProv={userProv} /></div>
+            <div className={`col-6 border border-2  bg-white p-3 shadow-lg p-3 mb-5 bg-body rounded ${s.profitChart}`}>
+              <BuyProfitsChart />
+            </div>
+            <div className=' col-6 border border-2  bg-white p-3 shadow-lg p-3 mb-5 bg-body rounded'>
+              <UsersByProvincesChart userProv={userProv} />
+            </div>
           </div>
 
           {/* <div className='ultimasCompras'>

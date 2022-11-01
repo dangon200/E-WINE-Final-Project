@@ -65,7 +65,7 @@ function UsersByProvincesChart () {
   return (
     <div>
       <h2>Usuarios nuevos por provincia</h2>
-      <div className='w-75 d-flex justify-content-end'>
+      <div className='w-100 h-100 d-flex justify-content-end'>
         <Bar options={ChartOptions} data={ChartData()} />
       </div>
     </div>
