@@ -65,8 +65,46 @@
     border-radius: 5px;
     font-size: 1.4rem;
 }
-
+.title{
+    display: flex;
+    text-align: start;
+    width: 75%;
+}
+.h2{
+    display: flex;
+    justify-content: start;
+}
 .btn:hover{
     background-color: white;
     color:  #56070C;
+}
+.datos{
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    align-items: center;
+}
+@media (max-width: 768px){
+    .dataContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 10px;
+    }
+    .title{
+        display: flex;
+        text-align: center;
+        width: 100%;
+    }
+    .datos{
+        width: 100%;
+    }
+    .h2{
+        display: flex;
+        justify-content: center;
+    }
+    .table{
+        width: 350px;
+    }
 }

@@ -158,4 +158,9 @@
         width: 25px;
         height: 25px;
     }
+    .messenger{
+        margin-left: 8px;
+        font-size: 12px;
+        padding: 8px;
+    }
 }

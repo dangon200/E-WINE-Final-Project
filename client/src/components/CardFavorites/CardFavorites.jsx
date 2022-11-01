@@ -10,7 +10,7 @@ import s from './cardFavorite.module.css'
 export default function CardFavorites ({ id, title, description, image, name, price }) {
   return (
     <div>
-      <Card style={{ width: '28rem' }}>
+      <Card className={s.card}>
         <Col>
           {/* <FaHeart
             className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {

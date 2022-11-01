@@ -45,11 +45,11 @@ export default function UserProfile () {
           </Col>
           <Col className={s.container}>
             <Row className='m-auto w-75 pt-5' id={s.grid}>
-              <Row className='d-flex text-start w-75 mb-5'>
+              <Row className={`d-flex mb-5 ${s.title}`}>
                 <h1>Mis datos</h1>
               </Row>
-              <Row className='w-75 fs-4 d-flex justify-content-center align-items-center'>
-                <Col className='d-flex justify-content-start'>
+              <Row className={`fs-4 ${s.datos}`}>
+                <Col className={s.h2}>
                   <h2>Datos de la cuenta</h2>
                 </Col>
               </Row>
