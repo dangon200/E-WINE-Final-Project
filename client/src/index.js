@@ -10,11 +10,15 @@ import store from './store/index'
 
 import { BrowserRouter } from 'react-router-dom'
 
+import { SocketContext, socket } from './context/socket'
+
 ReactDOM.render(
 
   <Provider store={store}>
     <BrowserRouter>
-      <App className='App' />
+      <SocketContext.Provider value={socket}>
+        <App className='App' />
+      </SocketContext.Provider>
     </BrowserRouter>
   </Provider>,
 

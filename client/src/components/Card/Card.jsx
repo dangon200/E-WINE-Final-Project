@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
-export default function Card ({ id, title, name, image, price, userId, count }) {
+export default function Card ({ id, title, name, image, price, userId, count, socket }) {
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.favorites)
   const carrito = useSelector(state => state.carrito)
@@ -38,6 +38,15 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
     dispatch(removeCarrito(id))
   }
 
+  const addFavoritesFunction = (id, publicationId) => {
+    dispatch(addFavorites({ userId: id, publicationId }))
+    socket.emit('sendFavorite', {
+      senderName: user.username,
+      receiverId: userId,
+      publicationTitle: title
+    })
+  }
+
   return (
 
     <div className={`card ${style.card}`}>
@@ -50,10 +59,7 @@ export default function Card ({ id, title, name, image, price, userId, count }) 
                   user.id,
                   id
                 ))
-                : dispatch(addFavorites({
-                  userId: user.id,
-                  publicationId: id
-                }))
+                : addFavoritesFunction(user.id, id)
             }}
           />}
         <div />

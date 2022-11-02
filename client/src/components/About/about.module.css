@@ -56,11 +56,11 @@
     background-color: #e5e3e3;
     border-radius: 15px;
 }
-a:hover{
+/* a:hover{
     cursor: pointer;
     transform: translateY(3px);
     transition: .3s;
-}
+} */
 .cardImage{
     width: 150px;
     margin-top: 20px;

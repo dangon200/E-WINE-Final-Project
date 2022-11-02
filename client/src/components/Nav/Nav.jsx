@@ -2,8 +2,7 @@ import style from './nav.module.css'
 import { Link } from 'react-router-dom'
 import Navegador from '../Navegador/Navegador.jsx'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
-// import admin from '../../utils/images/iconadmin.png'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
@@ -14,14 +13,48 @@ import { RiAdminFill } from 'react-icons/ri'
 // import SeachBar from '../SearchBar/SearchBar'
 
 // import { showModal } from '../../store/actions/actions'
+import { io } from 'socket.io-client'
+import { useEffect, useRef, useState } from 'react'
+import { clearNotifications } from '../../store/actions/actions'
 
 export default function Nav () {
   const user = useSelector(state => state.user)
+  const notifications = useSelector(state => state.notifications)
   const carritoItems = useSelector(state => state.carrito)
+  const socket = useRef()
+  const [show, setShow] = useState(false)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    /* socket.current = io('https://websocketpf.herokuapp.com/') */
+    socket.current = io('http://localhost:8900')
+  }, [])
 
-  // useEffect(() => { console.log(login) }, [login])
+  const displayNotifications = (data) => {
+    if (data.type === 'favorite') {
+      return <span className={style.notification}>{`${data.senderName} agrego tu publicacion ${data.publicationTitle} a favoritos!`}</span>
+    }
+    if (data.type === 'question') {
+      return <span className={style.notification}>{`${data.senderName} te pregunto en la publicacion ${data.publicationTitle}: ${data.text}`}</span>
+    }
+    if (data.type === 'buy') {
+      return <span className={style.notification}>{`Tiene una nueva compra en la publicacion ${data.publicationTitle}!`}</span>
+    }
+  }
+
+  const handleRead = () => {
+    dispatch(clearNotifications())
+    setShow(false)
+  }
+
   return (
     <nav className={`navbar navbar-expand-lg ${style.navbar}`}>
+      {show
+        ? <div className={style.notifications}>{notifications.map(n => (
+          displayNotifications(n)
+        ))}
+          <button className={style.notificationBtn} onClick={handleRead}>Marcar como leidas</button>
+          </div> //eslint-disable-line
+        : null}
       <div className='container-fluid'>
 
         <div className={style.logoContainer}>
@@ -37,7 +70,10 @@ export default function Nav () {
   </Link> //eslint-disable-line
             : null}
           {user
-            ? <MdNotifications className={style.notificationIcon} />
+            ? <div className={style.notificationsContainer} onClick={() => notifications.length && setShow(!show)}>
+              <MdNotifications className={style.notificationIcon} />
+              <div className={style.numberNotifications}>{notifications.length}</div>
+            </div> //eslint-disable-line
             : null}
           {user
             ? <Link to='/messenger' className={style.messenger}>
