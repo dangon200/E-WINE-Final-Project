@@ -1,7 +1,6 @@
 import axios from 'axios'
 const urlApi = 'https://e-winespf.herokuapp.com'
 // const urlApi = 'http://localhost:3001'
-// const urlApi = 'https://56af-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -489,6 +488,7 @@ export const getBuys = () => {
     }
   }
 }
+
 // Varietales
 export const getVarietals = () => {
   return async function (dispatch) {
@@ -574,7 +574,8 @@ export const deliveryStatus = (deliveryId, status) => {
 export const addReviewBuy = (data) => {
   return async function (dispatch) {
     try {
-      const api = await axios.post(`${urlApi}/reviewBuy`, data)
+      const api = await axios.post(`${urlApi}/reviewsBuys`, data)
+
       return dispatch({
         type: 'ADD_REVIEWBUY',
         payload: api.data
@@ -588,7 +589,7 @@ export const addReviewBuy = (data) => {
 export const getReviewBuy = (id) => {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/reviewBuy/${id}`)
+      const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
       return dispatch({
         type: 'GET_REVIEWBUY_ID',
         payload: api.data
@@ -598,6 +599,21 @@ export const getReviewBuy = (id) => {
     }
   }
 }
+
+export const getReviewBuys = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
+      return dispatch({
+        type: 'GET_REVIEWBUYS_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // UPDATE PROFILE IMAGE
 
 export const updateProfileImage = (id, url) => {
@@ -617,7 +633,6 @@ export const updateProfileImage = (id, url) => {
   }
 }
 // volver Admin a un usuario
-
 export const adminUser = (id, isAdmin) => {
   return async function (dispatch) {
     try {

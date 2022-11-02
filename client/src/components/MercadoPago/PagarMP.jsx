@@ -35,7 +35,7 @@ export default function PagarMP () {
   return (
     <div>
       <Button className={s.button} onClick={redirigirMP}>
-        Pagar con MercadoPago
+        Pagar con Mercado Pago
       </Button>
     </div>
   )
