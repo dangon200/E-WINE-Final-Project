@@ -494,6 +494,7 @@ export const getVarietals = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/varietals`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ALL_VARIETALS',
         payload: res.data
@@ -572,6 +573,7 @@ export const deliveryStatus = (deliveryId, status) => {
 // REVIEWSBUYS
 
 export const addReviewBuy = (data) => {
+  console.log(data)
   return async function (dispatch) {
     try {
       const api = await axios.post(`${urlApi}/reviewsBuys`, data)
@@ -582,7 +584,6 @@ export const addReviewBuy = (data) => {
       })
     } catch (error) {
       console.log(error.response)
-      throw new Error(error.response.data)
     }
   }
 }
@@ -665,5 +666,34 @@ export const setOnlineUsers = (users) => {
   return {
     type: 'SET_ONLINE_USERS',
     payload: users
+  }
+}
+// productos mas comprados
+export const popularProducts = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/productsCount`)
+      console.log('esta es la respuesta de la API para los productos mas vendidos', res)
+      return dispatch({
+        type: 'GET_POPULAR_PRODUCTS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+export const reviewsPublication = (productId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/reviews/${productId}`)
+      return dispatch({
+        type: 'REVIEWS_PUBLICATIONS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
   }
 }

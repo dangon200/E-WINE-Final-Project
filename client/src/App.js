@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux'
 import Footer from './components/Footer/Footer'
 import Carrito from './components/Carrito/Carrito'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
+import ProtectedRoutesAdmin from './components/ProtectedRoutesAdmin/ProtectedRoutesAdmin'
+import ProtectedRoutesSommelier from './components/ProtectedRoutesSommelier/ProtectedRoutesSommelier'
 import UserFavorites from './components/UserFavorites/UserFavorites.jsx'
 import FormEditUser from './components/FormEditUser/FormEditUser'
 import UserProfile from './components/UserProfile/UserProfile'
@@ -66,22 +68,20 @@ function App () {
         <Route exact path='/home' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/publication/:id' component={PublicationDetail} />
-        <Route path='/createPublication' exact component={FormCreatePubli} />
-        <Route exact path='/admin' component={AdminDashboard} />
-        <ProtectedRoutes path='/createpublication' exact component={FormCreatePubli} />
+        <ProtectedRoutesAdmin exact path='/admin' component={AdminDashboard} />
+        <ProtectedRoutes path='/createPublication' exact component={FormCreatePubli} />
         <Route path='/carrito' component={Carrito} />
-        <Route path='/user/favorites' component={UserFavorites} />
-        <Route path='/formEditUser' component={FormEditUser} />
-        <Route path='/userProfile' component={UserProfile} />
-        <Route path='/userpurchased' component={PurchasedProducts} />
+        <ProtectedRoutes path='/user/favorites' component={UserFavorites} />
+        <ProtectedRoutes path='/formEditUser' component={FormEditUser} />
+        <ProtectedRoutes path='/userProfile' component={UserProfile} />
+        <ProtectedRoutes path='/userpurchased' component={PurchasedProducts} />
         <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
-        <Route exact path='/payment/:totalAmount' component={CardStripe} />
-        <Route exact path='/messenger' component={Messenger} />
-        <Route exact path='/forgotPassword' component={FormForgotPassword} />
-        <Route exact path='/recoverPassword' component={RecoverPassword} />
-        <Route exact path='/userSales' component={UserSales} />
-        <Route exact path='/messenger' component={Messenger} />
-        <Route exact path='/sommelierReviews' component={SommelierReviews} />
+        <ProtectedRoutes exact path='/payment/:totalAmount' component={CardStripe} />
+        <ProtectedRoutes exact path='/messenger' component={Messenger} />
+        <ProtectedRoutes exact path='/forgotPassword' component={FormForgotPassword} />
+        <ProtectedRoutes exact path='/recoverPassword' component={RecoverPassword} />
+        <ProtectedRoutes exact path='/userSales' component={UserSales} />
+        <ProtectedRoutesSommelier exact path='/sommelierReviews' component={SommelierReviews} />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register', '/payment/:totalAmount']} component={Footer} />

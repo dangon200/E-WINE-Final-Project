@@ -1,19 +1,19 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
 import PagarMP from '../MercadoPago/PagarMP'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-// import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
-  // const history = useHistory()
-  // const cookies = new Cookies()
-  // const token = cookies.get('TOKEN')
+  const history = useHistory()
+  const cookies = new Cookies()
+  const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
   const totalAmount = carrito.reduce((acumulador, pactual) => {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
@@ -55,12 +55,14 @@ export default function Carrito () {
               </span>
             </Col>
           </Row>
-          <button className={style.button}>
-            <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Pagar
-            </Link>
-          </button>
-          <PagarMP />
+          {token
+            ? <button className={style.button}>
+              <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
+                Pagar
+              </Link>
+              </button> //eslint-disable-line
+            : history.push('/register')}
+          {token ? <PagarMP /> : history.push('/register')}
         </Col>
       </Row>
     </div>
