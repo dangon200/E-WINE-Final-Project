@@ -2,22 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
-import { Link } from 'react-router-dom'
-// import PagarMP from '../MercadoPago/PagarMP'
+import { Link, useHistory } from 'react-router-dom'
+import PagarMP from '../MercadoPago/PagarMP'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-// import Cookies from 'universal-cookie'
-// import Col from 'react-bootstrap/esm/Col'
-// import Row from 'react-bootstrap/esm/Row'
+import Cookies from 'universal-cookie'
 
 export default function Carrito () {
-  // const dispatch = useDispatch()
-  // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
-  /* const user = useSelector(state => state.user) */
-  /* const history = useHistory()
+  const history = useHistory()
   const cookies = new Cookies()
-  const token = cookies.get('TOKEN') */
+  const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
@@ -65,7 +60,7 @@ export default function Carrito () {
               Pagar
             </Link>
           </button>
-          {/* {token ? <PagarMP /> : history.push('/register')} */}
+          {token ? <PagarMP /> : history.push('/register')}
           {/* <Button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
               Pagar con Tarjeta
