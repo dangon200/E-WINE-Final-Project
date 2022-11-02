@@ -15,7 +15,7 @@ import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-
+  console.log(date)
   return (
     <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
       <Row className='border-bottom mb-4'>

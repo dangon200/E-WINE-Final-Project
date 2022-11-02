@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     }
   )
   try {
-    if (revPuntuada) { return res.status(400).send(console.log('La publicacion ya fue puntuada por este usuario')) }
+    if (revPuntuada) { return res.status(200).json({ result: 'La publicacion ya fue puntuada por este usuario' }) }
     if (hasBuyItem.length >= 1) {
       const AddReview = await ReviewBuy.create(
         {
@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
   res.status(200).json({ result, cantidadRevs })
 })
 
-// ARRAY CON EL DETALLE DE LOS COMENTARIOS DE LAS REVIEWS (USER,COMENTARIO,PUNTAJE,ID)
+// ARRAY CON EL DETALLE DE LOS COMENTARIOS DE LAS REVIEWS (USER,COMENTARIO,PUNTAJE,ID,IMAGE)
 router.get('/reviewsDetail/:id', async (req, res) => {
   const { id } = req.params
   try {
@@ -97,7 +97,8 @@ router.get('/reviewsDetail/:id', async (req, res) => {
         text: r.text,
         stars: r.stars,
         username: r.user.username,
-        createdAt: r.createdAt
+        createdAt: r.createdAt,
+        image: r.user.image
       })
     })
     res.status(201).json(results)
