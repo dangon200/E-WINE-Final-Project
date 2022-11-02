@@ -76,6 +76,10 @@ export default function UserProfile () {
                       <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.username}</td>
                     </tr>
                     <tr>
+                      <td style={{ 'padding-left': '10px' }}>Nivel</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.buyLevel}</td>
+                    </tr>
+                    <tr>
                       <td style={{ 'padding-left': '10px' }}>E-mail</td>
                       <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.email}</td>
                     </tr>
