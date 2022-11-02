@@ -21,7 +21,7 @@ function ProductsAdmin () {
           <div className='col d-flex flex-row-reverse bd-highlight'>
             <div className=''>
               <div className='d-flex text-secondary shadow-sm p-3 mb-5 w-auto p-3 bg-white rounded'>
-                <h2>Agregar nuevo varietal</h2>
+                <h2 className={s.btn}>Agregar nuevo varietal:</h2>
               </div>
               <Formik
                 initialValues={{
@@ -62,7 +62,7 @@ function ProductsAdmin () {
                       />
                       <ErrorMessage name='name' component={() => (<div className={s.error}>{errors.name}</div>)} />
                     </div>
-                    <button type='submit' className=''>Crear</button>
+                    <button type='submit'>Crear</button>
                     {exito && <p className={s.exito}> Varietal creado con éxito</p>}
                     {fallo && <p className={s.fallo}> El varietal ya existe</p>}
                   </Form>
