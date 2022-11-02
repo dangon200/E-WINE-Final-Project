@@ -40,16 +40,16 @@ export default function UserProfile () {
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
         <Row className='grid h-100'>
-          <Col className='col-auto pt-5 rounded'>
+          <Col className={`col-auto pt-5 rounded ${s.sidebar}`}>
             <Sidebar />
           </Col>
           <Col className={s.container}>
-            <Row className='m-auto w-75 pt-5' id={s.grid}>
-              <Row className='d-flex text-start w-75 mb-5'>
-                <h1>Mis datos</h1>
+            <Row className='m-auto w-75' id={s.grid}>
+              <Row className={`d-flex mb-5 ${s.title}`}>
+                <h1 className='d-flex w-100'>Mis datos</h1>
               </Row>
-              <Row className='w-75 fs-4 d-flex justify-content-center align-items-center'>
-                <Col className='d-flex justify-content-start'>
+              <Row className={`fs-4 ${s.datos}`}>
+                <Col className={s.h2}>
                   <h2>Datos de la cuenta</h2>
                 </Col>
               </Row>
@@ -57,7 +57,7 @@ export default function UserProfile () {
                 <div className={s.imageContainer}>
                   <img id='image' className={s.image} src={user.image ? user.image : 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png'} alt='profile' />
                   <input type='file' className={s.input} id='input' onChange={handleChange} />
-                  <button className={s.btn} onClick={() => document.getElementById('input').click()}>Cambiar imagen de perfil</button>
+                  <button className={s.btn} onClick={() => document.getElementById('input').click()}>Cambiar foto de perfil</button>
                 </div>
                 <Table responsive className={s.table} size='lg'>
                   {/* <thead>
@@ -76,6 +76,10 @@ export default function UserProfile () {
                       <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.username}</td>
                     </tr>
                     <tr>
+                      <td style={{ 'padding-left': '10px' }}>Nivel</td>
+                      <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.buyLevel}</td>
+                    </tr>
+                    <tr>
                       <td style={{ 'padding-left': '10px' }}>E-mail</td>
                       <td style={{ 'padding-right': '10px' }} className={s.secTd}>{user.email}</td>
                     </tr>
@@ -90,10 +94,10 @@ export default function UserProfile () {
                   </tbody>
                 </Table>
               </Container>
-              <Row className='fs-4 d-flex justify-content-center align-items-center pt-3'>
+              <Row className='fs-3 d-flex justify-content-center align-items-center pt-3'>
                 <Col className='d-flex justify-content-start'>
                   <Link className='text-decoration-none' to='/formEditUser'>
-                    Modificar datos de cuenta
+                    Cambiar contraseña
                   </Link>
                 </Col>
               </Row>

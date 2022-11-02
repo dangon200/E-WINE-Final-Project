@@ -4,18 +4,19 @@ import { ImGlass } from 'react-icons/im'
 import style from './reviewBuy.module.css'
 const urlApi = 'http://localhost:3001'
 
-export default function ReviewBuy (id, pubId) {
+export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const text = useRef(null)
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault('')
     const comentario = {
-      userId: id,
-      publicationId: pubId,
+      userId: userId.userId,
+      publicationId: userId.pubId,
       puntaje: rating,
       textRev: text.current.value
     }
-    fetch(`${urlApi}/reviewsBuy`, {
+    fetch(`${urlApi}/reviewsBuys`, {
       method: 'POST',
       body: JSON.stringify(comentario),
       headers: {
@@ -27,6 +28,7 @@ export default function ReviewBuy (id, pubId) {
 
   return (
     <Container className='mt-5 bg-body shadow-lg' fluid>
+      <div className={style.text}>Si ya compraste este vino dejanos tu opinión</div>
       {[...Array(5)].map((star, i) => {
         const starRating = i + 1
         return (
@@ -40,7 +42,7 @@ export default function ReviewBuy (id, pubId) {
             />
             <ImGlass
               className={style.star}
-              size={25} key={Math.random()}
+              size={50} key={Math.random()}
               onMouseEnter={() => setHover(starRating)}
               onMouseLeave={() => setHover(null)}
               color={starRating > (hover || rating) ? '#e4e5e9' : '#56070C'}
@@ -49,8 +51,13 @@ export default function ReviewBuy (id, pubId) {
         )
       })}
       <form>
-        <textarea type='text' name='Comentario' placeholder='Agregar comentario...' ref={text} />
-        <button type='button' onClick={e => handleClick()}>Enviar</button>
+        <input
+          className={style.questionsContainer}
+          type='text'
+          name='Comentario'
+          placeholder='Agregar comentario...' ref={text}
+        />
+        <button className={style.inputBtn} type='button' onClick={e => handleClick(e)}>Enviar</button>
       </form>
     </Container>
   )

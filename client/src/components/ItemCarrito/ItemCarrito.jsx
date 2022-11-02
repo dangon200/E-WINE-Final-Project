@@ -7,7 +7,6 @@ import Counter from '../Counter/Counter'
 import s from './itemCarrito.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import Button from 'react-bootstrap/esm/Button'
 
 export default function ItemCarrito (props) {
   const { id, title, price, count, image, name } = props
@@ -25,10 +24,10 @@ export default function ItemCarrito (props) {
           <Col className={s.image}>
             <img className='img-fluid' src={image} alt={image} />
           </Col>
-          <Col className='d-flex flex-column col-4 justify-content-center align-items-left ms-4'>
+          <Col className={`d-flex flex-column col-4 justify-content-center align-items-left ${s.titleName}`}>
             <Row className='fs-3 text-start'>{title}</Row>
             <Row className='fw-bold'>{name}</Row>
-            <Row><span className='fs-3 fw-semibold text-start pt-5'>$ {price}</span></Row>
+            <Row><span className={`fs-3 fw-semibold text-start ${s.price}`}>$ {price}</span></Row>
           </Col>
           <Col className='d-flex flex-column gap-3 justify-content-center align-items-center'>
             {/* <Row><span className='fs-3 fw-semibold '>$ {price}</span></Row> */}
@@ -39,18 +38,18 @@ export default function ItemCarrito (props) {
           {/* <Col className='d-flex align-items-center'>
             <Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} />
           </Col> */}
-          <Col className={`d-flex gap-5 justify-content-center align-items-end ${s.eliminar}`}>
+          <Col className={`d-flex gap-5 ${s.eliminar}`}>
             <Row>
-              <Button className={s.button} onClick={() => { removeFromCarrito(id) }}>
+              <button className={s.button} onClick={() => { removeFromCarrito(id) }}>
                 Eliminar
-              </Button>
+              </button>
             </Row>
             <Row>
-              <Button className={s.button2}>
+              <button className={s.button2}>
                 <Link className='text-decoration-none text-dark' to={`/publication/${id}`}>
                   Ver producto
                 </Link>
-              </Button>
+              </button>
             </Row>
           </Col>
         </Row>

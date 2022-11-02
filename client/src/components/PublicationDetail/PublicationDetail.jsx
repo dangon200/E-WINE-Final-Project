@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-
+import { ImGlass } from 'react-icons/im'
 import { FaHeart } from 'react-icons/fa'
 
-import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
+import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites, getReviewBuy, getReviewBuys } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -20,25 +20,33 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
-// import ReviewBuy from '../ReviewBuy/ReviewBuy'
+import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
+import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
+  const User = useSelector(state => state.user)
+  const Review = useSelector(state => state.reviewBuy)
+  const ReviewsPub = useSelector(state => state.reviewBuys)
   // const User = useSelector(state => state.user)
+
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
   const { name, price, title, image, count } = publication
   const [counter, setCounter] = useState(1)
+  const { result, cantidadRevs } = Review
+  const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
+    dispatch(getReviewBuy(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
+    dispatch(getReviewBuys(id))
   }, [dispatch, id])
-
   const isInFavorites = (id) => {
     return favorites.some((f) => f === id)
   }
@@ -124,6 +132,13 @@ export default function PublicationDetail (props) {
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
+            <br />
+            <span className='fs-2'>
+              puntaje: {result2} <ImGlass
+                size={16}
+                color='#610a10'
+                                 /> {`(${cantidadRevs})`}
+            </span>
             {/* <figure className='text-center mt-5'>
               <blockquote className='blockquote fs-4 fst-italic'>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit facere cumque ratione, odio expedita quisquam iusto reprehenderit? Hic ea autem cupiditate ducimus similique molestiae eligendi voluptatibus facere debitis eveniet!</p>
@@ -198,6 +213,8 @@ export default function PublicationDetail (props) {
         {/* <ReviewBuy userId={User.id} pubId={publication.id} /> */}
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
+        <ReviewBuy userId={User.id} pubId={publication.id} />
+        <ComentDetail comment={ReviewsPub} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (

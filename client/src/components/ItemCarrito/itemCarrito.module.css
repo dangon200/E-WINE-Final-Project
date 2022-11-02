@@ -55,27 +55,42 @@
 .eliminar{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .item{
     width: 75%;
     padding: 20px;
 }
-
+.price{
+    padding-top: 25px;
+}
+.titleName{
+    margin-left: 16px;
+}
 @media (max-width: 768px) {
     .container{
         margin-top: 30px;
     }
     .image{
-        width: 120px;
-        background-size: cover;
+        max-height: 80px;
+        object-fit: cover;
     }
     .eliminar{
         display: flex;
         flex-direction: row;
+        justify-content: end;
+        align-items: flex-end;
         margin-top: 15px;
     }
     .item{
-        width: 75%;
+        width: 100%;
         padding: 0px;
+    }
+    .price{
+        padding-top: 10px;
+    }
+    .titleName{
+        margin-left: 8px;
     }
 }

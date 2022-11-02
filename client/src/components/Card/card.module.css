@@ -52,7 +52,7 @@
     position: absolute;
     width: 254px;
     height: 272px;
-    left: 27px;
+    left: 20px;
     top: 48px;
 }
 
@@ -98,18 +98,25 @@
 .infoContainer{
     margin-top: 8px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
 }
 
 .infoContainer h4{
     font-family: var(--font-family-2);
 }
-
+.namePrice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 .name{
     color: #000000;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 110px;
     height: 22px;
     left: 21px;
@@ -119,16 +126,19 @@
     font-size: 12px;
     line-height: 24px;
     text-align: center;
-letter-spacing: 0.1px;
-
+    letter-spacing: 0.1px;
 }
 
 .price{
     color: var(--btn-background-color);
     position: absolute;
-    width: 100px;
-    height: 16px;
-    left: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 22px;
+    font-size: 12px;
+    left: 180px;
     top: 305px;
     font-style: normal;
     font-weight: 400;
@@ -153,16 +163,13 @@ letter-spacing: 0.1px;
     align-items: flex-end;
     padding: 8px 16px;
     gap: 8px;
-    
+    color: #F1F0F0;
     position: absolute;
-    /* width: 106px; */
     height: 40px;
     left: 190px;
     top: 346px;
     background-color: #91091E;
-    border: 2px solid #91091E;
-    /* background: #56070C;
-    border: 1px solid #56070C; */
+    border: 1px solid #91091E;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     font-family: 'Source Sans Pro';
@@ -179,9 +186,9 @@ letter-spacing: 0.1px;
     height: 300px;  
 }
 .addBtn:hover{
-    background-color: white;
-    color: var(--btn-background-color);
-    border-color: #56070C;
+    background-color: #F1F0F0;
+    color: #91091E;
+    border-color: #91091E;
 }
 
 .moreBtn{
@@ -193,7 +200,7 @@ letter-spacing: 0.1px;
     cursor: pointer;
     background-color: var(--background-color);
     text-decoration: none;
-    color: #56070C;
+    color: #91091E;
     /* display: flex;
     flex-direction: column; */
     align-items: center;
@@ -208,14 +215,76 @@ letter-spacing: 0.1px;
     padding: 8px 16px;
     gap: 8px;
     background: #F1F0F0;
-    border: 1px solid #56070C;
+    border: 1px solid #91091E;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
     text-transform: uppercase;
 }
 
 .moreBtn:hover{
-    background-color: #56070C;
+    background-color: #91091E;
     color: #F1F0F0;
-    border-color: #56070C;
+    border-color: #91091E;
+}
+@media (max-width: 576px){
+    .card{
+        width: 250px;
+        height: 325px;
+    }
+    .iconContainer{
+        display: flex;
+        text-align: left;
+        margin-bottom: 8px;
+        height: 18px;
+        width: 18px;
+    }
+    .imgContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: unset;
+        width: 100%;
+        height: 150px;
+    }
+    .img{
+        height: 90%;
+        width: 90%;
+        object-fit: cover;
+    }
+    .dataContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .name, .price{
+        position: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title{
+        position: unset;
+    }
+    .infoContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 0px;
+    }
+    .addBtn, .moreBtn{
+        position: unset;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90px;
+        height: 30px;
+        padding: 8px 12px 8px 12px;
+        font-size: 12px;
+    }
+    .btnContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
 }

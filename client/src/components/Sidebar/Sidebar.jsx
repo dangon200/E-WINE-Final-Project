@@ -7,15 +7,28 @@ import {
 } from 'react-icons/fa'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { GoGraph } from 'react-icons/go'
+import { MdReviews } from 'react-icons/md'
+// import { BiLogOut } from 'react-icons/bi'
 import s from './Sidebar.module.css'
 import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../../utils/images/logo.png'
+import { useSelector } from 'react-redux'
+
+/* import { logoutUser } from '../../store/actions/actions'
+import Cookies from 'universal-cookie' */
 
 const Sidebar = () => {
+  /* const cookies = new Cookies()
+  const dispatch = useDispatch() */
+  const user = useSelector(state => state.user)
   const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
   /* const untoggle = () => setIsOpen(isOpen) */
+  /* function removeCookies () {
+    dispatch(logoutUser())
+    cookies.remove('TOKEN')
+  } */
   const menuItem = [
     {
       path: '/home',
@@ -42,6 +55,11 @@ const Sidebar = () => {
       name: 'Datos de usuario',
       icon: <FaUser color='#91091E' size={25} />
     }
+    /* {
+      path: '/userReviews',
+      name: 'Reviews',
+      icon: <MdReviews color='#91091E' size={25} />
+    } */
   ]
   return (
     <div className='container-fluid'>
@@ -65,6 +83,21 @@ const Sidebar = () => {
                   </NavLink>
                 ))
         }
+        {user.isSommelier
+          ? <NavLink
+              to='/sommelierReviews'
+              className='text-decoration-none'
+            >
+            <div className={`${(isOpen ? 'd-flex justify-content-start align-items-center mt-5' : 'mt-5')}`}>
+              <div className={location.pathname === '/sommelierReviews' ? s.navlinkActive : s.navlink}><MdReviews color='#91091E' size={25} /></div>
+              <div style={{ display: isOpen ? 'block' : 'none' }} className='fs-4 fw-semibold text-dark ms-5'><span>Reseñas</span></div>
+            </div>
+                  </NavLink>// eslint-disable-line
+          : null}
+        {/* <div className='pt-5'><button className={s.logout}><MdReviews color='#91091E' size={25} /></button></div>
+        <div style={{ display: isOpen ? 'block' : 'none' }} className='pt-5 fs-4 fw-semibold text-dark ms-5'>
+          <span>Reviews</span>
+        </div>  */}
       </div>
     </div>
   )
