@@ -1,21 +1,19 @@
 import React from 'react'
 import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
 import ProductsCharts from '../ProductsCharts/ProductsCharts'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 function BuysAdmin ({ buys }) {
   return (
-    <Container className='bg-white'>
+    <Container className=''>
       <Row className='text-secondary shadow-sm p-3 mb-5 bg-light rounded'> <h2>COMPRAS</h2></Row>
-      <Row className='mb-3'>
-        {/* Columna 1 */}
-        <Col className='border border-2 m-3 bg-light'>
-          <DataTableBuys buys={buys} />
-        </Col>
-        {/* Columna 2 */}
-        <Col className='border border-2 m-3 bg-light'>
-          <ProductsCharts />
-        </Col>
+      {/* fila 1 tabla */}
+      <Row className='mb-2 mt-3'>
+        <DataTableBuys buys={buys} />
+      </Row>
+      {/* Chart fila 2 */}
+      <Row className='mb-2 mt-3'>
+        <ProductsCharts />
       </Row>
 
     </Container>
