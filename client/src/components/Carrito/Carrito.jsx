@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
-import { Link } from 'react-router-dom'
-// import PagarMP from '../MercadoPago/PagarMP'
+import PagarMP from '../MercadoPago/PagarMP'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 // import Cookies from 'universal-cookie'
@@ -16,9 +16,9 @@ export default function Carrito () {
   // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
-  /* const history = useHistory()
-  const cookies = new Cookies()
-  const token = cookies.get('TOKEN') */
+  // const history = useHistory()
+  // const cookies = new Cookies()
+  // const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
 
   const totalAmount = carrito.reduce((acumulador, pactual) => {
@@ -28,39 +28,6 @@ export default function Carrito () {
 
   return (
     <div className={style.container}>
-      {/* {carrito.length > 0
-        ? carrito.map(p => {
-          return (
-            <ItemCarrito
-              key={p.id}
-              id={p.id}
-              title={p.title}
-              price={p.price}
-              count={p.count}
-              image={p.image}
-              name={p.name}
-              stock={p.stock}
-            />
-          )
-        })
-        : <h3 className='fs-4'>No has agregado nada al carrito aún!</h3>}
-      <div className={style.total}>
-        <div className='fs-4'>
-          Costo de envio a {user.region !== 'null' ? user.region : 'su domicilio'}: $350
-        </div>
-        <div className='fs-4'>
-          Total con envio: {carrito.length > 0
-          ? totalAmount
-          : 'No hay productos en el carrito'}
-        </div>
-      </div>
-      {token ? <PagarMP /> : history.push('/register')}
-      <Button className={style.button}>
-        <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-          Pagar con Tarjeta
-        </Link>
-          </Button> */}
-
       <Row className={`container-fluid ${style.cont}`}>
         <Col className={`d-flex flex-column col-9 gap-3 ${style.containerItems}`}>
           {carrito.length > 0
@@ -99,12 +66,12 @@ export default function Carrito () {
               Continuar la compra
             </Link>
           </Button>
-          {/* {token ? <PagarMP /> : history.push('/register')} */}
+          <PagarMP />
           {/* <Button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
               Pagar con Tarjeta
             </Link>
-          </Button> */}
+          </Button> onClick={token ? <PagarMP /> : history.push('/register')} */}
         </Col>
       </Row>
     </div>

@@ -10,7 +10,7 @@ import recibis from '../../utils/images/recibis.png'
 
 function About () {
   return (
-    <div className='container-fluid px-0'>
+    <div className='container-fluid'>
       <div className={`row ${s.entrega}`}>
         <div className={`row ${s.header}`}>
           <div className={`col-6 ${s.apartado}`}>
@@ -19,7 +19,7 @@ function About () {
             <Button content='Visitar la tienda' link='/home' />
           </div>
         </div>
-        <div className={`row  ${s.entrega}`}>
+        <div className={`row flex-wrap ${s.entrega}`}>
           <h1 className={s.h1exp}>¿Cómo es la experiencia?</h1>
           <div className={`container d-flex justify-content-center d-grid gap-3 flex-wrap ${s.contenedor}`}>
             <div className={`card mb-3 ${s.box}`}>
