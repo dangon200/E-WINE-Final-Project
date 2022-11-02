@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
@@ -33,7 +33,7 @@ function AdminDashboard () {
   const products = useSelector(state => state.allProducts)
   const buys = useSelector(state => state.buys)
   const cookies = new Cookies()
-  // const history = useHistory()
+  const history = useHistory()
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
   const cantidadBuys = buys.length
@@ -82,11 +82,11 @@ function AdminDashboard () {
     }
     return arrayB.length
   }
-  // useEffect(() => {
-  //   console.log(token)
-  //   console.log('Este es el token de isAdmimn', token.user.isAdmin)
-  //   !token.user.isAdmin && history.push('/')
-  // }, [])//eslint-disable-line
+  useEffect(() => {
+    console.log(token)
+    console.log('Este es el token de isAdmimn', token.user.isAdmin)
+    !token.user.isAdmin && history.push('/')
+  }, [])//eslint-disable-line
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
