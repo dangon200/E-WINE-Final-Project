@@ -184,6 +184,8 @@ function AdminDashboard () {
             <UserAdmin token={token} users={users} userProv={userProv} />
           </div>
           <div className={`col-12 ${render.productsRoute ? ' d-block' : 'd-none'}`}>
+            <div className='text-secondary shadow-sm p-3 mb-5 bg-white rounded'> <h2>COMPRAS</h2></div>
+
             <ProductsAdmin />
           </div>
 

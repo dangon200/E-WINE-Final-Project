@@ -12,58 +12,65 @@ function ProductsAdmin () {
   const dispatch = useDispatch()
   const varietals = useSelector(state => state.allVarietals)
   return (
-    <div className='flex-wrap '>
-      {/* aca deberia renderizar la tabla  que es TableVarietalAdmin pero esta comentado porque me tira error porque no hay varietals */}
-      <div>
-        <TableVarietalAdmin />
-      </div>
-      <h2>Agregar nuevo varietal</h2>
-      <div className='w-50 d-flex justify-content-center'>
-        <Formik
-          initialValues={{
-            name: ''
-          }}
-          validate={(valores) => {
-            let errores = {} //eslint-disable-line
-            if (!valores.name) {
-              errores.name = 'Debes escribir un nombre'
-            } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
-              errores.name = 'El nombre solo puede contener letras y espacios'
-            }
-            return errores
-          }}
-          onSubmit={(valores, { resetForm }) => {
-            const str = valores.name
-            const str2 = str.charAt(0).toUpperCase() + str.slice(1)
-            if (varietals.includes(str2)) {
-              setFallo(true)
-              setTimeout(() => setFallo(false), 5000)
-            } else {
-              dispatch(postVarietals(str2, valores.description))
-              setExito(true)
-              resetForm()
-              setTimeout(() => setExito(false), 5000)
-            }
-          }}
-        >
-          {({ values, errors }) => (
-            <Form className={s.formulario}>
-              <div>
-                <label htmlFor='name'>Varietal</label>
-                <Field
-                  type='text'
-                  id='name'
-                  name='name'
-                  placeholder='nombre'
-                />
-                <ErrorMessage name='name' component={() => (<div className={s.error}>{errors.name}</div>)} />
+    <div className='container-fluid'>
+      <div className='row'>
+        <div className='col-12 d-flex '>
+          <div className='col-4 justify-content-center'>
+            <TableVarietalAdmin />
+          </div>
+          <div className='col d-flex flex-row-reverse bd-highlight'>
+            <div className=''>
+              <div className='d-flex text-secondary shadow-sm p-3 mb-5 w-auto p-3 bg-white rounded'>
+                <h2>Agregar nuevo varietal</h2>
               </div>
-              <button type='submit'>Crear</button>
-              {exito && <p className={s.exito}> Varietal creado con éxito</p>}
-              {fallo && <p className={s.fallo}> El varietal ya existe</p>}
-            </Form>
-          )}
-        </Formik>
+              <Formik
+                initialValues={{
+                  name: ''
+                }}
+                validate={(valores) => {
+                  let errores = {} //eslint-disable-line
+                  if (!valores.name) {
+                    errores.name = 'Debes escribir un nombre'
+                  } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.name)) {
+                    errores.name = 'El nombre solo puede contener letras y espacios'
+                  }
+                  return errores
+                }}
+                onSubmit={(valores, { resetForm }) => {
+                  const str = valores.name
+                  const str2 = str.charAt(0).toUpperCase() + str.slice(1)
+                  if (varietals.includes(str2)) {
+                    setFallo(true)
+                    setTimeout(() => setFallo(false), 5000)
+                  } else {
+                    dispatch(postVarietals(str2, valores.description))
+                    setExito(true)
+                    resetForm()
+                    setTimeout(() => setExito(false), 5000)
+                  }
+                }}
+              >
+                {({ values, errors }) => (
+                  <Form className={s.formulario}>
+                    <div>
+                      <label htmlFor='name'>Varietal</label>
+                      <Field
+                        type='text'
+                        id='name'
+                        name='name'
+                        placeholder='nombre'
+                      />
+                      <ErrorMessage name='name' component={() => (<div className={s.error}>{errors.name}</div>)} />
+                    </div>
+                    <button type='submit' className=''>Crear</button>
+                    {exito && <p className={s.exito}> Varietal creado con éxito</p>}
+                    {fallo && <p className={s.fallo}> El varietal ya existe</p>}
+                  </Form>
+                )}
+              </Formik>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
