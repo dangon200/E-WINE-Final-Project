@@ -41,10 +41,14 @@ export default function reducer (state = initialState, action) {
       return { ...state, detailPublication: action.payload }
     case 'GET_PRODUCTS':
       return { ...state, allProducts: action.payload, products: action.payload }
+    case 'GET_PRODUCTS_REVIEWS':
+      return { ...state, products: action.payload }
     case 'GET_BY_ID_PRODUCT':
       return { ...state, detailProduct: action.payload }
     case 'POST_PRODUCT':
       return { ...state, detailProduct: action.payload }
+    case 'POST_REVIEW':
+      return { ...state, products: action.payload }
     case 'SEARCH_PRODUCT_BY_NAME':
       return { ...state, detailProduct: action.payload }
     case 'FILTER_PUBLICATIONS':

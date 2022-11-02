@@ -7,15 +7,9 @@ import { Link } from 'react-router-dom'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 // import Cookies from 'universal-cookie'
-import Button from 'react-bootstrap/esm/Button'
-// import Col from 'react-bootstrap/esm/Col'
-// import Row from 'react-bootstrap/esm/Row'
 
 export default function Carrito () {
-  // const dispatch = useDispatch()
-  // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
-  /* const user = useSelector(state => state.user) */
   /* const history = useHistory()
   const cookies = new Cookies()
   const token = cookies.get('TOKEN') */
@@ -28,7 +22,7 @@ export default function Carrito () {
 
   return (
     <div className={style.container}>
-      <Row className={`container-fluid ${style.cont}`}>
+      <Row className={`${style.cont}`}>
         <Col className={`d-flex flex-column col-9 gap-3 ${style.containerItems}`}>
           {carrito.length > 0
             ? carrito.map(p => {
@@ -61,11 +55,11 @@ export default function Carrito () {
               </span>
             </Col>
           </Row>
-          <Button className={style.button}>
+          <button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Continuar la compra
+              Pagar
             </Link>
-          </Button>
+          </button>
           {/* {token ? <PagarMP /> : history.push('/register')} */}
           {/* <Button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>

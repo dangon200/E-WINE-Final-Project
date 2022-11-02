@@ -10,7 +10,7 @@ import s from './cardFavorite.module.css'
 export default function CardFavorites ({ id, title, description, image, name, price }) {
   return (
     <div>
-      <Card style={{ width: '28rem' }}>
+      <Card className={s.card}>
         <Col>
           {/* <FaHeart
             className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
@@ -35,12 +35,9 @@ export default function CardFavorites ({ id, title, description, image, name, pr
           <Card.Text>
             {name}
           </Card.Text>
-          {/* <Card.Text>
-            {price}
-          </Card.Text> */}
-          <Button className='p-3 fs-5' variant='dark'>
+          <Button className={`p-3 fs-4 ${s.button}`}>
             <Link className='text-light text-decoration-none' to={`/publication/${id}`}>
-              Volver a la publicación
+              Ir a la publicación
             </Link>
           </Button>
         </Card.Body>

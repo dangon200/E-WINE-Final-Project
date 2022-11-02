@@ -82,3 +82,26 @@
 .statusSuccess{
     color: green;
 }
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+/* @media (max-width: 992px){
+    .image{
+        
+    }
+} */
+
+@media (max-width: 576px){
+    .image, .dataContainer, .valor{
+        margin: auto;
+        margin-bottom: 15px;
+    }
+    .modal, .delivery{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
