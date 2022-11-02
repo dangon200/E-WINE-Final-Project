@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import ChatOnline from '../ChatOnline/ChatOnline'
 import Conversations from '../Conversations/Conversations'
 import ItemConversation from '../ItemConversation/ItemConversation'
@@ -7,9 +7,10 @@ import axios from 'axios'
 import SidebarMessenger from '../SidebarMessenger/SidebarMessenger'
 import { BsFillChatDotsFill } from 'react-icons/bs'
 import { FiSend } from 'react-icons/fi'
-import { io } from 'socket.io-client'
+/* import { io } from 'socket.io-client' */
 
 import { useSelector } from 'react-redux'
+import { SocketContext } from '../../context/socket'
 
 function Messenger () {
   const user = useSelector(state => state.user)
@@ -18,23 +19,29 @@ function Messenger () {
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState('')
   const scrollRef = useRef()
-  const socket = useRef()
+  /*  const socket = useRef() */
+  const socket = useContext(SocketContext)
   const [arrivalMessage, setArrivalMessage] = useState(null)
-  const [onlineUsers, setOnlineUsers] = useState([])
+  /* const [onlineUsers, setOnlineUsers] = useState([]) */
+  const onlineUsers = useSelector(state => state.onlineUsers)
+
+  /*   useEffect(() => {
+    /* socket.current = io('https://websocketpf.herokuapp.com/')
+    socket.current = io('http://localhost:8900')
+  }, [socket]) */
 
   useEffect(() => {
-    socket.current = io('https://websocketpf.herokuapp.com/')
-    socket.current.on('getMessage', data => {
+    socket.on('getMessage', data => {
       setArrivalMessage({
         userId: data.userId,
         text: data.text,
         createdAt: Date.now()
       })
     })
-    socket.current.on('getConversation', data => {
+    socket.on('getConversation', data => {
       setConversations(prev => [data.data, ...prev])
     })
-  }, [conversations])
+  }, [])
 
   useEffect(() => {
     const includesId = (userId) => {
@@ -48,17 +55,9 @@ function Messenger () {
   }, [arrivalMessage, currentChat])
 
   useEffect(() => {
-    user &&
-    socket.current.emit('addUser', user.id)
-    socket.current.on('getUsers', users => {
-      setOnlineUsers(users)
-    })
-  }, [user])
-
-  useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get(`https://e-winespf.herokuapp.com/conversations/user/${user?.id}`)
+        const res = await axios.get(`https://e-winespf.herokuapp.com/conversations/user/${user.id}`)
         setConversations(res.data)
       } catch (error) {
         console.log(error)
@@ -70,8 +69,10 @@ function Messenger () {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get(`https://e-winespf.herokuapp.com/messages/${currentChat?.id}`)
-        setMessages(res.data)
+        if (currentChat) {
+          const res = await axios.get(`https://e-winespf.herokuapp.com/messages/${currentChat.id}`)
+          setMessages(res.data)
+        }
       } catch (error) {
         console.log(error.message)
       }
@@ -89,7 +90,7 @@ function Messenger () {
 
     const receiver = currentChat.users.find(u => u.id !== user.id)
 
-    socket.current.emit('sendMessage', {
+    socket.emit('sendMessage', {
       userId: user.id,
       receiverId: receiver.id,
       text: newMessage
