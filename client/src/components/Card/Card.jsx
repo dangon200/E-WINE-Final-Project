@@ -68,14 +68,34 @@ export default function Card ({ id, title, name, image, price, userId, count, so
         <img className={style.img} src={image} alt='Wine-Img' />
       </div>
       <div className={`card-body ${style.dataContainer}`}>
-        <h3 className={`card-title ${style.title}`}>{title}</h3>
         <div className={`card-text ${style.infoContainer}`}>
-          <h4 className={style.name}>{name}</h4>
-          <h4 className={style.price}>${price.toLocaleString('MX')}</h4>
+          <h3 className={`card-title ${style.title}`}>{title}</h3>
+          <div className={style.namePrice}>
+            <h4 className={style.name}>{name}</h4>
+            <h4 className={style.price}>${price.toLocaleString('MX')}</h4>
+          </div>
+          <div className={` ${style.btnContainer}`}>
+            <Link
+              to={`/publication/${id}`} className={`${style.moreBtn}`} onClick={() => {
+                dispatch(getByPublication(id))
+                dispatch(getQuestions(id))
+              }}
+            >Más Info
+            </Link>
+            {user.id !== userId
+              ? <button
+                  className={`${style.addBtn}`} onClick={() => {
+                    window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
+                  }}
+                >
+                {isInCarrito(id) ? 'Remover' : 'Añadir'}
+            </button> //eslint-disable-line
+              : null}
+          </div>
         </div>
-        <div className={`d-inline ${style.btnContainer}`}>
+        {/* <div className={` ${style.btnContainer}`}>
           <Link
-            to={`/publication/${id}`} className={`btn btn-primary ${style.moreBtn}`} onClick={() => {
+            to={`/publication/${id}`} className={`${style.moreBtn}`} onClick={() => {
               dispatch(getByPublication(id))
               dispatch(getQuestions(id))
             }}
@@ -83,14 +103,14 @@ export default function Card ({ id, title, name, image, price, userId, count, so
           </Link>
           {user.id !== userId
             ? <button
-                className={`d-inline btn btn-primary me-5 ms-0 ${style.addBtn}`} onClick={() => {
+                className={`${style.addBtn}`} onClick={() => {
                   window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
                 }}
               >
               {isInCarrito(id) ? 'Remover' : 'Añadir'}
             </button> //eslint-disable-line
             : null}
-        </div>
+        </div> */}
       </div>
     </div>
   )

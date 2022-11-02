@@ -75,9 +75,9 @@
 @media (max-width: 992px) {
     .numberCarrito{
     left: 50%;
-   }
-  }
-  
+    }
+}
+
 .userDataContainer{
     display: flex;
     flex-direction: row;
@@ -110,18 +110,22 @@
 }
 
 .messenger{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 16px;
     font-size: 16px;
     text-decoration: none;
     color: white;
     background-color: #91091E;
-    padding: 4px 8px;
+    padding: 10px;
     border-radius: 5px;
     border:1px solid #91091E;
 }
 
 .messenger:hover{
     color:  #91091E;
+    transition: .3s;
     background-color: white;
 }
 
@@ -130,6 +134,7 @@
     width: 40px;
     height: 40px;
     margin-left: 16px;
+<<<<<<< HEAD
     display: flex;
     justify-content: center;
     align-items: center;
@@ -183,4 +188,36 @@
     color: white;
     border-radius: 5px;
     margin-top: 10px;
+=======
+}
+
+@media (max-width: 992px){
+    .logo{
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media (max-width: 576px){
+    .logo{
+        height: 40px;
+        width: 40px;
+    }
+    .userImage{
+        width: 30px;
+        height: 30px;
+    }
+    .username{
+        font-size: 12px;
+    }
+    .notificationIcon{
+        width: 25px;
+        height: 25px;
+    }
+    .messenger{
+        margin-left: 8px;
+        font-size: 12px;
+        padding: 8px;
+    }
+>>>>>>> 9148f9ac06d787d250c19cf257ac9750d6f718b2
 }

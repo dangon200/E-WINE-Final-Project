@@ -10,6 +10,7 @@ const createBuy = async (id) => {
     }
   })
   const result = await response.json()
+  const idU = result.additional_info.items[0].id
   const newBuy = await Buy.create({
     idBack: id,
     currency: result.currency_id,
@@ -19,10 +20,10 @@ const createBuy = async (id) => {
     userId: result.additional_info.items[0].id
   })
   result.additional_info.items.map(async (p) => await createBuyItem(p.quantity, p.category_id, newBuy.id))
-  await userBuylvlUp(result.additional_info.items[0].id)
-  return newBuy
+  const lvlUp = await userBuylvlUp(idU)
+  console.log(lvlUp)
+  return { newBuy }
 }
-
 const createBuyItem = async (countProduct, publicationId, buyId) => {
   try {
     const newBuyItem = await BuyItem.create({

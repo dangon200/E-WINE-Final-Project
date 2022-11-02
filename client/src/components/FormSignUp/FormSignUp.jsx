@@ -7,7 +7,6 @@ import { useState } from 'react'
 
 // const urlApi = 'http://localhost:3001'
 const urlApi = 'https://e-winespf.herokuapp.com'
-// const urlApi = 'https://73fb-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
 export default function FormLogin () {
   const dispatch = useDispatch() //eslint-disable-line

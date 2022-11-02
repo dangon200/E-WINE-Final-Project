@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs')
 const getUserById = async (id) => {
   try {
     const dbResult = await User.findByPk(id)
-
     if (!dbResult) return null
 
     const result = {
@@ -19,9 +18,9 @@ const getUserById = async (id) => {
       isBanned: dbResult.isBanned,
       isAdmin: dbResult.isAdmin,
       isSommelier: dbResult.isSommelier,
-      balance: dbResult.balance
+      balance: dbResult.balance,
+      buyLevel: dbResult.buyLevel
     }
-
     return result
   } catch (error) {
     throw new Error('Error tratando de encontrar un usuario por su ID!')
@@ -44,10 +43,10 @@ const getAllUsers = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
-    console.log(results)
     return results
   } catch (error) {
     throw new Error('Error tratando de obtener los usuarios de la DB!')
@@ -74,7 +73,8 @@ const getAllUsersBanned = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
     return results
@@ -103,7 +103,8 @@ const getAllUsersNotBanned = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
     return results

@@ -11,9 +11,10 @@ function ProductsAdmin () {
   const dispatch = useDispatch()
   const varietals = useSelector(state => state.allVarietals)
   return (
-    <div>
+    <div className='flex-wrap '>
       {/* aca deberia renderizar la tabla  que es TableVarietalAdmin pero esta comentado porque me tira error porque no hay varietals */}
-      <div>
+      <h2>Agregar nuevo varietal</h2>
+      <div className='w-50 d-flex justify-content-center'>
         <Formik
           initialValues={{
             name: '',

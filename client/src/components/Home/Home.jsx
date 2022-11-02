@@ -10,6 +10,7 @@ import SearchBar from '../SearchBar/SearchBar'
 import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import Nav from '../Nav/Nav'
+import vinos2 from '../../utils/images/vinos2-unsplash.jpg'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 /* import { io } from 'socket.io-client' */
@@ -82,12 +83,18 @@ export default function Home () {
 
   return (
     <div className={style.globalContainer}>
+      <header className={style.header}>
+        E-WINE
+      </header>
       <nav>
         <Nav />
       </nav>
+      <section>
+        <img className={style.sectionImage} src={vinos2} alt='vinos' />
+      </section>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
-          <SearchBar />
+          <SearchBar className={style.searchBar} />
           <Filters setPage={setPage} />
         </div>
       </div>

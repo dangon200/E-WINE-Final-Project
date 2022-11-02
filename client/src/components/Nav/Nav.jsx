@@ -7,6 +7,7 @@ import bolsita from '../assets/imgs/bolsita.png'
 import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 import { MdNotifications } from 'react-icons/md'
+import { BsFillChatFill } from 'react-icons/bs'
 // import { useEffect } from 'react'
 // import SeachBar from '../SearchBar/SearchBar'
 
@@ -54,6 +55,7 @@ export default function Nav () {
           </div> //eslint-disable-line
         : null}
       <div className='container-fluid'>
+
         <div className={style.logoContainer}>
 
           <Link to='/home' className={`me-auto ${style.span}`}>
@@ -64,7 +66,7 @@ export default function Nav () {
             ? <Link to='/userProfile' className={style.userDataContainer}>
               <img className={style.userImage} src={user.image ? user.image : 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png'} alt='user' />
               <span className={style.username}>{user.username}</span>
-            </Link> //eslint-disable-line
+  </Link> //eslint-disable-line
             : null}
           {user
             ? <div className={style.notificationsContainer} onClick={() => notifications.length && setShow(!show)}>
@@ -74,10 +76,11 @@ export default function Nav () {
             : null}
           {user
             ? <Link to='/messenger' className={style.messenger}>
-              Chatear con un Sommelier
+              <BsFillChatFill />
             </Link> //eslint-disable-line
             : null}
         </div>
+
         {/* <div>
           <SeachBar />
         </div> */}
@@ -95,6 +98,11 @@ export default function Nav () {
 
             <Navegador link='/home' span='Tienda' className='nav-link' />
 
+            {/* {user
+              ? <Link to='/messenger' className={style.messenger}>
+                <BsFillChatFill />
+            </Link> //eslint-disable-line
+              : null} */}
             {/* <FormLogin /> */}
             {user &&
               <Navegador link='/createPublication' span='Crear Publicación' className='nav-link' />}
@@ -106,14 +114,12 @@ export default function Nav () {
               createAcc
             />
           </div>
-
           <Link to='/carrito' className={`${style.carritoContainer}`}>
             <div className={style.numberCarrito}>{carritoItems.length}</div>
             <img src={bolsita} alt='bolsita' />
           </Link>
         </div>
       </div>
-
     </nav>
   )
 }
