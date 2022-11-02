@@ -52,9 +52,10 @@ function App () {
       dispatch(getVarietals())
       dispatch(getVarietals())
     }
-  })
+  }, []) //eslint-disable-line
 
   return (
+
     <div className='App'>
       <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register', '/forgotPassword', '/recoverPassword']} component={Nav} />
 
@@ -78,11 +79,12 @@ function App () {
         <Route exact path='/forgotPassword' component={FormForgotPassword} />
         <Route exact path='/recoverPassword' component={RecoverPassword} />
         <Route exact path='/userSales' component={UserSales} />
-        <Route exact path='/messenger' component={Messenger} />
+        <Route exact path='/messenger' />
         <Route path='*' component={Error404} />
       </Switch>
       <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
     </div>
+
   )
 }
 

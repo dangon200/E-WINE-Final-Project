@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Accordion from 'react-bootstrap/Accordion'
 import Container from 'react-bootstrap/Container'
 /* import Button from 'react-bootstrap/Button'
@@ -12,11 +12,13 @@ import { addQuestion } from '../../store/actions/actions'
 import Question from '../Question/Question'
 
 import style from './Preguntas.module.css'
+import { SocketContext } from '../../context/socket'
 
 export default function Preguntas ({ questions, publication }) {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const [question, setQuestion] = useState('')
+  const socket = useContext(SocketContext)
 
   return (
     <Container fluid className='bg-white shadow-lg m-auto rounded mt-5'>
@@ -35,6 +37,12 @@ export default function Preguntas ({ questions, publication }) {
                     publicationId: publication.id,
                     text: question
                   }))
+                  socket.emit('sendQuestion', {
+                    senderName: user.username,
+                    receiverId: publication.userId,
+                    publicationTitle: publication.title,
+                    text: question
+                  })
                   setQuestion('')
                 }
               }}

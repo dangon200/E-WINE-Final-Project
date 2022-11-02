@@ -125,8 +125,62 @@
     background-color: white;
 }
 
-.notificationIcon{
-    width: 30px;
-    height: 30px;
+.notificationsContainer{
+    position: relative;
+    width: 40px;
+    height: 40px;
     margin-left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.notificationIcon{
+    width: 35px;
+    height: 35px;
+}
+
+.numberNotifications{
+    position: absolute;
+    /* background-color: var(--btn-background-color); */
+    background-color: #91091E;
+    color: white;
+    font-weight: 500;
+    padding: 0px 7px;
+    border-radius: 50%;
+    font-family: var(--font-family-1);
+    font-size: 12px;
+    top: 0;
+    left: 20px;
+}
+
+.notifications{
+    position: absolute;
+    top: 60px;
+    left: 100px;
+    background-color: white;
+    color: black;
+    font-weight: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    max-width: 300px;
+    font-size: 12px;
+    z-index: 2;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.notification{
+    font-weight: 500;
+    padding: 5px;
+    border-bottom: 1px solid gray;
+}
+
+.notificationBtn{
+    border: 1px solid #91091E;
+    background-color: #91091E;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
 }

@@ -597,3 +597,23 @@ export const adminUser = (id, isAdmin) => {
     }
   }
 }
+
+export const addNotification = (data) => {
+  return {
+    type: 'ADD_NOTIFICATION',
+    payload: data
+  }
+}
+
+export const clearNotifications = () => {
+  return {
+    type: 'CLEAR_NOTIFICATIONS'
+  }
+}
+
+export const setOnlineUsers = (users) => {
+  return {
+    type: 'SET_ONLINE_USERS',
+    payload: users
+  }
+}

@@ -26,7 +26,9 @@ const initialState = {
   detailVarietal: {},
   userDetail2: {},
   login: true,
-  itemsDetail: []
+  itemsDetail: [],
+  notifications: [],
+  onlineUsers: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -115,6 +117,12 @@ export default function reducer (state = initialState, action) {
       return { ...state, itemsDetail: action.payload }
     case 'UPDATE_PROFILE_PICTURE':
       return { ...state, user: action.payload }
+    case 'ADD_NOTIFICATION':
+      return { ...state, notifications: Array.from(new Set([action.payload, ...state.notifications])) }
+    case 'CLEAR_NOTIFICATIONS':
+      return { ...state, notifications: [] }
+    case 'SET_ONLINE_USERS':
+      return { ...state, onlineUsers: action.payload }
     default:
       return { ...state }
   }

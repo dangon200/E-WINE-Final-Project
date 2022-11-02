@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Cookies from 'universal-cookie'
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { postStripe, clearCarrito } from '../../store/actions/actions'
+import { SocketContext } from '../../context/socket'
 
 export default function CheckoutForm (props) {
   const history = useHistory()
@@ -14,6 +15,8 @@ export default function CheckoutForm (props) {
   const buy = useSelector(state => state.buy)
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
+  const socket = useContext(SocketContext)
+  const publications = useSelector(state => state.publications)
 
   const { totalAmount } = props
 
@@ -48,6 +51,12 @@ export default function CheckoutForm (props) {
         setSend(false)
       }, 4000)
     } else if (Object.keys(buy).length) {
+      const publication = publications.find(p => carrito[0].id === p.id)
+      socket.emit('sendBuy', {
+        senderName: user.username,
+        receiverId: publication.userId,
+        publicationTitle: publication.title
+      })
       crearCarr()
       setSuccess(true)
       setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')

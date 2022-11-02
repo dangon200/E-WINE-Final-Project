@@ -31,11 +31,12 @@
 
 .messageText{
     font-size: 14px;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     background-color: #56070C;
     color: white;
     max-width: 300px;
+    line-height: 15px;
 }
 
 .messageBottom{
@@ -44,13 +45,12 @@
     font-weight: 700;
 }
 
-
-
 .messageTextOwn{
     font-size: 14px;
-    padding: 10px;
+    padding: 5px 10px;
     border-radius: 20px;
     background-color: lightgray;
     color: black;
     max-width: 300px;
+    line-height: 15px;
 }

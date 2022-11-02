@@ -78,8 +78,6 @@ function AdminDashboard () {
     return arrayB.length
   }
   useEffect(() => {
-    console.log(token)
-    console.log(token.user.isAdmin)
     !token.user.isAdmin && history.push('/')
   }, [token, history])
 
