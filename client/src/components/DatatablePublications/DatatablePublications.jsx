@@ -71,7 +71,7 @@ export default function Datatable (props) {
   useEffect(() => { dispatch(getPublicationsAdm()) }, [publicationBanned]) //eslint-disable-line
   return (
 
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 500, width: '100%' }}>
       <DataGrid
         className='fs-5 bg-white'
         initialState={{

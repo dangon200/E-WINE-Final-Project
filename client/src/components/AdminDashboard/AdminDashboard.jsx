@@ -19,10 +19,11 @@ import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
-import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
-import ProductsCharts from '../ProductsCharts/ProductsCharts'
+// import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
+// import ProductsCharts from '../ProductsCharts/ProductsCharts'
 import UsersByProvincesChart from '../UsersCharts/UsersByProvincesChart.jsx'
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
+import BuysAdmin from '../BuysAdmin/BuysAdmin.jsx'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -176,8 +177,6 @@ function AdminDashboard () {
           </div> */}
 
           <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
-            <div> <h3>PUBLICACIONES</h3></div>
-
             <PublicationsAdmin token={token} publications={publications} />
           </div>
 
@@ -191,9 +190,10 @@ function AdminDashboard () {
           </div>
 
           <div className={`col-12 ${render.buysRoutes ? ' d-block' : 'd-none'}`}>
-            <div> <h3>COMPRAS</h3></div>
+            <BuysAdmin buys={buys} />
+            {/* <div> <h3>COMPRAS</h3></div>
             <DataTableBuys buys={buys} />
-            <ProductsCharts />
+            <ProductsCharts /> */}
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
