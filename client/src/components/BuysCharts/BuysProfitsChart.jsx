@@ -68,10 +68,10 @@ function BuyProfitsChart () {
   return (
     <div className={`container-fluid px-0 ${s.div}`}>
       <div className='d-flex px-5 mx-3 fs-1 fw-bold'>
-        <h3 className='fs-1 '>Ganancias por compras</h3>
+        <h3 className='fs-1 m-auto'>Ganancias por compras</h3>
 
       </div>
-      <div className='w-50 h-50 justify-content-end'>
+      <div className='w-50 h-50 m-auto'>
         <Doughnut
           data={dataGraphic()}
         />

@@ -42,8 +42,8 @@ function UsersByProvincesChart () {
         {
           label: 'Cantidad de usuarios por Provincia',
           data: usuarios,
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgba(53, 162, 235, 0.4)'
+          borderColor: 'rgb(42, 157, 143,1)',
+          backgroundColor: 'rgb(42, 157, 143,0.2)'
         }
       ]
     })

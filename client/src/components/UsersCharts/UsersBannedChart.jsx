@@ -32,15 +32,15 @@ function UsersBannedChart () {
   const usersNotBanned = users.filter(e => e.isBanned === false)
   const dataGraphic = () => {
     return ({
-      labels: ['Usuarios Habilitados', 'Usuarios Baneados'],
+      labels: ['Usuarios Baneados', 'Usuarios Habilitados'],
       datasets: [
         {
           label: 'Usuarios Habilitados/Banneados',
           data: [usersBanned.length, usersNotBanned.length],
-          borderColor: ['rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)'],
-          backgroundColor: ['rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)']
+          borderColor: ['rgb(42, 157, 143,1)',
+            'rgba(244, 162, 97,1)'],
+          backgroundColor: ['rgb(42, 157, 143,0.2)',
+            'rgba(244, 162, 97,0.2)']
         }
       ]
     })

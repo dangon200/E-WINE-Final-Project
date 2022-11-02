@@ -14,10 +14,10 @@ import { getBuys } from '../../store/actions/actions'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 150 },
-  { field: 'currency', headerName: 'Divisa', width: 130 },
-  { field: 'totalAmount', headerName: 'Monto Total', width: 130 },
+  { field: 'currency', headerName: 'Divisa', width: 70 },
+  { field: 'totalAmount', headerName: 'Monto Total', width: 80 },
   { field: 'userId', headerName: 'ID usuario', width: 150 },
-  { field: 'createdAt', headerName: 'Fecha', sortable: false, width: 130 }
+  { field: 'createdAt', headerName: 'Fecha', sortable: false, width: 100 }
 ]
 
 export default function Datatable (props) {
