@@ -65,7 +65,6 @@ export default function PublicationDetail (props) {
         })
       )
     } else {
-      console.log('entre al else')
       window.localStorage.setItem(
         id,
         JSON.stringify({ price, title, image, name, count: countParam, stock: count })
@@ -119,21 +118,6 @@ export default function PublicationDetail (props) {
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
-            <br />
-            <span className='fs-2'>
-              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
-                size={16}
-                color='#610a10'
-                                                      /> {`(${cantidadRevs})`}
-            </span>
-            {/* <figure className='text-center mt-5'>
-              <blockquote className='blockquote fs-4 fst-italic'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit facere cumque ratione, odio expedita quisquam iusto reprehenderit? Hic ea autem cupiditate ducimus similique molestiae eligendi voluptatibus facere debitis eveniet!</p>
-              </blockquote>
-              <figcaption className='blockquote-footer fs-5 text-end'>
-                Famosa escritora y poeta - <cite>asdasds</cite>
-              </figcaption>
-            </figure> */}
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
