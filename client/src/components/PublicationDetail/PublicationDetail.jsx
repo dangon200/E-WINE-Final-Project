@@ -2,10 +2,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
+import { ImGlass } from 'react-icons/im'
 
-import { FaHeart } from 'react-icons/fa'
-
-import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites } from '../../store/actions/actions'
+import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys, reviewsPublication } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -20,28 +19,33 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
-// import ReviewBuy from '../ReviewBuy/ReviewBuy'
+import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
+import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
-  const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
+  const User = useSelector(state => state.user)
+  const Review = useSelector(state => state.reviewBuy)
+  const reviews = useSelector(state => state.reviewsPublication)
   // const User = useSelector(state => state.user)
+
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count } = publication
+  const { name, price, title, image, count, productId } = publication
   const [counter, setCounter] = useState(1)
+  const { result, cantidadRevs } = Review
+  const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
+    dispatch(getReviewBuy(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
-  }, [dispatch, id])
-
-  const isInFavorites = (id) => {
-    return favorites.some((f) => f === id)
-  }
+    dispatch(getReviewBuys(id))
+    dispatch(reviewsPublication(productId))
+  }, [dispatch, id, productId])
   const addToCarrito = (id, price, title, image, name, countParam, count) => {
     if (window.localStorage.hasOwnProperty(id)) {
       window.localStorage[id] = JSON.stringify({
@@ -80,16 +84,7 @@ export default function PublicationDetail (props) {
       <Row>
         <Row xs={1} sm={2} md={2} className='mt-5 rounded mx-auto shadow-lg'>
           <Col>
-            <div className='pt-3 d-flex justify-content-end'>
-              <FaHeart
-                className={isInFavorites(id) ? style.iconActive : style.icon}
-                onClick={() => {
-                  isInFavorites(id)
-                    ? dispatch(removeFavorites(id))
-                    : dispatch(addFavorites(id))
-                }}
-              />
-            </div>
+            <div className='pt-3 d-flex justify-content-end' />
             <Carousel className='mb-5 mt-4'>
               <Carousel.Item>
                 <Image
@@ -123,6 +118,13 @@ export default function PublicationDetail (props) {
             {/* <ReviewBuy /> */}
             <span className='fs-2'>
               Disponibilidad: {publication.count}
+            </span>
+            <br />
+            <span className='fs-2'>
+              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
+                size={16}
+                color='#610a10'
+                                                      /> {`(${cantidadRevs})`}
             </span>
             {/* <figure className='text-center mt-5'>
               <blockquote className='blockquote fs-4 fst-italic'>
@@ -198,6 +200,8 @@ export default function PublicationDetail (props) {
         {/* <ReviewBuy userId={User.id} pubId={publication.id} /> */}
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
+        <ReviewBuy userId={User.id} pubId={publication.id} />
+        <ComentDetail reviews={reviews} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (

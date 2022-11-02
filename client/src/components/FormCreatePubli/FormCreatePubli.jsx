@@ -19,10 +19,6 @@ export default function FormCreatePubli () {
   const history = useHistory()
 
   useEffect(() => {
-    !token && history.push('/register')
-  }, [token, history])
-
-  useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])
 
@@ -34,11 +30,14 @@ export default function FormCreatePubli () {
       description: '',
       count: 0,
       image: {},
-      userId: token.user.id
+      userId: token?.user.id
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values, { resetForm }) => {
       // const url = await uplodCloudinary(values.image)
+      if (typeof token === 'undefined') {
+        history.push('/register')
+      }
       const cloudName = 'dfq27ytd2'
       const preset = 'cpnushlf'
       const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
@@ -79,16 +78,15 @@ export default function FormCreatePubli () {
       </div> */}
       <div className={`col p-5 ${style.formContainer}`}>
         <div className='row'>
-          <h2>Crear Nueva Publicación</h2>
+          <h2 className='fs-1 mb-5 fw-semibold'>Crear Nueva Publicación</h2>
           <form onSubmit={handleSubmit} autoComplete='off' className={`card d-flex justify-content-center mx-auto my-3 p-5 ${style.form}`}>
             <div className='form-row'>
-              <div className='form-group col-md-12'>
-                <label htmlFor='title' className='fs-3'>Título <span>*</span></label>
+              <div className={`form-group col-md-12 ${style.formDiv}`}>
+                <label htmlFor='title' className={`fs-3 ${style.formTag}`}>Título</label>
                 <input
                   required
-                  className={`form-control fs-4 ${touched.title ? errors.title ? 'is-invalid' : 'is-valid' : null}`}
+                  className={`fs-4 ${style.formInput} ${touched.title ? errors.title ? 'is-invalid' : 'is-valid' : null}`}
                   type='text'
-                  placeholder='Título'
                   name='title'
                   id='title'
                   value={values.title}
@@ -97,10 +95,10 @@ export default function FormCreatePubli () {
                 />
                 {errors.title && touched.title && <p className='invalid-feedback fs-4'>{errors.title}</p>}
               </div>
-              <div className='form-group col-md-12 '>
-                <label htmlFor='price' className='fs-3'>Precio<span>*</span></label>
+              <div className={`form-group col-md-12 ${style.formDiv}`}>
+                <label htmlFor='price' className={`fs-3 ${style.formTag}`}>Precio</label>
                 <input
-                  className={`form-control fs-4 ${touched.price ? errors.price ? 'is-invalid' : 'is-valid' : null}`}
+                  className={`fs-4 ${style.formInput} ${touched.price ? errors.price ? 'is-invalid' : 'is-valid' : null}`}
                   type='number'
                   placeholder='Precio'
                   name='price'
@@ -116,10 +114,10 @@ export default function FormCreatePubli () {
             </div>
 
             <div className='form-row'>
-              <div className='form-group col-md-12 '>
-                <label htmlFor='count' className='fs-3'>Stock<span>*</span></label>
+              <div className={`form-group col-md-12 ${style.formDiv}`}>
+                <label htmlFor='count' className={`fs-3 ${style.formTag}`}>Stock</label>
                 <input
-                  className={`form-control fs-4 ${touched.count ? errors.count ? 'is-invalid' : 'is-valid' : null}`}
+                  className={`fs-4 ${style.formInput} ${touched.count ? errors.count ? 'is-invalid' : 'is-valid' : null}`}
                   type='number'
                   placeholder='Count'
                   name='count'
@@ -132,10 +130,10 @@ export default function FormCreatePubli () {
                 />
                 {errors.count && touched.count && <p className='invalid-feedback fs-4'>{errors.count}</p>}
               </div>
-              <div className='form-group col-md-12 '>
-                <label htmlFor='img' className='fs-3'>Imagen<span>*</span> </label>
+              <div className={`col-md-12 ${style.formDiv}`}>
+                <label htmlFor='img' className={`fs-3 ${style.formTag}`}>Imagen </label>
                 <input
-                  className={`form-control fs-4 ${touched.image ? errors.image ? 'is-invalid' : 'is-valid' : null}`}
+                  className={`fs-4 pb-5 ${style.formInputImage} ${touched.image ? errors.image ? 'is-invalid' : 'is-valid' : null}`}
                   type='file'
                   name='image'
                   onBlur={handleBlur}
@@ -151,7 +149,7 @@ export default function FormCreatePubli () {
             <div className='form-row'>
               <div className='form-group col-md-12'>
                 <textarea
-                  className={`form-control fs-4 mt-4 ${touched.description ? errors.description ? 'is-invalid' : 'is-valid' : null}`}
+                  className={`fs-4 mt-5 mb-4 ${style.textarea} ${touched.description ? errors.description ? 'is-invalid' : 'is-valid' : null}`}
                   name='description'
                   id='description'
                   cols='30'
@@ -165,9 +163,9 @@ export default function FormCreatePubli () {
                 {errors.description && touched.description && <p className='invalid-feedback fs-4'>{errors.description}</p>}
 
               </div>
-              <div className='form-group row mx-0'>
-                <button type='button' onClick={() => dispatch(getProducts())} className='col-1 btn btn-primary '><AiOutlineReload /></button>
-                <div className='col-11 pe-0'>
+              <div className={`form-group row mx-0 ${style.selectRow}`}>
+                <button type='button' onClick={() => dispatch(getProducts())} className={`col-2 ${style.buttonReload}`}><AiOutlineReload size={20} /></button>
+                <div className={`col-10 pe-0 ${style.select}`}>
                   <select
                     name='productId'
                     id='productId'
@@ -187,20 +185,19 @@ export default function FormCreatePubli () {
             <div className='progress mt-4' style={{ height: 15 }}>
               <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
             </div>
+
+            <button
+              type='submit'
+              className={`fs-4 mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
+              disabled={isSubmitting && true}
+            >Crear Publicación
+            </button>
+
           </form>
-          <div className='progress mt-4' style={{ height: 15 }}>
-            <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
-          </div>
-          <button
-            type='submit'
-            className={`btn btn-success btn-block btn-lg mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
-            disabled={isSubmitting && true}
-          >Crear Publicación
-          </button>
 
           {send && <div className={style.send}>Publicación creada con éxito!</div>}
 
-          <button onClick={() => setCreateProduct(!createProduct)} className={`btn btn-block fs-4 btn-lg mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
+          <button onClick={() => setCreateProduct(!createProduct)} className={`fs-4 mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
 
         </div>
       </div>

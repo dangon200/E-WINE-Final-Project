@@ -1,7 +1,10 @@
 .container{
-    margin: 50px 0 50px 0;
+    margin: 50px 0 150px 0;
     height: 100%;
     width: 100%;
+}
+.cont{
+    height: 100%;
 }
 
 .container h3{
@@ -25,7 +28,6 @@
     border: none;
     /* border: 1px solid var(--btn-border-color); */
     border-radius: 6px;  
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     transition: .3s;
 }
@@ -50,7 +52,6 @@
     align-items: flex-start;
     width: 25%;
 }
-
 @media (max-width: 1250px) {
     .containerItems{
         width: 100%;
@@ -62,5 +63,8 @@
         width: 75%;
         margin: auto;
         margin-top: 50px;
+    }
+    .container{
+        margin: 50px 0 50px 0;
     }
 }

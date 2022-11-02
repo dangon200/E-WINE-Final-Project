@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Cookies from 'universal-cookie'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { postStripe, clearCarrito } from '../../store/actions/actions'
+import { SocketContext } from '../../context/socket'
+import { IoCaretBack } from 'react-icons/io5'
 
 export default function CheckoutForm (props) {
   const history = useHistory()
@@ -14,6 +16,8 @@ export default function CheckoutForm (props) {
   const buy = useSelector(state => state.buy)
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
+  const socket = useContext(SocketContext)
+  const publications = useSelector(state => state.publications)
 
   const { totalAmount } = props
 
@@ -48,6 +52,12 @@ export default function CheckoutForm (props) {
         setSend(false)
       }, 4000)
     } else if (Object.keys(buy).length) {
+      const publication = publications.find(p => carrito[0].id === p.id)
+      socket.emit('sendBuy', {
+        senderName: user.username,
+        receiverId: publication.userId,
+        publicationTitle: publication.title
+      })
       crearCarr()
       setSuccess(true)
       setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')
@@ -62,7 +72,12 @@ export default function CheckoutForm (props) {
   const [err, setErr] = useState(false)
   const [send, setSend] = useState(false)
   return (
-    <form onSubmit={handleSubmit} className='card card-body'>
+    <form onSubmit={handleSubmit} className='card border-secondary border-2 card-body'>
+      <div className='row'>
+        <Link className='d-flex justify-content-center align-items-center text-decoration-none text-dark fs-2 fw-3 mb-4' to='/carrito'>
+          <IoCaretBack /> Volver al carrito
+        </Link>
+      </div>
       <img src='https://imgs.search.brave.com/Y5KS64aNvBNg8mwK5G1ks_1XK8_Fnorl1iMGPkBmSu4/rs:fit:713:225:1/g:ce/aHR0cHM6Ly90c2Uz/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC53/MTlpVHR6Qzk0ZHBM/elZZdXFqMzZnSGFF/NyZwaWQ9QXBp' alt='vino' className='img-fluid' />
       <h4 className='text-center mt-3 fs-2'>$ {totalAmount}</h4>
       <div className='form-group my-3'>

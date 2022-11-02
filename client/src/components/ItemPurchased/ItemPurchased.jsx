@@ -15,43 +15,49 @@ import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-
+  console.log(date)
+  const TotalCompra = () => {
+    if (paymentMethod === 'card') {
+      const total = totalAmount / 100
+      return total
+    } else return totalAmount
+  }
   return (
-    <Row className='w-75 p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
-      <Row className='border-bottom mb-4'>
-        <Col>
+    <Row className='w-75 p-3 mb-0 border-bottom border-2 rounded-4 fs-4 mt-5'>
+      {/* <Row className='border-bottom mb-4'>
+        <Col className='text-start'>
           Fecha: {date?.slice(0, 10)}
         </Col>
         <Col>
-          #{buyId}
+          Id de compra: #{buyId}
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col className={s.image}>
           <img className='img-fluid' src={image} alt={image} />
         </Col>
         <Col className={s.dataContainer}>
-          <Row>
+          {/* <Row>
             <Col>
               Metodo de pago:
             </Col>
             <Col>
               {paymentMethod}
             </Col>
-          </Row>
+          </Row> */}
           <Row>
             <Col className={s.status}>
               Estado del envio:
             </Col>
           </Row>
-          <Row>
+          <Row className={s.delivery}>
             <DeliveryTracker status={status} />
           </Row>
         </Col>
         <Col>
-          $ {totalAmount / 100}
+          $ <TotalCompra />
         </Col>
-        <Col className='d-flex flex-column gap-3'>
+        <Col className={`d-flex flex-column gap-3 ${s.modal}`}>
           <Row>
             <ModaleDetail
               className={s.button}

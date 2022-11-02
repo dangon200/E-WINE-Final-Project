@@ -21,12 +21,18 @@ const initialState = {
   buys: [],
   sales: [],
   questions: [],
+  reviewBuy: [],
+  reviewBuys: [],
   usersByProvinces: {},
   allVarietals: [],
   detailVarietal: {},
   userDetail2: {},
   login: true,
-  itemsDetail: []
+  itemsDetail: [],
+  notifications: [],
+  onlineUsers: [],
+  popularProduts: [],
+  reviewsPublication: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -39,10 +45,14 @@ export default function reducer (state = initialState, action) {
       return { ...state, detailPublication: action.payload }
     case 'GET_PRODUCTS':
       return { ...state, allProducts: action.payload, products: action.payload }
+    case 'GET_PRODUCTS_REVIEWS':
+      return { ...state, products: action.payload }
     case 'GET_BY_ID_PRODUCT':
       return { ...state, detailProduct: action.payload }
     case 'POST_PRODUCT':
       return { ...state, detailProduct: action.payload }
+    case 'POST_REVIEW':
+      return { ...state, products: action.payload }
     case 'SEARCH_PRODUCT_BY_NAME':
       return { ...state, detailProduct: action.payload }
     case 'FILTER_PUBLICATIONS':
@@ -104,17 +114,29 @@ export default function reducer (state = initialState, action) {
     case 'GET_ALL_VARIETALS':
       return { ...state, allVarietals: action.payload }
     case 'POST_VARIETALS':
-      return { ...state, detailVarietal: action.payload }
+      return { ...state, allVarietals: action.payload }
     case 'ADD_REVIEWBUY':
-      return { ...state, reviewBuy: action.payload }
+      return { ...state, reviewBuys: [...state.reviewBuys, action.payload] }
     case 'GET_REVIEWBUY_ID':
       return { ...state, reviewBuy: action.payload }
+    case 'GET_REVIEWBUYS_ID':
+      return { ...state, reviewBuys: action.payload }
     case 'GET_USER_ADMIN':
       return { ...state, userDetail2: action.payload }
     case 'GET_ITEMS_DETAIL':
       return { ...state, itemsDetail: action.payload }
+    case 'GET_POPULAR_PRODUCTS':
+      return { ...state, popularProduts: action.payload }
     case 'UPDATE_PROFILE_PICTURE':
       return { ...state, user: action.payload }
+    case 'ADD_NOTIFICATION':
+      return { ...state, notifications: Array.from(new Set([action.payload, ...state.notifications])) }
+    case 'CLEAR_NOTIFICATIONS':
+      return { ...state, notifications: [] }
+    case 'SET_ONLINE_USERS':
+      return { ...state, onlineUsers: action.payload }
+    case 'REVIEWS_PUBLICATIONS':
+      return { ...state, reviewsPublication: action.payload }
     default:
       return { ...state }
   }

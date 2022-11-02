@@ -1,7 +1,6 @@
 import axios from 'axios'
 const urlApi = 'https://e-winespf.herokuapp.com'
 // const urlApi = 'http://localhost:3001'
-// const urlApi = 'https://56af-2803-9800-9447-8622-5534-3714-695f-3e10.sa.ngrok.io/'
 
 export function getPublications () {
   return async function (dispatch) {
@@ -160,6 +159,41 @@ export const searchPublicationByName = (name) => {
   }
 }
 
+// getProducts
+
+export const getProductsReviews = () => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviews/products`)
+      return dispatch({
+        type: 'GET_PRODUCTS_REVIEWS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+// postReview
+export const postReview = (userId, productId, text) => {
+  return async function (dispatch) {
+    const data = {
+      userId,
+      productId,
+      text
+    }
+    try {
+      const api = await axios.post(`${urlApi}/reviews`, data)
+      return dispatch({
+        type: 'POST_REVIEW',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 // Favorites
 
 export const getFavorites = (id) => {
@@ -454,11 +488,13 @@ export const getBuys = () => {
     }
   }
 }
+
 // Varietales
 export const getVarietals = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/varietals`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ALL_VARIETALS',
         payload: res.data
@@ -468,7 +504,11 @@ export const getVarietals = () => {
     }
   }
 }
-export function postVarietals (data) {
+export function postVarietals (name, description) {
+  const data = {
+    name,
+    description
+  }
   return async function (dispatch) {
     try {
       const api = await axios.post(`${urlApi}/varietals`, data)
@@ -533,23 +573,24 @@ export const deliveryStatus = (deliveryId, status) => {
 // REVIEWSBUYS
 
 export const addReviewBuy = (data) => {
+  console.log(data)
   return async function (dispatch) {
     try {
-      const api = await axios.post(`${urlApi}/reviewBuy`, data)
+      const api = await axios.post(`${urlApi}/reviewsBuys`, data)
+
       return dispatch({
         type: 'ADD_REVIEWBUY',
         payload: api.data
       })
     } catch (error) {
       console.log(error.response)
-      throw new Error(error.response.data)
     }
   }
 }
 export const getReviewBuy = (id) => {
   return async function (dispatch) {
     try {
-      const api = await axios.get(`${urlApi}/reviewBuy/${id}`)
+      const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
       return dispatch({
         type: 'GET_REVIEWBUY_ID',
         payload: api.data
@@ -559,6 +600,21 @@ export const getReviewBuy = (id) => {
     }
   }
 }
+
+export const getReviewBuys = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
+      return dispatch({
+        type: 'GET_REVIEWBUYS_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // UPDATE PROFILE IMAGE
 
 export const updateProfileImage = (id, url) => {
@@ -578,7 +634,6 @@ export const updateProfileImage = (id, url) => {
   }
 }
 // volver Admin a un usuario
-
 export const adminUser = (id, isAdmin) => {
   return async function (dispatch) {
     try {
@@ -586,6 +641,55 @@ export const adminUser = (id, isAdmin) => {
 
       return dispatch({
         type: 'GET_USER_ADMIN',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+export const addNotification = (data) => {
+  return {
+    type: 'ADD_NOTIFICATION',
+    payload: data
+  }
+}
+
+export const clearNotifications = () => {
+  return {
+    type: 'CLEAR_NOTIFICATIONS'
+  }
+}
+
+export const setOnlineUsers = (users) => {
+  return {
+    type: 'SET_ONLINE_USERS',
+    payload: users
+  }
+}
+// productos mas comprados
+export const popularProducts = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/productsCount`)
+      console.log('esta es la respuesta de la API para los productos mas vendidos', res)
+      return dispatch({
+        type: 'GET_POPULAR_PRODUCTS',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+export const reviewsPublication = (productId) => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/reviews/${productId}`)
+      return dispatch({
+        type: 'REVIEWS_PUBLICATIONS',
         payload: res.data
       })
     } catch (error) {

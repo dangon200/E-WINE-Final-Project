@@ -13,6 +13,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux'
 import { getBuys } from '../../store/actions/actions'
 import { Doughnut } from 'react-chartjs-2'
+import s from './BuysProfitCharts.module.css'
 
 // los registro para que no me traiga todos los de la libreria
 ChartJS.register(
@@ -55,19 +56,22 @@ function BuyProfitsChart () {
         {
           label: 'Total Transacciones',
           data: [buysTotal(), buysProfits()],
-          borderColor: ['rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)'],
-          backgroundColor: ['rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)']
+          borderColor: ['rgb(42, 157, 143,1)',
+            'rgba(244, 162, 97,1)'],
+          backgroundColor: ['rgb(42, 157, 143,0.2)',
+            'rgba(244, 162, 97,0.2)']
         }
       ]
     })
   }
 
   return (
-    <div>
-      <div>GANANCIAS POR COMPRAS</div>
-      <div className='w-50 h-50'>
+    <div className={`container-fluid px-0 ${s.div}`}>
+      <div className='d-flex px-5 mx-3 fs-1 fw-bold'>
+        <h3 className='fs-1 m-auto'>Ganancias por compras</h3>
+
+      </div>
+      <div className='w-50 h-50 m-auto'>
         <Doughnut
           data={dataGraphic()}
         />

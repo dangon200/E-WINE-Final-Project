@@ -5,15 +5,15 @@ import { bannedUser, getUsers, sommelierUser, adminUser } from '../../store/acti
 import { useHistory } from 'react-router-dom'
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'username', headerName: 'Nombre usuario', width: 120 },
-  { field: 'email', headerName: 'email', width: 130 },
-  { field: 'isBanned', headerName: 'Banneado', width: 50 },
-  { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 50 },
-  { field: 'isAdmin', headerName: 'Admin', width: 50 },
+  { field: 'id', headerName: 'ID', width: 120 },
+  { field: 'username', headerName: 'Nombre usuario', width: 140 },
+  { field: 'email', headerName: 'email', width: 170 },
+  { field: 'isBanned', headerName: 'Banneado', width: 70 },
+  { field: 'isSommelier', headerName: 'Sommelier', sortable: false, width: 70 },
+  { field: 'isAdmin', headerName: 'Admin', width: 70 },
   { field: 'balance', headerName: 'Balance', type: 'number', sortable: false, width: 70 },
-  { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 50 },
-  { field: 'region', headerName: 'Region', sortable: true, width: 50 }
+  { field: 'date', headerName: 'Fecha ingreso', sortable: false, width: 90 },
+  { field: 'region', headerName: 'Region', sortable: true, width: 100 }
 
 ]
 
@@ -51,14 +51,14 @@ export default function Datatable (props) {
     console.log(createdAt)
     if (!token) {
       history.push('/')
-    } else {
+    } else if (id !== token.user.id) {
       dispatch(adminUser(id, isAdmin))
-    }
+    } else return alert('Un admin no puede quitarse a sí mismo la prop admin')
   }
   const actionColumn = [{
     field: 'action',
     headerName: 'Action',
-    width: 210,
+    width: 220,
     renderCell: (params) => {
       // console.log(params)
       return (
@@ -88,6 +88,12 @@ export default function Datatable (props) {
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
+          className='fs-5 bg-white'
+          initialState={{
+            sorting: {
+              sortModel: [{ field: 'id', sort: 'asc' }]
+            }
+          }}
           rows={rows}
           columns={columns.concat(actionColumn)}
           pageSize={5}

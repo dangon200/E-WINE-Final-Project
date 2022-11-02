@@ -21,7 +21,7 @@ export default function PurchasedProducts () {
       <Container fluid style={{ height: '100%' }}>
         <Row className='grid h-100 bg-grey bg-opacity-25'>
           <Col className='col-auto min-vh-100 pt-5 rounded'>
-            <Sidebar />
+            <Sidebar className={s.sidebar} />
           </Col>
           <Col className={s.container}>
             <h1>Mis Compras</h1>

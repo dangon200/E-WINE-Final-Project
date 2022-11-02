@@ -1,26 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
-import { Link } from 'react-router-dom'
-// import PagarMP from '../MercadoPago/PagarMP'
+import PagarMP from '../MercadoPago/PagarMP'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-// import Cookies from 'universal-cookie'
-import Button from 'react-bootstrap/esm/Button'
-// import Col from 'react-bootstrap/esm/Col'
-// import Row from 'react-bootstrap/esm/Row'
+import Cookies from 'universal-cookie'
 
 export default function Carrito () {
-  // const dispatch = useDispatch()
-  // const publi = useSelector(state=> state.publications)
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
-  /* const history = useHistory()
+  const history = useHistory()
   const cookies = new Cookies()
-  const token = cookies.get('TOKEN') */
+  const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
-
   const totalAmount = carrito.reduce((acumulador, pactual) => {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
     return acumulador + total
@@ -28,7 +22,7 @@ export default function Carrito () {
 
   return (
     <div className={style.container}>
-      <Row className={`container-fluid ${style.cont}`}>
+      <Row className={`${style.cont}`}>
         <Col className={`d-flex flex-column col-9 gap-3 ${style.containerItems}`}>
           {carrito.length > 0
             ? carrito.map(p => {
@@ -61,34 +55,23 @@ export default function Carrito () {
               </span>
             </Col>
           </Row>
-          <Button className={style.button}>
-            <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Continuar la compra
-            </Link>
-          </Button>
-          {/* {token ? <PagarMP /> : history.push('/register')} */}
-          {/* <Button className={style.button}>
-            <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Pagar con Tarjeta
-            </Link>
-          </Button> */}
+          {/* <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
+            Pagar con stripe
+          </Link>
+          <div className={style.button}>
+            <PagarMP />
+          </div> */}
+          {token
+            ? <button className={style.button}>
+              <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
+                Pagar
+              </Link>
+              </button> //eslint-disable-line
+            : history.push('/register')}
+          {token ? <PagarMP /> : history.push('/register')}
+
         </Col>
       </Row>
     </div>
   )
 }
-
-// const getCarritoPublications = (carrito, publications) => {
-//   const pubInCarrito = []
-//   carrito.forEach(c => {
-//     pubInCarrito.push([publications.find(p => p.id === c.id), c.count])
-//   })
-//   return pubInCarrito
-// }
-
-// const publications = useSelector(state => state.allPublications)
-// const [publicationsCarrito, setPublicationsCarrito] = useState()
-// useEffect(() => {
-//   setPublicationsCarrito(getCarritoPublications(carrito, publications))
-// }, [publications, carrito])
-// console.log('carrito', carrito, 'publications', publications, 'publicationsCarrito', publicationsCarrito)

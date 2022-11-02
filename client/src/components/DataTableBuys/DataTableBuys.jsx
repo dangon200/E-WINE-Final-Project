@@ -14,10 +14,10 @@ import { getBuys } from '../../store/actions/actions'
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 150 },
-  { field: 'currency', headerName: 'Divisa', width: 130 },
-  { field: 'totalAmount', headerName: 'Monto Total', width: 130 },
+  { field: 'currency', headerName: 'Divisa', width: 70 },
+  { field: 'totalAmount', headerName: 'Monto Total', width: 80 },
   { field: 'userId', headerName: 'ID usuario', width: 150 },
-  { field: 'createdAt', headerName: 'Fecha', sortable: false, width: 130 }
+  { field: 'createdAt', headerName: 'Fecha', sortable: false, width: 100 }
 ]
 
 export default function Datatable (props) {
@@ -27,11 +27,17 @@ export default function Datatable (props) {
   const rows = buys.map(b => { return { id: b.buyId, currency: b.currency, userId: b.userId, totalAmount: b.totalAmount, createdAt: b.createdAt.slice(0, 10) } }
   )
 
-  useEffect(() => { dispatch(getBuys()) }, [buys]) //eslint-disable-line
+  useEffect(() => { dispatch(getBuys()) }, []) //eslint-disable-line
   return (
 
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        className='fs-5 bg-white'
+        initialState={{
+          sorting: {
+            sortModel: [{ field: 'id', sort: 'asc' }]
+          }
+        }}
         rows={rows}
         columns={columns}
         pageSize={9}

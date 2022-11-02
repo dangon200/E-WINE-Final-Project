@@ -15,6 +15,13 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
   /* const {  } = props */
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
+  const TotalCompra = () => {
+    if (paymentMethod === 'card') {
+      const total = totalAmount / 100
+      return total
+    } else return totalAmount
+  }
+
   return (
     <Row className='w-75 bg-light p-3 mb-0 border-bottom rounded-4 fs-4 mt-5'>
       <Row className='border-bottom mb-4'>
@@ -54,7 +61,7 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
           </Row>
         </Col>
         <Col>
-          $ {totalAmount / 100}
+          $<TotalCompra />
         </Col>
         <Col className='d-flex flex-column justify-content-start align-items-end gap-3'>
           <Row>

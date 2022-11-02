@@ -26,13 +26,15 @@ export default function ProductDetail (props) {
             <Col className='text-start fs-1 mt-5 mb-5 ms-5'>
               <Stack direction='vertical' gap={5}>
                 <div className={style.text}>ORIGEN: <span className='text-secondary'>{publication.origin}</span></div>
-                <div className={style.text}>CELLAR: <span className='text-secondary'>{publication.cellar}</span></div>
+                <div className={style.text}>BODEGA: <span className='text-secondary'>{publication.cellar}</span></div>
               </Stack>
             </Col>
           </Row>
         </Tab>
         <Tab eventKey='masInfo' title='MAS INFO'>
-          {publication.description}
+          <div className='text-start fs-1 mt-5 mb-5 ms-5'>
+            <div className={style.text}>DESCRIPCIÓN: <span className='text-secondary'>{publication.description}</span></div>
+          </div>
         </Tab>
         {/* Agregar mas en caso de ser necesario */}
         {/* <Tab eventKey='contact' title='Contact'>

@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import ChatOnline from '../ChatOnline/ChatOnline'
 import Conversations from '../Conversations/Conversations'
 import ItemConversation from '../ItemConversation/ItemConversation'
 import style from './Messenger.module.css'
 import axios from 'axios'
-import Sidebar from '../Sidebar/Sidebar'
-
-import { io } from 'socket.io-client'
+import SidebarMessenger from '../SidebarMessenger/SidebarMessenger'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+import { FiSend } from 'react-icons/fi'
+/* import { io } from 'socket.io-client' */
 
 import { useSelector } from 'react-redux'
+import { SocketContext } from '../../context/socket'
 
 function Messenger () {
   const user = useSelector(state => state.user)
@@ -17,23 +19,29 @@ function Messenger () {
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState('')
   const scrollRef = useRef()
-  const socket = useRef()
+  /*  const socket = useRef() */
+  const socket = useContext(SocketContext)
   const [arrivalMessage, setArrivalMessage] = useState(null)
-  const [onlineUsers, setOnlineUsers] = useState([])
+  /* const [onlineUsers, setOnlineUsers] = useState([]) */
+  const onlineUsers = useSelector(state => state.onlineUsers)
+
+  /*   useEffect(() => {
+    /* socket.current = io('https://websocketpf.herokuapp.com/')
+    socket.current = io('http://localhost:8900')
+  }, [socket]) */
 
   useEffect(() => {
-    socket.current = io('https://websocketpf.herokuapp.com/')
-    socket.current.on('getMessage', data => {
+    socket.on('getMessage', data => {
       setArrivalMessage({
         userId: data.userId,
         text: data.text,
         createdAt: Date.now()
       })
     })
-    socket.current.on('getConversation', data => {
+    socket.on('getConversation', data => {
       setConversations(prev => [data.data, ...prev])
     })
-  }, [conversations])
+  }, [])
 
   useEffect(() => {
     const includesId = (userId) => {
@@ -47,17 +55,9 @@ function Messenger () {
   }, [arrivalMessage, currentChat])
 
   useEffect(() => {
-    user &&
-    socket.current.emit('addUser', user.id)
-    socket.current.on('getUsers', users => {
-      setOnlineUsers(users)
-    })
-  }, [user])
-
-  useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get(`https://e-winespf.herokuapp.com/conversations/user/${user?.id}`)
+        const res = await axios.get(`https://e-winespf.herokuapp.com/conversations/user/${user.id}`)
         setConversations(res.data)
       } catch (error) {
         console.log(error)
@@ -69,8 +69,10 @@ function Messenger () {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get(`https://e-winespf.herokuapp.com/messages/${currentChat?.id}`)
-        setMessages(res.data)
+        if (currentChat) {
+          const res = await axios.get(`https://e-winespf.herokuapp.com/messages/${currentChat.id}`)
+          setMessages(res.data)
+        }
       } catch (error) {
         console.log(error.message)
       }
@@ -88,7 +90,7 @@ function Messenger () {
 
     const receiver = currentChat.users.find(u => u.id !== user.id)
 
-    socket.current.emit('sendMessage', {
+    socket.emit('sendMessage', {
       userId: user.id,
       receiverId: receiver.id,
       text: newMessage
@@ -109,15 +111,14 @@ function Messenger () {
 
   return (
     <div className={style.messenger}>
-      <div className={style.sidebar}>
-
-        <Sidebar />
+      <div className={`col-auto my-4 mx-4 rounded-5 ${style.sidebar} `}>
+        <SidebarMessenger />
       </div>
       <div className={style.chatMenu}>
         <div className={style.chatMenuWrapper}>
+          <p className={style.messages}>Messages</p>
           {conversations.map(c => (
             <div key={c.id} onClick={() => setCurrentChat(c)}>
-
               <Conversations key={c.id} conversation={c} currentUser={user} currentChat={currentChat} />
             </div>
           )
@@ -126,6 +127,9 @@ function Messenger () {
       </div>
       <div className={style.chatBox}>
         <div className={style.chatBoxWrapper}>
+          {/* <nav className='p-4 bg-secondary bg-opacity-25 text-dark fs-4'>
+            Hola
+          </nav> */}
           {currentChat
             ? (
               <>
@@ -136,15 +140,18 @@ function Messenger () {
                     </div>))}
                 </div>
                 <div className={style.chatBoxBottom}>
-                  <input className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...' />
-                  <button className={style.chatSubmitButton} onClick={handleSubmit}>Enviar</button>
+                  <input
+                    className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...'
+                  />
+                  <button className={style.chatSubmitButton} onClick={handleSubmit}><FiSend /></button>
                 </div>
               </>)
-            : <span className={style.noConversationText}>Abre un conversacion para empezar!</span>}
+            : <div className='d-flex flex-column justify-content-center align-items-center gap-4'><BsFillChatDotsFill size={50} color='#91091E' /><span className={style.noConversationText}>Abre un conversacion para empezar!</span></div>}
         </div>
       </div>
       <div className={style.chatOnline}>
         <div className={style.chatOnlineWrapper}>
+          <h2 style={{ color: '#484D55' }} className='fw-semibold'>Lista de sommeliers</h2>
           <ChatOnline onlineUsers={onlineUsers} currentId={user.id} setCurrentChat={setCurrentChat} conversations={conversations} setConversations={setConversations} socket={socket} />
         </div>
       </div>
