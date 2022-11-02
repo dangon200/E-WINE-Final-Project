@@ -27,7 +27,7 @@ export default function Carrito () {
           {carrito.length > 0
             ? carrito.map(p => {
               return (
-                <ItemCarrito key={p.id} id={p.id} title={p.title} price={p.price} count={p.count} image={p.image} name={p.name} />
+                <ItemCarrito key={p.id} id={p.id} title={p.title} price={p.price} count={p.count} image={p.image} name={p.name} stock={p.stock} />
               )
             })
             : <h3 className='fs-4'>No has agregado nada al carrito aún!</h3>}
@@ -38,7 +38,7 @@ export default function Carrito () {
           </Row>
           <Row className='fs-4 w-75'>
             <Col className='text-start'>
-              <p> Costo de envio a {user.region ? user.region : 'su domicilio'}:</p>
+              <p> Costo de envio a {user.region && user.region !== null && user.region !== 'null' ? user.region : 'su domicilio'}:</p>
             </Col>
             <Col className='text-end'>
               <span className='fw-bold fs-3'> $ 350</span>
@@ -50,17 +50,17 @@ export default function Carrito () {
             </Col>
             <Col className='text-end'>
               <span className='fw-bold fs-3'> $ {carrito.length > 0
-                ? totalAmount
+                ? totalAmount + 350
                 : 'No hay productos en el carrito'}
               </span>
             </Col>
           </Row>
           {/* <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
             Pagar con stripe
-          </Link>
+          </Link> */}
           <div className={style.button}>
             <PagarMP />
-          </div> */}
+          </div>
           {token
             ? <button className={style.button}>
               <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>

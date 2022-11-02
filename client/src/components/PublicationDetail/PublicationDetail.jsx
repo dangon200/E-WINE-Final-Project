@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import { ImGlass } from 'react-icons/im'
 
 import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys, reviewsPublication } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
@@ -35,8 +34,8 @@ export default function PublicationDetail (props) {
   const { id } = useParams() // props.match.params.id
   const { name, price, title, image, count, productId } = publication
   const [counter, setCounter] = useState(1)
-  const { result, cantidadRevs } = Review
-  const result2 = parseFloat(result).toFixed(1)
+  const { result, cantidadRevs } = Review // eslint-disable-line
+  // const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
@@ -46,12 +45,12 @@ export default function PublicationDetail (props) {
     dispatch(getReviewBuys(id))
     dispatch(reviewsPublication(productId))
   }, [dispatch, id, productId])
-  const addToCarrito = (id, price, title, image, name, countParam, count) => {
+  const addToCarrito = (id, price, title, image, name, countParam, stock) => {
     if (window.localStorage.hasOwnProperty(id)) {
       window.localStorage[id] = JSON.stringify({
         ...JSON.parse(window.localStorage[id]),
 
-        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > stock ? stock : countParam + JSON.parse(window.localStorage[id]).count
       })
       dispatch(
         addCarrito({
@@ -61,7 +60,7 @@ export default function PublicationDetail (props) {
           image,
           name,
           count: JSON.parse(window.localStorage[id]).count,
-          stock: count
+          stock
         })
       )
     } else {
