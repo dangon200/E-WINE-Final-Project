@@ -32,6 +32,12 @@ export default function Datatable (props) {
 
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
+        className='fs-5 bg-white'
+        initialState={{
+          sorting: {
+            sortModel: [{ field: 'id', sort: 'asc' }]
+          }
+        }}
         rows={rows}
         columns={columns}
         pageSize={9}

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DataGrid } from '@mui/x-data-grid'
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'name', headerName: 'Varietal', width: 70 }
+  { field: 'name', headerName: 'Varietal', width: 200 }
 
 ]
 
@@ -18,8 +18,14 @@ function TableVarietalAdmin () {
   }, []) // eslint-disable-line
   return (
     <div>
-      <div style={{ height: 700, width: '50%' }}>
+      <div style={{ height: 700, width: '100%' }}>
         <DataGrid
+          className='fs-5 bg-white'
+          initialState={{
+            sorting: {
+              sortModel: [{ field: 'id', sort: 'asc' }]
+            }
+          }}
           rows={rows}
           columns={columns}
           pageSize={15}
