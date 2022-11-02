@@ -2,12 +2,15 @@ import Container from 'react-bootstrap/Container'
 import React, { useRef, useState } from 'react'
 import { ImGlass } from 'react-icons/im'
 import style from './reviewBuy.module.css'
-const urlApi = 'http://localhost:3001'
+import { useDispatch } from 'react-redux'
+import { getReviewBuys } from '../../store/actions/actions'
+const urlApi = 'https://e-winespf.herokuapp.com'
 
 export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const text = useRef(null)
+  const dispatch = useDispatch()
   const handleClick = (e) => {
     e.preventDefault('')
     const comentario = {
@@ -24,6 +27,8 @@ export default function ReviewBuy (userId) {
       },
       credentials: 'include'
     })
+    dispatch(getReviewBuys(userId.userId))
+    text.current.value = ''
   }
 
   return (

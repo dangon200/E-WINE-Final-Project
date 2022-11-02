@@ -51,7 +51,8 @@ const getBuysByUser = async (userId) => {
         currency: b.dataValues.currency,
         paymentMethod: b.dataValues.paymentMethod,
         totalAmount: b.dataValues.totalAmount,
-        userId: b.dataValues.userId
+        userId: b.dataValues.userId,
+        createdAt: b.dataValues.createdAt
       })
     })
     return resultParsed
@@ -79,7 +80,8 @@ const getBuysByPublication = async (publicationId) => {
         currency: b.dataValues.currency,
         paymentMethod: b.dataValues.paymentMethod,
         totalAmount: b.dataValues.totalAmount,
-        userId: b.dataValues.userId
+        userId: b.dataValues.userId,
+        createdAt: b.dataValues.createdAt
       })
     })
     console.log('🚀 ~ file: buys.js ~ line 35 ~ getBuyById ~ P', resultParsed)

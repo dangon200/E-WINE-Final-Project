@@ -73,6 +73,8 @@ function About () {
               </div>
             </div>
           </div>
+        </section>
+        <section className={s.cardSection}>
           <div className={s.divCard}>
             <div className={s.card}>
               <img className={s.cardImage} src={team} alt='team' />
