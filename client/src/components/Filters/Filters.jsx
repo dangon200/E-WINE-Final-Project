@@ -23,34 +23,6 @@ function Filters ({ setPage }) {
     })
     setPage(1)
   }
-  /* function handleSelectType (e) {
-    setFilter({
-      ...filter,
-      type: [...filter.type, e.target.value]
-    })
-    setPage(1)
-  }
-  function handleSelectOpt (e) {
-    setFilter({
-      ...filter,
-      opt: [...filter.opt, e.target.value]
-    })
-    setPage(1)
-  }
-  function handleSelectVarietal (e) {
-    setFilter({
-      ...filter,
-      varietal: [...filter.varietal, e.target.value]
-    })
-    setPage(1)
-  }
-  function handleSelectOrigin (e) {
-    setFilter({
-      ...filter,
-      origin: [...filter.origin, e.target.value]
-    })
-    setPage(1)
-  } */
 
   return (
     <div className={s.general}>
