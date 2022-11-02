@@ -130,7 +130,7 @@ export default function PublicationDetail (props) {
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
                 <Stack
-                  className={userId === User.id && 'd-none'}
+                  className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
                   direction='horizontal'
                   gap={1}
                 >

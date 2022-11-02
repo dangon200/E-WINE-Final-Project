@@ -82,7 +82,7 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               }}
             >Más Info
             </Link>
-            {user.id !== userId
+            {(user.id !== userId && count)
               ? <button
                   className={`${style.addBtn}`} onClick={() => {
                     window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
