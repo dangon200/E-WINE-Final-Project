@@ -3,9 +3,9 @@ import copa from '../assets/imgs/copa.png'
 import teamwork from '../../utils/images/teamwork1.jpg'//eslint-disable-line
 import barriles from '../../utils/images/bodegabarriles.jpg'
 import { BsCheck2 } from 'react-icons/bs'
-import { GiWineBottle } from 'react-icons/gi'
+/* import { GiWineBottle } from 'react-icons/gi'
 import { BiBookBookmark } from 'react-icons/bi'
-import { RiCustomerService2Fill } from 'react-icons/ri'
+import { RiCustomerService2Fill } from 'react-icons/ri' */
 import logo from '../assets/imgs/arriba.png'
 
 import Button from '../Button/Button.jsx'
@@ -121,7 +121,7 @@ export default function LandingPage () {
 
       </section>
 
-      <section className={`container-fluid py-5 d-flex flex-column ${style.sectionPreFooter}`}>
+      {/* <section className={`container-fluid py-5 d-flex flex-column ${style.sectionPreFooter}`}>
         <div className='row pb-3'>
           <h2 className='fs-1'>Millones de personas confían en nosotros para encontrar y comprar el vino perfecto una y otra vez
           </h2>
@@ -141,7 +141,7 @@ export default function LandingPage () {
             <p className=''> Consulta reseñas sinceras sobre cualquier vino antes de comprarlo</p>
           </div>
         </div>
-      </section>
+      </section> */}
       <a href='#h' id='toTop' className={style.icon} onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}><img className={style.iconImg} src={logo} alt='top' /></a>
     </>
   )

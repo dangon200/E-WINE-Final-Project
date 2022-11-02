@@ -1,7 +1,10 @@
 .container{
-    margin: 50px 0 50px 0;
+    margin: 50px 0 150px 0;
     height: 100%;
     width: 100%;
+}
+.cont{
+    height: 100%;
 }
 
 .container h3{
@@ -62,5 +65,8 @@
         width: 75%;
         margin: auto;
         margin-top: 50px;
+    }
+    .container{
+        margin: 50px 0 50px 0;
     }
 }

@@ -14,8 +14,8 @@ export default function ItemModaleBuy (props) {
     <div className={s.container}>
       <div className={`row border-bottom border-2 fs-4 ${s.item}`}>
         <Row>
-          <Col className={s.image}>
-            <img className='img-fluid' src={image} alt={image} />
+          <Col>
+            <img className={s.image} src={image} alt={image} />
           </Col>
           <Col className='d-flex flex-column col-4 justify-content-center align-items-left ms-4'>
             <Row className='fs-3 text-start'>{title}</Row>

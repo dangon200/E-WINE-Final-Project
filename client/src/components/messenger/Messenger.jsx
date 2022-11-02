@@ -4,8 +4,9 @@ import Conversations from '../Conversations/Conversations'
 import ItemConversation from '../ItemConversation/ItemConversation'
 import style from './Messenger.module.css'
 import axios from 'axios'
-import Sidebar from '../Sidebar/Sidebar'
-
+import SidebarMessenger from '../SidebarMessenger/SidebarMessenger'
+import { BsFillChatDotsFill } from 'react-icons/bs'
+import { FiSend } from 'react-icons/fi'
 import { io } from 'socket.io-client'
 
 import { useSelector } from 'react-redux'
@@ -109,15 +110,14 @@ function Messenger () {
 
   return (
     <div className={style.messenger}>
-      <div className={style.sidebar}>
-
-        <Sidebar />
+      <div className={`col-auto my-4 mx-4 rounded-5 ${style.sidebar} `}>
+        <SidebarMessenger />
       </div>
       <div className={style.chatMenu}>
         <div className={style.chatMenuWrapper}>
+          <p className={style.messages}>Messages</p>
           {conversations.map(c => (
             <div key={c.id} onClick={() => setCurrentChat(c)}>
-
               <Conversations key={c.id} conversation={c} currentUser={user} currentChat={currentChat} />
             </div>
           )
@@ -126,6 +126,9 @@ function Messenger () {
       </div>
       <div className={style.chatBox}>
         <div className={style.chatBoxWrapper}>
+          {/* <nav className='p-4 bg-secondary bg-opacity-25 text-dark fs-4'>
+            Hola
+          </nav> */}
           {currentChat
             ? (
               <>
@@ -136,15 +139,18 @@ function Messenger () {
                     </div>))}
                 </div>
                 <div className={style.chatBoxBottom}>
-                  <input className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...' />
-                  <button className={style.chatSubmitButton} onClick={handleSubmit}>Enviar</button>
+                  <input
+                    className={style.chatMessageInput} type='text' value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder='Escriba su mensaje...'
+                  />
+                  <button className={style.chatSubmitButton} onClick={handleSubmit}><FiSend /></button>
                 </div>
               </>)
-            : <span className={style.noConversationText}>Abre un conversacion para empezar!</span>}
+            : <div className='d-flex flex-column justify-content-center align-items-center gap-4'><BsFillChatDotsFill size={50} color='#91091E' /><span className={style.noConversationText}>Abre un conversacion para empezar!</span></div>}
         </div>
       </div>
       <div className={style.chatOnline}>
         <div className={style.chatOnlineWrapper}>
+          <h2 style={{ color: '#484D55' }} className='fw-semibold'>Lista de sommeliers</h2>
           <ChatOnline onlineUsers={onlineUsers} currentId={user.id} setCurrentChat={setCurrentChat} conversations={conversations} setConversations={setConversations} socket={socket} />
         </div>
       </div>
