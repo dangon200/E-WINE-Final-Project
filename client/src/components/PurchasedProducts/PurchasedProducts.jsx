@@ -17,7 +17,7 @@ export default function PurchasedProducts () {
   const dispatch = useDispatch()
   useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch, user.id])
   return (
-    <div className='grid h-100 pb-5'>
+    <div className='grid h-100'>
       <Container fluid style={{ height: '100%' }}>
         <Row className='grid h-100 bg-grey bg-opacity-25'>
           <Col className='col-auto min-vh-100 pt-5 rounded'>

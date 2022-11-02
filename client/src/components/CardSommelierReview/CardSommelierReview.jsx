@@ -30,18 +30,6 @@ export default function CardSommelierReview ({ id, type, origin, cellar, varieta
         <Card.Img className={s.image} variant='top' src={image} alt={image} />
         <Card.Body className={s.bodyCard}>
           <Card.Title className='fs-2 mt-3 text-center'>{name}</Card.Title>
-          {/* <Card.Text className='fs-4 my-3'>
-            Origen: {origin}
-          </Card.Text>
-          <Card.Text className='fs-4 my-3'>
-            Bodega: {cellar}
-          </Card.Text>
-          <Card.Text className='fs-4 my-3'>
-            Varietal: {varietal}
-          </Card.Text>
-          <Card.Text className='fs-4 my-3'>
-            Tipo: {type}
-          </Card.Text> */}
           <div className='row'>
             <div className='col fs-4 my-3'>Origen: {origin}</div>
             <div className='col fs-4 my-3'>Bodega: {cellar}</div>
@@ -54,8 +42,8 @@ export default function CardSommelierReview ({ id, type, origin, cellar, varieta
             review(reviews)
               ? <div className='fs-3'>Reseña: {review(reviews)}</div>
               : <div className={s.inputs}>
-                <input className='fs-4' type='text' placeholder='Dejar reseña' value={input} onChange={(e) => setInput(e.target.value)} />
-                <input className='fs-4' type='submit' value='Enviar' onClick={(e) => post(e)} />
+                <input className={s.input1} type='text' placeholder='Dejar reseña' value={input} onChange={(e) => setInput(e.target.value)} />
+                <input className={s.input2} type='submit' value='Enviar' onClick={(e) => post(e)} />
               </div>  // eslint-disable-line
           }
         </Card.Body>

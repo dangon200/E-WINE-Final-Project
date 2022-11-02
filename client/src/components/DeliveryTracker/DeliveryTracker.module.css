@@ -4,7 +4,7 @@
 }
 
 .progressbar{
-    color: #B2B2B2;
+    color: #484d55;
 }
 
 .progressbar li{
@@ -47,12 +47,12 @@
 }
 
 .progressbar li.active:before{
-    border-color: #484d55;
-    background-color: #484d55;
+    border-color: #7DCE13;
+    background-color: #7DCE13;
 }
 
 .progressbar li.active + li:after{
-    background-color: #484d55;
+    background-color: #7DCE13;
 }
 @media (max-width: 576px){
     .container{

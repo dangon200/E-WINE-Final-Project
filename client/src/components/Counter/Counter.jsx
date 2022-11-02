@@ -13,13 +13,13 @@ export default function Counter (props) {
   const updateCount = (param, id) => {
     console.log(param, id, window.localStorage[id])
     if (param === 'rest' && count > 1) setCount(count - 1)
-    if (param === 'add' && count < stock) setCount(count + 1)
+    if (param === 'add' && count > stock) setCount(count + 1)
   }
 
   useEffect(() => {
     window.localStorage[id] = JSON.stringify({ ...JSON.parse(window.localStorage[id]), count })
     dispatch(addCarrito({ id, price, title, image, name, count, stock }))
-  }, [count])// eslint-disable-line
+  }, [count]) // eslint-disable-line
   return (
     <div className={style.pedido}>
       <button className={style.buttonMasMenos} onClick={() => updateCount('rest', id)}>

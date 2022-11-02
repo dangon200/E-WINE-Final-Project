@@ -9,6 +9,7 @@ import Modale from '../Modale/Modale'
 import { MdNotifications } from 'react-icons/md'
 import { BsFillChatFill } from 'react-icons/bs'
 import { RiAdminFill } from 'react-icons/ri'
+import { GiHamburgerMenu } from 'react-icons/gi'
 // import { useEffect } from 'react'
 // import SeachBar from '../SearchBar/SearchBar'
 
@@ -91,8 +92,9 @@ export default function Nav () {
           <SeachBar />
         </div> */}
 
-        <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
-          <span className='navbar-toggler-icon' />
+        <button className={`navbar-toggler ${style.toggler}`} type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>
+          <span className={style.menu}><GiHamburgerMenu /></span>
+          {/* <span className='navbar-toggler-icon' /> */}
         </button>
 
         <div className={`collapse navbar-collapse  ${style.links}`} id='navbarNavAltMarkup'>
