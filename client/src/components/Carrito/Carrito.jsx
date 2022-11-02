@@ -27,7 +27,7 @@ export default function Carrito () {
 
   return (
     <div className={style.container}>
-      <Row className={` ${style.cont}`}>
+      <Row className={`${style.cont}`}>
         <Col className={`d-flex flex-column col-9 gap-3 ${style.containerItems}`}>
           {carrito.length > 0
             ? carrito.map(p => {

@@ -7,7 +7,7 @@
     padding-bottom: 5px;
     padding-left: 10px;
     margin-left: -15px;
-    border-left: 6px solid var(--btn-background-color);
+    border-left: 8px solid #91091E;
 }
 
 .logout{

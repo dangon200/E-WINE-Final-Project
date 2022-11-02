@@ -19,6 +19,9 @@ function About () {
           <Button content='Visitar la tienda' link='/home' />
         </div>
       </div> */}
+      <section>
+        <img className={s.sectionImage} src={team} alt='equipo' />
+      </section>
       <h1 className={s.title}>Conoce nuestro equipo</h1>
       <div className={s.container}>
         <section className={s.cardSection}>

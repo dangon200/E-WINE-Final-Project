@@ -160,6 +160,41 @@ export const searchPublicationByName = (name) => {
   }
 }
 
+// getProducts
+
+export const getProductsReviews = () => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviews/products`)
+      return dispatch({
+        type: 'GET_PRODUCTS_REVIEWS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+// postReview
+export const postReview = (userId, productId, text) => {
+  return async function (dispatch) {
+    const data = {
+      userId,
+      productId,
+      text
+    }
+    try {
+      const api = await axios.post(`${urlApi}/reviews`, data)
+      return dispatch({
+        type: 'POST_REVIEW',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 // Favorites
 
 export const getFavorites = (id) => {

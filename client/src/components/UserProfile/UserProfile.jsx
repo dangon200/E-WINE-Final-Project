@@ -40,13 +40,13 @@ export default function UserProfile () {
     <div className='grid h-100'>
       <Container fluid style={{ height: '100vh' }}>
         <Row className='grid h-100'>
-          <Col className='col-auto pt-5 rounded'>
+          <Col className={`col-auto pt-5 rounded ${s.sidebar}`}>
             <Sidebar />
           </Col>
           <Col className={s.container}>
-            <Row className='m-auto w-75 pt-5' id={s.grid}>
+            <Row className='m-auto w-75' id={s.grid}>
               <Row className={`d-flex mb-5 ${s.title}`}>
-                <h1>Mis datos</h1>
+                <h1 className='d-flex w-100'>Mis datos</h1>
               </Row>
               <Row className={`fs-4 ${s.datos}`}>
                 <Col className={s.h2}>

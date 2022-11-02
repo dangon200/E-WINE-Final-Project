@@ -63,9 +63,9 @@ export default function CheckoutForm (props) {
   const [err, setErr] = useState(false)
   const [send, setSend] = useState(false)
   return (
-    <form onSubmit={handleSubmit} className='card card-body'>
+    <form onSubmit={handleSubmit} className='card border-secondary border-2 card-body'>
       <div className='row'>
-        <Link className='d-flex justify-content-center align-items-center text-decoration-none text-dark fs-3 fw-3 mb-4' to='/carrito'>
+        <Link className='d-flex justify-content-center align-items-center text-decoration-none text-dark fs-2 fw-3 mb-4' to='/carrito'>
           <IoCaretBack /> Volver al carrito
         </Link>
       </div>

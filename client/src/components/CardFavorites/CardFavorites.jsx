@@ -35,12 +35,9 @@ export default function CardFavorites ({ id, title, description, image, name, pr
           <Card.Text>
             {name}
           </Card.Text>
-          {/* <Card.Text>
-            {price}
-          </Card.Text> */}
           <Button className={`p-3 fs-4 ${s.button}`}>
             <Link className='text-light text-decoration-none' to={`/publication/${id}`}>
-              Volver a la publicación
+              Ir a la publicación
             </Link>
           </Button>
         </Card.Body>

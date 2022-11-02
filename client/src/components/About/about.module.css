@@ -30,6 +30,11 @@
     font-family: var(--font-family-1);
     margin-top: 50px;
 }
+.sectionImage{
+    object-fit: cover;
+    width: 100%;
+    height: 500px;
+}
 .cardSection{
     display: grid;
     gap: 1rem;
@@ -111,4 +116,15 @@
     margin: 0px;
     font-size: 1.4em;
     color: rgb(142, 143, 148);
+}
+@media (max-width: 992px){
+    .sectionImage{
+        height: 350px;
+    }
+}
+
+@media (max-width: 576px){
+    .sectionImage{
+        height: 220px;
+    }
 }

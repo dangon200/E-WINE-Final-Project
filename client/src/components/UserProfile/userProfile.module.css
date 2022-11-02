@@ -13,6 +13,7 @@
     align-items: center;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 1rem;
+    padding-top: 80px;
 }
 
 .container{
@@ -84,6 +85,9 @@
     width: 75%;
     align-items: center;
 }
+.sidebar{
+    width: 100%;
+}
 @media (max-width: 768px){
     .dataContainer{
         display: flex;
@@ -92,8 +96,13 @@
         gap: 40px;
         margin-bottom: 10px;
     }
+    .container{
+        width: 80%;
+    }
     .title{
         display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
         width: 100%;
     }
@@ -106,5 +115,8 @@
     }
     .table{
         width: 350px;
+    }
+    .grid{
+        padding-top: 40px;
     }
 }
