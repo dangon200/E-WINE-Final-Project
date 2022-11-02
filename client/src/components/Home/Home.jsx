@@ -126,6 +126,7 @@ export default function Home () {
                     price={p.price}
                     userId={p.userId}
                     key={p.id}
+                    count={p.count}
                     socket={socket}
                   />
                 </div>

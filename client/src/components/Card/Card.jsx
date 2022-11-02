@@ -82,6 +82,7 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               }}
             >Más Info
             </Link>
+            {console.log(count, 'count')}
             {(user.id !== userId && count)
               ? <button
                   className={`${style.addBtn}`} onClick={() => {
