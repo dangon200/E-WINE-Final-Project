@@ -8,18 +8,18 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 function UserAdmin ({ users, userProv, token }) {
   return (
-    <Container className='mr-5'>
-      <Row className='text-secondary shadow-sm p-3 mb-5 bg-white rounded'> <h2>USUARIOS</h2></Row>
+    <Container className='bg-white mr-5'>
+      <Row className='text-secondary shadow-sm p-3 mb-5 bg-light rounded'> <h2>USUARIOS</h2></Row>
       <Row className='mb-3'>
-        <Col className='border border-2 m-3'>
+        <Col className='border border-2 m-3 bg-light'>
           <UsersBarChart users={users} />
         </Col>
-        <Col className='border border-2 m-3'>
+        <Col className='border border-2 m-3 bg-light'>
           <UsersBannedChart users={users} />
         </Col>
       </Row>
       <Row>
-        <Col className='text-secondary border border-2'>
+        <Col className='text-secondary border border-2 bg-light'>
           <h2>Todos los usuarios</h2>
           <Datatable token={token} users={users} />
         </Col>

@@ -69,8 +69,8 @@ function UsersBarChart ({ users }) {
       {
         label: 'Cantidad de usuarios',
         data: [0],
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.4)'
+        borderColor: 'rgb(42, 157, 143,1)',
+        backgroundColor: 'rgb(42, 157, 143,0.2)'
       }
     ]
   })
@@ -89,8 +89,8 @@ function UsersBarChart ({ users }) {
           {
             label: 'Cantidad de usuarios nuevos por semana en el mes',
             data: datitos,
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.4)'
+            borderColor: 'rgb(42, 157, 143,1)',
+            backgroundColor: 'rgb(42, 157, 143,0.2)'
           }
         ]
       })
@@ -114,8 +114,8 @@ function UsersBarChart ({ users }) {
           {
             label: 'Cantidad de usuarios en el último mes',
             data: datitosSemana,
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.4)'
+            borderColor: 'rgb(42, 157, 143,1)',
+            backgroundColor: 'rgb(42, 157, 143,0.2)'
           }
         ]
       })
@@ -140,8 +140,8 @@ function UsersBarChart ({ users }) {
           {
             label: 'Cantidad de usuarios en la última semana',
             data: datitosDia,
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.4)'
+            borderColor: 'rgb(42, 157, 143,1)',
+            backgroundColor: 'rgb(42, 157, 143,0.2)'
           }
         ]
       })
