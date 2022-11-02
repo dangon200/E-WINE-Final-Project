@@ -3,9 +3,10 @@ import copa from '../assets/imgs/copa.png'
 import teamwork from '../../utils/images/teamwork1.jpg'//eslint-disable-line
 import barriles from '../../utils/images/bodegabarriles.jpg'
 import { BsCheck2 } from 'react-icons/bs'
-/* import { GiWineBottle } from 'react-icons/gi'
+
+import { GiWineBottle } from 'react-icons/gi'
 import { BiBookBookmark } from 'react-icons/bi'
-import { RiCustomerService2Fill } from 'react-icons/ri' */
+import { RiCustomerService2Fill } from 'react-icons/ri'
 import logo from '../assets/imgs/arriba.png'
 
 import Button from '../Button/Button.jsx'
@@ -36,9 +37,9 @@ export default function LandingPage () {
           <Button link='/home' content='EXPLORÁ LA TIENDA' />
         </div>
       </header>
-      <section className='mt-5'>
+      <section className='my-5'>
         <article className={`row align-items-center text-start ${style.cont}`}>
-          <img src={copa} alt='copa de vino' className={`col img-fluid d-none d-sm-block ${style.img}`} />
+          <img src={copa} alt='copa de vino' className={` mx-5 px-5 col img-fluid d-none d-sm-block ${style.img}`} />
           <div className={`col ${style.details} heigth100 text-center text-sm-start`}>
             <div className='container heigth100 d-flex flex-column justify-content-sm-evenly'>
               <h2 className='row fs-1'>Disfrutá navegando por miles de vinos y haciendo tu elección de manera más cómoda todo en un sólo sitio</h2>
@@ -64,11 +65,11 @@ export default function LandingPage () {
               </div>
             </div>
           </div>
-          <img src={barriles} alt='Bodega' className={`col img-fluid d-none d-sm-block ${style.img}`} />
+          <img src={barriles} alt='Bodega' className={`mx-5 px-5 col img-fluid d-none d-sm-block ${style.img}`} />
         </article>
       </section>
 
-      <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
+      {/* <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
         <h2 className='row'>Recomendados por expertos</h2>
         <article className={`row mb-5 ${style.gridCards}`}>
           <div className={`card  ${style.card}`}>
@@ -95,33 +96,36 @@ export default function LandingPage () {
             </section>
           </div>
         </article>
-      </section>
+      </section> */}
 
       <section className={`container-fluid px-0 text-center text-lg-start  ${style.sectionAboutProject}`}>
         <div className={` row ${style.divAboutProject}`}>
-          <div className='col-12 ps-lg-4 col-lg-6'>
-            <h2 className='text-center my-4 '>Sobre el proyecto</h2>
-            <p>
-              Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.
-              Talabgorlarning ilgor ish tajribalarini organish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
-            </p>
-
-            <p>
-              Talabgorlarning ilgor ish tajribalarini organish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
-            </p>
-
-            <p>
-              Talabgorlarning ilgor ish tajribalarini organish va ommalashtirish ishlari www.ommalashtirish.uz platformasi orqali amalga oshiriladi.
-            </p>
-          </div>
           <div className={`col-12 col-lg-6 ${style.divTeamWork}`}>
             <img src={teamwork} alt={teamwork} className='img-fluid ' />
           </div>
+          <div className='col-12 ps-lg-4 col-lg-6'>
+            <h1 className='text-center my-4 '>Sobre el proyecto</h1>
+            <div className='mx-5'>
+              <p className='fs-2'>
+                E-Wines es una plataforma digital de compra y venta de vinos especialmente diseñada para consumidores y tiendas de vinos. Contamos con una sección de reseñas y valoraciones, para usuarios y personas especializadas en el tema.
+              </p>
+              <p className='fs-2'>
+                Nuestra misión es crear un sentido de comunidad y crecer a partir de las necesidades de nuestros clientes.
+              </p>
+              <p className='fs-2'>
+                Actualmente contamos con una aplicación web y está en desarrollo una aplicación móvil para teléfonos celulares. A través de estas herramientas, las tiendas de vinos pueden llegar a su público de una manera más enfocada y fácil, permitiendo el desarrollo del mercado online además del físico.
+              </p>
+              <p className='fs-2'>
+                Es importante destacar que no habría ningún costo adicional para las tiendas por el uso de la herramienta ya que es nuestra intención contribuir a la comunidad de la que formamos parte y visualizarnos como desarrolladores de tecnología. Estamos muy interesados en conocer su opinión sobre esta propuesta y las necesidades del sector.
+              </p>
+            </div>
+
+          </div>
+
         </div>
 
       </section>
-
-      {/* <section className={`container-fluid py-5 d-flex flex-column ${style.sectionPreFooter}`}>
+      <section className={`container-fluid py-5 d-flex flex-column ${style.sectionPreFooter}`}>
         <div className='row pb-3'>
           <h2 className='fs-1'>Millones de personas confían en nosotros para encontrar y comprar el vino perfecto una y otra vez
           </h2>
@@ -141,7 +145,8 @@ export default function LandingPage () {
             <p className=''> Consulta reseñas sinceras sobre cualquier vino antes de comprarlo</p>
           </div>
         </div>
-      </section> */}
+      </section>
+
       <a href='#h' id='toTop' className={style.icon} onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}><img className={style.iconImg} src={logo} alt='top' /></a>
     </>
   )
