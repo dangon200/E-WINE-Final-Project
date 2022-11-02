@@ -78,17 +78,12 @@ function AdminDashboard () {
     }
     return arrayB.length
   }
-<<<<<<< HEAD
-  useEffect(() => {
-    !token.user.isAdmin && history.push('/')
-  }, [token, history])
-=======
+
   // useEffect(() => {
   //   console.log(token)
   //   console.log('Este es el token de isAdmimn', token.user.isAdmin)
   //   !token.user.isAdmin && history.push('/')
   // }, [])//eslint-disable-line
->>>>>>> 9148f9ac06d787d250c19cf257ac9750d6f718b2
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
