@@ -22,6 +22,7 @@ import logo from '../../utils/images/logodefinitivosinfondopng.png'
 import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
 import ProductsCharts from '../ProductsCharts/ProductsCharts'
 import UsersByProvincesChart from '../UsersCharts/UsersByProvincesChart.jsx'
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -135,7 +136,7 @@ function AdminDashboard () {
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Compras</span></Button>
                 </li>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <ListAltIcon style={{ fontSize: 30 }} className={s.icon} />
+                  <Inventory2OutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Publicaciones</span></Button>
                 </li>
                 <p className={`pt-5 fs-4 d-none d-sm-inline ${s.title}`}>PERFIL</p>
