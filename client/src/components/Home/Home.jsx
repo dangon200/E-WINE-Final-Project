@@ -94,7 +94,7 @@ export default function Home () {
       </section>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
-          <SearchBar className={style.searchBar} />
+          <SearchBar setPage={setPage} className={style.searchBar} />
           <Filters setPage={setPage} />
         </div>
       </div>
