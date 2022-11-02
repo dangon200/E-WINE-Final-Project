@@ -55,6 +55,12 @@ export default function Carrito () {
               </span>
             </Col>
           </Row>
+          {/* <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
+            Pagar con stripe
+          </Link>
+          <div className={style.button}>
+            <PagarMP />
+          </div> */}
           {token
             ? <button className={style.button}>
               <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
@@ -63,6 +69,7 @@ export default function Carrito () {
               </button> //eslint-disable-line
             : history.push('/register')}
           {token ? <PagarMP /> : history.push('/register')}
+
         </Col>
       </Row>
     </div>

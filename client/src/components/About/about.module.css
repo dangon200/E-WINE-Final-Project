@@ -38,7 +38,7 @@
 .cardSection{
     display: grid;
     gap: 1rem;
-    grid-auto-rows: 50rem;
+    grid-auto-rows: 40rem;
     margin: 30px 50px 0 50px;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
 }
@@ -56,6 +56,11 @@
     background-color: #e5e3e3;
     border-radius: 15px;
 }
+/* a:hover{
+    cursor: pointer;
+    transform: translateY(3px);
+    transition: .3s;
+} */
 .cardImage{
     width: 150px;
     margin-top: 20px;
