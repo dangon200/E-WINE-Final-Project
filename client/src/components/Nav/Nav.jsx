@@ -8,6 +8,7 @@ import FormLogin from '../FormLogin/FormLogin'
 import Modale from '../Modale/Modale'
 import { MdNotifications } from 'react-icons/md'
 import { BsFillChatFill } from 'react-icons/bs'
+import { RiAdminFill } from 'react-icons/ri'
 // import { useEffect } from 'react'
 // import SeachBar from '../SearchBar/SearchBar'
 
@@ -40,6 +41,11 @@ export default function Nav () {
           {user
             ? <Link to='/messenger' className={style.messenger}>
               <BsFillChatFill />
+            </Link> //eslint-disable-line
+            : null}
+          {user.isAdmin
+            ? <Link to='/admin' className={style.admin}>
+              <RiAdminFill />
             </Link> //eslint-disable-line
             : null}
         </div>

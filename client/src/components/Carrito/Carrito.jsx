@@ -55,11 +55,9 @@ export default function Carrito () {
               </span>
             </Col>
           </Row>
-          <button className={style.button}>
-            <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-              Pagar
-            </Link>
-          </button>
+          <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
+            Pagar
+          </Link>
           {/* {token ? <PagarMP /> : history.push('/register')} */}
           {/* <Button className={style.button}>
             <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
