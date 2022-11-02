@@ -7,17 +7,18 @@
     text-align: right;
 }
 
-.grid{
+/* .grid{
     display: grid;
     justify-content: center;
     align-items: center;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 1rem;
     padding-top: 80px;
-}
+} */
 
 .container{
     padding-top: 50px;
+    width: 100%;
     background-color: #EEEEEE;
 }
 
@@ -85,9 +86,6 @@
     width: 75%;
     align-items: center;
 }
-.sidebar{
-    width: 100%;
-}
 @media (max-width: 768px){
     .dataContainer{
         display: flex;
@@ -114,7 +112,7 @@
         justify-content: center;
     }
     .table{
-        width: 350px;
+        width: 340px;
     }
     .grid{
         padding-top: 40px;

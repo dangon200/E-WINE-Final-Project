@@ -28,29 +28,36 @@ export default function CardSommelierReview ({ id, type, origin, cellar, varieta
     <div>
       <Card className={s.card}>
         <Card.Img className={s.image} variant='top' src={image} alt={image} />
-        <Card.Body>
-          <Card.Title className='fs-3 mt-3'>{name}</Card.Title>
+        <Card.Body className={s.bodyCard}>
+          <Card.Title className='fs-2 mt-3 text-center'>{name}</Card.Title>
+          {/* <Card.Text className='fs-4 my-3'>
+            Origen: {origin}
+          </Card.Text>
           <Card.Text className='fs-4 my-3'>
-            {origin}
-            {cellar}
-            {varietal}
+            Bodega: {cellar}
           </Card.Text>
-          <Card.Text>
-            {type}
+          <Card.Text className='fs-4 my-3'>
+            Varietal: {varietal}
           </Card.Text>
+          <Card.Text className='fs-4 my-3'>
+            Tipo: {type}
+          </Card.Text> */}
+          <div className='row'>
+            <div className='col fs-4 my-3'>Origen: {origin}</div>
+            <div className='col fs-4 my-3'>Bodega: {cellar}</div>
+          </div>
+          <div className='row'>
+            <div className='col fs-4 my-3'>Varietal: {varietal}</div>
+            <div className='col fs-4 my-3'>Tipo: {type}</div>
+          </div>
           {
             review(reviews)
-              ? review(reviews)
-              : <>
-                <input type='text' placeholder='Dejar reseña' value={input} onChange={(e) => setInput(e.target.value)} />
-                <input type='submit' value='Enviar' onClick={(e) => post(e)} />
-              </>  // eslint-disable-line
+              ? <div className='fs-3'>Reseña: {review(reviews)}</div>
+              : <div className={s.inputs}>
+                <input className='fs-4' type='text' placeholder='Dejar reseña' value={input} onChange={(e) => setInput(e.target.value)} />
+                <input className='fs-4' type='submit' value='Enviar' onClick={(e) => post(e)} />
+              </div>  // eslint-disable-line
           }
-          {/* <Button className={`p-3 fs-4 ${s.button}`}>
-            <Link className='text-light text-decoration-none' to={`/publication/${id}`}>
-              Dejar review
-            </Link>
-          </Button> */}
         </Card.Body>
       </Card>
     </div>

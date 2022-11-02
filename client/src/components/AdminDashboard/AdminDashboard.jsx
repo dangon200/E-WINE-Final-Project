@@ -14,12 +14,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getPublicationsAdm, getUsers, getProducts, getBuys, usersByProvinces } from '../../store/actions/actions'
 import UserAdmin from '../UserAdmin/UserAdmin'
 import PublicationsAdmin from '../PublicationsAdmin/PublicationsAdmin'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import ProductsAdmin from '../ProductsAdmin/ProductsAdmin'
 import Cookies from 'universal-cookie'
 import BuyProfitsChart from '../BuysCharts/BuysProfitsChart'
 import logo from '../../utils/images/logodefinitivosinfondopng.png'
-import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
+// import DataTableBuys from '../DataTableBuys/DataTableBuys.jsx'
+// import ProductsCharts from '../ProductsCharts/ProductsCharts'
+import UsersByProvincesChart from '../UsersCharts/UsersByProvincesChart.jsx'
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined'
+import BuysAdmin from '../BuysAdmin/BuysAdmin.jsx'
 
 function AdminDashboard () {
   const dispatch = useDispatch()
@@ -29,7 +33,7 @@ function AdminDashboard () {
   const products = useSelector(state => state.allProducts)
   const buys = useSelector(state => state.buys)
   const cookies = new Cookies()
-  // const history = useHistory()
+  const history = useHistory()
   const cantidadUsers = users.length
   const cantidadPublications = publications.length
   const cantidadBuys = buys.length
@@ -78,11 +82,11 @@ function AdminDashboard () {
     }
     return arrayB.length
   }
-  // useEffect(() => {
-  //   console.log(token)
-  //   console.log('Este es el token de isAdmimn', token.user.isAdmin)
-  //   !token.user.isAdmin && history.push('/')
-  // }, [])//eslint-disable-line
+  useEffect(() => {
+    console.log(token)
+    console.log('Este es el token de isAdmimn', token.user.isAdmin)
+    !token.user.isAdmin && history.push('/')
+  }, [])//eslint-disable-line
 
   useEffect(() => {
     dispatch(getPublicationsAdm())
@@ -93,19 +97,19 @@ function AdminDashboard () {
   }, [])//eslint-disable-line
 
   const [render, setRender] = useState({
-    Adminppal: false,
+    Adminppal: true,
     usersRoute: false,
     publicationsRoute: false,
-    productsRoute: true,
+    productsRoute: false,
     buysRoutes: false
   })
 
   return (
     <div className={`container-fluid px-0 ${s.div}`}>
-      <div className={`row flex-nowrap ${s.div2}`}>
-        <div className='sidebar text-white col-auto col-md-3 col-xl-2 px-sm-2 px-0 h-100'>
-          <div className='sidebar bg-dark d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100'>
-            <div className='d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
+      <div className={`row flex-nowrap h-100 ${s.div2}`}>
+        <div className='bg-white col-auto px-0'>
+          <div className='sidebar d-flex flex-column align-items-center align-items-sm-start px-5 text-white min-vh-100 h-100'>
+            <div className='d-flex align-items-center pt-5 pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
               <div>
                 <img src={logo} alt='logo' className={`navbar-brand ${s.logo}`} />
               </div>
@@ -113,32 +117,32 @@ function AdminDashboard () {
             </div>
             <hr />
             <div className={s.center}>
-              <ul className={`nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start ${s.ul}`}>
-                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>PRINCIPAL</p>
-                <li className={` nav-item ${s.li}`}>
-                  <DashboardIcon className={s.icon} />
+              <ul className={`pt-5 nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start ${s.ul}`}>
+                <p className={`fs-4 d-sm-inline ${s.title}`}>PRINCIPAL:</p>
+                <li className={`pt-5 nav-item ${s.li}`}>
+                  <DashboardIcon style={{ fontSize: 30 }} className={` ${s.icon}`} />
                   <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}> <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Tablero</span> </Button>
                 </li>
-                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>LISTA</p>
-                <li className={` nav-item ${s.li}`}>
-                  <PersonOutlineOutlinedIcon className={s.icon} />
+                <p className={`pt-5 fs-4 d-none d-sm-inline ${s.title}`}>LISTA</p>
+                <li className={`pt-5 nav-item ${s.li}`}>
+                  <PersonOutlineOutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Usuarios</span> </Button>
                 </li>
-                <li className={` nav-item ${s.li}`}>
-                  <StoreMallDirectoryIcon className={s.icon} />
+                <li className={`pt-5 nav-item ${s.li}`}>
+                  <StoreMallDirectoryIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Productos</span></Button>
                 </li>
-                <li className={` nav-item ${s.li}`}>
-                  <ListAltIcon className={s.icon} />
+                <li className={`pt-5 nav-item ${s.li}`}>
+                  <ListAltIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Compras</span></Button>
                 </li>
-                <li className={` nav-item ${s.li}`}>
-                  <ListAltIcon className={s.icon} />
+                <li className={`pt-5 nav-item ${s.li}`}>
+                  <Inventory2OutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Publicaciones</span></Button>
                 </li>
-                <p className={`fs-5 d-none d-sm-inline ${s.title}`}>PERFIL</p>
-                <li className={` nav-item ${s.li}`}>
-                  <LogoutIcon className={s.icon} />
+                <p className={`pt-5 fs-4 d-none d-sm-inline ${s.title}`}>PERFIL</p>
+                <li className={` pt-5 nav-item ${s.li}`}>
+                  <LogoutIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Link className={s.link} to='/'>
                     <span className={` ms-1 d-none d-sm-inline ${s.text}`}>SALIR</span>
                   </Link>
@@ -150,11 +154,22 @@ function AdminDashboard () {
 
         {/* Container padre que tiene todo al lado del dashboard */}
         <div className='col-10 row'>
-          <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4`}>
-            <Widgets type='user' cantidadUsers={cantidadUsers} cantidadNewUsers={cantidadNewUsers()} />
-            <Widgets type='publications' cantidadPublications={cantidadPublications} publicationsNoIsBanned={publicationsNoIsBanned} />
-            <Widgets type='products' cantidadProducts={cantidadProducts} />
-            <Widgets type='balance' cantidadBuys={cantidadBuys} totalBuys={totalBuys()} cantidadLastBuys={cantidadLastBuys()} />
+          <div className='row'>
+            <div className={`${!render.Adminppal ? 'd-none' : 'd-flex'} col-12 text-dark mt-4 `}>
+              <div className={`col-3 px-3 ${s.widget}`}>
+                <Widgets type='user' cantidadUsers={cantidadUsers} cantidadNewUsers={cantidadNewUsers()} />
+              </div>
+              <div className='col-3 px-3'>
+                <Widgets type='publications' cantidadPublications={cantidadPublications} publicationsNoIsBanned={publicationsNoIsBanned} />
+              </div>
+              <div className='col-3 px-3'>
+
+                <Widgets type='products' cantidadProducts={cantidadProducts} />
+              </div>
+              <div className='col-3 px-3'>
+                <Widgets type='balance' cantidadBuys={cantidadBuys} totalBuys={totalBuys()} cantidadLastBuys={cantidadLastBuys()} />
+              </div>
+            </div>
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'd-none' : 'd-block'} col-12 text-dark mt-4`}>
@@ -162,8 +177,6 @@ function AdminDashboard () {
           </div> */}
 
           <div className={`col-12 ${render.publicationsRoute ? ' d-block' : 'd-none'}`}>
-            <div> <h3>PUBLICACIONES</h3></div>
-
             <PublicationsAdmin token={token} publications={publications} />
           </div>
 
@@ -171,21 +184,30 @@ function AdminDashboard () {
             <UserAdmin token={token} users={users} userProv={userProv} />
           </div>
           <div className={`col-12 ${render.productsRoute ? ' d-block' : 'd-none'}`}>
+            <div className='text-secondary shadow-sm p-3 mb-5 bg-white rounded'> <h2>VARIETALES</h2></div>
+
             <ProductsAdmin />
           </div>
 
           <div className={`col-12 ${render.buysRoutes ? ' d-block' : 'd-none'}`}>
-            <div> <h3>COMPRAS</h3></div>
+            <BuysAdmin buys={buys} />
+            {/* <div> <h3>COMPRAS</h3></div>
             <DataTableBuys buys={buys} />
+            <ProductsCharts /> */}
           </div>
 
           {/* <div className={`${!render.Adminppal ? 'col-12 col-xl-6' : 'col-12 col-xl-6'}`}>
             <Chart />
           </div> */}
 
-          <div className={`${!render.Adminppal ? 'd-none' : 'col-6'}`}>
+          <div className={`${!render.Adminppal ? 'd-none' : 'col-12 pt-5 d-flex'}`}>
             {/* <Featured /> */}
-            <BuyProfitsChart />
+            <div className={`col-6 border border-2  bg-white p-3 shadow-lg p-3 mb-5 bg-body rounded ${s.profitChart}`}>
+              <BuyProfitsChart />
+            </div>
+            <div className=' col-6 border border-2  bg-white p-3 shadow-lg p-3 mb-5 bg-body rounded'>
+              <UsersByProvincesChart userProv={userProv} />
+            </div>
           </div>
 
           {/* <div className='ultimasCompras'>

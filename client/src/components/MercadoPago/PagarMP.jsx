@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
 import s from './pagarMP.module.css'
-import Button from 'react-bootstrap/esm/Button'
+
 const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export default function PagarMP () {
   const carrito = useSelector(state => state.carrito)
@@ -34,9 +35,9 @@ export default function PagarMP () {
   }
   return (
     <div>
-      <Button className={s.button} onClick={redirigirMP}>
+      <button className={s.button} onClick={redirigirMP}>
         Pagar con Mercado Pago
-      </Button>
+      </button>
     </div>
   )
 }

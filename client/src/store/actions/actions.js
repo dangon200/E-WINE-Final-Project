@@ -494,6 +494,7 @@ export const getVarietals = () => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/varietals`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ALL_VARIETALS',
         payload: res.data
@@ -640,6 +641,22 @@ export const adminUser = (id, isAdmin) => {
 
       return dispatch({
         type: 'GET_USER_ADMIN',
+        payload: res.data
+      })
+    } catch (error) {
+      return error.message
+    }
+  }
+}
+
+// productos mas comprados
+export const popularProducts = () => {
+  return async function (dispatch) {
+    try {
+      const res = await axios.get(`${urlApi}/buyItems/productsCount`)
+      console.log('esta es la respuesta de la API para los productos mas vendidos', res)
+      return dispatch({
+        type: 'GET_POPULAR_PRODUCTS',
         payload: res.data
       })
     } catch (error) {

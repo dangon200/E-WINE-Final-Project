@@ -11,10 +11,10 @@ import CommentCard from './CommentCard'
 export default function CommentDetail (props) {
   const Comentarios = props.comment
   return (
-    <Container className='mt-5 bg-body shadow-lg' fluid>
+    <Container className='mt-4 bg-body shadow-lg' fluid>
       <Tabs
-        defaultActiveKey='fichaTecnica'
-        className='fs-2'
+        defaultActiveKey='Comments'
+        className='fs-1'
       >
         <Tab eventKey='ComentSom' title='Sommelier'>
           <Row>

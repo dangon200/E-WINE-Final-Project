@@ -24,6 +24,7 @@ export default function ReviewBuy (userId) {
       },
       credentials: 'include'
     })
+    text.current.value = ''
   }
 
   return (

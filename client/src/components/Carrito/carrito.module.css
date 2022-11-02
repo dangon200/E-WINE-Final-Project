@@ -52,7 +52,6 @@
     align-items: flex-start;
     width: 25%;
 }
-
 @media (max-width: 1250px) {
     .containerItems{
         width: 100%;

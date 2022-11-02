@@ -12,10 +12,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
 import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 
-export default function ItemPurchased ({ currency, totalAmount, date, status, deliveryId, buyId }) {
+export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
-
+  console.log(date)
+  const TotalCompra = () => {
+    if (paymentMethod === 'card') {
+      const total = totalAmount / 100
+      return total
+    } else return totalAmount
+  }
   return (
     <Row className='w-75 p-3 mb-0 border-bottom border-2 rounded-4 fs-4 mt-5'>
       {/* <Row className='border-bottom mb-4'>
@@ -48,10 +54,8 @@ export default function ItemPurchased ({ currency, totalAmount, date, status, de
             <DeliveryTracker status={status} />
           </Row>
         </Col>
-        <Col className='d-flex justify-content-start align-items-center'>
-          <Row className={s.valor}>
-            Valor de compra: $ {totalAmount / 100}
-          </Row>
+        <Col>
+          $ <TotalCompra />
         </Col>
         <Col className={`d-flex flex-column gap-3 ${s.modal}`}>
           <Row>

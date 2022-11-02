@@ -8,10 +8,14 @@ import s from './userProfile.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { updateProfileImage } from '../../store/actions/actions'
+// import { getUserById } from '../../../../api/src/controllers/users'
 
 export default function UserProfile () {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
+  /* useEffect(() => {
+    getUserById(id)
+  }, [dispatch, id]) */
   const handleChange = async (e) => {
     const reader = new FileReader()
     reader.addEventListener('load', function () {
@@ -37,13 +41,13 @@ export default function UserProfile () {
     dispatch(updateProfileImage(user.id, urlImage))
   }
   return (
-    <div className='grid h-100'>
+    <div>
       <Container fluid style={{ height: '100vh' }}>
         <Row className='grid h-100'>
-          <Col className={`col-auto pt-5 rounded ${s.sidebar}`}>
+          <Col className={`col-auto pt-5 min-vh-100 rounded ${s.sidebar}`}>
             <Sidebar />
           </Col>
-          <Col className={s.container}>
+          <Col className={`${s.container}`}>
             <Row className='m-auto w-75' id={s.grid}>
               <Row className={`d-flex mb-5 ${s.title}`}>
                 <h1 className='d-flex w-100'>Mis datos</h1>
