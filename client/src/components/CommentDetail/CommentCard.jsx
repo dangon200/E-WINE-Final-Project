@@ -25,14 +25,14 @@ export default function CommentCard (props) {
   return (
     <Container className='mt-3 bg-body shadow-lg' fluid>
       <List sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}>
-        <ListItem alignItems='flex-start'>
+        <ListItem direction='horizontal'>
           <ListItemAvatar>
             <Avatar sx={{ width: 64, height: 64 }} alt='Image' src={image} />
           </ListItemAvatar>
           <ListItemText
             class='m-2'
             primary={
-              <Stack direction='horizontal' alignItems='flex-end' gap={3}>
+              <Stack direction='horizontal' gap={3}>
                 <div>
                   <Typography
                     sx={{ display: 'flex' }}

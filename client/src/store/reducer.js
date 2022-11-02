@@ -23,12 +23,14 @@ const initialState = {
   questions: [],
   reviewBuy: [],
   reviewBuys: [],
+  reviewPuntaje: [],
   usersByProvinces: {},
   allVarietals: [],
   detailVarietal: {},
   userDetail2: {},
   login: true,
-  itemsDetail: []
+  itemsDetail: [],
+  reviewUser: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -114,7 +116,7 @@ export default function reducer (state = initialState, action) {
     case 'ADD_REVIEWBUY':
       return { ...state, reviewBuy: action.payload }
     case 'GET_REVIEWBUY_ID':
-      return { ...state, reviewBuy: action.payload }
+      return { ...state, reviewPuntaje: action.payload }
     case 'GET_REVIEWBUYS_ID':
       return { ...state, reviewBuys: action.payload }
     case 'GET_USER_ADMIN':
@@ -123,6 +125,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, itemsDetail: action.payload }
     case 'UPDATE_PROFILE_PICTURE':
       return { ...state, user: action.payload }
+    case 'GET_USERBY_ID':
+      return { ...state, user: action.payload }
+    case 'GET_REVIEW_BYUSER':
+      return { ...state, reviewUser: action.payload }
     default:
       return { ...state }
   }

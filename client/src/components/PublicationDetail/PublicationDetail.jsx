@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { ImGlass } from 'react-icons/im'
 import { FaHeart } from 'react-icons/fa'
-
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites, getReviewBuy, getReviewBuys } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
@@ -28,8 +27,9 @@ export default function PublicationDetail (props) {
   const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
   const User = useSelector(state => state.user)
-  const Review = useSelector(state => state.reviewBuy)
-  const ReviewsPub = useSelector(state => state.reviewBuys)
+  const Review = useSelector(state => state.reviewPuntaje)
+  const ReviewsPub = useSelector((state) => state.reviewBuys)
+  // const reviewsPub2 = useSelector((state) => state.reviewBuys2)
   // const User = useSelector(state => state.user)
 
   // const carrito = useSelector((state) => state.carrito)
@@ -40,12 +40,13 @@ export default function PublicationDetail (props) {
   const { result, cantidadRevs } = Review
   const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
-
   useEffect(() => {
     dispatch(getReviewBuy(id))
+  }, [ReviewsPub])
+  useEffect(() => {
+    dispatch(getReviewBuys(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
-    dispatch(getReviewBuys(id))
   }, [dispatch, id])
   const isInFavorites = (id) => {
     return favorites.some((f) => f === id)
@@ -126,14 +127,14 @@ export default function PublicationDetail (props) {
 
           <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{title}</h1>
-            <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
+            <span className='fs-2 mt-4'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
             {/* <ReviewBuy /> */}
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
             <br />
-            <span className='fs-2'>
+            <span className='fs-2 md-4'>
               puntaje: {result2} <ImGlass
                 size={16}
                 color='#610a10'
@@ -199,8 +200,18 @@ export default function PublicationDetail (props) {
                         className='fs-4 p-2'
                         size='lg'
                         variant='botoncito'
-                      >
-                        <BsFillCartCheckFill className='me-3 fs-2' />
+                        onClick={() => {
+                          addToCarrito(
+                            id,
+                            price,
+                            title,
+                            image,
+                            name,
+                            counter,
+                            count
+                          )
+                        }}
+                      ><BsFillCartCheckFill className='me-3 fs-2' />
                         COMPRAR
                       </Button>
                     </Link>

@@ -10,6 +10,8 @@ import axios from 'axios'
 import { getUserSales } from '../../store/actions/actions'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
 import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
+const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export default function ItemSales ({ name, envio, totalAmount, paymentMethod, date, deliveryId, buyId }) {
   /* const {  } = props */
@@ -76,7 +78,7 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
                     status: 'ENVIADO'
                   }
                   /* dispatch(deliveryStatus(deliveryId, 'ENVIADO')) */
-                  const delivery = await axios.put(`https://e-winespf.herokuapp.com/delivery/${deliveryId}`, data)
+                  const delivery = await axios.put(`${urlApi}/delivery/${deliveryId}`, data)
                   if (delivery) {
                     dispatch(getUserSales(user.id))
                   }

@@ -1,14 +1,20 @@
 import Container from 'react-bootstrap/Container'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { ImGlass } from 'react-icons/im'
 import style from './reviewBuy.module.css'
-const urlApi = 'http://localhost:3001'
+import { useDispatch, useSelector } from 'react-redux'
+import { addReviewBuy, getReviewBuys } from '../../store/actions/actions'
 
 export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const text = useRef(null)
-  const handleClick = (e) => {
+  const newComment = useSelector(state => state.reviewBuy)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getReviewBuys(userId.pubId))
+  }, [newComment])
+  const HandleClick = (e) => {
     e.preventDefault('')
     const comentario = {
       userId: userId.userId,
@@ -16,17 +22,9 @@ export default function ReviewBuy (userId) {
       puntaje: rating,
       textRev: text.current.value
     }
-    fetch(`${urlApi}/reviewsBuys`, {
-      method: 'POST',
-      body: JSON.stringify(comentario),
-      headers: {
-        'Content-type': 'application/json'
-      },
-      credentials: 'include'
-    })
+    dispatch(addReviewBuy(comentario))
     text.current.value = ''
   }
-
   return (
     <Container className='mt-5 bg-body shadow-lg' fluid>
       <div className={style.text}>Si ya compraste este vino dejanos tu opinión</div>
@@ -58,7 +56,7 @@ export default function ReviewBuy (userId) {
           name='Comentario'
           placeholder='Agregar comentario...' ref={text}
         />
-        <button className={style.inputBtn} type='button' onClick={e => handleClick(e)}>Enviar</button>
+        <button className={style.inputBtn} type='button' onClick={e => HandleClick(e)}>Enviar</button>
       </form>
     </Container>
   )

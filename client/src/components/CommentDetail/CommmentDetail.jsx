@@ -1,13 +1,10 @@
-import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Tab from 'react-bootstrap/Tab'
 import { Tabs } from 'react-bootstrap/'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Stack from 'react-bootstrap/Stack'
-// import style from './ComentDetail.module.css'
 import CommentCard from './CommentCard'
-
 export default function CommentDetail (props) {
   const Comentarios = props.comment
   return (
@@ -35,10 +32,6 @@ export default function CommentDetail (props) {
             return <CommentCard key={idx} comentario={comentario} />
           })}
         </Tab>
-        {/* Agregar mas en caso de ser necesario */}
-        {/* <Tab eventKey='contact' title='Contact'>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quam, provident aliquid deserunt perspiciatis aspernatur, facilis dolore minus nesciunt dicta vel! At odio amet quos illum impedit cumque facere hic!
-        </Tab> */}
       </Tabs>
     </Container>
   )
