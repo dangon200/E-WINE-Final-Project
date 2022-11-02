@@ -63,6 +63,7 @@ export default function FormCreatePubli () {
       setSend(true)
       setTimeout(() => {
         setSend(false)
+        setCharge(0)
       }, 3000
       )
     }
@@ -192,10 +193,8 @@ export default function FormCreatePubli () {
               disabled={isSubmitting && true}
             >Crear Publicación
             </button>
-
+            {send && <div className={style.send}>Publicación creada con éxito!</div>}
           </form>
-
-          {send && <div className={style.send}>Publicación creada con éxito!</div>}
 
           <button onClick={() => setCreateProduct(!createProduct)} className={`fs-4 mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
 

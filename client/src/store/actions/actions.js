@@ -542,6 +542,7 @@ export const getItemsDetails = (buyId) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/buyItems/buy/${buyId}`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ITEMS_DETAIL',
         payload: res.data

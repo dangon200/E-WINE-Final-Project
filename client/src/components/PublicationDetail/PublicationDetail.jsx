@@ -32,7 +32,7 @@ export default function PublicationDetail (props) {
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count, productId } = publication
+  const { name, price, title, image, count, productId, userId } = publication
   const [counter, setCounter] = useState(1)
   const { result, cantidadRevs } = Review // eslint-disable-line
   // const result2 = parseFloat(result).toFixed(1)
@@ -117,10 +117,19 @@ export default function PublicationDetail (props) {
             <span className='fs-2'>
               Disponibilidad: {publication.count}
             </span>
+            <br />
+            <span className='fs-2'>
+              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
+                size={16}
+                color='#610a10'
+                                                      /> {`(${cantidadRevs})`}
+            </span>
+
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
                 <Stack
+                  className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
                   direction='horizontal'
                   gap={1}
                 >

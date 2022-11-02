@@ -9,15 +9,18 @@ function ModaleDetail (props) {
   const dispatch = useDispatch()
   const items = useSelector(state => state.itemsDetail)
   const [show, setShow] = useState(true)
-  const handleChange = () => setShow(!show)
-  useEffect(() => { handleChange() }, [])
-  useEffect(() => {
+  const showItems = () => {
     dispatch(getItemsDetails(props.buyId))
-  }, [dispatch, props.buyId])
+    handleChange()
+  }
+  const handleChange = () => setShow(!show)
+  useEffect(() => {
+    handleChange()
+  }, [])
 
   return (
     <>
-      <div className={s.button} type='button' onClick={handleChange}>
+      <div className={s.button} type='button' onClick={showItems}>
         {props.buttonText}
       </div>
       <Modal className={s.container} show={show} onHide={handleChange}>

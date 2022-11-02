@@ -66,6 +66,7 @@ export default function Carrito () {
           <div className={style.button}>
             <PagarMP />
           </div>
+
           {token
             ? <button className={style.button}>
               <Link className='text-decoration-none text-light' to='/payment'>
