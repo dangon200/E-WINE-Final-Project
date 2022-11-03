@@ -44,11 +44,36 @@ router.post('/', async (req, res) => {
           publicationId
         }
       )
-      console.log('Nueva review', AddReview)
-      // revisar nivel usuario
-      const lvlUp = await userBuylvlUp(userId)
-      console.log(lvlUp)
-      return res.status(200).json(AddReview)
+      await userBuylvlUp(userId)
+      if (AddReview) {
+        const results = []
+
+        const reviewsDetail = await ReviewBuy.findAll({
+          include: [{
+            model: Publication
+          }, {
+            model: User
+          }],
+          where: {
+            publicationId
+          },
+          order: [['createdAt', 'DESC']]
+        })
+
+        if (!reviewsDetail.length) return res.status(200).json('No hay comentarios de esta publicación')
+
+        reviewsDetail.forEach(r => {
+          results.push({
+            id: r.id,
+            text: r.text,
+            stars: r.stars,
+            username: r.user.username,
+            createdAt: r.createdAt,
+            image: r.user.image
+          })
+        })
+        res.status(200).json(results)
+      }
     } else return res.status(404).json('No se puede puntuar por que no hay compra registrada')
   } catch (error) {
     console.log(error)
@@ -103,6 +128,41 @@ router.get('/reviewsDetail/:id', async (req, res) => {
       })
     })
     res.status(201).json(results)
+  } catch (error) {
+    res.status(400).json(error.message)
+  }
+})
+
+router.get('/reviewsUser/:id', async (req, res) => {
+  const { id } = req.params
+  try {
+    const results = []
+
+    const reviewsDetail = await ReviewBuy.findAll({
+      include: [{
+        model: Publication
+      }, {
+        model: User
+      }],
+      where: {
+        userId: id
+      },
+      order: [['createdAt', 'DESC']]
+    })
+
+    if (!reviewsDetail.length) return res.status(400).json('No hay comentarios de esta publicación')
+
+    reviewsDetail.forEach(r => {
+      results.push({
+        id: r.id,
+        text: r.text,
+        stars: r.stars,
+        username: r.user.username,
+        createdAt: r.createdAt,
+        image: r.user.image
+      })
+    })
+    res.status(200).json(results)
   } catch (error) {
     res.status(400).json(error.message)
   }

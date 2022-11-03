@@ -25,9 +25,9 @@ export default function PurchasedProducts () {
           </Col>
           <Col className={s.container}>
             <h1>Mis Compras</h1>
-            {buys.length > 0 && buys.map((b) => (
+            {buys.length > 0 && buys.map((b, idx) => (
               <ItemPurchased
-                key={b.buyId}
+                key={idx}
                 buyId={b.buyId}
                 currency={b.currency}
                 totalAmount={b.totalAmount}

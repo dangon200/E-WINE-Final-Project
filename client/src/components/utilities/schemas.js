@@ -7,7 +7,8 @@ const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/gm
 // at least 8 characters
 // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
 // - Can contain special characters
-const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 // http:///users/email/:email
 // users/username/:username
 
