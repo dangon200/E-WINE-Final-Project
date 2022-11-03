@@ -13,7 +13,7 @@ export default function Counter (props) {
   const updateCount = (param, id) => {
     console.log(param, id, window.localStorage[id])
     if (param === 'rest' && count > 1) setCount(count - 1)
-    if (param === 'add' && count > stock) setCount(count + 1)
+    if (param === 'add' && count < stock) setCount(count + 1)
   }
 
   useEffect(() => {
