@@ -1,6 +1,6 @@
 import style from './home.module.css'
-import { useEffect, useState } from 'react'
-import { getPublications, getProducts } from '../../store/actions/actions'
+import { useEffect, useState, useContext } from 'react'
+import { getPublications, getProducts, addNotification, setOnlineUsers } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
@@ -11,11 +11,12 @@ import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import Nav from '../Nav/Nav'
 import vinos2 from '../../utils/images/vinos2-unsplash.jpg'
+import { SocketContext } from '../../context/socket'
+
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
   const dispatch = useDispatch()
-  // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   /* const error = useSelector(state => state.error) */
   const [page, setPage] = useState(1)
@@ -23,6 +24,45 @@ export default function Home () {
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
   const currentPageProducts = publications.slice(firstProductPerPage, lastProductPerPage)
+
+  const socket = useContext(SocketContext)
+  const user = useSelector(state => state.user)
+
+  useEffect(() => {
+    if (user) {
+      socket.emit('addUser', user.id)
+    }
+  }, [user])
+
+  useEffect(() => {
+    socket.on('getFavorite', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getQuestion', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getBuy', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getSendDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getReceiveDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+  }, [dispatch, socket])
+
+  useEffect(() => {
+    user &&
+    socket.on('getUsers', users => {
+      dispatch(setOnlineUsers(users))
+    })
+  }, [dispatch, user, socket])
 
   useEffect(() => {
     dispatch(getProducts())
@@ -91,7 +131,7 @@ export default function Home () {
                     userId={p.userId}
                     key={p.id}
                     count={p.count}
-                    socket={p.socket}
+                    socket={socket}
                     stock={p.count}
                   />
                 </div>

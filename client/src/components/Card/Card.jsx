@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
-export default function Card ({ id, title, name, image, price, userId, count, socket }) {
+export default function Card ({ id, title, name, image, price, userId, stock, count, socket }) {
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.favorites)
   const carrito = useSelector(state => state.carrito)
@@ -82,7 +82,7 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               }}
             >Más Info
             </Link>
-            {user.id !== userId
+            {(user.id !== userId && stock)
               ? <button
                   className={`${style.addBtn}`} onClick={() => {
                     window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)

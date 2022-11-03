@@ -22,6 +22,7 @@ import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
 import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
 import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
+import { ImGlass } from 'react-icons/im'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)

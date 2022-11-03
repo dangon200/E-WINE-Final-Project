@@ -35,6 +35,7 @@ export default function PurchasedProducts () {
                 date={b.createdAt}
                 status={b.status}
                 deliveryId={b.deliveryId}
+                receiverId={b.userId}
               />
             ))}
           </Col>
