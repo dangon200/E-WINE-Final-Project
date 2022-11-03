@@ -9,10 +9,10 @@ export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const text = useRef(null)
-  const newComment = useSelector(state => state.reviewBuy)
+  const newComment = useSelector(state => state.reviewBuys)
   const dispatch = useDispatch()
   useEffect(() => {
-    setTimeout(() => dispatch(getReviewPublication(userId.pubId)), 3000)
+    dispatch(getReviewPublication(userId.pubId))
   }, [newComment])
   const handleClick = (e) => {
     e.preventDefault('')

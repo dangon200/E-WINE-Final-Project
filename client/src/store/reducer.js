@@ -21,7 +21,6 @@ const initialState = {
   buys: [],
   sales: [],
   questions: [],
-  reviewBuy: [],
   reviewBuys: [],
   reviewPuntaje: [],
   usersByProvinces: {},
@@ -119,7 +118,7 @@ export default function reducer (state = initialState, action) {
     case 'POST_VARIETALS':
       return { ...state, allVarietals: action.payload }
     case 'ADD_REVIEWBUY':
-      return { ...state, reviewBuys: [...state.reviewBuys, action.payload] }
+      return { ...state, reviewBuys: action.payload }
     case 'GET_REVIEWBUY_ID':
       return { ...state, reviewPuntaje: action.payload }
     case 'GET_REVIEWBUYS_ID':
