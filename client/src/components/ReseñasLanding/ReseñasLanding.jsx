@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { getReviewsAdmin } from '../../store/actions/actions'
 import Container from 'react-bootstrap/Container'
 // import Col from 'react-bootstrap/Col'

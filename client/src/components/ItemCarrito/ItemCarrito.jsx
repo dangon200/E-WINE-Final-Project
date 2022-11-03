@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 
 export default function ItemCarrito (props) {
-  const { id, title, price, count, image, name } = props
+  const { id, title, price, count, image, name, stock } = props
   const dispatch = useDispatch()
   // const countItemCarrito=useSelector
 
@@ -31,7 +31,7 @@ export default function ItemCarrito (props) {
           </Col>
           <Col className='d-flex flex-column gap-3 justify-content-center align-items-center'>
             {/* <Row><span className='fs-3 fw-semibold '>$ {price}</span></Row> */}
-            <Row><Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} /></Row>
+            <Row><Counter id={id} title={title} price={price} image={image} name={name} count={count} stock={stock} /></Row>
             {/* <span className='fs-3 fw-semibold '>$ {price}</span> */}
             {/* <Counter id={id} title={title} price={price} image={image} name={name} countFromPub={count} /> */}
           </Col>

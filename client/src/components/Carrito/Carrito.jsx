@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import ItemCarrito from '../ItemCarrito/ItemCarrito'
 import style from './carrito.module.css'
@@ -7,11 +7,13 @@ import PagarMP from '../MercadoPago/PagarMP'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
 import Cookies from 'universal-cookie'
+import { paymentAmount } from '../../store/actions/actions'
 
 export default function Carrito () {
   const carrito = useSelector(state => state.carrito)
   /* const user = useSelector(state => state.user) */
   const history = useHistory()
+  const dispatch = useDispatch()
   const cookies = new Cookies()
   const token = cookies.get('TOKEN')
   const user = useSelector(state => state.user)
@@ -19,7 +21,10 @@ export default function Carrito () {
     const total = (parseInt(pactual.price) * parseInt(pactual.count))
     return acumulador + total
   }, 0)
-
+  const paymentTotalAmount = totalAmount + 350
+  useEffect(() => {
+    dispatch(paymentAmount(paymentTotalAmount))
+  }, [carrito])
   return (
     <div className={style.container}>
       <Row className={`${style.cont}`}>
@@ -27,7 +32,7 @@ export default function Carrito () {
           {carrito.length > 0
             ? carrito.map(p => {
               return (
-                <ItemCarrito key={p.id} id={p.id} title={p.title} price={p.price} count={p.count} image={p.image} name={p.name} />
+                <ItemCarrito key={p.id} id={p.id} title={p.title} price={p.price} count={p.count} image={p.image} name={p.name} stock={p.stock} />
               )
             })
             : <div className={style.noCart}><h3>No has agregado nada al carrito aún!</h3><Link className={style.linkBack} to='/home'>Ir a la Tienda</Link></div>}

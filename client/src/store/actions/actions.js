@@ -542,6 +542,7 @@ export const getItemsDetails = (buyId) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/buyItems/buy/${buyId}`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ITEMS_DETAIL',
         payload: res.data
@@ -710,5 +711,11 @@ export function getReviewsAdmin () {
     } catch (error) {
       console.log(error)
     }
+  }
+}
+export const paymentAmount = (paymentAmount) => {  // eslint-disable-line
+  return {
+    type: 'SET_PAYMENT_AMOUNT',
+    payload: paymentAmount
   }
 }

@@ -140,6 +140,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, reviewsPublication: action.payload }
     case 'GET_REVIEWS':
       return { ...state, allReviews: action.payload }
+    case 'SET_PAYMENT_AMOUNT':
+      return { ...state, paymentAmount: action.payload }
     default:
       return { ...state }
   }

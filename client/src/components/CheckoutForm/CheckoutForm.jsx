@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'//eslint-disable-line
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Cookies from 'universal-cookie'
 import { useHistory, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { postStripe, clearCarrito } from '../../store/actions/actions'
-import { SocketContext } from '../../context/socket'
+// import { SocketContext } from '../../context/socket'
 import { IoCaretBack } from 'react-icons/io5'
 import s from './checkoutForm.module.css'
 export default function CheckoutForm (props) {
@@ -16,8 +16,8 @@ export default function CheckoutForm (props) {
   const buy = useSelector(state => state.buy)
   const cookies = new Cookies()
   const user = cookies.get('TOKEN')
-  const socket = useContext(SocketContext)
-  const publications = useSelector(state => state.publications)
+  // const socket = useContext(SocketContext)
+  // const publications = useSelector(state => state.publications)
 
   const { totalAmount } = props
 
@@ -52,12 +52,13 @@ export default function CheckoutForm (props) {
         setSend(false)
       }, 4000)
     } else if (Object.keys(buy).length) {
-      const publication = publications.find(p => carrito[0].id === p.id)
-      socket.emit('sendBuy', {
-        senderName: user.username,
-        receiverId: publication.userId,
-        publicationTitle: publication.title
-      })
+      // const publication = publications.find(p => carrito[0].id === p.id)
+      // console.log(publication)
+      // socket.emit('sendBuy', {
+      //   senderName: user.username,
+      //   receiverId: publication.userId,
+      //   publicationTitle: publication.title
+      // })
       crearCarr()
       setSuccess(true)
       setMessage('Pago confirmado!! gracias! Vuelva Pronto 😁')
