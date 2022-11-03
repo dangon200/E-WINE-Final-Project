@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { ImGlass } from 'react-icons/im'
 // import { FaHeart } from 'react-icons/fa'
-import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys } from '../../store/actions/actions'
+import { addCarrito, getByPublication, getQuestions, getPuntaje, getReviewPublication, reviewsPublication } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -28,32 +28,31 @@ export default function PublicationDetail (props) {
   const User = useSelector(state => state.user)
   const Review = useSelector(state => state.reviewPuntaje)
   const ReviewsPub = useSelector((state) => state.reviewBuys)
-
+  const sommelierComment = useSelector((state) => state.reviewsPublication)
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count, userId } = publication
+  const { name, price, title, image, count, userId, productId } = publication
   const [counter, setCounter] = useState(1)
-  const { result, cantidadRevs } = Review
+  const { result, cantidadRevs } = Review // eslint-disable-line
   const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
   useEffect(() => {
-    dispatch(getReviewBuy(id))
+    dispatch(getPuntaje(id))
   }, [ReviewsPub])
   useEffect(() => {
-    dispatch(getReviewBuys(id))
+    dispatch(getReviewPublication(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
-  }, [dispatch, id])
-  /* const isInFavorites = (id) => {
-    return favorites.some((f) => f === id)
-  } */
-  const addToCarrito = (id, price, title, image, name, countParam, count) => {
+    dispatch(getReviewPublication(id))
+    dispatch(reviewsPublication(productId))
+  }, [dispatch, id, productId])
+  const addToCarrito = (id, price, title, image, name, countParam, stock) => {
     if (window.localStorage.hasOwnProperty(id)) {
       window.localStorage[id] = JSON.stringify({
         ...JSON.parse(window.localStorage[id]),
 
-        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > stock ? stock : countParam + JSON.parse(window.localStorage[id]).count
       })
       dispatch(
         addCarrito({
@@ -63,11 +62,10 @@ export default function PublicationDetail (props) {
           image,
           name,
           count: JSON.parse(window.localStorage[id]).count,
-          stock: count
+          stock
         })
       )
     } else {
-      console.log('entre al else')
       window.localStorage.setItem(
         id,
         JSON.stringify({ price, title, image, name, count: countParam, stock: count })
@@ -128,6 +126,7 @@ export default function PublicationDetail (props) {
                 color='#610a10'
                                                       /> {`(${cantidadRevs})`}
             </span>
+
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
@@ -206,7 +205,7 @@ export default function PublicationDetail (props) {
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <ReviewBuy userId={User.id} pubId={publication.id} />
-        <ComentDetail reviews={ReviewsPub} />
+        <ComentDetail reviewsBuy={ReviewsPub} sommelier={sommelierComment} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (

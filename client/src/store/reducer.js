@@ -34,7 +34,8 @@ const initialState = {
   notifications: [],
   onlineUsers: [],
   popularProduts: [],
-  reviewsPublication: []
+  reviewsPublication: [],
+  paymentAmount: ''
 }
 
 export default function reducer (state = initialState, action) {
@@ -143,6 +144,8 @@ export default function reducer (state = initialState, action) {
       return { ...state, onlineUsers: action.payload }
     case 'REVIEWS_PUBLICATIONS':
       return { ...state, reviewsPublication: action.payload }
+    case 'SET_PAYMENT_AMOUNT':
+      return { ...state, paymentAmount: action.payload }
     default:
       return { ...state }
   }

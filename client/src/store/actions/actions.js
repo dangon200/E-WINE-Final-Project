@@ -588,7 +588,7 @@ export const addReviewBuy = (data) => {
     }
   }
 }
-export const getReviewBuy = (id) => {
+export const getPuntaje = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
@@ -602,7 +602,7 @@ export const getReviewBuy = (id) => {
   }
 }
 
-export const getReviewBuys = (id) => {
+export const getReviewPublication = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
@@ -723,5 +723,12 @@ export const reviewsPublication = (productId) => {
     } catch (error) {
       return error.message
     }
+  }
+}
+
+export const paymentAmount = (paymentAmount) => {
+  return {
+    type: 'SET_PAYMENT_AMOUNT',
+    payload: paymentAmount
   }
 }

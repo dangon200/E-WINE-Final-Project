@@ -13,15 +13,15 @@ import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 
 export default function CommentCard (props) {
-  const { createdAt, username, stars, text, image } = props.comentario
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+  const { username, stars, text, image } = props.comentario
+  /* const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
   const formatoFecha = (fecha) => {
-    fecha = fecha.slice(0, 10).split('-')
+    fecha = fecha?.slice(0, 10).split('-')
     const dia = parseInt(fecha[2])
     const mes = meses[parseInt(fecha[1]) - 1]
     const año = fecha[0]
     return `${dia} de ${mes} del ${año}`
-  }
+  } */
   return (
     <Container className='mt-3 bg-body shadow-lg' fluid>
       <List sx={{ width: '100%', maxWidth: 600, bgcolor: 'background.paper' }}>
@@ -46,7 +46,7 @@ export default function CommentCard (props) {
                 </div>
                 <div>{[...Array(stars)].map((star, i) => {
                   return (
-                    <label key={Math.random()}>
+                    <label key={i}>
                       <ImGlass
                         size={16}
                         color='#610a10'
@@ -64,7 +64,7 @@ export default function CommentCard (props) {
                   component='span'
                   variant='h5'
                 >
-                  {text}<br />{`Creado el dia ${formatoFecha(createdAt)}`}
+                  {text}
                 </Typography>
               </>
             }

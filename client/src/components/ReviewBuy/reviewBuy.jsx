@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { ImGlass } from 'react-icons/im'
 import style from './reviewBuy.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { addReviewBuy, getReviewBuys } from '../../store/actions/actions'
+import { addReviewBuy, getReviewPublication } from '../../store/actions/actions'
 
 export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
@@ -12,7 +12,7 @@ export default function ReviewBuy (userId) {
   const newComment = useSelector(state => state.reviewBuy)
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getReviewBuys(userId.pubId))
+    setTimeout(() => dispatch(getReviewPublication(userId.pubId)), 3000)
   }, [newComment])
   const handleClick = (e) => {
     e.preventDefault('')
