@@ -588,7 +588,7 @@ export const addReviewBuy = (data) => {
     }
   }
 }
-export const getReviewBuy = (id) => {
+export const getPuntaje = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
@@ -602,12 +602,25 @@ export const getReviewBuy = (id) => {
   }
 }
 
-export const getReviewBuys = (id) => {
+export const getReviewPublication = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
       return dispatch({
         type: 'GET_REVIEWBUYS_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const getReviewByUser = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewsBuys/reviewsUser/${id}`)
+      return dispatch({
+        type: 'GET_REVIEW_BYUSER',
         payload: api.data
       })
     } catch (error) {
@@ -646,6 +659,20 @@ export const adminUser = (id, isAdmin) => {
       })
     } catch (error) {
       return error.message
+    }
+  }
+}
+
+export const getUserById = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/users/${id}`)
+      return dispatch({
+        type: 'GET_USERBY_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 }

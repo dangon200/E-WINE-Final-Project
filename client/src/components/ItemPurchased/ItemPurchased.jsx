@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
 import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
 import { SocketContext } from '../../context/socket'
+const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId, receiverId }) {
   const dispatch = useDispatch()
@@ -58,7 +60,7 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
           </Row>
         </Col>
         <Col>
-          $ <TotalCompra />
+          Valor de la compra: $<TotalCompra />
         </Col>
         <Col className={`d-flex flex-column gap-3 ${s.modal}`}>
           <Row>
@@ -79,7 +81,7 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
                     const data = {
                       status: 'RECIBIDO'
                     }
-                    const delivery = await axios.put(`https://e-winespf.herokuapp.com/delivery/${deliveryId}`, data)
+                    const delivery = await axios.put(`${urlApi}/${deliveryId}`, data)
                     if (delivery) {
                       dispatch(getUserBuys(user.id))
                     }

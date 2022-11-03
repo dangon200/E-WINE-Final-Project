@@ -10,9 +10,10 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import s from './recoverPassword.module.css'
 // import Cookies from 'universal-cookie'
+const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'http://localhost:3001'
 
 export default function RecoverPassword () {
-  const urlApi = 'https://e-winespf.herokuapp.com'
   const user = useSelector(state => state.user)
 
   const { handleChange, handleSubmit, handleBlur, touched, errors, values } = useFormik({

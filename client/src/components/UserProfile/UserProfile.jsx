@@ -7,15 +7,17 @@ import Table from 'react-bootstrap/Table'
 import s from './userProfile.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
-import { updateProfileImage } from '../../store/actions/actions'
-// import { getUserById } from '../../../../api/src/controllers/users'
+import { updateProfileImage, getUserById } from '../../store/actions/actions'
+import { useEffect } from 'react'
 
 export default function UserProfile () {
   const user = useSelector(state => state.user)
+  const compras = useSelector(state => state.buys)
+  const reviews = useSelector(state => state.reviewUser)
   const dispatch = useDispatch()
-  /* useEffect(() => {
-    getUserById(id)
-  }, [dispatch, id]) */
+  useEffect(() => {
+    dispatch(getUserById(user.id))
+  }, [compras, reviews])
   const handleChange = async (e) => {
     const reader = new FileReader()
     reader.addEventListener('load', function () {
