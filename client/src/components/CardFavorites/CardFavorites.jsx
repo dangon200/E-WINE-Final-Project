@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/esm/Col'
 import s from './cardFavorite.module.css'
 
-export default function CardFavorites ({ id, title, description, image, name, price }) {
+export default function CardFavorites ({ id, title, image, name, price }) {
   return (
     <div>
       <Card className={s.card}>
@@ -29,9 +29,6 @@ export default function CardFavorites ({ id, title, description, image, name, pr
         <Card.Img className={s.image} variant='top' src={image} alt={image} />
         <Card.Body>
           <Card.Title className='fs-3 mt-3'>{title}</Card.Title>
-          <Card.Text className='fs-4 my-3'>
-            {description}
-          </Card.Text>
           <Card.Text>
             {name}
           </Card.Text>
