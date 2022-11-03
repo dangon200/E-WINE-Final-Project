@@ -63,7 +63,7 @@ export default function Carrito () {
             </Row>
             {token
               ? <>
-                <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
+                <Link className={`text-decoration-none text-light ${style.button}`} to='/payment'>
                   Pagar con stripe
                 </Link>
                 <div className={style.button}>
