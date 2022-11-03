@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
-export default function Card ({ id, title, name, image, price, userId, stock, socket }) {
+export default function Card ({ id, title, name, image, price, userId, stock, count, socket }) {
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.favorites)
   const carrito = useSelector(state => state.carrito)
@@ -22,11 +22,16 @@ export default function Card ({ id, title, name, image, price, userId, stock, so
     return carrito.some(p => p.id === id)
   }
 
-  const addToCarrito = (id, price, title, image, name, stock) => {
-    console.log(stock)
-    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1, stock }))
-    dispatch(addCarrito({ id, price, title, image, name, count: 1, stock }))
+  const addToCarrito = (id, price, title, image, name, count) => {
+    console.log(price)
+    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name, count: 1, stock: count }))
+    dispatch(addCarrito({ id, price, title, image, name, count: 1, stock: count }))
   }
+
+  /* const addToFavorites = (id, price, title, image, name) => {
+    window.localStorage.setItem(id, JSON.stringify({ price, title, image, name }))
+    dispatch(addFavorites({ id, price, title, image, name }))
+  } */
 
   const removeFromCarrito = (id) => {
     window.localStorage.removeItem(id)
@@ -45,32 +50,23 @@ export default function Card ({ id, title, name, image, price, userId, stock, so
   return (
 
     <div className={`card ${style.card}`}>
-      <Link
-        to={`/publication/${id}`}
-        onClick={() => {
-          dispatch(getByPublication(id))
-          dispatch(getQuestions(id))
-        }}
-      >
-
-        <div className={style.iconContainer}>
-          {user && user.id !== userId &&
-            <FaHeart
-              className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-                isInFavorites(id)
-                  ? dispatch(removeFavorites(
-                    user.id,
-                    id
-                  ))
-                  : addFavoritesFunction(user.id, id)
-              }}
-            />}
-          <div />
-        </div>
-        <div className={`card-img-top ${style.imgContainer}`}>
-          <img className={style.img} src={image} alt='Wine-Img' />
-        </div>
-      </Link>
+      <div className={style.iconContainer}>
+        {user && user.id !== userId &&
+          <FaHeart
+            className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
+              isInFavorites(id)
+                ? dispatch(removeFavorites(
+                  user.id,
+                  id
+                ))
+                : addFavoritesFunction(user.id, id)
+            }}
+          />}
+        <div />
+      </div>
+      <div className={`card-img-top ${style.imgContainer}`}>
+        <img className={style.img} src={image} alt='Wine-Img' />
+      </div>
       <div className={`card-body ${style.dataContainer}`}>
         <div className={`card-text ${style.infoContainer}`}>
           <h3 className={`card-title ${style.title}`}>{title}</h3>
@@ -90,7 +86,7 @@ export default function Card ({ id, title, name, image, price, userId, stock, so
             {(user.id !== userId && stock)
               ? <button
                   className={`${style.addBtn}`} onClick={() => {
-                    window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, stock)
+                    window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
                   }}
                 >
                 {isInCarrito(id) ? 'Remover' : 'Añadir'}
@@ -99,7 +95,6 @@ export default function Card ({ id, title, name, image, price, userId, stock, so
           </div>
         </div>
       </div>
-
     </div>
   )
 }

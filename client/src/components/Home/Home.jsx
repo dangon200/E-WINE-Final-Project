@@ -11,19 +11,16 @@ import Message from '../Message/Message'
 import Footer from '../Footer/Footer'
 import Nav from '../Nav/Nav'
 import vinos2 from '../../utils/images/vinos2-unsplash.jpg'
-//  import InfiniteScroll from 'react-infinite-scroll-component';
-
-/* import { io } from 'socket.io-client' */
 import { SocketContext } from '../../context/socket'
+
+//  import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Home () {
   const dispatch = useDispatch()
-  /* const user = useSelector(state => state.user) */
-  // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   /* const error = useSelector(state => state.error) */
   const [page, setPage] = useState(1)
-  const productsPerPage = 4
+  const productsPerPage = 8
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
   const currentPageProducts = publications.slice(firstProductPerPage, lastProductPerPage)
@@ -50,6 +47,14 @@ export default function Home () {
       console.log(data)
       dispatch(addNotification(data))
     })
+    socket.on('getSendDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getReceiveDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
   }, [dispatch, socket])
 
   useEffect(() => {
@@ -63,6 +68,8 @@ export default function Home () {
     dispatch(getProducts())
     dispatch(getPublications())
   }, [dispatch])
+  // console.log(products)
+  // console.log(publications)
 
   const pages = []
   for (let i = 1; i <= Math.ceil(publications.length / productsPerPage); i++) {

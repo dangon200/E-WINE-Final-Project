@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import { ImGlass } from 'react-icons/im'
 // import { FaHeart } from 'react-icons/fa'
 import { addCarrito, getByPublication, getQuestions, getPuntaje, getReviewPublication, reviewsPublication } from '../../store/actions/actions'
+// import { ImGlass } from 'react-icons/im'
+import { IoIosWine } from 'react-icons/io'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -21,6 +22,7 @@ import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
 import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
 import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
+// import { ImGlass } from 'react-icons/im'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
@@ -113,7 +115,7 @@ export default function PublicationDetail (props) {
 
           <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{title}</h1>
-            <span className='fs-2 mt-4'>Precio: ${price?.toLocaleString('MX')}</span>
+            <span className='fs-2 mt-4 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
             {/* <ReviewBuy /> */}
             <span className='fs-2'>
@@ -121,12 +123,37 @@ export default function PublicationDetail (props) {
             </span>
             <br />
             <span className='fs-2'>
-              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
-                size={16}
-                color='#610a10'
+              puntaje: {isNaN(result2) ? 0 : result2} <IoIosWine
+                size={20}
+                color='#890f0d'
                                                       /> {`(${cantidadRevs})`}
             </span>
-
+            <Row>
+              <Stack
+                className='mt-4'
+                direction='horizontal'
+                gap={1}
+              >
+                <Button
+                  variant='prueba'
+                  onClick={() => updateCount('rest')}
+                  className='d-flex justify-content-center align-items-center'
+                >
+                  -
+                </Button>
+                <span className='fs-2 fw-bold'>
+                  {counter}
+                </span>
+                <Button
+                  variant='prueba'
+                  onClick={() =>
+                    counter < count &&
+                      updateCount('add')}
+                >
+                  +
+                </Button>
+              </Stack>
+            </Row>
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
@@ -135,7 +162,7 @@ export default function PublicationDetail (props) {
                   direction='horizontal'
                   gap={1}
                 >
-                  <Button
+                  {/* <Button
                     variant='prueba'
                     onClick={() => updateCount('rest')}
                     className='d-flex justify-content-center align-items-center'
@@ -152,7 +179,7 @@ export default function PublicationDetail (props) {
                       updateCount('add')}
                   >
                     +
-                  </Button>
+                  </Button> */}
                   <Col>
                     <Button
                       className='d-flex mx-5 fs-4 p-2'
@@ -175,9 +202,9 @@ export default function PublicationDetail (props) {
                     </Button>
                   </Col>
                   <Col>
-                    <Link to='/Carrito'>
+                    <Link className='text-decoration-none' to='/Carrito'>
                       <Button
-                        className='fs-4 p-2'
+                        className={`fs-4 p-2 ${style.buttonComprar}`}
                         size='lg'
                         variant='botoncito'
                         onClick={() => {

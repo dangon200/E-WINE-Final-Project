@@ -58,7 +58,7 @@ export default function Datatable (props) {
   const actionColumn = [{
     field: 'action',
     headerName: 'Action',
-    width: 220,
+    width: 225,
     renderCell: (params) => {
       // console.log(params)
       return (
@@ -68,12 +68,12 @@ export default function Datatable (props) {
               params.row.isBanned ? <div>Habilitar</div> : <div>Bannear</div>
             }
           </button>
-          <button type='button' className='btn btn-outline-danger' onClick={() => handleSommelier(params.row.id, params.row.isSommelier, params.row.createdAt)}>
+          <button type='button' className='btn btn-outline-success' onClick={() => handleSommelier(params.row.id, params.row.isSommelier, params.row.createdAt)}>
             {
               params.row.isSommelier ? <div>Verificado</div> : <div>Verificar</div>
             }
           </button>
-          <button type='button' className='btn btn-outline-danger' onClick={() => handleAdmin(params.row.id, params.row.isAdmin, params.row.createdAt)}>
+          <button type='button' className='btn btn-outline-secondary' onClick={() => handleAdmin(params.row.id, params.row.isAdmin, params.row.createdAt)}>
             {
               params.row.isAdmin ? <div>Dehabilitar Admin</div> : <div>Hacer Admin</div>
             }

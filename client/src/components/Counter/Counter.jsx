@@ -19,7 +19,7 @@ export default function Counter (props) {
   useEffect(() => {
     window.localStorage[id] = JSON.stringify({ ...JSON.parse(window.localStorage[id]), count })
     dispatch(addCarrito({ id, price, title, image, name, count, stock }))
-  }, [count])// eslint-disable-line
+  }, [count]) // eslint-disable-line
   return (
     <div className={style.pedido}>
       <button className={style.buttonMasMenos} onClick={() => updateCount('rest', id)}>

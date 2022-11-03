@@ -38,6 +38,7 @@ export default function UserSales () {
                 paymentMethod={s.paymentMethod}
                 date={s.createdAt}
                 deliveryId={s.deliveryId}
+                receiverId={s.userId}
               />
             ))}
           </Col>

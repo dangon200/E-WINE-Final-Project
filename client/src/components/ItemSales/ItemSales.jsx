@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import s from './itemSales.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
@@ -10,13 +10,16 @@ import axios from 'axios'
 import { getUserSales } from '../../store/actions/actions'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
 import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
+import { SocketContext } from '../../context/socket'
 const urlApi = 'https://e-winespf.herokuapp.com'
 // const urlApi = 'http://localhost:3001'
 
-export default function ItemSales ({ name, envio, totalAmount, paymentMethod, date, deliveryId, buyId }) {
+export default function ItemSales ({ name, envio, totalAmount, paymentMethod, date, deliveryId, buyId, receiverId }) {
   /* const {  } = props */
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
+
+  const socket = useContext(SocketContext)
   const TotalCompra = () => {
     if (paymentMethod === 'card') {
       const total = totalAmount / 100
@@ -89,6 +92,10 @@ export default function ItemSales ({ name, envio, totalAmount, paymentMethod, da
                   if (delivery) {
                     dispatch(getUserSales(user.id))
                   }
+                  socket.emit('sendDelivery', {
+                    senderName: user.username,
+                    receiverId
+                  })
                 }}
               >
                 Despachar envio

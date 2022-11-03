@@ -1,4 +1,4 @@
-import React/* , { useState } */ from 'react'
+import React, { useContext }/* , { useState } */ from 'react'
 // import { useSelector } from 'react-redux'
 import s from './itemPurchased.module.css'
 // import Container from 'react-bootstrap/esm/Container'
@@ -11,12 +11,16 @@ import { getUserBuys } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import ModaleDetail from '../ModaleDetail/ModaleDetail'
 import DeliveryTracker from '../DeliveryTracker/DeliveryTracker'
+import { SocketContext } from '../../context/socket'
 const urlApi = 'https://e-winespf.herokuapp.com'
 // const urlApi = 'http://localhost:3001'
 
-export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId }) {
+export default function ItemPurchased ({ currency, totalAmount, paymentMethod, date, status, deliveryId, buyId, receiverId }) {
   const dispatch = useDispatch()
   const user = useSelector(state => state.user)
+  console.log(date)
+
+  const socket = useContext(SocketContext)
   const TotalCompra = () => {
     if (paymentMethod === 'card') {
       const total = totalAmount / 100
@@ -81,6 +85,12 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
                     if (delivery) {
                       dispatch(getUserBuys(user.id))
                     }
+                    const res = await axios.get(`https://e-winespf.herokuapp.com/buyItems/buy/${buyId}`)
+                    console.log(res)
+                    socket.emit('receiveDelivery', {
+                      senderName: user.username,
+                      receiverId: res.data[0].sellerId
+                    })
                   }}
                 >
                 Recibi la compra

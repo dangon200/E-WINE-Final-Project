@@ -45,8 +45,8 @@ function ProductsCharts () {
   }
 
   return (
-    <div>
-      <h2>Productos mas vendido</h2>
+    <div className='fs-5 bg-white'>
+      <h2 className='py-4'>Productos mas vendidos</h2>
       <Bar options={ChartData()} data={ChartData()} />
     </div>
   )

@@ -127,11 +127,11 @@
 }
 
 .sectionCards{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
-  margin-bottom: 100px;
+  /* margin-top: 50px; */
+  margin-bottom: 100px; 
 }
 .sectionCards h2{
     font-family: var(--font-family-1);
@@ -209,8 +209,10 @@
 
   width: 100%;
   height: auto;
-
   background-color: var(--btn-background-color);
+}
+.imgAbout{
+  object-fit: cover;
 }
 /* Fin Cards */
 

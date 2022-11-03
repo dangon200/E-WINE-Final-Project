@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRecomendedPublications } from '../../store/actions/actions'
 import Card from '../Card/Card'
 import Container from 'react-bootstrap/Container'
-
+// import s from './recomendedPublications.module.css'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 export default function RecomendedPublications (props) {
@@ -17,16 +17,17 @@ export default function RecomendedPublications (props) {
   return (
     <Container fluid>
       <Row className='mb-5 mt-5'>
-        <h1 className='fw-bold' style={{ color: '#56070C', fontFamily: 'var(--font-family-1)' }}>Recomendados para vos</h1>
+        <h2 className='fs-1 fw-bold' style={{ color: '#890f0d', fontFamily: 'var(--font-family-1)' }}>Recomendados para vos</h2>
         {
             Array.isArray(recomendedPublication) && recomendedPublication.length > 0
               ? recomendedPublication.slice(0, 3).map((p) => {
                 return (
                   <Col
                     key={p.id}
-                    className='w-100 shadow-lg mb-5 mt-5 rounded'
+                    className='w-100 d-flex justify-content-center align-items-center mb-5 mt-5 rounded'
                   >
                     <Card
+                      style={{ 'margin-top': '0' }}
                       id={p.id}
                       title={p.title}
                       name={p.name}
