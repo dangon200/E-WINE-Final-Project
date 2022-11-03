@@ -50,23 +50,25 @@ export default function Card ({ id, title, name, image, price, userId, stock, co
   return (
 
     <div className={`card ${style.card}`}>
-      <div className={style.iconContainer}>
-        {user && user.id !== userId &&
-          <FaHeart
-            className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-              isInFavorites(id)
-                ? dispatch(removeFavorites(
-                  user.id,
-                  id
-                ))
-                : addFavoritesFunction(user.id, id)
-            }}
-          />}
-        <div />
-      </div>
-      <div className={`card-img-top ${style.imgContainer}`}>
-        <img className={style.img} src={image} alt='Wine-Img' />
-      </div>
+      <Link to={`/publication/${id}`}>
+        <div className={style.iconContainer}>
+          {user && user.id !== userId &&
+            <FaHeart
+              className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
+                isInFavorites(id)
+                  ? dispatch(removeFavorites(
+                    user.id,
+                    id
+                  ))
+                  : addFavoritesFunction(user.id, id)
+              }}
+            />}
+          <div />
+        </div>
+        <div className={`card-img-top ${style.imgContainer}`}>
+          <img className={style.img} src={image} alt='Wine-Img' />
+        </div>
+      </Link>
       <div className={`card-body ${style.dataContainer}`}>
         <div className={`card-text ${style.infoContainer}`}>
           <h3 className={`card-title ${style.title}`}>{title}</h3>
@@ -95,6 +97,7 @@ export default function Card ({ id, title, name, image, price, userId, stock, co
           </div>
         </div>
       </div>
+
     </div>
   )
 }

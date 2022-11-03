@@ -81,7 +81,7 @@ export default function ItemPurchased ({ currency, totalAmount, paymentMethod, d
                     const data = {
                       status: 'RECIBIDO'
                     }
-                    const delivery = await axios.put(`${urlApi}/${deliveryId}`, data)
+                    const delivery = await axios.put(`${urlApi}/delivery/${deliveryId}`, data)
                     if (delivery) {
                       dispatch(getUserBuys(user.id))
                     }

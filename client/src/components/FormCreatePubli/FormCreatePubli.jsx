@@ -196,8 +196,6 @@ export default function FormCreatePubli () {
             {send && <div className={style.send}>Publicación creada con éxito!</div>}
           </form>
 
-          {send && <div className={style.send}>Publicación creada con éxito!</div>}
-
           <a className='text-decoration-none' href='#formCreateProduct'><button onClick={() => setCreateProduct(!createProduct)} className={`fs-4 mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button></a>
 
         </div>
