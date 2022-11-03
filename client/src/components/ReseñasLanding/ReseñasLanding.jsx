@@ -16,7 +16,7 @@ function ReseñasLanding () {
   const reviews = useSelector(state => state.allReviews)
   useEffect(() => {
     dispatch(getReviewsAdmin())
-  }, [dispatch])//eslint-disable-line
+  }, [])//eslint-disable-line
   return (
 
     <Container>
