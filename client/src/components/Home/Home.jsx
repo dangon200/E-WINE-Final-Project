@@ -91,7 +91,7 @@ export default function Home () {
                     userId={p.userId}
                     key={p.id}
                     count={p.count}
-                    socket={socket}
+                    socket={p.socket}
                     stock={p.count}
                   />
                 </div>
