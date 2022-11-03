@@ -11,6 +11,7 @@ import logo from '../assets/imgs/arriba.png'
 
 import Button from '../Button/Button.jsx'
 import { useEffect } from 'react'
+import ReseñasLanding from '../ReseñasLanding/ReseñasLanding'
 // import NavBar from '../Nav/Nav.jsx'
 
 export default function LandingPage () {
@@ -69,34 +70,10 @@ export default function LandingPage () {
         </article>
       </section>
 
-      {/* <section className={`container d-flex justify-content-center d-grid gap-3 ${style.sectionCards}`}>
-        <h2 className='row'>Recomendados por expertos</h2>
-        <article className={`row mb-5 ${style.gridCards}`}>
-          <div className={`card  ${style.card}`}>
-            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
-            <section className='card-body'>
-              <h4 className=' card-title fs-2'>Dars ishlanma</h4>
-              <p className='card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
-            </section>
+      <section className={`m-auto container flex-column justify-content-end ${style.sectionCards}`}>
 
-          </div>
-          <div className={`card ${style.card}`}>
-            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
-            <section className='card-body'>
-              <h4 className='card-title fs-2'>Dars ishlanma</h4>
-              <p className=' card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
-
-            </section>
-          </div>
-          <div className={`card  ${style.card}`}>
-            <img src={copa} alt='fakeImg' className={`card-img-top ${style.cardImg} `} />
-            <section className='card-body'>
-              <h4 className='card-title fs-2'>Dars ishlanma</h4>
-              <p className=' card-text fs-4'>Xalqaro tajribalarga asoslangan, ilgor interfaol metodlar bilan otilgan yuqori saviyadagi bir soatlik namuanali dars yoki togarak mashguloti ishlanmasidir.</p>
-            </section>
-          </div>
-        </article>
-      </section> */}
+        <ReseñasLanding />
+      </section>
 
       <section className={`container-fluid px-0 text-center text-lg-start  ${style.sectionAboutProject}`}>
         <div className={` row ${style.divAboutProject}`}>
@@ -119,12 +96,10 @@ export default function LandingPage () {
                 Es importante destacar que no habría ningún costo adicional para las tiendas por el uso de la herramienta ya que es nuestra intención contribuir a la comunidad de la que formamos parte y visualizarnos como desarrolladores de tecnología. Estamos muy interesados en conocer su opinión sobre esta propuesta y las necesidades del sector.
               </p>
             </div>
-
           </div>
-
         </div>
-
       </section>
+
       <section className={`container-fluid py-5 d-flex flex-column ${style.sectionPreFooter}`}>
         <div className='row pb-3'>
           <h2 className='fs-1'>Millones de personas confían en nosotros para encontrar y comprar el vino perfecto una y otra vez

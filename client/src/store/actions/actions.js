@@ -697,3 +697,18 @@ export const reviewsPublication = (productId) => {
     }
   }
 }
+// aca van las review
+export function getReviewsAdmin () {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviews/productsLanding`)
+      console.log('Efectivamente son las reseñas', api.data)
+      return dispatch({
+        type: 'GET_REVIEWS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
