@@ -21,14 +21,15 @@ const initialState = {
   buys: [],
   sales: [],
   questions: [],
-  reviewBuy: [],
   reviewBuys: [],
+  reviewPuntaje: [],
   usersByProvinces: {},
   allVarietals: [],
   detailVarietal: {},
   userDetail2: {},
   login: true,
   itemsDetail: [],
+  reviewUser: [],
   notifications: [],
   onlineUsers: [],
   popularProduts: [],
@@ -118,9 +119,9 @@ export default function reducer (state = initialState, action) {
     case 'POST_VARIETALS':
       return { ...state, allVarietals: action.payload }
     case 'ADD_REVIEWBUY':
-      return { ...state, reviewBuys: [...state.reviewBuys, action.payload] }
+      return { ...state, reviewBuys: action.payload }
     case 'GET_REVIEWBUY_ID':
-      return { ...state, reviewBuy: action.payload }
+      return { ...state, reviewPuntaje: action.payload }
     case 'GET_REVIEWBUYS_ID':
       return { ...state, reviewBuys: action.payload }
     case 'GET_USER_ADMIN':
@@ -131,6 +132,10 @@ export default function reducer (state = initialState, action) {
       return { ...state, popularProduts: action.payload }
     case 'UPDATE_PROFILE_PICTURE':
       return { ...state, user: action.payload }
+    case 'GET_USERBY_ID':
+      return { ...state, user: action.payload }
+    case 'GET_REVIEW_BYUSER':
+      return { ...state, reviewUser: action.payload }
     case 'ADD_NOTIFICATION':
       return { ...state, notifications: Array.from(new Set([action.payload, ...state.notifications])) }
     case 'CLEAR_NOTIFICATIONS':

@@ -11,6 +11,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { Link } from 'react-router-dom'
 import './style.css'
+
 export default function Footer () {
   return (
     <Container id='cont' fluid>
@@ -24,9 +25,16 @@ export default function Footer () {
             <ul className='fs-4'>
               <li className='fs-1 fw-bold'>COMPRAS</li>
               <br />
-              <li>Carrito</li>
-              <li>Tus compras</li>
-              <li>Vinos Guardados</li>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/carrito'>
+                <li>Carrito</li>
+              </Link>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/userPurchased'>
+                <li>Tus compras</li>
+              </Link>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/user/favorites'>
+                <li>Tus favoritos</li>
+              </Link>
+
             </ul>
           </div>
         </Col>
@@ -35,10 +43,10 @@ export default function Footer () {
             <ul className='fs-4'>
               <li className='fs-1 fw-bold'>ACERCA DE</li>
               <br />
-              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/home'>
                 <li>E-Wine</li>
               </Link>
-              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/about'>
                 <li>Developers</li>
               </Link>
               <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
@@ -58,7 +66,7 @@ export default function Footer () {
               <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
                 <li>Terminos y condiciones</li>
               </Link>
-              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/'>
+              <Link style={{ color: '#484D55' }} className='text-decoration-none' to='/about'>
                 <li>Contacto</li>
               </Link>
             </ul>

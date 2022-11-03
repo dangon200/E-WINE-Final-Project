@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
+// import { FaHeart } from 'react-icons/fa'
+import { addCarrito, getByPublication, getQuestions, getPuntaje, getReviewPublication, reviewsPublication } from '../../store/actions/actions'
 // import { ImGlass } from 'react-icons/im'
 import { IoIosWine } from 'react-icons/io'
-
-import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys, reviewsPublication } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -28,24 +28,25 @@ export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const questions = useSelector(state => state.questions)
   const User = useSelector(state => state.user)
-  const Review = useSelector(state => state.reviewBuy)
-  const reviews = useSelector(state => state.reviewsPublication)
-  // const User = useSelector(state => state.user)
-
+  const Review = useSelector(state => state.reviewPuntaje)
+  const ReviewsPub = useSelector((state) => state.reviewBuys)
+  const sommelierComment = useSelector((state) => state.reviewsPublication)
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count, productId, userId } = publication
+  const { name, price, title, image, count, userId, productId } = publication
   const [counter, setCounter] = useState(1)
   const { result, cantidadRevs } = Review // eslint-disable-line
   const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
-
   useEffect(() => {
-    dispatch(getReviewBuy(id))
+    dispatch(getPuntaje(id))
+  }, [ReviewsPub])
+  useEffect(() => {
+    dispatch(getReviewPublication(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
-    dispatch(getReviewBuys(id))
+    dispatch(getReviewPublication(id))
     dispatch(reviewsPublication(productId))
   }, [dispatch, id, productId])
   const addToCarrito = (id, price, title, image, name, countParam, stock) => {
@@ -206,8 +207,18 @@ export default function PublicationDetail (props) {
                         className={`fs-4 p-2 ${style.buttonComprar}`}
                         size='lg'
                         variant='botoncito'
-                      >
-                        <BsFillCartCheckFill className='me-3 fs-2' />
+                        onClick={() => {
+                          addToCarrito(
+                            id,
+                            price,
+                            title,
+                            image,
+                            name,
+                            counter,
+                            count
+                          )
+                        }}
+                      ><BsFillCartCheckFill className='me-3 fs-2' />
                         COMPRAR
                       </Button>
                     </Link>
@@ -221,7 +232,7 @@ export default function PublicationDetail (props) {
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <ReviewBuy userId={User.id} pubId={publication.id} />
-        <ComentDetail reviews={reviews} />
+        <ComentDetail reviewsBuy={ReviewsPub} sommelier={sommelierComment} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (
