@@ -20,6 +20,7 @@ import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
 import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
 import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
+import { ImGlass } from 'react-icons/im'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
@@ -35,7 +36,7 @@ export default function PublicationDetail (props) {
   const { name, price, title, image, count, productId, userId } = publication
   const [counter, setCounter] = useState(1)
   const { result, cantidadRevs } = Review // eslint-disable-line
-  // const result2 = parseFloat(result).toFixed(1)
+  const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
 
   useEffect(() => {
