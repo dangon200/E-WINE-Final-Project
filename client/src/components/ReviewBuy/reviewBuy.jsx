@@ -14,7 +14,7 @@ export default function ReviewBuy (userId) {
   useEffect(() => {
     dispatch(getReviewBuys(userId.pubId))
   }, [newComment])
-  const HandleClick = (e) => {
+  const handleClick = (e) => {
     e.preventDefault('')
     const comentario = {
       userId: userId.userId,
@@ -56,7 +56,7 @@ export default function ReviewBuy (userId) {
           name='Comentario'
           placeholder='Agregar comentario...' ref={text}
         />
-        <button className={style.inputBtn} type='button' onClick={e => HandleClick(e)}>Enviar</button>
+        <button className={style.inputBtn} type='button' onClick={e => handleClick(e)}>Enviar</button>
       </form>
     </Container>
   )

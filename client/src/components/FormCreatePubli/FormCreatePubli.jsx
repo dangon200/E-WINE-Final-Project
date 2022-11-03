@@ -19,10 +19,6 @@ export default function FormCreatePubli () {
   const history = useHistory()
 
   useEffect(() => {
-    !token && history.push('/register')
-  }, [token, history])
-
-  useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])
 
@@ -34,11 +30,14 @@ export default function FormCreatePubli () {
       description: '',
       count: 0,
       image: {},
-      userId: token.user.id
+      userId: token?.user.id
     },
     validationSchema: schemaFormPubli,
     onSubmit: async (values, { resetForm }) => {
       // const url = await uplodCloudinary(values.image)
+      if (typeof token === 'undefined') {
+        history.push('/register')
+      }
       const cloudName = 'dfq27ytd2'
       const preset = 'cpnushlf'
       const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`
@@ -64,6 +63,7 @@ export default function FormCreatePubli () {
       setSend(true)
       setTimeout(() => {
         setSend(false)
+        setCharge(0)
       }, 3000
       )
     }
@@ -186,15 +186,15 @@ export default function FormCreatePubli () {
             <div className='progress mt-4' style={{ height: 15 }}>
               <div className='progress-bar' role='progressbar' aria-label='Example with label' style={{ width: `${charge}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'>{charge}%</div>
             </div>
+
             <button
               type='submit'
               className={`fs-4 mt-4 ${style.buttonCreatePubli} ${isSubmitting && 'disabled'}`}
               disabled={isSubmitting && true}
             >Crear Publicación
             </button>
+            {send && <div className={style.send}>Publicación creada con éxito!</div>}
           </form>
-
-          {send && <div className={style.send}>Publicación creada con éxito!</div>}
 
           <button onClick={() => setCreateProduct(!createProduct)} className={`fs-4 mt-4 ${style.buttonCreate}`}>{!createProduct ? 'Crear Nuevo Producto' : 'Cerrar Formulario'}</button>
 

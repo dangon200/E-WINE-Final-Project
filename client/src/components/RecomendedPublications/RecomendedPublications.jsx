@@ -10,7 +10,7 @@ export default function RecomendedPublications (props) {
   const dispatch = useDispatch()
   const recomendedPublication = useSelector((state) => state.recomendedPublication)
   const { type, varietal, origin } = props
-  console.log(type, varietal, origin)
+  console.log(props)
   useEffect(() => {
     dispatch(getRecomendedPublications(type, varietal, origin))
   }, [dispatch, type, varietal, origin])
@@ -22,7 +22,6 @@ export default function RecomendedPublications (props) {
             Array.isArray(recomendedPublication) && recomendedPublication.length > 0
               ? recomendedPublication.slice(0, 3).map((p) => {
                 return (
-                // eslint-disable-next-line react/jsx-key
                   <Col
                     key={p.id}
                     className='w-100 shadow-lg mb-5 mt-5 rounded'
@@ -34,6 +33,7 @@ export default function RecomendedPublications (props) {
                       image={p.image}
                       price={p.price.toLocaleString('es-MX')}
                       key={p.id}
+                      userId={p.userId}
                     />
                   </Col>
                 )

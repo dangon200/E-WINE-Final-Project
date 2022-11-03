@@ -59,7 +59,7 @@ export default function FormCreateProduct () {
               {errors.name && touched.name && <p className='text-danger'>{errors.name}</p>}
             </div>
             <div className={`form-group col-md-12 ${style.formDiv}`}>
-              <label htmlFor='type' className={`fs-3 ${style.formTag}`}>Tipo</label>
+              {/* <label htmlFor='type' className={`fs-3 ${style.formTag}`}>Tipo</label> */}
               <select
                 name='type'
                 id='type'
@@ -68,13 +68,13 @@ export default function FormCreateProduct () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <option value=''>Selecciona el tipo</option>
+                <option className={style.option} value=''>Selecciona el tipo</option>
                 {types.map(type => <option key={type} value={type}>{type}</option>)}
               </select>
               {errors.type && touched.type && <p className='text-danger'>{errors.type}</p>}
             </div>
             <div className={`form-group col-md-12 ${style.formDiv}`}>
-              <label htmlFor='varietal' className={`fs-3 ${style.formTag}`}>Varietal</label>
+              {/* <label htmlFor='varietal' className={`fs-3 ${style.formTag}`}>Varietal</label> */}
               <select
                 name='varietal'
                 id='varietal'
@@ -83,14 +83,14 @@ export default function FormCreateProduct () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <option value=''>Selecciona Varietal</option>
+                <option className={style.option} value=''>Selecciona Varietal</option>
                 {varietals.map(name => <option key={name} value={name}>{name}</option>)}
               </select>
               {errors.varietal && touched.varietal && <p className='text-danger'>{errors.varietal}</p>}
             </div>
 
             <div className={`form-group col-md-12 ${style.formDiv}`}>
-              <label htmlFor='origin' className={`fs-3 ${style.formTag}`}>Provincia</label>
+              {/* <label htmlFor='origin' className={`fs-3 ${style.formTag}`}>Provincia</label> */}
               <select
                 name='origin'
                 id='origin'
@@ -99,7 +99,7 @@ export default function FormCreateProduct () {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <option value=''>Selecciona la Provincia</option>
+                <option className={style.option} value=''>Selecciona la Provincia</option>
                 {provinces.map(name => <option key={name} value={name}>{name}</option>)}
               </select>
               {errors.origin && touched.origin && <p className='text-danger'>{errors.origin}</p>}

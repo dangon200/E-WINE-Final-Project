@@ -1,0 +1,35 @@
+.icon{
+    color:#56070C;
+}
+.title{
+    /* font-weight: bolder; */
+    color: #310b0a;
+    font-size: 20px;
+}
+.card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    height: 200px;
+    font-family: 'Montserrat', sans-serif;
+
+}
+.datos{
+    font-size: 20px;
+    font-weight: lighter;
+    font-family: 'Montserrat', sans-serif;
+    color: #186665;
+
+}
+.ppal{
+    padding: 10px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+.sec{
+    font-size: 15px;
+    font-weight: bold;
+    color: #565252;
+}
+.masDatos{
+    padding-top: 10px;
+}

@@ -16,7 +16,7 @@ export default function UserSales () {
   console.log(sales)
   useEffect(() => {
     dispatch(getUserSales(user.id))
-  }, [dispatch, user.id])
+  }, [dispatch])
   return (
     <div className='grid h-100 pb-5'>
       <Container fluid style={{ height: '100%' }}>

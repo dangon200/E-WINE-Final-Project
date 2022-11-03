@@ -51,7 +51,7 @@
 
 .formulario button[type="submit"] {
 	display: block;
-	background: #0085FF;
+	background: #91091E;
 	font-weight: 600;
 	/* font-family: 'Open Sans', sans-serif; */
 	border: none;
@@ -65,7 +65,7 @@
 }
 
 .formulario button[type="submit"]:hover {
-	background: #0051ff;
+	background: #630614;
 }
 
 .formulario .exito {
@@ -84,4 +84,11 @@
 
 .formulario input[type="radio"] {
 	width: auto;
+}
+.btn{
+	padding-left: 170px;
+	color: #91091E;
+	font-weight: bold;
+	font-style: oblique;
+
 }

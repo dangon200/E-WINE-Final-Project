@@ -48,9 +48,6 @@ function ChatOnline ({ onlineUsers, currentId, setCurrentChat, conversations, se
         })
         setConversations([...conversations, res.data])
       }
-
-      /* const aux = await axios.get(`http://localhost:3002/conversations/user/${currentId}`)
-      setConversations(aux.data) */
     } catch (error) {
       console.log(error)
     }

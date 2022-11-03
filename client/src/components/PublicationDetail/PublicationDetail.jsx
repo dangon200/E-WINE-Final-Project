@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { ImGlass } from 'react-icons/im'
-import { FaHeart } from 'react-icons/fa'
-import { addCarrito, addFavorites, getByPublication, getQuestions, removeFavorites, getReviewBuy, getReviewBuys } from '../../store/actions/actions'
+// import { FaHeart } from 'react-icons/fa'
+import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys } from '../../store/actions/actions'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -24,18 +24,15 @@ import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
-  const favorites = useSelector((state) => state.favorites)
   const questions = useSelector(state => state.questions)
   const User = useSelector(state => state.user)
   const Review = useSelector(state => state.reviewPuntaje)
   const ReviewsPub = useSelector((state) => state.reviewBuys)
-  // const reviewsPub2 = useSelector((state) => state.reviewBuys2)
-  // const User = useSelector(state => state.user)
 
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count } = publication
+  const { name, price, title, image, count, userId } = publication
   const [counter, setCounter] = useState(1)
   const { result, cantidadRevs } = Review
   const result2 = parseFloat(result).toFixed(1)
@@ -48,9 +45,9 @@ export default function PublicationDetail (props) {
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
   }, [dispatch, id])
-  const isInFavorites = (id) => {
+  /* const isInFavorites = (id) => {
     return favorites.some((f) => f === id)
-  }
+  } */
   const addToCarrito = (id, price, title, image, name, countParam, count) => {
     if (window.localStorage.hasOwnProperty(id)) {
       window.localStorage[id] = JSON.stringify({
@@ -89,16 +86,7 @@ export default function PublicationDetail (props) {
       <Row>
         <Row xs={1} sm={2} md={2} className='mt-5 rounded mx-auto shadow-lg'>
           <Col>
-            <div className='pt-3 d-flex justify-content-end'>
-              <FaHeart
-                className={isInFavorites(id) ? style.iconActive : style.icon}
-                onClick={() => {
-                  isInFavorites(id)
-                    ? dispatch(removeFavorites(id))
-                    : dispatch(addFavorites(id))
-                }}
-              />
-            </div>
+            <div className='pt-3 d-flex justify-content-end' />
             <Carousel className='mb-5 mt-4'>
               <Carousel.Item>
                 <Image
@@ -134,24 +122,17 @@ export default function PublicationDetail (props) {
               Disponibilidad: {publication.count}
             </span>
             <br />
-            <span className='fs-2 md-4'>
-              puntaje: {result2} <ImGlass
+            <span className='fs-2'>
+              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
                 size={16}
                 color='#610a10'
-                                 /> {`(${cantidadRevs})`}
+                                                      /> {`(${cantidadRevs})`}
             </span>
-            {/* <figure className='text-center mt-5'>
-              <blockquote className='blockquote fs-4 fst-italic'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit facere cumque ratione, odio expedita quisquam iusto reprehenderit? Hic ea autem cupiditate ducimus similique molestiae eligendi voluptatibus facere debitis eveniet!</p>
-              </blockquote>
-              <figcaption className='blockquote-footer fs-5 text-end'>
-                Famosa escritora y poeta - <cite>asdasds</cite>
-              </figcaption>
-            </figure> */}
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
                 <Stack
+                  className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
                   direction='horizontal'
                   gap={1}
                 >
@@ -225,7 +206,7 @@ export default function PublicationDetail (props) {
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <ReviewBuy userId={User.id} pubId={publication.id} />
-        <ComentDetail comment={ReviewsPub} />
+        <ComentDetail reviews={ReviewsPub} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (
