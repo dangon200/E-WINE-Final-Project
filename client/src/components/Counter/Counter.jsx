@@ -6,7 +6,7 @@ import { addCarrito } from '../../store/actions/actions'
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai'
 
 export default function Counter (props) {
-  const [count, setCount] = useState(props.countFromPub)
+  const [count, setCount] = useState(props.count)
   const dispatch = useDispatch()
   const { id, price, title, image, name, stock } = props
 
