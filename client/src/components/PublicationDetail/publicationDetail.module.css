@@ -225,3 +225,14 @@ h1{
 .imageCarru img{
     max-height: 300px;
 }
+.buttonComprar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+@media (max-width: 576px) {
+    .buttonComprar{
+        width: 120px;
+    }
+}

@@ -204,11 +204,26 @@
     align-items: center;
     cursor: pointer;
 }
-
+.toggler{
+    border: none;
+}
+.menu{
+    font-size: 25px;
+}
 @media (max-width: 992px){
     .logo{
         height: 50px;
         width: 50px;
+    }
+}
+@media (max-width: 768px){
+    .logo{
+        height: 50px;
+        width: 50px;
+    }
+    .toggler{
+        margin-right: 5%;
+        border: none;
     }
 }
 
@@ -237,5 +252,26 @@
     .userDataContainer{
         gap: 4px;
         margin-left: 2px;
+    }
+    .notificationsContainer{
+        width: 30px;
+        height: 28px;
+        margin-left: 8px;
+    }
+    .numberNotifications{
+        padding: 0px 5px;
+        border-radius: 50%;
+        font-family: var(--font-family-1);
+        font-size: 10px;
+        top: 3;
+        left: 12px;
+    }
+    .menu{
+        font-size: 20px;
+    }
+}
+@media (max-width: 400px){
+    .toggler{
+        margin-right: 3px;
     }
 }

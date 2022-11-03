@@ -3,7 +3,8 @@
     height: 400px;
     /* background-color: #FFFFFF; */
     background-color: #F7F7F7;
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     padding: 16px;
     transition: 0.3s;
     animation: show 2s;

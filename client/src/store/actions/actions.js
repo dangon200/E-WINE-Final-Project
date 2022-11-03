@@ -698,8 +698,22 @@ export const reviewsPublication = (productId) => {
     }
   }
 }
-
-export const paymentAmount = (paymentAmount) => {
+// aca van las review
+export function getReviewsAdmin () {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviews/productsLanding`)
+      console.log('Efectivamente son las reseñas', api.data)
+      return dispatch({
+        type: 'GET_REVIEWS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const paymentAmount = (paymentAmount) => {  // eslint-disable-line
   return {
     type: 'SET_PAYMENT_AMOUNT',
     payload: paymentAmount
