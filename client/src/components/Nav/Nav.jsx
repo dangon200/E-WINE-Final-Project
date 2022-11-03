@@ -39,6 +39,12 @@ export default function Nav () {
     if (data.type === 'buy') {
       return <span className={style.notification}>{`Tiene una nueva compra en la publicacion ${data.publicationTitle}!`}</span>
     }
+    if (data.type === 'sendDelivery') {
+      return <span className={style.notification}>{`${data.senderName} envio tu compra!`}</span>
+    }
+    if (data.type === 'receiveDelivery') {
+      return <span className={style.notification}>{`${data.senderName} recibio tu envio!`}</span>
+    }
   }
 
   const handleRead = () => {
