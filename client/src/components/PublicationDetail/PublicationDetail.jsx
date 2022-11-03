@@ -128,7 +128,9 @@ export default function PublicationDetail (props) {
                 color='#890f0d'
                                                       /> {`(${cantidadRevs})`}
             </span>
-            <Row>
+            <Row
+              className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
+            >
               <Stack
                 className='mt-4'
                 direction='horizontal'
