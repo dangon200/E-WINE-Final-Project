@@ -45,7 +45,6 @@ export default function UserFavorites ({ id }) {
                         title={p.title}
                         name={p.name}
                             // price={p.price}
-                        description={p.description}
                         key={p.publicationId}
                         image={p.image}
                       />
