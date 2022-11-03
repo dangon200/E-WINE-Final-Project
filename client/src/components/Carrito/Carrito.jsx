@@ -46,7 +46,7 @@ export default function Carrito () {
               <p> Costo de envio a {user.region && user.region !== null && user.region !== 'null' ? user.region : 'su domicilio'}:</p>
             </Col>
             <Col className='text-end'>
-              <span className='fw-bold fs-3'> $ 350</span>
+              <span className='fw-bold fs-3'>0</span>
             </Col>
           </Row>
           <Row className='fs-4 w-75 border-bottom border-dark mb-4'>
