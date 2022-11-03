@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import s from './itemModaleSales.module.css'
 import Row from 'react-bootstrap/esm/Row'
 import Col from 'react-bootstrap/esm/Col'
-import Button from 'react-bootstrap/esm/Button'
 
 export default function ItemModaleSales (props) {
   const { id, title, price, count, image, name } = props
@@ -26,11 +25,11 @@ export default function ItemModaleSales (props) {
           </Col>
           <Col className={`d-flex gap-5 justify-content-center align-items-end ${s.eliminar}`}>
             <Row>
-              <Button className={s.button2}>
+              <button className={s.button2}>
                 <Link className='text-decoration-none text-dark' to={`/publication/${id}`}>
                   Ver producto
                 </Link>
-              </Button>
+              </button>
             </Row>
           </Col>
         </Row>

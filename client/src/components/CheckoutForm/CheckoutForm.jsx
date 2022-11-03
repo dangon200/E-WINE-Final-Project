@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postStripe, clearCarrito } from '../../store/actions/actions'
 import { SocketContext } from '../../context/socket'
 import { IoCaretBack } from 'react-icons/io5'
-
+import s from './checkoutForm.module.css'
 export default function CheckoutForm (props) {
   const history = useHistory()
   const stripe = useStripe()
@@ -72,7 +72,7 @@ export default function CheckoutForm (props) {
   const [err, setErr] = useState(false)
   const [send, setSend] = useState(false)
   return (
-    <form onSubmit={handleSubmit} className='card border-secondary border-2 card-body'>
+    <form onSubmit={handleSubmit} className={s.card}>
       <div className='row'>
         <Link className='d-flex justify-content-center align-items-center text-decoration-none text-dark fs-2 fw-3 mb-4' to='/carrito'>
           <IoCaretBack /> Volver al carrito

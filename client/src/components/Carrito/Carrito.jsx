@@ -42,7 +42,7 @@ export default function Carrito () {
                 <p> Costo de envio a {user.region ? user.region : 'su domicilio'}:</p>
               </Col>
               <Col className='text-end'>
-                <span className='fw-bold fs-3'> $ 350</span>
+                <span className='fw-bold fs-3'> $ 0</span>
               </Col>
             </Row>
             <Row className='fs-4 w-75 border-bottom border-dark mb-4'>
@@ -56,22 +56,15 @@ export default function Carrito () {
                 </span>
               </Col>
             </Row>
-            <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
-              Pagar con stripe
-            </Link>
             {token
-              ? <div className={style.button}>
-                <PagarMP />
-                </div>  // eslint-disable-line
-              : history.push('/register')}
-            {/* {token
-              ? <button className={style.button}>
-                <Link className='text-decoration-none text-light' to={`/payment/${totalAmount}`}>
-                  Pagar
+              ? <>
+                <Link className={`text-decoration-none text-light ${style.button}`} to={`/payment/${totalAmount}`}>
+                  Pagar con stripe
                 </Link>
-              </button> //eslint-disable-line
+                <div className={style.button}>
+                  <PagarMP />
+                </div>  </> // eslint-disable-line
               : history.push('/register')}
-            {token ? <PagarMP /> : history.push('/register')} */}
 
             </Col> //eslint-disable-line
           : null}

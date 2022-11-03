@@ -1,6 +1,6 @@
 import style from './home.module.css'
-import { useEffect, useState, useContext } from 'react'
-import { getPublications, getProducts, addNotification, setOnlineUsers } from '../../store/actions/actions'
+import { useEffect, useState } from 'react'
+import { getPublications, getProducts } from '../../store/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import Pagination from '../pagination/Pagination'
@@ -13,56 +13,23 @@ import Nav from '../Nav/Nav'
 import vinos2 from '../../utils/images/vinos2-unsplash.jpg'
 //  import InfiniteScroll from 'react-infinite-scroll-component';
 
-/* import { io } from 'socket.io-client' */
-import { SocketContext } from '../../context/socket'
-
 export default function Home () {
   const dispatch = useDispatch()
-  /* const user = useSelector(state => state.user) */
   // const products = useSelector(state => state.products)
   const publications = useSelector(state => state.publications)
   /* const error = useSelector(state => state.error) */
   const [page, setPage] = useState(1)
-  const productsPerPage = 4
+  const productsPerPage = 8
   const lastProductPerPage = page * productsPerPage
   const firstProductPerPage = lastProductPerPage - productsPerPage
   const currentPageProducts = publications.slice(firstProductPerPage, lastProductPerPage)
-
-  const socket = useContext(SocketContext)
-  const user = useSelector(state => state.user)
-
-  useEffect(() => {
-    if (user) {
-      socket.emit('addUser', user.id)
-    }
-  }, [user])
-
-  useEffect(() => {
-    socket.on('getFavorite', data => {
-      console.log(data)
-      dispatch(addNotification(data))
-    })
-    socket.on('getQuestion', data => {
-      console.log(data)
-      dispatch(addNotification(data))
-    })
-    socket.on('getBuy', data => {
-      console.log(data)
-      dispatch(addNotification(data))
-    })
-  }, [dispatch, socket])
-
-  useEffect(() => {
-    user &&
-    socket.on('getUsers', users => {
-      dispatch(setOnlineUsers(users))
-    })
-  }, [dispatch, user, socket])
 
   useEffect(() => {
     dispatch(getProducts())
     dispatch(getPublications())
   }, [dispatch])
+  // console.log(products)
+  // console.log(publications)
 
   const pages = []
   for (let i = 1; i <= Math.ceil(publications.length / productsPerPage); i++) {
@@ -94,7 +61,7 @@ export default function Home () {
       </section>
       <div className={style.searchFilter}>
         <div className={style.filtersContainer}>
-          <SearchBar className={style.searchBar} />
+          <SearchBar />
           <Filters setPage={setPage} />
         </div>
       </div>
@@ -126,7 +93,6 @@ export default function Home () {
                     price={p.price}
                     userId={p.userId}
                     key={p.id}
-                    socket={socket}
                   />
                 </div>
               </section>

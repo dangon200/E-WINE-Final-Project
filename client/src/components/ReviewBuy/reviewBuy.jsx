@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import React, { useRef, useState } from 'react'
-import { ImGlass } from 'react-icons/im'
+// import { ImGlass } from 'react-icons/im'
+import { IoIosWine } from 'react-icons/io'
 import style from './reviewBuy.module.css'
 import { useDispatch } from 'react-redux'
 import { getReviewBuys } from '../../store/actions/actions'
@@ -45,12 +46,12 @@ export default function ReviewBuy (userId) {
               value={starRating}
               onClick={() => setRating(starRating)}
             />
-            <ImGlass
+            <IoIosWine
               className={style.star}
-              size={50} key={Math.random()}
+              size={40} key={Math.random()}
               onMouseEnter={() => setHover(starRating)}
               onMouseLeave={() => setHover(null)}
-              color={starRating > (hover || rating) ? '#e4e5e9' : '#56070C'}
+              color={starRating > (hover || rating) ? '#D8D8D8' : '#890f0d'}
             />
           </label>
         )

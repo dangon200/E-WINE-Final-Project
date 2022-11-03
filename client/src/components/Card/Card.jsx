@@ -93,24 +93,6 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               : null}
           </div>
         </div>
-        {/* <div className={` ${style.btnContainer}`}>
-          <Link
-            to={`/publication/${id}`} className={`${style.moreBtn}`} onClick={() => {
-              dispatch(getByPublication(id))
-              dispatch(getQuestions(id))
-            }}
-          >Más Info
-          </Link>
-          {user.id !== userId
-            ? <button
-                className={`${style.addBtn}`} onClick={() => {
-                  window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
-                }}
-              >
-              {isInCarrito(id) ? 'Remover' : 'Añadir'}
-            </button> //eslint-disable-line
-            : null}
-        </div> */}
       </div>
     </div>
   )
