@@ -38,7 +38,7 @@ input::-webkit-inner-spin-button {
 }
 :root{
   --background-color: #f1f0f0;
-  --btn-background-color: #56070C;
+  --btn-background-color: #890f0d;
   --btn-sel-background-color: #170000;
   --normal-font-color: #1F1F1F;
   --contrast-font-color: #f1f0f0; 
@@ -52,13 +52,13 @@ input::-webkit-inner-spin-button {
 /* Bootstrap variant */
 
 .btn-añadir{
-  background-color:#56070C;
+  background-color:#890f0d;
   color: #f1f0f0;
 }
 
 .btn-añadir:hover{
   background-color: #f1f0f0;
-  color: #56070C;
+  color: #890f0d;
 }
 
 /* .card img{
@@ -113,7 +113,7 @@ input::-webkit-inner-spin-button {
   font-size:  20px; width: 190px;
   height: 50px;
   border: transparent;
-  background-color: #56070C;
+  background-color: #890f0d;
   border-radius: 10px;
   border: transparent;
   font-size: 15px;
@@ -141,12 +141,12 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-botoncito{
-  background-color:#56070C;
+  background-color:#890f0d;
   color: beige;
 }
 
 .btn-botoncito:hover{
-  border-color: #56070C;
+  border-color: #890f0d;
   color:black;
 }
 

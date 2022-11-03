@@ -1,0 +1,30 @@
+.image{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.carousel{
+    width: 75%;
+    height: 400px;
+}
+.card{
+    background-image: url(../../utils/images/carousel2.jpg);
+    background-size: cover;
+    padding: 50px;
+}
+.imgBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(239, 239, 239);
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 1rem;
+}
+
+@media (max-width: 768px){
+    .carousel{
+        height: 100%;
+    }
+}

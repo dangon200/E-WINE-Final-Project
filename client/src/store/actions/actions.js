@@ -542,6 +542,7 @@ export const getItemsDetails = (buyId) => {
   return async function (dispatch) {
     try {
       const res = await axios.get(`${urlApi}/buyItems/buy/${buyId}`)
+      console.log(res.data)
       return dispatch({
         type: 'GET_ITEMS_DETAIL',
         payload: res.data
@@ -587,7 +588,7 @@ export const addReviewBuy = (data) => {
     }
   }
 }
-export const getReviewBuy = (id) => {
+export const getPuntaje = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/${id}`)
@@ -601,12 +602,25 @@ export const getReviewBuy = (id) => {
   }
 }
 
-export const getReviewBuys = (id) => {
+export const getReviewPublication = (id) => {
   return async function (dispatch) {
     try {
       const api = await axios.get(`${urlApi}/reviewsBuys/reviewsDetail/${id}`)
       return dispatch({
         type: 'GET_REVIEWBUYS_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const getReviewByUser = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviewsBuys/reviewsUser/${id}`)
+      return dispatch({
+        type: 'GET_REVIEW_BYUSER',
         payload: api.data
       })
     } catch (error) {
@@ -645,6 +659,20 @@ export const adminUser = (id, isAdmin) => {
       })
     } catch (error) {
       return error.message
+    }
+  }
+}
+
+export const getUserById = (id) => {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/users/${id}`)
+      return dispatch({
+        type: 'GET_USERBY_ID',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
 }
@@ -695,5 +723,26 @@ export const reviewsPublication = (productId) => {
     } catch (error) {
       return error.message
     }
+  }
+}
+// aca van las review
+export function getReviewsAdmin () {
+  return async function (dispatch) {
+    try {
+      const api = await axios.get(`${urlApi}/reviews/productsLanding`)
+      console.log('Efectivamente son las reseñas', api.data)
+      return dispatch({
+        type: 'GET_REVIEWS',
+        payload: api.data
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+export const paymentAmount = (paymentAmount) => {  // eslint-disable-line
+  return {
+    type: 'SET_PAYMENT_AMOUNT',
+    payload: paymentAmount
   }
 }

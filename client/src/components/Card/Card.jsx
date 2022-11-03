@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { addCarrito, addFavorites, getByPublication, getQuestions, removeCarrito, removeFavorites } from '../../store/actions/actions'
 
-export default function Card ({ id, title, name, image, price, userId, count, socket }) {
+export default function Card ({ id, title, name, image, price, userId, stock, count, socket }) {
   const dispatch = useDispatch()
   const favorites = useSelector(state => state.favorites)
   const carrito = useSelector(state => state.carrito)
@@ -50,23 +50,25 @@ export default function Card ({ id, title, name, image, price, userId, count, so
   return (
 
     <div className={`card ${style.card}`}>
-      <div className={style.iconContainer}>
-        {user && user.id !== userId &&
-          <FaHeart
-            className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
-              isInFavorites(id)
-                ? dispatch(removeFavorites(
-                  user.id,
-                  id
-                ))
-                : addFavoritesFunction(user.id, id)
-            }}
-          />}
-        <div />
-      </div>
-      <div className={`card-img-top ${style.imgContainer}`}>
-        <img className={style.img} src={image} alt='Wine-Img' />
-      </div>
+      <Link to={`/publication/${id}`}>
+        <div className={style.iconContainer}>
+          {user && user.id !== userId &&
+            <FaHeart
+              className={isInFavorites(id) ? style.iconActive : style.icon} onClick={() => {
+                isInFavorites(id)
+                  ? dispatch(removeFavorites(
+                    user.id,
+                    id
+                  ))
+                  : addFavoritesFunction(user.id, id)
+              }}
+            />}
+          <div />
+        </div>
+        <div className={`card-img-top ${style.imgContainer}`}>
+          <img className={style.img} src={image} alt='Wine-Img' />
+        </div>
+      </Link>
       <div className={`card-body ${style.dataContainer}`}>
         <div className={`card-text ${style.infoContainer}`}>
           <h3 className={`card-title ${style.title}`}>{title}</h3>
@@ -82,7 +84,8 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               }}
             >Más Info
             </Link>
-            {user.id !== userId
+            {console.log(stock, 'count')}
+            {(user.id !== userId && stock)
               ? <button
                   className={`${style.addBtn}`} onClick={() => {
                     window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
@@ -93,25 +96,8 @@ export default function Card ({ id, title, name, image, price, userId, count, so
               : null}
           </div>
         </div>
-        {/* <div className={` ${style.btnContainer}`}>
-          <Link
-            to={`/publication/${id}`} className={`${style.moreBtn}`} onClick={() => {
-              dispatch(getByPublication(id))
-              dispatch(getQuestions(id))
-            }}
-          >Más Info
-          </Link>
-          {user.id !== userId
-            ? <button
-                className={`${style.addBtn}`} onClick={() => {
-                  window.localStorage.getItem(id) ? removeFromCarrito(id) : addToCarrito(id, price, title, image, name, count)
-                }}
-              >
-              {isInCarrito(id) ? 'Remover' : 'Añadir'}
-            </button> //eslint-disable-line
-            : null}
-        </div> */}
       </div>
+
     </div>
   )
 }

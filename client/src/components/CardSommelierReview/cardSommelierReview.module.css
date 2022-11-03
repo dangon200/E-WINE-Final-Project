@@ -1,6 +1,6 @@
 .card{
-    width: 28rem;
-    min-height: 50rem;
+    width: 40rem;
+    min-height: 40rem;
     border-radius: 10px;
 }
 .card:hover{
@@ -9,19 +9,19 @@
     cursor: pointer;
 }
 .image{
-    height: 25rem;
-    width: 28rem;
+    height: 40rem;
     object-fit: cover;
     border-radius: 10px;
 }
 .bodyCard{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     text-align: start;
-    background-color: #19282F;
-    color: #F2F2F2;
-    border-radius: 0px 0px 10px 10px;
+    background-color: #F7F7F7;
+    color: #484D55;
+    border-radius: 10px;
+    height: 100%;
 }
 .inputs{
     display: flex;
@@ -33,12 +33,20 @@
     font-size: 14px;
     background-color: #F2F2F2;
     color: #484d55;
+    border: 1px solid #484d55;
+    border-radius: 10px;
 }
 .input2{
-    padding: 10px;
+    padding: 8px;
     font-size: 14px;
     background-color: #F2F2F2;
     color: #484d55;
+    border: 1px solid #484d55;
+    border-radius: 10px;
+}
+.input2:hover{
+    cursor: pointer;
+    background-color: #f2f2f2ce;
 }
 @media (max-width: 576px){
     .card{

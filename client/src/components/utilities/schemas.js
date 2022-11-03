@@ -7,12 +7,13 @@ const passwordValidate = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/gm
 // at least 8 characters
 // - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
 // - Can contain special characters
-const urlApi = 'https://e-winespf.herokuapp.com'
+// const urlApi = 'https://e-winespf.herokuapp.com'
+const urlApi = 'http://localhost:3001'
 // http:///users/email/:email
 // users/username/:username
 
 export const schemaFormPubli = Yup.object().shape({
-  title: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres'),
+  title: Yup.string().required('Es Requerido').matches(startWichLetter, 'Debe comenzar con una letra').min(3, 'Min 3 caracteres').max(50, 'Max 50 caracteres'),
   price: Yup.number('Solo números').required('Es Requerido').min(500, 'Min $500').positive('Positive number').max(500000, 'Max $500.000'),
   description: Yup.string().required('Es Requerido').min(10, 'Min 10 caracteres').max(150, 'Max 150 caracteres'),
   count: Yup.number().integer('No números decimales').required('Es Requerido').min(1, 'Min 1').positive('Min 1').max(10000, 'Max 10.000'),

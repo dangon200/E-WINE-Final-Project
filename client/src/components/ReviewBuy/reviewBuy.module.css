@@ -14,7 +14,7 @@
     margin-bottom: 5px;
 }
 .text {
-    color:  #610a10;
+    color:  #890f0d;
     font-style: impact;
     font-weight: bold;
     font-size: 250%;
@@ -46,9 +46,9 @@
 .inputBtn{
     border: 2px solid var(--btn-background-color);
     border-radius: 5px;
-    background-color: #56070C;
+    background-color: #890f0d;
     color: white;
-    padding: 0px 16px;
+    padding: 5px 18px;
     font-size: 16px;
     transition: 0.2s;
     margin-bottom: 10px;

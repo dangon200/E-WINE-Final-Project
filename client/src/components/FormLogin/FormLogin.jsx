@@ -89,7 +89,7 @@ export default function FormLogin () {
       document.getElementById('signInDiv'),
       { theme: 'outline', size: 'large' }
     )
-  }, [])//eslint-disable-line
+  }, [user])//eslint-disable-line
 
   const { values, handleChange, handleBlur, errors, touched, handleSubmit } = useFormik({ //eslint-disable-line
 
@@ -161,6 +161,16 @@ export default function FormLogin () {
     dispatch(logoutUser())
     cookies.remove('TOKEN')
   }
+  if (user) {
+    return (
+      <div className='container'>
+        <div className='row'>
+          <button className='btn btn-danger fs-4 mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>
+        </div>
+
+      </div>
+    )
+  }
   return (
     <div className='user-select-none'>
       <form onSubmit={handleSubmit} className='card d-flex justify-content-center mx-auto my-3 p-5' autoComplete='off'>
@@ -193,16 +203,14 @@ export default function FormLogin () {
             {touched.password && errors.password ? <div className='invalid-feedback fs-4'>{errors.password}</div> : null}
           </div>
           {!userLogged && <button disabled={send && true} className='btn btn-success fs-4 mt-3 ' type='submit'>{!send ? 'Iniciar sesión' : '....'}</button>}
-          {userLogged && <button className='btn btn-danger fs-4 mt-3 ' type='submit' onClick={() => removeCookies()}>Cerrar sesión</button>}
+
           {err &&
             <div className='alert alert-danger mt-3 text-center' role='alert'><p>{message}</p></div>}
 
-          <>
-            <div
-              className={user ? style.googleBtnHide : style.googleBtn}
-              id='signInDiv'
-            />
-          </>
+          <div
+            className={user ? style.googleBtnHide : style.googleBtn}
+            id='signInDiv'
+          />
 
           {success &&
             <div className='alert alert-success mt-3  text-center' role='alert'><p>{message}</p> </div>}

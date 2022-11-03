@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import { ImGlass } from 'react-icons/im'
-
-import { addCarrito, getByPublication, getQuestions, getReviewBuy, getReviewBuys, reviewsPublication } from '../../store/actions/actions'
+// import { FaHeart } from 'react-icons/fa'
+import { addCarrito, getByPublication, getQuestions, getPuntaje, getReviewPublication, reviewsPublication } from '../../store/actions/actions'
+// import { ImGlass } from 'react-icons/im'
+import { IoIosWine } from 'react-icons/io'
 /* import Question from '../Question/Question' */
 
 import ProductDetail from '../ProductDetail/ProductDetail'
@@ -21,37 +22,39 @@ import { BsFillCartPlusFill, BsFillCartCheckFill } from 'react-icons/bs'
 import style from './publicationDetail.module.css'
 import ReviewBuy from '../ReviewBuy/reviewBuy.jsx'
 import ComentDetail from '../CommentDetail/CommmentDetail.jsx'
+// import { ImGlass } from 'react-icons/im'
 
 export default function PublicationDetail (props) {
   const publication = useSelector((state) => state.detailPublication)
   const questions = useSelector(state => state.questions)
   const User = useSelector(state => state.user)
-  const Review = useSelector(state => state.reviewBuy)
-  const reviews = useSelector(state => state.reviewsPublication)
-  // const User = useSelector(state => state.user)
-
+  const Review = useSelector(state => state.reviewPuntaje)
+  const ReviewsPub = useSelector((state) => state.reviewBuys)
+  const sommelierComment = useSelector((state) => state.reviewsPublication)
   // const carrito = useSelector((state) => state.carrito)
   const dispatch = useDispatch()
   const { id } = useParams() // props.match.params.id
-  const { name, price, title, image, count, productId } = publication
+  const { name, price, title, image, count, userId, productId } = publication
   const [counter, setCounter] = useState(1)
-  const { result, cantidadRevs } = Review
+  const { result, cantidadRevs } = Review // eslint-disable-line
   const result2 = parseFloat(result).toFixed(1)
   /* const [question, setQuestion] = useState('') */
-
   useEffect(() => {
-    dispatch(getReviewBuy(id))
+    dispatch(getPuntaje(id))
+  }, [ReviewsPub])
+  useEffect(() => {
+    dispatch(getReviewPublication(id))
     dispatch(getByPublication(id))
     dispatch(getQuestions(id))
-    dispatch(getReviewBuys(id))
+    dispatch(getReviewPublication(id))
     dispatch(reviewsPublication(productId))
   }, [dispatch, id, productId])
-  const addToCarrito = (id, price, title, image, name, countParam, count) => {
+  const addToCarrito = (id, price, title, image, name, countParam, stock) => {
     if (window.localStorage.hasOwnProperty(id)) {
       window.localStorage[id] = JSON.stringify({
         ...JSON.parse(window.localStorage[id]),
 
-        count: (countParam + JSON.parse(window.localStorage[id]).count) > count ? count : countParam + JSON.parse(window.localStorage[id]).count
+        count: (countParam + JSON.parse(window.localStorage[id]).count) > stock ? stock : countParam + JSON.parse(window.localStorage[id]).count
       })
       dispatch(
         addCarrito({
@@ -61,11 +64,10 @@ export default function PublicationDetail (props) {
           image,
           name,
           count: JSON.parse(window.localStorage[id]).count,
-          stock: count
+          stock
         })
       )
     } else {
-      console.log('entre al else')
       window.localStorage.setItem(
         id,
         JSON.stringify({ price, title, image, name, count: countParam, stock: count })
@@ -113,7 +115,7 @@ export default function PublicationDetail (props) {
 
           <Col className='d-flex flex-column justify-content-start align-items-center text-center mt-5 mb-5'>
             <h1 className='mt-3 text-capitalize fw-bold'>{title}</h1>
-            <span className='fs-2 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
+            <span className='fs-2 mt-4 pb-5'>Precio: ${price?.toLocaleString('MX')}</span>
             <br />
             {/* <ReviewBuy /> */}
             <span className='fs-2'>
@@ -121,27 +123,48 @@ export default function PublicationDetail (props) {
             </span>
             <br />
             <span className='fs-2'>
-              puntaje: {isNaN(result2) ? 0 : result2} <ImGlass
-                size={16}
-                color='#610a10'
+              puntaje: {isNaN(result2) ? 0 : result2} <IoIosWine
+                size={20}
+                color='#890f0d'
                                                       /> {`(${cantidadRevs})`}
             </span>
-            {/* <figure className='text-center mt-5'>
-              <blockquote className='blockquote fs-4 fst-italic'>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus suscipit facere cumque ratione, odio expedita quisquam iusto reprehenderit? Hic ea autem cupiditate ducimus similique molestiae eligendi voluptatibus facere debitis eveniet!</p>
-              </blockquote>
-              <figcaption className='blockquote-footer fs-5 text-end'>
-                Famosa escritora y poeta - <cite>asdasds</cite>
-              </figcaption>
-            </figure> */}
+            <Row
+              className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
+            >
+              <Stack
+                className='mt-4'
+                direction='horizontal'
+                gap={1}
+              >
+                <Button
+                  variant='prueba'
+                  onClick={() => updateCount('rest')}
+                  className='d-flex justify-content-center align-items-center'
+                >
+                  -
+                </Button>
+                <span className='fs-2 fw-bold'>
+                  {counter}
+                </span>
+                <Button
+                  variant='prueba'
+                  onClick={() =>
+                    counter < count &&
+                      updateCount('add')}
+                >
+                  +
+                </Button>
+              </Stack>
+            </Row>
             <Row className='mt-5 me-5'>
               {/* md={10} lg xl={8} xxl={9} */}
               <Col>
                 <Stack
+                  className={(userId === User.id || publication.isBanned || !publication.count) && 'd-none'}
                   direction='horizontal'
                   gap={1}
                 >
-                  <Button
+                  {/* <Button
                     variant='prueba'
                     onClick={() => updateCount('rest')}
                     className='d-flex justify-content-center align-items-center'
@@ -158,7 +181,7 @@ export default function PublicationDetail (props) {
                       updateCount('add')}
                   >
                     +
-                  </Button>
+                  </Button> */}
                   <Col>
                     <Button
                       className='d-flex mx-5 fs-4 p-2'
@@ -181,13 +204,23 @@ export default function PublicationDetail (props) {
                     </Button>
                   </Col>
                   <Col>
-                    <Link to='/Carrito'>
+                    <Link className='text-decoration-none' to='/Carrito'>
                       <Button
-                        className='fs-4 p-2'
+                        className={`fs-4 p-2 ${style.buttonComprar}`}
                         size='lg'
                         variant='botoncito'
-                      >
-                        <BsFillCartCheckFill className='me-3 fs-2' />
+                        onClick={() => {
+                          addToCarrito(
+                            id,
+                            price,
+                            title,
+                            image,
+                            name,
+                            counter,
+                            count
+                          )
+                        }}
+                      ><BsFillCartCheckFill className='me-3 fs-2' />
                         COMPRAR
                       </Button>
                     </Link>
@@ -201,7 +234,7 @@ export default function PublicationDetail (props) {
         {/* PEDIDO */}
         {publication ? <ProductDetail publication={publication} /> : null}
         <ReviewBuy userId={User.id} pubId={publication.id} />
-        <ComentDetail reviews={reviews} />
+        <ComentDetail reviewsBuy={ReviewsPub} sommelier={sommelierComment} />
         <Preguntas questions={questions} publication={publication} />
         {publication
           ? (

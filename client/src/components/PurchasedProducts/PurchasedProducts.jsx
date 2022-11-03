@@ -17,7 +17,7 @@ export default function PurchasedProducts () {
   const dispatch = useDispatch()
   useEffect(() => { dispatch(getUserBuys(user.id)) }, [dispatch, user.id])
   return (
-    <div className='grid h-100 pb-5'>
+    <div className='grid h-100'>
       <Container fluid style={{ height: '100%' }}>
         <Row className='grid h-100 bg-grey bg-opacity-25'>
           <Col className='col-auto min-vh-100 pt-5 rounded'>
@@ -25,9 +25,9 @@ export default function PurchasedProducts () {
           </Col>
           <Col className={s.container}>
             <h1>Mis Compras</h1>
-            {buys.length > 0 && buys.map((b) => (
+            {buys.length > 0 && buys.map((b, idx) => (
               <ItemPurchased
-                key={b.buyId}
+                key={idx}
                 buyId={b.buyId}
                 currency={b.currency}
                 totalAmount={b.totalAmount}
@@ -35,6 +35,7 @@ export default function PurchasedProducts () {
                 date={b.createdAt}
                 status={b.status}
                 deliveryId={b.deliveryId}
+                receiverId={b.userId}
               />
             ))}
           </Col>

@@ -13,10 +13,10 @@ import { getBuys } from '../../store/actions/actions'
 //   },
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 150 },
+  { field: 'id', headerName: 'ID', width: 300 },
   { field: 'currency', headerName: 'Divisa', width: 70 },
   { field: 'totalAmount', headerName: 'Monto Total', width: 80 },
-  { field: 'userId', headerName: 'ID usuario', width: 150 },
+  { field: 'userId', headerName: 'ID usuario', width: 300 },
   { field: 'createdAt', headerName: 'Fecha', sortable: false, width: 100 }
 ]
 

@@ -1,16 +1,19 @@
 import Container from 'react-bootstrap/Container'
-import React, { useRef, useState } from 'react'
-import { ImGlass } from 'react-icons/im'
+import React, { useRef, useState, useEffect } from 'react'
+import { IoIosWine } from 'react-icons/io'
 import style from './reviewBuy.module.css'
-import { useDispatch } from 'react-redux'
-import { getReviewBuys } from '../../store/actions/actions'
-const urlApi = 'https://e-winespf.herokuapp.com'
+import { useDispatch, useSelector } from 'react-redux'
+import { addReviewBuy, getReviewPublication } from '../../store/actions/actions'
 
 export default function ReviewBuy (userId) {
   const [rating, setRating] = useState(null)
   const [hover, setHover] = useState(null)
   const text = useRef(null)
+  const newComment = useSelector(state => state.reviewBuys)
   const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getReviewPublication(userId.pubId))
+  }, [newComment])
   const handleClick = (e) => {
     e.preventDefault('')
     const comentario = {
@@ -19,18 +22,9 @@ export default function ReviewBuy (userId) {
       puntaje: rating,
       textRev: text.current.value
     }
-    fetch(`${urlApi}/reviewsBuys`, {
-      method: 'POST',
-      body: JSON.stringify(comentario),
-      headers: {
-        'Content-type': 'application/json'
-      },
-      credentials: 'include'
-    })
-    dispatch(getReviewBuys(userId.userId))
+    dispatch(addReviewBuy(comentario))
     text.current.value = ''
   }
-
   return (
     <Container className='mt-5 bg-body shadow-lg' fluid>
       <div className={style.text}>Si ya compraste este vino dejanos tu opinión</div>
@@ -45,12 +39,12 @@ export default function ReviewBuy (userId) {
               value={starRating}
               onClick={() => setRating(starRating)}
             />
-            <ImGlass
+            <IoIosWine
               className={style.star}
-              size={50} key={Math.random()}
+              size={40} key={Math.random()}
               onMouseEnter={() => setHover(starRating)}
               onMouseLeave={() => setHover(null)}
-              color={starRating > (hover || rating) ? '#e4e5e9' : '#56070C'}
+              color={starRating > (hover || rating) ? '#D8D8D8' : '#890f0d'}
             />
           </label>
         )
