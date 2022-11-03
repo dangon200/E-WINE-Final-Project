@@ -50,6 +50,14 @@ export default function Home () {
       console.log(data)
       dispatch(addNotification(data))
     })
+    socket.on('getSendDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
+    socket.on('getReceiveDelivery', data => {
+      console.log(data)
+      dispatch(addNotification(data))
+    })
   }, [dispatch, socket])
 
   useEffect(() => {
