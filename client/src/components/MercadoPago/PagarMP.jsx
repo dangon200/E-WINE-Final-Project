@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'universal-cookie'
 import s from './pagarMP.module.css'
-import Button from 'react-bootstrap/esm/Button'
+// import Button from 'react-bootstrap/esm/Button'
 import { clearCarrito } from '../../store/actions/actions'
 import { SocketContext } from '../../context/socket'
 import { useContext } from 'react'
@@ -56,9 +56,9 @@ export default function PagarMP () {
   }
   return (
     <div>
-      <Button className={s.button} onClick={redirigirMP}>
+      <button className={s.button} onClick={redirigirMP}>
         Pagar con Mercado Pago
-      </Button>
+      </button>
     </div>
   )
 }

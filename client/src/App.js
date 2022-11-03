@@ -60,7 +60,7 @@ function App () {
   return (
 
     <div className='App'>
-      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register', '/forgotPassword', '/recoverPassword', '/payment/:totalAmount']} component={Nav} />
+      <Route exact path={['/', '/about', '/createPublication', '/publication/:id', '/carrito', '/payment', '/register', '/forgotPassword', '/recoverPassword']} component={Nav} />
 
       <Switch>
         <Route exact path='/register' component={LogInit} />
@@ -76,7 +76,7 @@ function App () {
         <ProtectedRoutes path='/userProfile' component={UserProfile} />
         <ProtectedRoutes path='/userpurchased' component={PurchasedProducts} />
         <Route exact path={['/', '/about', '/createpublication', '/publication/:id', '/carrito']} component={Footer} />
-        <ProtectedRoutes exact path='/payment/:totalAmount' component={CardStripe} />
+        <ProtectedRoutes exact path='/payment' component={CardStripe} />
         <ProtectedRoutes exact path='/messenger' component={Messenger} />
         <ProtectedRoutes exact path='/forgotPassword' component={FormForgotPassword} />
         <ProtectedRoutes exact path='/recoverPassword' component={RecoverPassword} />
@@ -84,7 +84,7 @@ function App () {
         <ProtectedRoutesSommelier exact path='/sommelierReviews' component={SommelierReviews} />
         <Route path='*' component={Error404} />
       </Switch>
-      <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register', '/payment/:totalAmount']} component={Footer} />
+      <Route exact path={['/', '/about', '/publication/:id', '/carrito', '/payment', '/register']} component={Footer} />
     </div>
 
   )

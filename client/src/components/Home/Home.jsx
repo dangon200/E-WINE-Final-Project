@@ -117,9 +117,6 @@ export default function Home () {
           />
           {page !== pages.length && publications.length ? <div onClick={() => paginationAft()}><MdOutlineKeyboardArrowRight className={style.buttonRight} /></div> : null}
         </div>}
-      {/* <div className='d-flex justify-content-center mt-5 col-3'>
-          <Filters setPage={setPage} />
-        </div> */}
       <div className={`${style.containerProducts}`}>
         {typeof publications !== 'string'
           ? currentPageProducts.map((p) => {
@@ -134,7 +131,9 @@ export default function Home () {
                     price={p.price}
                     userId={p.userId}
                     key={p.id}
+                    count={p.count}
                     socket={socket}
+                    stock={p.count}
                   />
                 </div>
               </section>

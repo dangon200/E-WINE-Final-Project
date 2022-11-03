@@ -698,3 +698,10 @@ export const reviewsPublication = (productId) => {
     }
   }
 }
+
+export const paymentAmount = (paymentAmount) => {
+  return {
+    type: 'SET_PAYMENT_AMOUNT',
+    payload: paymentAmount
+  }
+}
