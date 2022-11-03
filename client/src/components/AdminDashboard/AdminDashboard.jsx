@@ -109,41 +109,59 @@ function AdminDashboard () {
       <div className={`row flex-nowrap h-100 ${s.div2}`}>
         <div className='bg-white col-auto px-0'>
           <div className='sidebar d-flex flex-column align-items-center align-items-sm-start px-5 text-white min-vh-100 h-100'>
-            <div className='d-flex align-items-center pt-5 pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
-              <div>
-                <img src={logo} alt='logo' className={`navbar-brand ${s.logo}`} />
+            <Link className='text-decoration-none' to='/'>
+              <div className='d-flex align-items-center pt-5 pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
+                <div>
+                  <img src={logo} alt='logo' className={`navbar-brand ${s.logo}`} />
+                </div>
+                <span className={`px-3 ${s.texto}`}>E-wine</span>
               </div>
-              <span className={`px-3 ${s.texto}`}>E-wine</span>
-            </div>
+            </Link>
             <hr />
             <div className={s.center}>
               <ul className={`pt-5 nav nav-pills flex-column mb-sm-auto align-items-center align-items-sm-start ${s.ul}`}>
                 <p className={`fs-4 d-sm-inline ${s.title}`}>PRINCIPAL:</p>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <DashboardIcon style={{ fontSize: 30 }} className={` ${s.icon}`} />
-                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}> <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Tablero</span> </Button>
+
+                  <Button onClick={() => setRender({ Adminppal: true, usersRoute: false, publicationsRoute: false, productsRoute: false, buysRoutes: false })}>
+                    <DashboardIcon style={{ fontSize: 30 }} className={` ${s.icon}`} />
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Tablero</span>
+
+                  </Button>
                 </li>
                 <p className={`pt-5 fs-4 d-none d-sm-inline ${s.title}`}>LISTA</p>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <PersonOutlineOutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Usuarios</span> </Button>
+
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: true, publicationsRoute: false, productsRoute: false, buysRoutes: false })}>
+                    <PersonOutlineOutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Usuarios</span>
+                  </Button>
                 </li>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <StoreMallDirectoryIcon style={{ fontSize: 30 }} className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Productos</span></Button>
+
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: false, productsRoute: true, buysRoutes: false })}>
+                    <StoreMallDirectoryIcon style={{ fontSize: 30 }} className={s.icon} />
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Productos</span>
+                  </Button>
                 </li>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <ListAltIcon style={{ fontSize: 30 }} className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Compras</span></Button>
+
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, productsRoute: false, publicationsRoute: false, buysRoutes: true })}>
+                    <ListAltIcon style={{ fontSize: 30 }} className={s.icon} />
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Compras</span>
+                  </Button>
                 </li>
                 <li className={`pt-5 nav-item ${s.li}`}>
-                  <Inventory2OutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
-                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}><span className={` ms-1 d-none d-sm-inline ${s.text}`}>Publicaciones</span></Button>
+
+                  <Button onClick={() => setRender({ Adminppal: false, usersRoute: false, publicationsRoute: true, productsRoute: false, buysRoutes: false })}>
+                    <Inventory2OutlinedIcon style={{ fontSize: 30 }} className={s.icon} />
+                    <span className={` ms-1 d-none d-sm-inline ${s.text}`}>Publicaciones</span>
+                  </Button>
                 </li>
                 <p className={`pt-5 fs-4 d-none d-sm-inline ${s.title}`}>PERFIL</p>
                 <li className={` pt-5 nav-item ${s.li}`}>
-                  <LogoutIcon style={{ fontSize: 30 }} className={s.icon} />
                   <Link className={s.link} to='/'>
+                    <LogoutIcon style={{ fontSize: 30 }} className={s.icon} />
                     <span className={` ms-1 d-none d-sm-inline ${s.text}`}>SALIR</span>
                   </Link>
                 </li>

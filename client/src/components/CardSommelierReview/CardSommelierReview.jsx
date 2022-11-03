@@ -33,11 +33,11 @@ export default function CardSommelierReview ({ id, type, origin, cellar, varieta
             <Card.Body className={s.bodyCard}>
               <Card.Title className='fs-1 fw-semibold mt-3 text-start'>{name}</Card.Title>
               <div className='row d-flex justify-content-start gap-4'>
-                <div className='col d-flex gap-4'>
+                <div className='row d-flex gap-4'>
                   <div className='col fs-4 my-3'>Origen: {origin}</div>
                   <div className='col fs-4 my-3'>Bodega: {cellar}</div>
                 </div>
-                <div className='col d-flex gap-4'>
+                <div className='row d-flex gap-4'>
                   <div className='col fs-4 my-3'>Varietal: {varietal}</div>
                   <div className='col fs-4 my-3'>Tipo: {type}</div>
                 </div>

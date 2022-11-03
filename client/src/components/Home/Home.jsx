@@ -93,6 +93,7 @@ export default function Home () {
                     price={p.price}
                     userId={p.userId}
                     key={p.id}
+                    socket={p.socket}
                   />
                 </div>
               </section>
