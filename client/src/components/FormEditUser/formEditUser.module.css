@@ -1,0 +1,24 @@
+/* .formContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 2fr)
+} */
+.container{
+    padding-top: 100px;
+    background-color: #EEEEEE;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    gap: 15px;
+    margin: auto;
+    font-size: 16px;
+    padding-top: 50px;
+}
+
+@media (min-width: 768px) {
+    .form{
+        width: 30%;
+    }
+}

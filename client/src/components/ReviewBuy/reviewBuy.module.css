@@ -1,0 +1,64 @@
+/* .App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+} */
+.input[type='radio']{
+    display: none;
+}
+.star{
+    align-self: initial;
+    cursor: pointer;
+    transition: color 200ms;
+    margin-bottom: 5px;
+}
+.text {
+    color:  #890f0d;
+    font-style: impact;
+    font-weight: bold;
+    font-size: 250%;
+    margin: 10px;
+}
+.coment {
+  width: 95%;
+  height: 100px;
+  /* padding: 12px 20px; */
+  box-sizing: content-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  margin: 5px;
+}
+.questionsContainer{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px auto;
+    border:  solid 1px gainsboro;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+}
+.inputBtn{
+    border: 2px solid var(--btn-background-color);
+    border-radius: 5px;
+    background-color: #890f0d;
+    color: white;
+    padding: 5px 18px;
+    font-size: 16px;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.inputBtn:hover{
+    background-color: white;
+    color:#56070C;
+}
+/*
+yellow=#ffc107
+gray=#e4e5e9
+*/

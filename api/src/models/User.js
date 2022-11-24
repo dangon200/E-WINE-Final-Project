@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         primaryKey: true
       },
       username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING ,
         allowNull: false
       },
       password: {
@@ -57,6 +57,10 @@ module.exports = (sequelize) => {
         defaultValue: false
       },
       isBanned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      isVerified: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       }

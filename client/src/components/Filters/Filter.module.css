@@ -2,7 +2,7 @@
     font-family: var(--font-family-2) !important;
     line-height: 1.2;
     display: flex;
-    flex-direction: row;
+    gap: 15px;
     color: #170000; 
     font-size: 1.2rem;
     font-weight: 500;
@@ -10,24 +10,53 @@
     align-content: space-around;
 
 }
+.selects{
+    display: flex;
+    text-align: left;
+    border-bottom: 1px solid rgba(173, 167, 167, 0.744);
+}
 .filtros{
-    margin-inline: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    letter-spacing: .5px;
+    font-family: var(--font-family-2);
+    text-decoration: none;
+    color: #fefefe;
+    gap: 10px;
+    width: 150px;
+    background-color: #890F0D;
+    border: none;
+}
+.filtros:hover{
+    color: #fefefe;
+    background-color: #890f0dd2;
 }
 .optSelect{
+    display: flex;
     margin-inline: 10px;
     font-weight: 500;
     border-radius: 5px;
-
+    width: 130px;
+    padding: 10px;
+    outline: none;
+    color: #aba7a4;
+    border: none;
+    align-content: space-around;
     cursor: pointer;
     background-color: #fefefe;
-    border-color: #b9b3af;
+    border-bottom-color: 1px solid #b9b3af;
 }
 .optSelect:hover{
-    background-color: var(--btn-background-color);
-    color: var(--background-color);
+    background-color: #eceaea;
+    /* background-color: var(--btn-background-color); */
+    /* color: var(--background-color); */
     font-weight: 500;
+    transition: .3s;
 }
-.limpiarFiltros{
+
+/* .limpiarFiltros{
     align-content: space-around;
     margin-inline: 10px;
     display: inline;
@@ -47,4 +76,33 @@
 .limpiarFiltros:hover{
     background-color: var(--btn-background-color);
     color: var(--background-color);
+    transition: .3s;
+} */
+.limpiarFiltros{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: .5px;
+    font-family: var(--font-family-2);
+    text-decoration: none;
+    color: #91091E;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    width: 150px;
+    background-color: #fefefe;
+    border: 1px solid #890F0D;
+    padding: 10px;
 }
+.limpiarFiltros:hover{
+    color: #fefefe;
+    background-color: #890F0D;
+    transition: .3s;
+}
+
+@media (max-width: 992px) {
+    .general{
+        flex-direction: row;
+    }
+} 
+

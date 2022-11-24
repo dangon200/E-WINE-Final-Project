@@ -1,0 +1,120 @@
+.firstTd, .Td{
+    text-align: left;
+    padding-left: 20px;
+}
+
+.secTd{
+    text-align: right;
+}
+
+/* .grid{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 1rem;
+    padding-top: 80px;
+} */
+
+.container{
+    padding-top: 50px;
+    width: 100%;
+    background-color: #EEEEEE;
+}
+
+.table{
+    width: 600px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+.dataContainer{
+    margin: 20px 0 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 40px;
+}
+
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image{
+    border-radius: 50%;
+    border: 2px solid #56070C;;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.input{
+    display: none;
+}
+
+.btn{
+    background-color: #890F0D;
+    color: white;
+    border: 1px solid #890F0D;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 1.4rem;
+}
+.title{
+    display: flex;
+    text-align: start;
+    width: 75%;
+}
+.h2{
+    display: flex;
+    justify-content: start;
+}
+.btn:hover{
+    background-color: white;
+    color:  #56070C;
+}
+.datos{
+    display: flex;
+    justify-content: center;
+    width: 75%;
+    align-items: center;
+}
+@media (max-width: 768px){
+    .dataContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 10px;
+    }
+    .container{
+        width: 80%;
+    }
+    .title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+    .datos{
+        width: 100%;
+    }
+    .h2{
+        display: flex;
+        justify-content: center;
+    }
+    .table{
+        width: 340px;
+    }
+    .grid{
+        padding-top: 40px;
+    }
+}

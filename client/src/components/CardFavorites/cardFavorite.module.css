@@ -1,0 +1,42 @@
+.icon{
+    width: 20px;
+    height: 20px;
+    color: grey;
+    cursor: pointer;
+    opacity: .5;
+}
+.card{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 28rem;
+    max-height: 50rem;
+}
+.iconActive{
+    width: 20px;
+    height: 20px;
+    color: var(--btn-background-color);
+    cursor: pointer;
+}
+.image{
+    height: 25rem;
+    width: 28rem;
+    object-fit: cover;
+}
+.button{
+    background-color: #91091E;
+    border: none;
+}
+.button:hover{
+    background-color: #91091dd4;
+}
+@media (max-width: 576px){
+    .card{
+        width: 23rem;
+    }
+    .image{
+        height: 20rem;
+        width: 23rem;
+    }
+}

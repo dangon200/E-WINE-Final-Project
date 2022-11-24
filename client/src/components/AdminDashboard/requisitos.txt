@@ -1,0 +1,74 @@
+Vision General:
+    1.Usuarios:
+        -Cantidad de Usuarios                           OK  
+        -Aumento en la ultima semana/mes/etc         
+
+    2.Publicaciones:
+        -cantidad de publicaciones                      Magui (widget)
+        -cantidad Activas/No Activas                    Magui
+    3.Compras
+        -Cantidad de compras realizadas en la ultima semana (fecha)
+        -Cantidad de dinero en transacciones.
+        compras del día
+
+    4.Productos:
+            -Cantidad de productos
+    5.Featured:
+        -Ingresos esperados del día/semana progreso comparado con las ventas aprobadas
+
+
+
+    
+Vision Usuarios:
+// -Columna Regiones       graci
+// -Bannear Usuarios                   
+-Regiones con grafico (grafico de torta)
+-ve la cantidad de usuarios que efectivamente han hecho una compra (grafico de torta)
+-% usuarios banneados (grafico de torta)
+-grafico de usuarios/tiempo
+({
+    id: r.id,
+    username: r.username,
+    email: r.email,
+    region: r.region,
+    image: r.image,
+    isBanned: r.isBanned,
+    isAdmin: r.isAdmin,
+    isSommelier: r.isSommelier,
+    balance: r.balance
+})
+
+
+
+
+Vision Publicaciones:
+-Tablas 
+-Columna Regiones
+-Bannear Publicaciones
+-Ver detalle
+-%publicaciones Banneadas
+({
+    id: r.id,
+    title: r.title,
+    price: r.price,
+    count: r.count,
+    image: r.image,
+    description: r.description,
+    name: r.product.name,
+    type: r.product.type,
+    varietal: r.product.varietal,
+    cellar: r.product.cellar,
+    img: r.product.img,
+    origin: r.product.origin
+})
+
+
+Vision Compras:
+-compras/productos
+-compras aprobadas/en espera/rechazadas
+-
+
+Vision Productos:
+- Poder crear o eliminar un varietal (back)
+-Cantidad de productos
+

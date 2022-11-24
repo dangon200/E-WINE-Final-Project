@@ -1,0 +1,102 @@
+.messenger{
+    height: 100vh;
+    display:flex;
+    overflow: hidden;
+}
+
+.sidebar{
+    padding-top: 10px;
+}
+
+.chatMenu{
+    background-color: #FEFEFE;
+    box-shadow: 3px 0px 5px 0px rgba(214, 214, 214, 0.842);
+    color: black;
+    flex: 2
+}
+
+.sidebar{
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px 10px 10px;
+    align-items: start;
+    color: #FEFEFE;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background-color: #890f0d;
+    /* background-color: #911F27; */
+    /* background-color: #FEFEFE; */
+}
+
+.chatBox{
+    flex: 4
+}
+
+.chatBoxWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.messages{
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #484d55;
+}
+
+.chatBoxTop{
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.chatBoxBottom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+}
+
+.chatSubmitButton{
+    cursor: pointer;
+    width: 80px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #91091E;
+    background-color: #91091E;
+    border-radius: 5px;
+    color: white;
+}
+
+.chatMessageInput{
+    flex-grow: 1;
+    width: 80%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #91091E;
+    border-radius: 5px;
+}
+
+.chatOnline{
+    flex: 2;
+    border-left: 1px solid gray;
+    background-color: #e8e3e3;
+    overflow: scroll;
+}
+
+.chatMenuWrapper{
+    height: 100%;
+}
+
+.chatBoxWrapper, .chatOnlineWrapper{
+    padding: 10px;
+    height: 100%;
+}
+
+.noConversationText{
+    font-size: 20px;
+    color: gray;
+}

@@ -1,0 +1,23 @@
+
+.cont{
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 50rem;
+    margin: 50px 20px 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+}
+
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    background-color: #EEEEEE;
+}
+
+@media (max-width: 576px){
+    .cont{
+        margin: 50px 10px 0 10px;
+    }
+}

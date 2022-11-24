@@ -1,0 +1,16 @@
+.navlink{
+    padding: 5px 0 5px 0;
+}
+
+.navlinkActive{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    margin-left: -15px;
+    border-left: 6px solid var(--btn-background-color);
+}
+
+.logout{
+    border: none;
+    background-color: transparent;
+}

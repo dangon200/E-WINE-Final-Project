@@ -1,0 +1,27 @@
+.cont{
+    display: grid;
+    gap: 2rem;
+    grid-auto-rows: 50rem;
+    margin: 50px 20px 0 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 42rem), 1fr));
+}
+.containerSomme{
+    height: 100%;
+    margin: 20px 0 50px 0;
+}
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    height: 100%;
+    padding: 0px 0 50px 0;
+    background-color: #EEEEEE;
+}
+
+@media (max-width: 576px){
+    .cont{
+        margin: 50px 10px 0 10px;
+    }
+}

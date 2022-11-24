@@ -4,7 +4,7 @@ import { searchPublicationByName } from '../../store/actions/actions'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
-export default function SeachBar () {
+export default function SeachBar ({ setPage }) {
   const dispatch = useDispatch()
   const [name, setName] = useState('')
   const [alert, setAlert] = useState(false)
@@ -20,6 +20,7 @@ export default function SeachBar () {
       setAlert(false)
       dispatch(searchPublicationByName(name))
       setName('')
+      setPage(1)
     }
   }
 

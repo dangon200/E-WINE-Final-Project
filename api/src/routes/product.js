@@ -30,11 +30,10 @@ server.get('/:id', async (req, res) => {
 })
 // crear producto
 server.post('/', async (req, res) => {
-  const { name, type, varietal, origin, img, cellar } = req.body
-
+  const { name, type, varietalId, origin, img, cellar } = req.body
   if (!name) return res.status(400).json('Falta parametro nombre!')
   if (!type) return res.status(400).json('Falta parametro tipo!')
-  if (!varietal) return res.status(400).json('Falta parametro varietal!')
+  if (!varietalId) return res.status(400).json('Falta parametro varietal!')
   if (!origin) return res.status(400).json('Falta parametro origin!')
   if (!img) return res.status(400).json('Falta parametro img!')
   if (!cellar) return res.status(400).json('Falta parametro cellar!')
@@ -49,7 +48,7 @@ server.post('/', async (req, res) => {
     if (productExist) return res.status(404).json('Ya existe un vino con ese nombre. Prueba con uno nuevo!')
 
     const productCreated = await productController.createProduct(
-      name, type, varietal, origin, img, cellar
+      name, type, varietalId, origin, img, cellar
     )
 
     res.status(201).json(productCreated)

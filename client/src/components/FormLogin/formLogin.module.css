@@ -1,0 +1,30 @@
+.navlink{
+  font-family: var(--font-family-1);
+  font-size: 1.6rem;
+  color:#1F1F1F;
+  text-decoration: none;
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  background-color: #f1f0f0;
+  border: none;
+}
+
+.navlink:hover{
+  color:var(--btn-background-color)
+}
+
+.googleBtn{
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.googleBtnHide{
+  display: none;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}

@@ -2,11 +2,11 @@ const { User } = require('../db')
 // const { Op } = require('sequelize')
 
 const { v4: uuidv4 } = require('uuid')
+const bcrypt = require('bcryptjs')
 
 const getUserById = async (id) => {
   try {
     const dbResult = await User.findByPk(id)
-
     if (!dbResult) return null
 
     const result = {
@@ -18,9 +18,9 @@ const getUserById = async (id) => {
       isBanned: dbResult.isBanned,
       isAdmin: dbResult.isAdmin,
       isSommelier: dbResult.isSommelier,
-      balance: dbResult.balance
+      balance: dbResult.balance,
+      buyLevel: dbResult.buyLevel
     }
-
     return result
   } catch (error) {
     throw new Error('Error tratando de encontrar un usuario por su ID!')
@@ -43,7 +43,8 @@ const getAllUsers = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
     return results
@@ -72,7 +73,8 @@ const getAllUsersBanned = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
     return results
@@ -101,7 +103,8 @@ const getAllUsersNotBanned = async () => {
         isBanned: r.isBanned,
         isAdmin: r.isAdmin,
         isSommelier: r.isSommelier,
-        balance: r.balance
+        balance: r.balance,
+        buyLevel: r.buyLevel
       })
     })
     return results
@@ -115,7 +118,7 @@ const createUser = async (username, email, password, region) => {
     const userCreated = await User.create({
       username,
       email,
-      password,
+      password: await bcrypt.hash(password, 10),
       region,
       id: uuidv4()
     })
@@ -192,6 +195,41 @@ const setImage = async (id, url) => {
   }
 }
 
+const setVerified = async (id, verified) => {
+  try {
+    const userUpdated = await User.update(
+      {
+        isVerified: verified
+      },
+      {
+        where: {
+          id
+        }
+      }
+    )
+
+    if (userUpdated) {
+      const userById = await getUserById(id)
+      return userById
+    }
+  } catch (error) {
+    throw new Error('Error actualizando usuario!')
+  }
+}
+
+const deleteUserById = async (id) => {
+  try {
+    const userDeleted = await User.destroy({
+      where: {
+        id
+      }
+    })
+    return userDeleted
+  } catch (error) {
+    throw new Error('Error al eliminar el usuario!')
+  }
+}
+
 module.exports = {
   createUser,
   getAllUsers,
@@ -200,5 +238,7 @@ module.exports = {
   getUserById,
   setBanned,
   setSommelier,
-  setImage
+  setImage,
+  setVerified,
+  deleteUserById
 }
